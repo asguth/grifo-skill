@@ -1,8 +1,14 @@
 ---
-description: Roda os 3 revisores (conteúdo, didática, design) num material existente
-argument-hint: <arquivo.html>
+description: Roda os 3 revisores (conteúdo, didática, design) num HTML
+argument-hint: <arquivo.html> [--banca b] [--material arq]
 ---
 
-Use a skill **grifo** para executar o comando `/validar` com os argumentos: $ARGUMENTS
+Use a skill **grifo** para executar o comando `/validar`.
 
-Siga o fluxo completo do SKILL.md da skill (fonte → roteiro → HTML → montar → renderizar → 3 revisores → entrega) e a especificação de `/validar` em `references/comandos.md`.
+Argumentos, exatamente como o usuário digitou (não reescreva, não reordene, não remova aspas):
+
+$ARGUMENTS
+
+Interprete as flags pela seção "Sintaxe" de `references/comandos.md` (sem flags = padrões;
+flag desconhecida = avisar e seguir) e siga o fluxo completo do SKILL.md com a
+especificação de `/validar`.

@@ -1,8 +1,14 @@
 ---
-description: Folha comparativa entre institutos
-argument-hint: <A> vs <B> [vs C]
+description: Tabela comparativa A vs B + como a banca confunde
+argument-hint: <A> vs <B> [vs C] [--banca b] [--disciplina d-x]
 ---
 
-Use a skill **grifo** para executar o comando `/comparar` com os argumentos: $ARGUMENTS
+Use a skill **grifo** para executar o comando `/comparar`.
 
-Siga o fluxo completo do SKILL.md da skill (fonte → roteiro → HTML → montar → renderizar → 3 revisores → entrega) e a especificação de `/comparar` em `references/comandos.md`.
+Argumentos, exatamente como o usuário digitou (não reescreva, não reordene, não remova aspas):
+
+$ARGUMENTS
+
+Interprete as flags pela seção "Sintaxe" de `references/comandos.md` (sem flags = padrões;
+flag desconhecida = avisar e seguir) e siga o fluxo completo do SKILL.md com a
+especificação de `/comparar`.

@@ -1,6 +1,6 @@
 ---
 name: grifo
-description: Monta apostilas e resumos ilustrados para concursos públicos (estilo esquematizado - faixas coloridas, 2 colunas, personagens, fluxogramas, tabelas, lei seca grifada) em HTML/PDF A4, com validação de conteúdo, revisão didática e crítica de design. Use para /resumo, /esquema, /lei-seca, /comparar, /pegadinhas, /questoes, /flashcards, /mnemonico, /edital, /cronograma, /revisao, /apostila, /validar ou qualquer pedido de resumo/material de estudo para concurso.
+description: Monta apostilas e resumos ilustrados para concursos públicos (estilo esquematizado - faixas coloridas, 2 colunas, personagens, fluxogramas, tabelas, lei seca grifada) em HTML/PDF A4, com validação de conteúdo, revisão didática e crítica de design. Use para /resumo, /esquema, /lei-seca, /comparar, /pegadinhas, /questoes, /flashcards, /mnemonico, /edital, /cronograma, /revisao, /apostila, /validar, /grifo (ajuda) ou qualquer pedido de resumo/material de estudo para concurso.
 license: MIT
 ---
 
@@ -32,24 +32,38 @@ Pastas desta skill (caminhos relativos a este SKILL.md):
 
 ## Comandos
 
+Sintaxe única (detalhes e ajuda completa em `references/comandos.md`, seção "Sintaxe"):
+```
+/<comando> <tópico> [--banca b] [--cargo "x"] [--folhas N] [--material arquivo] [--disciplina d-x]
+```
+
 | Comando | Gera |
 |---|---|
-| `/resumo <tópico> [banca] [cargo]` | Resumo ilustrado completo, 1–4 folhas A4 |
+| `/resumo <tópico>` | Resumo ilustrado completo, 1–4 folhas A4 |
 | `/esquema <tópico>` | Uma folha só de mapa visual (diagrama do tópico inteiro) |
-| `/lei-seca <lei> [artigos]` | Lei seca esquematizada: texto literal grifado + quadros laterais |
+| `/lei-seca <lei> [--artigos 1-10]` | Lei seca esquematizada: texto literal grifado + quadros laterais |
 | `/comparar <A> vs <B> [vs C]` | Folha comparativa (tabela + diferenças-pegadinha) |
-| `/pegadinhas <tópico> [banca]` | Folha de armadilhas típicas da banca |
-| `/questoes <tópico> [banca] [n]` | Questões inéditas no estilo da banca + gabarito comentado |
-| `/flashcards <tópico> [n]` | Cartões frente/verso para recortar |
+| `/pegadinhas <tópico>` | Folha de armadilhas típicas da banca |
+| `/questoes <tópico> [--n 10]` | Questões inéditas no estilo da banca + gabarito comentado |
+| `/flashcards <tópico> [--n 16]` | Cartões frente/verso para recortar |
 | `/mnemonico <lista ou tópico>` | Siglas/frases de memorização com quadro visual |
-| `/edital <texto/PDF do edital> [cargo]` | Edital verticalizado com checklist e peso por matéria |
-| `/cronograma <edital ou matérias> <horas/semana> <data da prova>` | Plano semanal com revisões espaçadas |
+| `/edital <edital>` | Edital verticalizado com checklist e peso por matéria |
+| `/cronograma <matérias> --horas N --prova dd/mm/aaaa` | Plano semanal com revisões espaçadas |
 | `/revisao <tópico>` | Folha única de revisão véspera (super-resumo) |
 | `/apostila <disciplina> [tópicos...]` | Junta folhas: capa, sumário, resumos, questões |
 | `/validar <arquivo.html>` | Roda só os 3 revisores sobre um material existente |
+| `/grifo [comando]` | Ajuda: lista comandos, flags e um exemplo de cada |
 
-Pedido em linguagem natural ("faz um resumo de atos administrativos pra FGV")
-= mapear para o comando equivalente. Detalhes de cada um em `references/comandos.md`.
+**Como interpretar o pedido**
+- `/resumo X`, `resumo: X` e *"faz um resumo de X pra FGV"* → **mesmo fluxo**.
+  Linguagem natural vira flags: banca, cargo, nº de folhas, material anexado.
+- **Sem flags = padrões.** Formas posicionais antigas (`/questoes lgpd cebraspe 20`)
+  continuam valendo.
+- **Flag desconhecida ou valor inválido** → avisar em uma linha e seguir com o padrão.
+- **Comando inexistente** (`/resumao`, `/simulado`) → mostrar a ajuda do `/grifo`
+  (bloco em `references/comandos.md`) e sugerir o comando mais próximo.
+- `/grifo` ou `/grifo ajuda` → só mostrar a ajuda; não gerar arquivo.
+- No Claude Code, se o nome colidir com outro plugin: `/grifo-skill:resumo`.
 
 ## Parâmetros comuns
 

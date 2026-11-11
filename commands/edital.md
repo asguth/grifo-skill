@@ -1,8 +1,14 @@
 ---
 description: Edital verticalizado com checklist e prioridades
-argument-hint: <edital> [cargo]
+argument-hint: <edital ou --material edital.pdf> [--cargo "x"] [--banca b]
 ---
 
-Use a skill **grifo** para executar o comando `/edital` com os argumentos: $ARGUMENTS
+Use a skill **grifo** para executar o comando `/edital`.
 
-Siga o fluxo completo do SKILL.md da skill (fonte → roteiro → HTML → montar → renderizar → 3 revisores → entrega) e a especificação de `/edital` em `references/comandos.md`.
+Argumentos, exatamente como o usuário digitou (não reescreva, não reordene, não remova aspas):
+
+$ARGUMENTS
+
+Interprete as flags pela seção "Sintaxe" de `references/comandos.md` (sem flags = padrões;
+flag desconhecida = avisar e seguir) e siga o fluxo completo do SKILL.md com a
+especificação de `/edital`.

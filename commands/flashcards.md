@@ -1,8 +1,14 @@
 ---
 description: Flashcards frente/verso para recortar
-argument-hint: <tópico> [n]
+argument-hint: <tópico> [--n 16] [--material arq]
 ---
 
-Use a skill **grifo** para executar o comando `/flashcards` com os argumentos: $ARGUMENTS
+Use a skill **grifo** para executar o comando `/flashcards`.
 
-Siga o fluxo completo do SKILL.md da skill (fonte → roteiro → HTML → montar → renderizar → 3 revisores → entrega) e a especificação de `/flashcards` em `references/comandos.md`.
+Argumentos, exatamente como o usuário digitou (não reescreva, não reordene, não remova aspas):
+
+$ARGUMENTS
+
+Interprete as flags pela seção "Sintaxe" de `references/comandos.md` (sem flags = padrões;
+flag desconhecida = avisar e seguir) e siga o fluxo completo do SKILL.md com a
+especificação de `/flashcards`.
