@@ -20,7 +20,7 @@
       .pele{fill:#F6C9A0}.amarelo{fill:#FFE45C}.branco{fill:#fff}.cinza{fill:#E3E7EC}
       .verm{fill:#D6283A}
       .g-o{stroke:#1C2430;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.g-raposa{fill:#E8853A}.g-creme{fill:#FFF1DC}.g-mt{fill:#FFE45C}.g-mt2{fill:#C8F27A}.g-roxo{fill:#6A4C93}.g-tinta{fill:#1C2430}
-      .f-disc{fill:var(--disc,#44607A)}.f-claro{fill:var(--disc-claro,#E8EEF3)}.f-disc2{fill:var(--disc-2,#E8897A)}
+      .f-disc{fill:var(--disc,#44607A)}.s-disc{stroke:var(--disc,#44607A)}.f-claro{fill:var(--disc-claro,#E8EEF3)}.f-disc2{fill:var(--disc-2,#E8897A)}
       .t-disc{fill:var(--disc,#44607A);font-family:Poppins,sans-serif;font-weight:800}.verde{fill:#16884A}.lar{fill:#E8790C}
     </style>
   </defs>
@@ -64,6 +64,7 @@
     <path class="k" d="M29 30 Q32 32 35 30"/>
     <path class="kf f-claro" d="M20 50 L32 46 L44 50 L44 60 L32 56 L20 60 Z"/><path class="k" d="M32 46 L32 56"/>
   </symbol>
+  <!-- DIREITO E ESTADO -->
   <symbol id="i-congresso" viewBox="0 0 64 64">
     <path class="kf f-claro" d="M8 38 Q16 28 24 38 Z"/><path class="kf f-claro" d="M40 30 Q48 44 56 30 Z"/>
     <rect class="kf branco" x="28" y="10" width="4" height="26"/><rect class="kf branco" x="34" y="10" width="4" height="26"/>
@@ -308,4 +309,97 @@
     <path class="k" d="M24 40 L32 32 L40 40 M32 32 L32 56"/>
   </symbol>
 
-  </svg>
+  <!-- OUTRAS MATÉRIAS: RLM, estatística, TI, línguas, geografia, saúde, segurança -->
+  <symbol id="i-calculadora" viewBox="0 0 64 64">
+    <rect class="kf f-disc" x="12" y="4" width="40" height="56" rx="5"/>
+    <rect class="kf f-claro" x="18" y="10" width="28" height="12" rx="2"/>
+    <path class="k" d="M30 16 L40 16"/>
+    <rect class="kf branco" x="18" y="28" width="7" height="6" rx="1"/><rect class="kf branco" x="28.5" y="28" width="7" height="6" rx="1"/><rect class="kf branco" x="39" y="28" width="7" height="6" rx="1"/>
+    <rect class="kf branco" x="18" y="38" width="7" height="6" rx="1"/><rect class="kf branco" x="28.5" y="38" width="7" height="6" rx="1"/><rect class="kf branco" x="39" y="38" width="7" height="6" rx="1"/>
+    <rect class="kf branco" x="18" y="48" width="7" height="6" rx="1"/><rect class="kf branco" x="28.5" y="48" width="7" height="6" rx="1"/><rect class="kf amarelo" x="39" y="48" width="7" height="6" rx="1"/>
+  </symbol>
+  <symbol id="i-grafico" viewBox="0 0 64 64">
+    <rect class="kf f-claro" x="16" y="38" width="9" height="18"/>
+    <rect class="kf f-disc2" x="29" y="28" width="9" height="28"/>
+    <rect class="kf f-disc" x="42" y="18" width="9" height="38"/>
+    <path class="k" d="M8 6 L8 56 L60 56"/>
+    <path class="k" d="M14 30 L27 20 L38 14 L52 6"/>
+    <path class="kf amarelo" d="M48 3 L57 3 L55 11 Z"/>
+  </symbol>
+  <symbol id="i-ampulheta" viewBox="0 0 64 64">
+    <path class="kf branco" d="M17 11 L47 11 Q47 26 34 32 Q47 38 47 53 L17 53 Q17 38 30 32 Q17 26 17 11 Z"/>
+    <path class="amarelo" d="M20 18 L44 18 Q42 26 32 30 Q22 26 20 18 Z"/>
+    <path class="amarelo" d="M19 52 Q20 42 32 40 Q44 42 45 52 Z"/>
+    <path class="k" d="M32 31 L32 40" style="stroke-dasharray:1 3"/>
+    <path class="k" d="M17 11 L47 11 Q47 26 34 32 Q47 38 47 53 L17 53 Q17 38 30 32 Q17 26 17 11 Z"/>
+    <rect class="kf f-disc" x="11" y="4" width="42" height="7" rx="2"/>
+    <rect class="kf f-disc" x="11" y="53" width="42" height="7" rx="2"/>
+  </symbol>
+  <symbol id="i-codigo" viewBox="0 0 64 64">
+    <rect class="kf f-claro" x="4" y="8" width="56" height="48" rx="5"/>
+    <path class="kf f-disc" d="M4 13 Q4 8 9 8 L55 8 Q60 8 60 13 L60 18 L4 18 Z"/>
+    <circle class="branco" cx="10" cy="13" r="2"/><circle class="branco" cx="16" cy="13" r="2"/><circle class="branco" cx="22" cy="13" r="2"/>
+    <path class="k" d="M23 28 L14 37 L23 46" style="stroke-width:4"/>
+    <path class="k" d="M41 28 L50 37 L41 46" style="stroke-width:4"/>
+    <path class="k s-disc" d="M36 26 L28 48" style="stroke-width:4"/>
+  </symbol>
+  <symbol id="i-rede" viewBox="0 0 64 64">
+    <path class="k" d="M32 32 L14 14 M32 32 L50 14 M32 32 L14 50 M32 32 L50 50 M14 14 L50 14 M14 50 L50 50"/>
+    <circle class="kf f-disc" cx="32" cy="32" r="9"/>
+    <circle class="kf f-claro" cx="14" cy="14" r="7"/><circle class="kf f-disc2" cx="50" cy="14" r="7"/>
+    <circle class="kf f-disc2" cx="14" cy="50" r="7"/><circle class="kf f-claro" cx="50" cy="50" r="7"/>
+  </symbol>
+  <symbol id="i-dialogo" viewBox="0 0 64 64">
+    <path class="kf f-disc" d="M6 8 L40 8 Q44 8 44 12 L44 30 Q44 34 40 34 L20 34 L11 42 L13 34 L10 34 Q6 34 6 30 Z"/>
+    <path class="k" d="M13 17 L37 17 M13 25 L30 25" style="stroke:#fff"/>
+    <path class="kf f-claro" d="M24 30 L54 30 Q58 30 58 34 L58 50 Q58 54 54 54 L51 54 L53 61 L44 54 L28 54 Q24 54 24 50 Z"/>
+    <circle cx="33" cy="42" r="2.6" fill="#1C2430"/><circle cx="41" cy="42" r="2.6" fill="#1C2430"/><circle cx="49" cy="42" r="2.6" fill="#1C2430"/>
+  </symbol>
+  <symbol id="i-globo" viewBox="0 0 64 64">
+    <circle class="kf f-claro" cx="32" cy="30" r="24"/>
+    <path class="kf f-disc" d="M15 20 Q21 11 31 13 Q35 19 29 23 Q31 31 22 33 Q15 29 15 20 Z"/>
+    <path class="kf f-disc" d="M37 29 Q46 25 52 31 Q51 41 44 48 Q38 44 40 38 Q34 34 37 29 Z"/>
+    <ellipse class="k" cx="32" cy="30" rx="11" ry="24" style="opacity:.35"/>
+    <path class="k" d="M8 30 L56 30" style="opacity:.35"/>
+    <path class="k" d="M32 54 L32 60 M20 60 L44 60"/>
+  </symbol>
+  <symbol id="i-mapa" viewBox="0 0 64 64">
+    <path class="kf f-claro" d="M4 14 L22 8 L42 14 L60 8 L60 50 L42 56 L22 50 L4 56 Z"/>
+    <path class="kf branco" d="M22 8 L42 14 L42 56 L22 50 Z"/>
+    <path class="k" d="M9 46 Q15 36 25 40 Q33 44 37 33" style="stroke-dasharray:3 4"/>
+    <path class="kf f-disc" d="M46 38 Q37 27 37 22 Q37 13 46 13 Q55 13 55 22 Q55 27 46 38 Z"/>
+    <circle class="kf branco" cx="46" cy="22" r="3.5"/>
+  </symbol>
+  <symbol id="i-escola" viewBox="0 0 64 64">
+    <path class="k" d="M32 14 L32 3"/><path class="kf f-disc2" d="M32 3 L43 6.5 L32 10 Z"/>
+    <rect class="kf f-claro" x="7" y="29" width="50" height="29"/>
+    <path class="kf f-disc" d="M2 31 L32 14 L62 31 Z"/>
+    <circle class="kf amarelo" cx="32" cy="24" r="3.5"/>
+    <rect class="kf branco" x="12" y="36" width="9" height="9"/><rect class="kf branco" x="43" y="36" width="9" height="9"/>
+    <path class="kf f-disc2" d="M26 58 L26 44 Q32 39 38 44 L38 58 Z"/>
+    <path class="k" d="M2 58 L62 58"/>
+  </symbol>
+  <symbol id="i-hospital" viewBox="0 0 64 64">
+    <rect class="kf branco" x="10" y="16" width="44" height="42"/>
+    <rect class="kf f-disc" x="21" y="4" width="22" height="18" rx="3"/>
+    <path class="k" d="M27 8 L27 18 M37 8 L37 18 M27 13 L37 13" style="stroke:#fff;stroke-width:3"/>
+    <rect class="kf f-claro" x="15" y="28" width="8" height="8"/><rect class="kf f-claro" x="41" y="28" width="8" height="8"/>
+    <rect class="kf f-claro" x="15" y="42" width="8" height="8"/><rect class="kf f-claro" x="41" y="42" width="8" height="8"/>
+    <path class="kf f-disc2" d="M26 58 L26 42 L38 42 L38 58 Z"/>
+    <path class="k" d="M4 58 L60 58"/>
+  </symbol>
+  <symbol id="i-policia" viewBox="0 0 64 64">
+    <path class="kf f-disc" d="M32 4 Q42 10 54 9 Q57 40 32 60 Q7 40 10 9 Q22 10 32 4 Z"/>
+    <path class="kf f-claro" d="M32 11 Q40 15 48 15 Q49 38 32 52 Q15 38 16 15 Q24 15 32 11 Z"/>
+    <path class="kf amarelo" d="M32.0 20.0 L34.7 27.3 L42.5 27.6 L36.4 32.4 L38.5 39.9 L32.0 35.6 L25.5 39.9 L27.6 32.4 L21.5 27.6 L29.3 27.3 Z"/>
+  </symbol>
+  <symbol id="i-trofeu" viewBox="0 0 64 64">
+    <path class="k" d="M20 12 Q8 12 10 22 Q12 30 22 31 M44 12 Q56 12 54 22 Q52 30 42 31"/>
+    <path class="kf amarelo" d="M18 5 L46 5 L46 22 Q46 37 32 39 Q18 37 18 22 Z"/>
+    <path class="kf branco" d="M32.0 12.0 L33.8 16.6 L38.7 16.8 L34.9 19.9 L36.1 24.7 L32.0 22.0 L27.9 24.7 L29.1 19.9 L25.3 16.8 L30.2 16.6 Z"/>
+    <rect class="kf amarelo" x="28" y="39" width="8" height="7"/>
+    <rect class="kf f-disc" x="17" y="46" width="30" height="13" rx="2"/>
+    <path class="k" d="M25 52.5 L39 52.5" style="stroke:#fff"/>
+  </symbol>
+
+</svg>

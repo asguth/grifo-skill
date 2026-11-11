@@ -91,6 +91,13 @@ SVG inline usando as classes utilitárias `f-disc`, `f-claro`, `s-disc`, `t-disc
   `i-nuvem`, `i-engrenagem`.
 - **Estudo:** `i-livro`, `i-cerebro`, `i-lampada`, `i-alvo`, `i-relogio`, `i-calendario`.
 - **Sinais:** `i-alerta`, `i-proibido`, `i-check`, `i-lupa`, `i-megafone`, `i-dinheiro`.
+- **Exatas e TI:** `i-calculadora`, `i-grafico` (barras + tendência), `i-ampulheta`,
+  `i-codigo` (`</>`), `i-rede` (nós ligados).
+- **Línguas, humanas e sociedade:** `i-dialogo` (balões de fala), `i-globo`, `i-mapa`,
+  `i-escola`, `i-hospital` (placa "H", sem cruz vermelha — emblema protegido),
+  `i-policia` (distintivo genérico, sem brasão real), `i-trofeu`.
+
+A galeria completa (gerada por `scripts/galeria.py`) fica em `docs/galeria.png`.
 
 Tamanhos: `.ilustra.p` 12mm (ao lado de título), `.ilustra` 18mm, `.ilustra.g` 26mm
 (ao lado de bloco), `.ilustra.gg` 36mm (destaque de folha). Use 2–5 ilustrações
