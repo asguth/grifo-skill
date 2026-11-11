@@ -70,7 +70,7 @@ pedido ─▶ fontes oficiais ─▶ roteiro didático ─▶ HTML (design syste
       ─▶ renderizar.py (PDF + PNG) ─▶ 3 revisores em paralelo ─▶ correções ─▶ entrega
 ```
 
-- **Design system "Grifo"** (`assets/apostila.css`): cores por disciplina e cores
+- **Design system "Grifo"** (`assets/grifo.css`): cores por disciplina e cores
   **semânticas fixas** (vermelho = pegadinha, laranja = exceção/dica, verde = macete,
   cinza = lei seca). O aluno aprende o código uma vez e lê qualquer matéria.
 - **Biblioteca de ilustrações** (`assets/ilustracoes.svg`): 34 ilustrações flat
@@ -111,7 +111,7 @@ skills/grifo/
   SKILL.md             fluxo principal
   references/          comandos, componentes, design, bancas, fidelidade
   agentes/             validador de conteúdo, revisor didático, crítico de design
-  assets/              apostila.css (design system) e ilustracoes.svg
+  assets/              grifo.css (design system) e ilustracoes.svg
   scripts/             montar.py e renderizar.py
 exemplos/              LGPD (bases legais), Lei 9.784/99, Lei 8.112/90 — fonte, HTML e PDF — e galeria
 docs/                  imagens do README

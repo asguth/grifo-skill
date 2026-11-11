@@ -25,7 +25,7 @@ Pastas desta skill (caminhos relativos a este SKILL.md):
 | `references/bancas.md` | Perfis de banca (Cebraspe, FGV, FCC, Vunesp, Cesgranrio…) | Quando houver questões/pegadinhas |
 | `references/fidelidade.md` | Regras de fonte e citação | Antes de pesquisar/escrever |
 | `agentes/*.md` | Prompts dos 3 revisores | Etapa de validação |
-| `assets/apostila.css` | Design system (não editar por apostila) | Injetado pelo `montar.py` |
+| `assets/grifo.css` | Design system (não editar por apostila) | Injetado pelo `montar.py` |
 | `assets/ilustracoes.svg` | Biblioteca de ilustrações (ids `i-*`) | Consultar ids disponíveis |
 | `scripts/montar.py` | Injeta CSS + ilustrações usadas → HTML autocontido | Sempre |
 | `scripts/renderizar.py` | HTML → PDF A4 + PNG por folha + alerta de estouro | Sempre que possível |

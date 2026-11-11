@@ -4,7 +4,7 @@
 Uso:  python3 montar.py entrada.html saida.html
 
 No HTML de entrada, use os marcadores:
-  <!--APOSTILA:CSS-->     -> substituído pelo conteúdo de assets/apostila.css
+  <!--APOSTILA:CSS-->     -> substituído pelo conteúdo de assets/grifo.css
   <!--APOSTILA:SPRITE-->  -> substituído por um <svg class="sprite"> contendo
                              apenas os <symbol> referenciados via href="#i-..."
 
@@ -104,7 +104,7 @@ def carregar_simbolos():
 
 
 def montar(html: str) -> str:
-    css = (BASE / "apostila.css").read_text(encoding="utf-8")
+    css = (BASE / "grifo.css").read_text(encoding="utf-8")
     estilo_svg, simbolos = carregar_simbolos()
 
     html = inseparaveis(html)

@@ -1,6 +1,6 @@
 # Catálogo de componentes (copiar e adaptar)
 
-Todas as classes vêm de `assets/apostila.css`. Não inventar classes novas;
+Todas as classes vêm de `assets/grifo.css`. Não inventar classes novas;
 ajustes pontuais via `style=""`.
 
 ## Folha e cabeçalho corrido

@@ -76,7 +76,7 @@ Secundária (`--disc-2`): faixas padrão `.bloco`, nº da página.
 
 Diagrama que nenhum componente resolve (ciclo, mapa, Venn, organograma largo):
 SVG inline usando as classes utilitárias `f-disc`, `f-claro`, `s-disc`, `t-disc`,
-`t-corpo` do `apostila.css` e contorno `#1C2430` 2.5px.
+`t-corpo` do `grifo.css` e contorno `#1C2430` 2.5px.
 
 ## 4. Ilustrações
 
