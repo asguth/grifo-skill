@@ -22,5 +22,6 @@
     "pdf"
   ],
   "homepage": "https://github.com/asguth/grifo-skill",
-  "repository": "https://github.com/asguth/grifo-skill"
+  "repository": "https://github.com/asguth/grifo-skill",
+  "icon": ".claude-plugin/icon.png"
 }
