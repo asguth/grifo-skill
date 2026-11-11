@@ -1,6 +1,6 @@
 ---
 description: Armadilhas típicas da banca, com correção e fundamento
-argument-hint: <tópico> [--banca b] [--folhas N]
+argument-hint: <tópico> [--banca b] [--folhas N] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

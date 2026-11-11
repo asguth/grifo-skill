@@ -24,17 +24,21 @@ REPO = Path(__file__).resolve().parent.parent
 SKILL = REPO / "skills" / "grifo"
 AQUI = SKILL / "scripts"
 SPRITE = SKILL / "assets" / "ilustracoes.svg"
-COLUNAS = 9
+COLUNAS = 10
 
 CABECA = """<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Galeria Grifo</title>
 <!-- GERADO POR scripts/galeria.py — não editar à mão -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 <!--APOSTILA:CSS-->
 <style>
+.gal-grupos{display:flex;flex-wrap:wrap;gap:0 4mm}
+.gal-bloco{flex:0 0 calc(var(--n) * (100%% - 4mm) / %(col)d)}
+.gal-bloco.cheio{flex-basis:100%%}
+.gal-bloco .gal{grid-template-columns:repeat(var(--n),minmax(0,1fr))}
 .gal-grupo{font-family:var(--fonte-titulo);font-weight:800;font-size:8.5pt;text-transform:uppercase;color:var(--disc);border-bottom:1.5px solid var(--disc-claro);margin-top:1.5mm}
 .gal{display:grid;grid-template-columns:repeat(%(col)d,minmax(0,1fr));gap:1.2mm 1mm}
-.gal div{text-align:center;font-size:8pt;color:var(--tinta-2);hyphens:manual;overflow-wrap:anywhere;line-height:1.1}
-.gal svg{width:14mm;height:14mm;display:block;margin:0 auto .5mm}
+.gal div{text-align:center;font-size:8pt;color:var(--tinta-2);hyphens:manual;overflow-wrap:normal;line-height:1.1}
+.gal svg{width:12.5mm;height:12.5mm;display:block;margin:0 auto .5mm}
 </style>
 </head><body><!--APOSTILA:SPRITE-->
 """
@@ -43,7 +47,7 @@ TOPO = ('<div class="topo"><div class="logo"><svg viewBox="0 0 64 64"><use href=
         '<div class="titulo-topo">{titulo}<small>design system grifo</small></div><div class="pag">{n:02d}</div></div>')
 
 RODAPE = ('<div class="rodape-folha"><span>Grifo-Skill · MIT</span>'
-          '<span>Gerado por ferramentas/galeria.py · {n} ilustrações</span></div>')
+          '<span>ids com prefixo i- (ex.: i-coracao) · ferramentas/galeria.py · {n} ilustrações</span></div>')
 
 # Folha 2: amostra de componentes (atualize quando criar componente novo).
 COMPONENTES = """
@@ -109,10 +113,16 @@ def gerar_fonte() -> tuple[str, int]:
     total = sum(len(ids) for _, ids in grupos)
     partes = [CABECA % {"col": COLUNAS}]
     partes.append('<div class="folha">' + TOPO.format(titulo="Galeria de ilustrações", n=1))
+    # grupos pequenos dividem a mesma linha; grupos com >= COLUNAS/2 itens ocupam a largura toda
+    partes.append('<div class="gal-grupos">')
     for grupo, ids in grupos:
-        partes.append(f'<div class="gal-grupo">{html.escape(grupo)} · {len(ids)}</div><div class="gal">')
-        partes += [f'<div><svg><use href="#{i}"/></svg>{i}</div>' for i in ids]
-        partes.append("</div>")
+        cheio = len(ids) * 2 >= COLUNAS
+        n = COLUNAS if cheio else len(ids)
+        partes.append(f'<div class="gal-bloco{" cheio" if cheio else ""}" style="--n:{n}">'
+                      f'<div class="gal-grupo">{html.escape(grupo)} · {len(ids)}</div><div class="gal">')
+        partes += [f'<div><svg><use href="#{i}"/></svg>{i[2:]}</div>' for i in ids]
+        partes.append("</div></div>")
+    partes.append("</div>")
     partes.append(RODAPE.format(n=total) + "</div>\n")
     partes.append('<div class="folha">' + TOPO.format(titulo="Galeria de componentes", n=2))
     partes.append(COMPONENTES + RODAPE.format(n=total) + "</div>\n</body></html>\n")

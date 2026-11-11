@@ -28,7 +28,7 @@ LARGURA_PNG = 1100
 LARGURA_GIF = 560
 ORDEM = [  # ordem de exibição no GIF e no mosaico
     "lgpd-bases-legais", "lei-8112-servidores", "lei-9784-processo-administrativo",
-    "portugues-crase", "rlm-proposicoes",
+    "portugues-crase", "rlm-proposicoes", "medicina-coracao", "en-photosynthesis",
 ]
 
 

@@ -41,6 +41,19 @@
   --mt-chave: #FFE45C;
   --mt-troca: #F7C9C3;
 
+  /* matizes de tópico (estilos colorido e pastel): forte · claro · pálido.
+     Nenhum é vermelho, verde ou âmbar: essas cores continuam só semânticas. */
+  --m1: #1F5F99; --m1-claro: #E1ECF7; --m1-palido: #F2F7FC;   /* azul */
+  --m2: #0B6767; --m2-claro: #DDF0EE; --m2-palido: #F1F9F8;   /* petróleo */
+  --m3: #5B3A9B; --m3-claro: #EBE4F6; --m3-palido: #F7F4FC;   /* roxo */
+  --m4: #9A2C68; --m4-claro: #F6E2EC; --m4-palido: #FCF3F7;   /* vinho */
+  --m5: #34459A; --m5-claro: #E3E6F6; --m5-palido: #F4F5FC;   /* índigo */
+  --m6: #3E4A59; --m6-claro: #E5E8EC; --m6-palido: #F5F6F8;   /* grafite */
+  --h: var(--navy); --h-claro: var(--sup-2); --h-palido: var(--sup);
+
+  /* textos gerados pelo CSS (traduzidos por :lang() no fim do arquivo) */
+  --txt-incidencia: "Incidência "; --txt-verificar: "[VERIFICAR] "; --txt-atencao: "ATENÇÃO: ";
+
   --fonte-titulo: "Poppins", "Montserrat", "Segoe UI", system-ui, sans-serif;
   --fonte-corpo: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --raio: 6px;
@@ -50,7 +63,7 @@
 * { box-sizing: border-box; }
 html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 /* hifenização só no corpo de texto; títulos e rótulos quebram só em &shy; */
-html[lang="pt-BR"] { -webkit-hyphens: auto; hyphens: auto; hyphenate-limit-chars: 8 4 4; }
+html[lang] { -webkit-hyphens: auto; hyphens: auto; hyphenate-limit-chars: 8 4 4; }
 body {
   margin: 0; background: var(--mesa); color: var(--tinta);
   font-family: var(--fonte-corpo); font-size: 9.5pt; line-height: 1.34;
@@ -102,7 +115,7 @@ code { font-size: max(.92em, 8pt); background: var(--lei-claro); padding: 0 .25e
 
 /* incidência em prova: .incidencia[data-n="1..3"] */
 .incidencia { font-size: 11pt; letter-spacing: 1px; color: var(--disc); white-space: nowrap; }
-.incidencia::before { content: "Incidência "; font-size: 8pt; color: var(--tinta-2); letter-spacing: 0; }
+.incidencia::before { content: var(--txt-incidencia); font-size: 8pt; color: var(--tinta-2); letter-spacing: 0; }
 .incidencia[data-n="1"]::after { content: "★☆☆"; }
 .incidencia[data-n="2"]::after { content: "★★☆"; }
 .incidencia[data-n="3"]::after { content: "★★★"; }
@@ -368,7 +381,7 @@ svg .f-exc    { fill: var(--excecao); }   svg .s-exc { stroke: var(--excecao); }
   background: var(--ambar-claro); border: 1.5px dashed var(--ambar);
   padding: 0 1mm; border-radius: 3px; font-weight: 700;
 }
-.verificar::before { content: "[VERIFICAR] "; color: var(--ambar); font-size: .85em; }
+.verificar::before { content: var(--txt-verificar); color: var(--ambar); font-size: .85em; }
 
 /* =====================================================================
    LAYOUT APOSTILA: cabeçalho corrido, 2 colunas, faixas de seção.
@@ -447,7 +460,7 @@ ul.check.verde li::before { background: var(--dica); border-color: var(--dica); 
 /* destaques no estilo das apostilas: vermelho escuro negrito */
 .chave-v { color: var(--azul); font-weight: 800; }
 .atencao-txt { color: var(--ambar); font-weight: 800; font-style: italic; }
-.atencao-txt::before { content: "ATENÇÃO: "; }
+.atencao-txt::before { content: var(--txt-atencao); }
 
 /* tags: IMPORTANTE (círculo com !), DICA (pílula) */
 .tag {
@@ -594,3 +607,110 @@ table.verdade tr.destaque td { background: var(--mt-chave); }
 .ico.p { width: 4.5mm; height: 4.5mm; }
 .ico.inline { width: 1.1em; height: 1.1em; }
 .ilustra.ico { stroke-width: 1.5; }
+
+/* =====================================================================
+   ESTILOS DE COR — <html lang="…" data-tema="sobrio|colorido|pastel|pb">
+   sobrio (padrão): navy em tudo, cor só semântica.
+   colorido: cada coluna e cada bloco ganha um matiz (rotação automática).
+   pastel: igual ao colorido, com faixas e corpos em tons pálidos.
+   pb: tons de cinza (impressão P&B; os rótulos e ícones carregam o sentido).
+   Cor fixa por tópico (ex.: "Cardiologia" sempre roxo): class="cor-3" na
+   .folha, .coluna, .bloco ou .caixa — vale em qualquer estilo e vence a rotação.
+   Vermelho, verde e âmbar continuam reservados ao significado (§1 do design.md).
+   ===================================================================== */
+.cor-1 { --h: var(--m1); --h-claro: var(--m1-claro); --h-palido: var(--m1-palido); }
+.cor-2 { --h: var(--m2); --h-claro: var(--m2-claro); --h-palido: var(--m2-palido); }
+.cor-3 { --h: var(--m3); --h-claro: var(--m3-claro); --h-palido: var(--m3-palido); }
+.cor-4 { --h: var(--m4); --h-claro: var(--m4-claro); --h-palido: var(--m4-palido); }
+.cor-5 { --h: var(--m5); --h-claro: var(--m5-claro); --h-palido: var(--m5-palido); }
+.cor-6 { --h: var(--m6); --h-claro: var(--m6-claro); --h-palido: var(--m6-palido); }
+
+/* rotação: coluna 1 começa no matiz 1, coluna 2 no 4; blocos seguem o ciclo */
+:is([data-tema="colorido"], [data-tema="pastel"]) .apostila-colunas > .coluna:nth-child(odd):not(:is(.cor-1,.cor-2,.cor-3,.cor-4,.cor-5,.cor-6)) {
+  --h: var(--m1); --h-claro: var(--m1-claro); --h-palido: var(--m1-palido); }
+:is([data-tema="colorido"], [data-tema="pastel"]) .apostila-colunas > .coluna:nth-child(even):not(:is(.cor-1,.cor-2,.cor-3,.cor-4,.cor-5,.cor-6)) {
+  --h: var(--m4); --h-claro: var(--m4-claro); --h-palido: var(--m4-palido); }
+:is([data-tema="colorido"], [data-tema="pastel"]) .coluna > .bloco:not(:is(.cor-1,.cor-2,.cor-3,.cor-4,.cor-5,.cor-6)) { --h: var(--hb1); --h-claro: var(--hb1-claro); --h-palido: var(--hb1-palido); }
+:is([data-tema="colorido"], [data-tema="pastel"]) .coluna > .bloco:nth-child(3n+2 of .bloco) { --hb1: var(--hb2); --hb1-claro: var(--hb2-claro); --hb1-palido: var(--hb2-palido); }
+:is([data-tema="colorido"], [data-tema="pastel"]) .coluna > .bloco:nth-child(3n+3 of .bloco) { --hb1: var(--hb3); --hb1-claro: var(--hb3-claro); --hb1-palido: var(--hb3-palido); }
+:is([data-tema="colorido"], [data-tema="pastel"]) .apostila-colunas > .coluna:nth-child(odd) {
+  --hb1: var(--m1); --hb1-claro: var(--m1-claro); --hb1-palido: var(--m1-palido);
+  --hb2: var(--m2); --hb2-claro: var(--m2-claro); --hb2-palido: var(--m2-palido);
+  --hb3: var(--m3); --hb3-claro: var(--m3-claro); --hb3-palido: var(--m3-palido); }
+:is([data-tema="colorido"], [data-tema="pastel"]) .apostila-colunas > .coluna:nth-child(even) {
+  --hb1: var(--m4); --hb1-claro: var(--m4-claro); --hb1-palido: var(--m4-palido);
+  --hb2: var(--m5); --hb2-claro: var(--m5-claro); --hb2-palido: var(--m5-palido);
+  --hb3: var(--m2); --hb3-claro: var(--m2-claro); --hb3-palido: var(--m2-palido); }
+/* bloco dentro de coluna com cor fixa herda a cor da coluna */
+:is([data-tema="colorido"], [data-tema="pastel"]) :is(.cor-1,.cor-2,.cor-3,.cor-4,.cor-5,.cor-6) .bloco:not(:is(.cor-1,.cor-2,.cor-3,.cor-4,.cor-5,.cor-6)) {
+  --h: inherit; --h-claro: inherit; --h-palido: inherit; }
+
+/* o matiz vira a cor estrutural do elemento (faixa, cabeçalho, chave, fluxo, tabela…) */
+:is([data-tema="colorido"], [data-tema="pastel"]) :is(.coluna, .bloco),
+:is(.cor-1,.cor-2,.cor-3,.cor-4,.cor-5,.cor-6) {
+  --navy: var(--h); --disc: var(--h); --azul: var(--h); --disc-2: var(--h);
+  --disc-claro: var(--h-claro); --sup-2: var(--h-claro);
+  --exemplo: var(--h); --exemplo-claro: var(--h-claro);
+}
+[data-tema="pastel"] :is(.coluna, .bloco),
+[data-tema="pastel"] :is(.cor-1,.cor-2,.cor-3,.cor-4,.cor-5,.cor-6) { --sup: var(--h-palido); }
+/* pastel: faixas e cabeçalhos claros com texto no matiz, em vez de barras cheias */
+[data-tema="pastel"] .coluna-cab { background: var(--h-claro); color: var(--h); border-bottom: 2px solid var(--h); }
+[data-tema="pastel"] .bloco.primaria > .faixa { background: var(--h-claro); color: var(--h); border-left: 3px solid var(--h); }
+[data-tema="pastel"] .bloco > .corpo { border: 1px solid var(--h-claro); border-top: 0; }
+[data-tema="pastel"] table.comparativo th, [data-tema="pastel"] table.verdade th { background: var(--h-claro); color: var(--h); }
+/* colorido: barra do bloco cheia no matiz, corpo neutro (cor marca o tópico, não o texto) */
+[data-tema="colorido"] .bloco > .faixa { background: var(--h); color: #fff; border-left-color: var(--h); }
+[data-tema="colorido"] .bloco > .corpo { border-left: 3px solid var(--h-claro); }
+
+/* pb: tudo em cinza, inclusive as ilustrações */
+[data-tema="pb"] {
+  --navy: #262626; --azul: #3A3A3A; --azul-claro: #EDEDED; --slate: #555555;
+  --ambar: #4A4A4A; --ambar-claro: #F2F2F2; --verm: #1F1F1F; --verm-claro: #EBEBEB;
+  --verde: #3A3A3A; --verde-claro: #F0F0F0; --tinta-2: #555555;
+  --sup: #F3F3F3; --sup-2: #E4E4E4; --linha: #C8C8C8; --mesa: #E4E4E4;
+  --il-1: #6E6E6E; --il-2: #A8A8A8; --il-claro: #E6E6E6;
+  --mt-chave: #DCDCDC; --mt-troca: #C9C9C9;
+  --disc: var(--navy); --disc-claro: var(--sup-2); --disc-2: var(--azul);
+}
+[data-tema="pb"] .ilustra:not(.ico), [data-tema="pb"] .figura svg { filter: grayscale(1); }
+
+/* ===================== FIGURA ROTULADA (ilustração desenhada do zero) =====================
+   <figure class="figura"> <svg viewBox="0 0 200 160">… <g class="chamada" transform="translate(x y)"><text>1</text></g> …</svg>
+     <ol class="legenda"><li>Átrio direito</li>…</ol> <figcaption>Corte frontal, vista anterior.</figcaption> </figure>
+   .figura.lado = desenho à esquerda, legenda à direita. Guia: references/ilustracoes.md */
+.figura { margin: 1mm 0; break-inside: avoid; display: grid; gap: 1.5mm; }
+.figura.lado { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; }
+.figura > svg { width: 100%; height: auto; display: block; }
+.figura figcaption { grid-column: 1 / -1; font-size: 8pt; color: var(--tinta-2); text-align: center; font-style: italic; }
+.figura ol.legenda { list-style: none; counter-reset: leg; margin: 0; padding: 0; font-size: 8.6pt; columns: var(--leg-col, 1); column-gap: 3mm; }
+.figura ol.legenda li { counter-increment: leg; display: flex; gap: 1.4mm; align-items: baseline; margin: 0 0 .7mm; break-inside: avoid; }
+.figura ol.legenda li::before {
+  content: counter(leg); flex: none; width: 4mm; height: 4mm; border-radius: 50%; background: var(--disc); color: #fff;
+  font-weight: 800; font-size: 7.6pt; display: grid; place-items: center; line-height: 1; transform: translateY(.4mm);
+}
+.figura.legenda-2 { --leg-col: 2; }
+/* chamada numerada dentro do SVG: círculo + número; linha-guia com .guia */
+svg .chamada circle { fill: var(--disc); stroke: #fff; stroke-width: 1.2; }
+svg .chamada text { fill: #fff; font: 800 7px var(--fonte-corpo); text-anchor: middle; dominant-baseline: central; }
+svg .guia { fill: none; stroke: var(--tinta); stroke-width: .8; stroke-dasharray: none; }
+svg .rotulo-svg { fill: var(--tinta); font: 700 7px var(--fonte-corpo); }
+svg .seta-fluxo { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+/* paleta científica para SVG inline (convenções da área: ver references/ilustracoes.md) */
+svg .f-arterial { fill: #D64541; } svg .s-arterial { stroke: #D64541; }
+svg .f-venoso   { fill: #4A72C4; } svg .s-venoso   { stroke: #4A72C4; }
+svg .f-musculo  { fill: #E8A49B; } svg .f-musculo2 { fill: #C9655B; }
+svg .f-tecido   { fill: #F7D9CF; } svg .f-osso     { fill: #F3E7CC; }
+svg .f-nucleo   { fill: #B49BDB; } svg .f-citoplasma { fill: #FFF2C9; }
+svg .f-planta   { fill: #5FAE5B; } svg .f-planta2  { fill: #CFE8B8; }
+svg .f-agua     { fill: #9ED3EA; } svg .f-gordura  { fill: #FBE29B; }
+svg .f-sombra   { fill: #1C2430; fill-opacity: .14; } svg .f-brilho { fill: #fff; fill-opacity: .55; }
+svg .contorno   { stroke: #1C2430; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+[data-tema="pb"] svg :is(.f-arterial,.f-venoso,.f-musculo,.f-musculo2,.f-nucleo,.f-planta,.f-agua) { filter: grayscale(1); }
+
+/* ===================== IDIOMAS: textos gerados pelo CSS ===================== */
+:root:lang(en) { --txt-incidencia: "Exam frequency "; --txt-verificar: "[VERIFY] "; --txt-atencao: "WATCH OUT: "; }
+:root:lang(es) { --txt-incidencia: "Incidencia "; --txt-verificar: "[VERIFICAR] "; --txt-atencao: "ATENCIÓN: "; }
+:root:lang(fr) { --txt-incidencia: "Fréquence "; --txt-verificar: "[À VÉRIFIER] "; --txt-atencao: "ATTENTION : "; }
+:root:lang(it) { --txt-incidencia: "Frequenza "; --txt-verificar: "[DA VERIFICARE] "; --txt-atencao: "ATTENZIONE: "; }
+:root:lang(de) { --txt-incidencia: "Prüfungsrelevanz "; --txt-verificar: "[PRÜFEN] "; --txt-atencao: "ACHTUNG: "; }

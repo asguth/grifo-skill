@@ -1,6 +1,6 @@
 ---
 description: Tabela comparativa A vs B + como a banca confunde
-argument-hint: <A> vs <B> [vs C] [--banca b] [--formato f] [--nivel n]
+argument-hint: <A> vs <B> [vs C] [--banca b] [--formato f] [--nivel n] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

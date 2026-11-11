@@ -35,6 +35,11 @@ PALETA = {
     "#7A4A2A", "#9A6236",                                # madeira
     "#FFE45C",                                           # marca-texto
     "#2E7D4F", "#1F4FA0", "#3D4F6E",                     # símbolos nacionais / roupa
+    # ciências (convenções da área; references/ilustracoes.md)
+    "#D64541", "#4A72C4",                                # sangue arterial / venoso
+    "#E8A49B", "#C9655B", "#F7D9CF", "#F3E7CC",          # músculo, músculo escuro, tecido, osso
+    "#B49BDB", "#7E5DB8", "#FFF2C9",                     # núcleo, nucléolo, citoplasma
+    "#5FAE5B", "#CFE8B8", "#9ED3EA", "#FBE29B", "#E0A800",  # planta, água, gordura, base G
 }
 LIMITE_ELEMENTOS = 15
 LIMITE_IMAGEM = 40 * 1024  # mascote raster (WebP)

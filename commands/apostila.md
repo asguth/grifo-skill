@@ -1,6 +1,6 @@
 ---
 description: Apostila completa: capa, sumário, resumos e questões
-argument-hint: <matéria> [tópicos…] [--banca b] [--cargo "x"] [--material arq]
+argument-hint: <matéria> [tópicos…] [--banca b] [--cargo "x"] [--material arq] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

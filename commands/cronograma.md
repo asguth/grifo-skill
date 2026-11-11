@@ -1,6 +1,6 @@
 ---
 description: Plano semanal até a prova com revisões espaçadas
-argument-hint: <matérias ou edital> --horas N --prova dd/mm/aaaa
+argument-hint: <matérias ou edital> --horas N --prova dd/mm/aaaa [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

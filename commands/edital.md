@@ -1,6 +1,6 @@
 ---
 description: Edital verticalizado com checklist e prioridades
-argument-hint: <edital ou --material edital.pdf> [--cargo "x"] [--banca b]
+argument-hint: <edital ou --material edital.pdf> [--cargo "x"] [--banca b] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

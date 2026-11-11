@@ -29,6 +29,24 @@ de vermelho.
 - Caixas de aviso/erro/sucesso: fundo pálido + texto e ícone da cor semântica.
 - Contraste mínimo 4,5:1 em todo texto (no repositório: `ferramentas/verificar_contraste.py`).
 
+### 1.1 Estilos de cor (`data-tema` no `<html>`; flag `--estilo`)
+
+| Estilo | Para quem | O que muda |
+|---|---|---|
+| `sobrio` (padrão) | quem prefere página calma, foco no texto | navy em toda a estrutura; cor só semântica |
+| `colorido` | quem memoriza por cor | cada coluna e cada bloco ganha um matiz (rotação automática); faixa cheia no matiz |
+| `pastel` | quer cor sem cansar a vista | mesmos matizes em faixas claras, texto no matiz, corpo levemente tingido |
+| `pb` | vai imprimir em preto e branco | tudo em cinza, inclusive ilustrações |
+
+- Matizes de tópico (`--m1`…`--m6`): azul `#1F5F99`, petróleo `#0B6767`, roxo `#5B3A9B`,
+  vinho `#9A2C68`, índigo `#34459A`, grafite `#3E4A59`. **Nenhum é vermelho, verde ou
+  âmbar**: essas três continuam reservadas ao significado, em qualquer estilo.
+- Mesmo assunto, mesma cor: com `class="cor-3"` (1–6) num `.bloco`, `.coluna`, `.folha` ou
+  `.caixa` o tópico fica sempre com aquele matiz (ex.: "Cardiologia" roxo nas 4 folhas).
+  Vale em qualquer estilo e vence a rotação. Use para dar identidade a tópicos que voltam.
+- No `colorido`, 1 bloco = 1 cor; não misture duas cores de tópico no mesmo bloco.
+- Os pares de contraste de todos os matizes estão no `ferramentas/verificar_contraste.py`.
+
 ### Marca-texto
 - `<mark>` amarelo = palavra para decorar (é o "grifo" do nome). Máx. ~1 por frase.
 - `<mark class="troca">` vermelho pálido = palavra que costuma ser trocada/confundida.
@@ -83,7 +101,9 @@ Ordem de preferência (do mais barato em tokens ao mais caro):
    ao lado de bloco: `class="ilustra g ico"`. Cor: herda o texto; `.ico.vermelho` /
    `.verde` / `.laranja` só quando o ícone carrega significado.
 2. **Ilustração da biblioteca** (flat, colorida): `<svg class="ilustra g"><use href="#i-NOME"/></svg>`.
-3. **SVG novo inline** — só se nada acima servir.
+3. **Figura rotulada desenhada do zero** — obrigatória quando o conteúdo tem estrutura
+   física (anatomia, célula, aparelho, circuito, relevo). Método completo, paleta por
+   área e checklist em `references/ilustracoes.md`.
 
 As **ilustrações têm paleta própria, mais viva** (azul `#3D7CC9`, coral `#F2875F`,
 azul-claro `#DCEAF7`, amarelo `#FFE45C`, pele, madeira), via `.f-disc`, `.f-disc2`,
@@ -106,6 +126,9 @@ azul-claro `#DCEAF7`, amarelo `#FFE45C`, pele, madeira), via `.f-disc`, `.f-disc
 - **Sinais:** `i-alerta`, `i-proibido`, `i-check`, `i-lupa`, `i-megafone`, `i-dinheiro`.
 - **Exatas e TI:** `i-calculadora`, `i-grafico` (barras + tendência), `i-ampulheta`,
   `i-codigo` (`</>`), `i-rede` (nós ligados).
+- **Saúde e ciências** (com sombra e brilho): `i-coracao`, `i-pulmoes`, `i-neuronio`,
+  `i-celula`, `i-dna`, `i-microscopio`, `i-estetoscopio`, `i-capsula` (medicamento),
+  `i-frasco` (erlenmeyer), `i-atomo`, `i-molecula` (H₂O), `i-planta`, `i-osso`.
 - **Línguas, humanas e sociedade:** `i-dialogo` (balões de fala), `i-globo`, `i-mapa`,
   `i-escola`, `i-hospital` (placa "H", sem cruz vermelha — emblema protegido),
   `i-policia` (distintivo genérico, sem brasão real), `i-trofeu`.
@@ -120,7 +143,9 @@ judiciais; cadeado ao lado de segurança). Ilustração sem relação = remover.
 
 ### Desenhar uma ilustração nova (quando a biblioteca não tem)
 Regras do estilo, obrigatórias:
-- viewBox `0 0 64 64`, formas simples (≤ 15 elementos), sem gradientes, sem sombras.
+- viewBox `0 0 64 64`, formas simples (≤ 15 elementos), sem gradientes nem filtros.
+  Volume com duas formas chapadas: `.sombra` (preto 15%) num lado e `.brilho` (branco
+  60%) no outro — é o que separa ilustração de clip-art.
 - Contorno `stroke:#1C2430; stroke-width:2.5; stroke-linecap:round; stroke-linejoin:round`.
 - Preenchimentos: classes `.f-disc` (azul), `.f-claro` (azul-claro), `.f-disc2` (coral), branco,
   pele `#F6C9A0`, amarelo `#FFE45C`; vermelho/verde/laranja só com sentido semântico.
@@ -153,6 +178,7 @@ Qualquer cor fora desta lista faz o `verificar_ilustracoes.py` falhar.
 | Pele, cabelo, madeira | `#F6C9A0`, `#6B4A32`, `#2F2A26`, `#7A4A2A`, `#9A6236` |
 | Marca-texto | `#FFE45C` |
 | Semânticas | âmbar `#A85D00`, vermelho `#B42318`, verde `#237A57` |
+| Ciências (convenção da área) | arterial `#D64541`, venoso `#4A72C4`, músculo `#E8A49B` `#C9655B`, tecido `#F7D9CF`, osso `#F3E7CC`, núcleo `#B49BDB` `#7E5DB8`, citoplasma `#FFF2C9`, planta `#5FAE5B` `#CFE8B8`, água `#9ED3EA`, gordura `#FBE29B`, base G `#E0A800` |
 | Símbolos nacionais | `#2E7D4F`, `#1F4FA0` |
 
 ## 5. Checklist visual (o crítico de design usa este)
@@ -162,7 +188,10 @@ Qualquer cor fora desta lista faz o `verificar_ilustracoes.py` falhar.
 4. Cores semânticas usadas pelo significado certo; folha predominantemente neutra.
 5. ≥ 1 diagrama/tabela por coluna; nenhum bloco de texto > 6 linhas sem destaque.
 6. Marca-texto com parcimônia (se metade da frase está grifada, nada está).
-7. Ilustrações relevantes, tamanho consistente, alinhadas, sem cortar texto.
+7. Ilustrações relevantes, tamanho consistente, alinhadas, sem cortar texto. Assunto com
+   estrutura física tem figura rotulada (checklist em `ilustracoes.md` §5).
+11. Estilo pedido aplicado (`data-tema`); no colorido/pastel, tópico que se repete
+   mantém a mesma cor (`cor-N`).
 8. Contraste suficiente; legível impresso em P&B (ícone + rótulo em todo bloco semântico).
 9. Alinhamentos e espaçamentos consistentes; nada colado na borda.
 10. Fonte ≥ 8pt em tudo.
