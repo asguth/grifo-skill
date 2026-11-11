@@ -6,6 +6,11 @@ versões seguem [SemVer](https://semver.org/lang/pt-BR/).
 ## [1.1.0] — 2026-11
 
 ### Novo
+- **Mascote e marca novos**: o Grifo (MIT) nas apostilas (`i-grifo`, `i-grifo-dica`,
+  `i-grifo-alerta`, um único WebP de 29 KB) e em `docs/marca/` (logo, ícone, mascote e
+  imagem de compartilhamento), gerados por `ferramentas/gerar_marca.py`.
+- **README novo**: GIF animado, mosaico e prévias dos exemplos, galeria, FAQ, marca e
+  apoio pelo Buy Me a Coffee.
 - **Comandos com sintaxe única e flags**: `--banca`, `--cargo`, `--folhas`,
   `--material`, `--disciplina` (e `--n`, `--artigos`, `--horas`, `--prova` onde
   fazem sentido). Sem flags = padrões; forma livre continua valendo.
