@@ -58,5 +58,5 @@ if __name__ == "__main__":
     if len(sys.argv) != 3:
         sys.exit(__doc__)
     entrada, saida = map(Path, sys.argv[1:])
-    saida.write_text(montar(entrada.read_text(encoding="utf-8")), encoding="utf-8")
+    saida.write_text(montar(entrada.read_text(encoding="utf-8")), encoding="utf-8", newline="\n")
     print(f"ok: {saida}")
