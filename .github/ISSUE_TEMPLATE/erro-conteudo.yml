@@ -1,0 +1,34 @@
+name: 'Erro de conteúdo'
+description: 'Artigo, prazo, número, gabarito ou regra errada num material ou exemplo'
+title: "[conteúdo] "
+labels: ["conteúdo"]
+body:
+  - type: markdown
+    attributes:
+      value: 'Erro de conteúdo é prioridade máxima. Diga onde está e qual é a fonte correta.'
+  - type: input
+    id: onde
+    attributes:
+      label: 'Onde está o erro'
+      description: 'Arquivo e folha (ex.: exemplos/lei-8112-servidores, folha 3, bloco "Prescrição").'
+    validations:
+      required: true
+  - type: textarea
+    id: errado
+    attributes:
+      label: 'O que está escrito'
+    validations:
+      required: true
+  - type: textarea
+    id: certo
+    attributes:
+      label: 'O que deveria estar'
+    validations:
+      required: true
+  - type: input
+    id: fonte
+    attributes:
+      label: 'Fonte oficial'
+      description: 'Link para a lei/ato/súmula vigente (planalto.gov.br, DOU, site do tribunal…).'
+    validations:
+      required: true

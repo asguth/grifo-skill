@@ -1,0 +1,38 @@
+name: 'Nova ilustração'
+description: 'Peça (ou proponha) uma ilustração para a biblioteca'
+title: "[ilustração] i-"
+labels: ["ilustração"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Estilo obrigatório: 64×64, ≤ 15 elementos, contorno #1C2430, cores chapadas da paleta
+        (design.md §4). Nada de pessoa real, brasão/logotipo real ou desenho de terceiros.
+  - type: input
+    id: id
+    attributes:
+      label: 'id sugerido'
+      placeholder: 'i-microscopio'
+    validations:
+      required: true
+  - type: textarea
+    id: uso
+    attributes:
+      label: 'Para que matéria/bloco serve'
+      description: 'A ilustração precisa "dizer algo" sobre o conteúdo ao lado.'
+    validations:
+      required: true
+  - type: textarea
+    id: esboco
+    attributes:
+      label: 'Esboço ou SVG (opcional)'
+      description: 'Pode colar o <symbol> ou arrastar um rascunho.'
+  - type: checkboxes
+    id: regras
+    attributes:
+      label: 'Conferi'
+      options:
+        - label: Não é retrato/caricatura de pessoa real nem símbolo oficial real.
+          required: true
+        - label: Não foi copiado de apostila, livro ou banco de imagens.
+          required: true

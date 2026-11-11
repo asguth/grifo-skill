@@ -1,0 +1,38 @@
+name: 'Bug de layout'
+description: 'Algo estoura a página, vaza da coluna, fica ilegível ou quebra feio'
+title: "[layout] "
+labels: ["layout"]
+body:
+  - type: markdown
+    attributes:
+      value: 'Obrigado! Um PNG da folha com o problema resolve 90% dos casos.'
+  - type: textarea
+    id: o-que
+    attributes:
+      label: 'O que aconteceu'
+      description: 'Ex.: "a tabela da folha 2 vaza pela direita"; "palavra sozinha na faixa".'
+    validations:
+      required: true
+  - type: textarea
+    id: png
+    attributes:
+      label: 'PNG da folha (arraste aqui)'
+      description: 'Gerado por renderizar.py (pasta de saída) ou um print do PDF.'
+    validations:
+      required: true
+  - type: textarea
+    id: relatorio
+    attributes:
+      label: 'Saída do renderizar.py'
+      description: 'Cole a saída de `python renderizar.py arquivo.html saida --json`.'
+      render: json
+  - type: input
+    id: ambiente
+    attributes:
+      label: 'Ambiente'
+      description: 'Claude Code / Claude.ai / outro; sistema; navegador (se imprimiu pelo navegador).'
+  - type: textarea
+    id: fonte
+    attributes:
+      label: 'Trecho do HTML-fonte (opcional)'
+      render: html
