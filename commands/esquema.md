@@ -1,6 +1,6 @@
 ---
 description: Uma folha de mapa visual do tópico inteiro
-argument-hint: <tópico> [--formato f] [--nivel n] [--material arq]
+argument-hint: <tópico> [--formato f] [--nivel n] [--material arq] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

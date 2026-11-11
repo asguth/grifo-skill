@@ -1,6 +1,6 @@
 ---
 description: Questões inéditas no estilo da banca + gabarito comentado
-argument-hint: <tópico> [--banca b] [--n 10] [--cargo "x"] [--material arq]
+argument-hint: <tópico> [--banca b] [--n 10] [--cargo "x"] [--material arq] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

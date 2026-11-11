@@ -20,6 +20,8 @@
   <a href="https://buymeacoffee.com/asguth"><img alt="Buy Me a Coffee" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-apoie-FFDD00?logo=buymeacoffee&logoColor=000"></a>
 </p>
 
+<p align="center"><b>Português</b> · <a href="README.en.md">English</a></p>
+
 <p align="center">
   <img src="docs/demo.gif" alt="Animação folheando apostilas geradas pelo Grifo-Skill" width="560">
 </p>
@@ -59,6 +61,7 @@ Peça do seu jeito — se faltar o assunto ou o formato, a skill **pergunta ante
 
 > **Você:** faz uma apostila desse PDF de farmacologia
 > **Grifo:** Qual formato? *Explicação completa* · *Só o mapa* · *Revisão rápida* · *Treino (questões/flashcards)* · *Tudo incluso*
+> E qual estilo? *Sóbrio* · *Colorido* · *Pastel* · *P&B*
 
 Ou vá direto ao comando:
 
@@ -76,8 +79,29 @@ Ou vá direto ao comando:
 | `/validar` | Roda os 3 revisores num HTML existente | `/validar minha-apostila.html` |
 | `/grifo` | Ajuda com todos os comandos e flags | `/grifo questoes` |
 
-Flags comuns: `--formato completo|mapa|revisao|treino|tudo` · `--nivel medio|faculdade|concurso|certificacao`
-· `--folhas N` · `--material arquivo` · `--banca` (concursos). Detalhes em
+Flags comuns: `--formato completo|mapa|revisao|treino|tudo` · `--estilo sobrio|colorido|pastel|pb`
+· `--nivel medio|faculdade|concurso|certificacao` · `--folhas N` · `--material arquivo`
+· `--idioma en|es|fr|it|de…` · `--banca` (concursos).
+
+### Estilos de cor
+
+Tem gente que memoriza melhor com cor em cada tópico; tem gente que prefere a página calma.
+
+| Estilo | Como fica |
+|---|---|
+| **Sóbrio** (padrão) | azul-marinho e cinza; cor só onde tem significado |
+| **Colorido** | cada coluna e cada bloco num matiz diferente (azul, petróleo, roxo, vinho, índigo, grafite) |
+| **Pastel** | os mesmos matizes em tons suaves, fundos claros |
+| **P&B** | tons de cinza, para imprimir em preto e branco |
+
+Vermelho, verde e âmbar continuam reservados a erro, acerto e exceção em qualquer estilo.
+
+### Outros idiomas
+
+A skill escreve o material na língua de quem pede — *"make a cheat sheet on the cardiac
+cycle"* sai em inglês, *"hazme un resumen de fotosíntesis"* sai em espanhol — com rótulos,
+datas, hifenização e formato de questões do país. Ver
+[`references/idiomas.md`](skills/grifo/references/idiomas.md). Detalhes em
 [`references/comandos.md`](skills/grifo/references/comandos.md).
 
 ## Instalação
@@ -112,7 +136,7 @@ aponta o Codex para a skill.
 ## Exemplos
 
 <p align="center">
-  <img src="docs/exemplos/mosaico.png" alt="Primeira folha de cada um dos cinco exemplos">
+  <img src="docs/exemplos/mosaico.png" alt="Primeira folha de cada exemplo">
 </p>
 
 | Material | Área | Folhas | PDF | Prévia |
@@ -122,14 +146,22 @@ aponta o Codex para a skill.
 | LGPD — bases legais | Proteção de dados | 4 | [PDF](exemplos/lgpd-bases-legais.pdf) | [1](docs/exemplos/lgpd-bases-legais-p1.png) · [2](docs/exemplos/lgpd-bases-legais-p2.png) · [3](docs/exemplos/lgpd-bases-legais-p3.png) · [4](docs/exemplos/lgpd-bases-legais-p4.png) |
 | Lei 8.112/90 — servidores federais | Direito Administrativo | 5 | [PDF](exemplos/lei-8112-servidores.pdf) | [1](docs/exemplos/lei-8112-servidores-p1.png) · [2](docs/exemplos/lei-8112-servidores-p2.png) · [3](docs/exemplos/lei-8112-servidores-p3.png) · [4](docs/exemplos/lei-8112-servidores-p4.png) · [5](docs/exemplos/lei-8112-servidores-p5.png) |
 | Lei 9.784/99 — processo administrativo | Direito Administrativo | 4 | [PDF](exemplos/lei-9784-processo-administrativo.pdf) | [1](docs/exemplos/lei-9784-processo-administrativo-p1.png) · [2](docs/exemplos/lei-9784-processo-administrativo-p2.png) · [3](docs/exemplos/lei-9784-processo-administrativo-p3.png) · [4](docs/exemplos/lei-9784-processo-administrativo-p4.png) |
+| Coração: anatomia e ciclo cardíaco · estilo **colorido** | Medicina / Fisiologia | 4 | [PDF](exemplos/medicina-coracao.pdf) | [1](docs/exemplos/medicina-coracao-p1.png) · [2](docs/exemplos/medicina-coracao-p2.png) · [3](docs/exemplos/medicina-coracao-p3.png) · [4](docs/exemplos/medicina-coracao-p4.png) |
+| Photosynthesis (em inglês) · estilo **pastel** | Biology | 1 | [PDF](exemplos/en-photosynthesis.pdf) | [1](docs/exemplos/en-photosynthesis-p1.png) |
+
+Os dois últimos mostram **figuras desenhadas do zero** (coração em corte com 12 estruturas
+numeradas, sistema de condução, cloroplasto): quando o assunto tem estrutura física, a
+skill desenha a figura rotulada em vez de pôr um ícone ao lado do texto
+([`references/ilustracoes.md`](skills/grifo/references/ilustracoes.md)).
 
 Em todos: questões em coluna única e o **gabarito comentado + referências com link** numa
 folha separada, para não dar spoiler.
 
 ## Galeria
 
-**47 ilustrações próprias e coloridas** (com o mascote Grifo) e **2.052 ícones
-[Lucide](https://lucide.dev)** por nome — a skill não gasta tokens desenhando:
+**60 ilustrações próprias e coloridas** (com o mascote Grifo e um conjunto de saúde e
+ciências com volume) e **2.052 ícones [Lucide](https://lucide.dev)** por nome. Para
+anatomia, célula, aparelhos e circuitos, a skill desenha **figuras rotuladas do zero**:
 
 ![Galeria de ilustrações do Grifo-Skill](docs/galeria.png)
 
@@ -148,8 +180,9 @@ pedido ─▶ (pergunta assunto/formato, se faltar) ─▶ fontes ─▶ roteiro
 ```
 
 - **Design editorial** (`assets/grifo.css`): navy e blue para estrutura e apoio; âmbar,
-  vermelho e verde só para exceção, erro e acerto; slate para referências. Contraste
-  ≥ 4,5:1 conferido por script; todo destaque tem ícone e rótulo.
+  vermelho e verde só para exceção, erro e acerto; slate para referências; estilos
+  `colorido`, `pastel` e `pb` por `data-tema`. Contraste ≥ 4,5:1 conferido por script
+  em todos os estilos; todo destaque tem ícone e rótulo.
 - **`montar.py`**: HTML único e autocontido, só com as ilustrações e ícones usados,
   espaço inseparável em "art. 59"/"30 dias", versão da skill ao lado do logo e
   `--fontes-embutidas` para PDF offline.
@@ -179,6 +212,11 @@ a fonte principal.
 
 **Posso vender o que gerar?** Pode (MIT). Confira o conteúdo e não inclua material de terceiros.
 
+**Dá para mudar as cores?** Sim: `--estilo colorido`, `pastel` ou `pb`, ou peça "mais
+colorido" / "mais sóbrio". Para um tópico manter sempre a mesma cor, a skill usa `cor-1`…`cor-6`.
+
+**Funciona em inglês/espanhol?** Sim, escreve na sua língua (`--idioma` força uma).
+
 **Funciona sem internet?** A geração usa o modelo; para o PDF idêntico offline, monte com
 `montar.py --fontes-embutidas`.
 
@@ -187,7 +225,7 @@ a fonte principal.
 ```
 skills/grifo/          a skill (vai no grifo-skill.zip)
   SKILL.md             fluxo principal (metadata.version = versão impressa nas folhas)
-  references/          comandos, design, componentes, fidelidade, bancas
+  references/          comandos, design, ilustrações, idiomas, componentes, fidelidade, bancas
   agentes/             validador de conteúdo, revisor didático, crítico de design
   assets/              grifo.css, ilustracoes.svg, lucide/, mascote/, fontes/, templates/
   scripts/             verificar.py, montar.py, renderizar.py

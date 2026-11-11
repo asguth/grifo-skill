@@ -78,7 +78,12 @@ JS_REVISAO = r"""
       // fonte < mínimo em elemento com texto próprio
       const temTexto = [...el.childNodes].some(c => c.nodeType === 3 && c.textContent.trim());
       if (temTexto && cs.visibility !== 'hidden' && cs.display !== 'none') {
-        const pt = parseFloat(cs.fontSize) * 0.75;
+        // texto dentro de SVG escala com o desenho: tamanho real = font-size × escala do viewBox
+        let escala = 1;
+        const svg = el.ownerSVGElement || (el.tagName.toLowerCase() === 'svg' ? null : el.closest('svg'));
+        if (svg && svg.viewBox && svg.viewBox.baseVal && svg.viewBox.baseVal.width)
+          escala = svg.getBoundingClientRect().width / svg.viewBox.baseVal.width;
+        const pt = parseFloat(cs.fontSize) * 0.75 * escala;
         if (pt < fonteMin - 0.05) add('fonte', n, `fonte ${pt.toFixed(1)}pt < ${fonteMin}pt`, el);
       }
     });

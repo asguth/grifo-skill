@@ -17,19 +17,27 @@ limpas, corpo cinza-claro, ilustrações consistentes, nada apertado, nada vazio
 2. **Hierarquia:** faixa → subtítulo → corpo, sem competição. Algo grita mais que
    deveria (vermelho demais, selos demais)?
 3. **Semântica de cor:** vermelho só para pegadinha/importante; laranja para
-   exceção/dica; navy para estrutura e regra. Folha predominantemente neutra: cor sem significado = remover.
+   exceção/dica; navy para estrutura e regra. Estilo `sobrio` (`data-tema`): folha
+   predominantemente neutra, cor sem significado = remover. `colorido`/`pastel`: matizes
+   de tópico (`--m1`…`--m6`) são esperados, mas vermelho/verde/âmbar seguem só semânticos
+   e o mesmo tópico mantém a mesma cor nas folhas. Estilo diferente do pedido = BLOQUEANTE.
 4. **Ritmo visual:** ≥ 1 diagrama/tabela/ilustração por coluna; nenhum muro de
    texto; blocos com tamanhos variados mas alinhados.
 5. **Ilustrações:** relevantes ao bloco; mesmo estilo (contorno escuro, flat);
    tamanhos consistentes; não cortam nem espremem texto; 2–5 por folha.
    Ilustração nova desenhada fora do estilo da biblioteca = BLOQUEANTE.
+   Assunto com estrutura física (órgão, célula, aparelho, circuito) sem figura rotulada
+   = IMPORTANTE. Figura rotulada: aplique o checklist de `references/ilustracoes.md` §5
+   (silhueta reconhecível, chamadas legíveis e na ordem da legenda, cor explicada).
 6. **Tipografia:** nada < 8pt; caixa alta só em títulos/faixas; linhas não muito
    longas; hifenização/quebras feias (palavra sozinha na linha de faixa).
 7. **Espaçamento e alinhamento:** gaps consistentes; nada colado na borda; ícones
    alinhados ao texto; tabelas sem colunas espremidas.
 8. **Impressão:** legível em P&B (todo bloco semântico tem ícone + rótulo);
    contraste do texto branco sobre faixas clara (salmão/laranja) suficiente.
-9. **Consistência entre folhas:** `.topo` igual (logo + versão), numeração certa; questões em coluna única e gabarito em folha separada.
+9. **Idioma:** todo texto fixo (rótulos, tags, cabeçalhos, rodapé) na língua do material
+   e `<html lang>` correspondente (`references/idiomas.md`).
+10. **Consistência entre folhas:** `.topo` igual (logo + versão), numeração certa; questões em coluna única e gabarito em folha separada.
 
 ## Saída
 ```

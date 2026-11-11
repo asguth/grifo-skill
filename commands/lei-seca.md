@@ -1,6 +1,6 @@
 ---
 description: Lei seca grifada: o que decorar × o que a banca troca
-argument-hint: <lei> [--artigos 1-10] [--banca b] [--folhas N] [--material arq]
+argument-hint: <lei> [--artigos 1-10] [--banca b] [--folhas N] [--material arq] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

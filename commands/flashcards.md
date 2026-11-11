@@ -1,6 +1,6 @@
 ---
 description: Flashcards frente/verso para recortar
-argument-hint: <tópico> [--n 16] [--material arq]
+argument-hint: <tópico> [--n 16] [--material arq] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

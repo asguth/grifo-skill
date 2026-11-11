@@ -12,8 +12,10 @@ fluxo do SKILL.md (fonte → roteiro → HTML → montar → renderizar → 3 re
 | Flag | Valores | Padrão | Vale para |
 |---|---|---|---|
 | `--formato` | `completo` · `mapa` · `revisao` · `treino` · `tudo` (ver SKILL.md, etapa 1) | o do comando | todos |
+| `--estilo` | `sobrio` · `colorido` · `pastel` · `pb` (ver design.md §1.1) | `sobrio` (ou o já usado na conversa) | todos que geram folhas |
+| `--idioma` | código de língua: `pt-BR` `en` `es` `fr` `it` `de` … (ver idiomas.md) | a língua do usuário | todos |
 | `--nivel` | `medio` · `faculdade` · `concurso` · `certificacao` | `faculdade` (ou inferido) | todos |
-| `--banca` | `fgv` `cebraspe` `fcc` `vunesp` `cesgranrio` `ibfc` `quadrix` `indefinida` | `indefinida` | só `--nivel concurso` |
+| `--banca` | `fgv` `cebraspe` `fcc` `vunesp` `cesgranrio` `ibfc` `quadrix` `indefinida`; fora do Brasil, o nome do exame (`usmle`, `mir`…) | `indefinida` | só `--nivel concurso` |
 | `--cargo` | texto entre aspas: `--cargo "Analista – ANPD"` | — | só concurso |
 | `--folhas` | número de folhas A4 (`1`–`4`; `/apostila` aceita mais) | o do comando | todos que geram folhas |
 | `--material` | caminho de arquivo ou anexo (PDF, apostila, anotações) — vira a fonte primária | — | todos |
@@ -28,7 +30,9 @@ fluxo do SKILL.md (fonte → roteiro → HTML → montar → renderizar → 3 re
 2. Tudo que não é flag é o **argumento principal** (tópico, lei, lista, arquivo…).
 3. **Forma livre também vale**, e é traduzida para as flags: *"resumo de atos
    administrativos pra FGV, cargo de analista, 2 folhas"* =
-   `/resumo atos administrativos --banca fgv --cargo "analista" --folhas 2`.
+   `/resumo atos administrativos --banca fgv --cargo "analista" --folhas 2`;
+   *"resumo colorido de ciclo de Krebs"* = `/resumo ciclo de Krebs --estilo colorido`;
+   *"make a cheat sheet on the cardiac cycle"* = `/revisao cardiac cycle --idioma en`.
    Formas posicionais (`/questoes lgpd cebraspe 20`) também são aceitas.
 4. `/cmd`, `cmd:` e linguagem natural levam ao **mesmo fluxo**.
 5. **Flag desconhecida** ou valor inválido → avisar em uma linha (*"ignorei
@@ -45,13 +49,14 @@ aceita e o exemplo. Não gera arquivo nem roda o fluxo.
 ```
 GRIFO-SKILL · apostilas ilustradas de qualquer assunto (MIT)
 
-Sintaxe: /<comando> <assunto ou arquivo> [--formato f] [--nivel n] [--folhas N]
-                                          [--material arquivo] [--banca b]
+Sintaxe: /<comando> <assunto ou arquivo> [--formato f] [--estilo e] [--nivel n] [--folhas N]
+                                          [--material arquivo] [--banca b] [--idioma xx]
 Formatos: completo · mapa · revisao · treino · tudo     Níveis: medio · faculdade · concurso · certificacao
-Sem assunto ou formato? A skill pergunta antes de começar.
+Estilos: sobrio · colorido · pastel · pb                Idioma: o seu (pt-BR, en, es, fr, it, de…)
+Sem assunto ou formato? A skill pergunta antes de começar (e o estilo junto).
 
 /resumo      resumo ilustrado, 1–4 folhas
-             /resumo ciclo de Krebs --nivel faculdade --folhas 2
+             /resumo ciclo de Krebs --nivel faculdade --folhas 2 --estilo colorido
 /esquema     uma folha de mapa visual
              /esquema controle de constitucionalidade
 /lei-seca    texto da lei grifado + quadros   [--artigos 1-10]
@@ -91,6 +96,8 @@ Conflito com outro plugin? Use /grifo-skill:resumo, /grifo-skill:grifo …
 2. Na 1ª folha: `.titulo-topico` com o nome do assunto (opcional se o tópico for curto).
 3. Colunas com `.coluna-cab` (subárea) e `.bloco`s (um por subtema).
 4. Cada bloco usa o componente indicado pela forma do conteúdo (design.md §3).
+   Assunto com estrutura física (órgão, célula, aparelho, circuito): figura rotulada
+   desenhada do zero na 1ª folha (`ilustracoes.md`).
 5. Pelo menos: 1 diagrama estrutural (chave, fluxo, pirâmide ou linha do tempo),
    1 tabela comparativa quando houver institutos parecidos, 1 caixa `IMPORTANTE`,
    1 caixa `DICA` ou mnemônico, 1 quadro de erros comuns (ou pegadinhas, se concurso).

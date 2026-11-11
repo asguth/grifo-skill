@@ -21,6 +21,17 @@
       .verm{fill:#B42318}
       .f-disc{fill:var(--il-1,#3D7CC9)}.s-disc{stroke:var(--il-1,#3D7CC9)}.f-claro{fill:var(--il-claro,#DCEAF7)}.f-disc2{fill:var(--il-2,#F2875F)}
       .t-disc{fill:var(--il-1,#3D7CC9);font-family:Poppins,sans-serif;font-weight:800}.verde{fill:#237A57}.lar{fill:#A85D00}
+      .sombra{fill:#1C2430;fill-opacity:.15}.brilho{fill:#FFFFFF;fill-opacity:.6}
+      .arterial{fill:#D64541}.venoso{fill:#4A72C4}.musculo{fill:#E8A49B}.musculo2{fill:#C9655B}
+      .tecido{fill:#F7D9CF}.osso{fill:#F3E7CC}.nucleo{fill:#B49BDB}.nucleo2{fill:#7E5DB8}
+      .citoplasma{fill:#FFF2C9}.planta{fill:#5FAE5B}.planta2{fill:#CFE8B8}.agua{fill:#9ED3EA}.gordura{fill:#FBE29B}
+      .fino{fill:none;stroke:#1C2430;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+      .fita{fill:none;stroke:#1C2430;stroke-width:6.5;stroke-linecap:round}
+      .fita-c{fill:none;stroke:var(--il-1,#3D7CC9);stroke-width:3;stroke-linecap:round}
+      .tubo{fill:none;stroke:var(--il-1,#3D7CC9);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+      .par-a{stroke:#D64541;stroke-width:3.2;stroke-linecap:round}.par-t{stroke:#5FAE5B;stroke-width:3.2;stroke-linecap:round}
+      .par-c{stroke:#4A72C4;stroke-width:3.2;stroke-linecap:round}.par-g{stroke:#E0A800;stroke-width:3.2;stroke-linecap:round}
+      .sulco{fill:none;stroke:#C9655B;stroke-width:2;stroke-linecap:round}
     </style>
   </defs>
 
@@ -312,6 +323,143 @@
     <rect class="kf amarelo" x="28" y="39" width="8" height="7"/>
     <rect class="kf f-disc" x="17" y="46" width="30" height="13" rx="2"/>
     <path class="k" d="M25 52.5 L39 52.5" style="stroke:#fff"/>
+  </symbol>
+
+  <!-- SAÚDE E CIÊNCIAS: estilo com volume (sombra .sombra e brilho .brilho); cores de convenção da área -->
+  <symbol id="i-coracao" viewBox="0 0 64 64">
+    <path class="kf venoso" d="M15 31 L15 11 Q15 9 17 9 L20 9 Q22 9 22 11 L22 27 Z"/>
+    <path class="kf arterial" d="M31 25 L31 12 Q31 5 38.5 5 Q46 5 46 12 L46 18 L40.5 18 L40.5 12.5 Q40.5 10.5 38.5 10.5 Q36.5 10.5 36.5 12.5 L36.5 25 Z"/>
+    <path class="fino" d="M33.5 5.5 L32.5 1.5 M38.5 5 L38.5 1 M43 6 L44.5 2.5"/>
+    <path class="kf venoso" d="M23.5 27 L25 15 Q25.3 13 27.3 13.3 L29.5 13.6 Q31.2 14 31 16 L30.5 28 Z"/>
+    <path class="kf musculo" d="M17.5 29 Q12 45 30 59 Q34 62 38 58 Q53 45 51 30 Q49 20 39 23 Q32 21 27 25 Q20 22 17.5 29 Z"/>
+    <path class="sombra" d="M45 26 Q52 34 47 46 Q43 54 37 58.5 Q46 44 45 26 Z"/>
+    <path class="sulco" d="M33 27 Q37 40 33.5 53"/>
+    <ellipse class="brilho" cx="23.5" cy="36" rx="2.6" ry="6" transform="rotate(-18 23.5 36)"/>
+  </symbol>
+  <symbol id="i-pulmoes" viewBox="0 0 64 64">
+    <rect class="kf cinza" x="29" y="3" width="6" height="19" rx="2"/>
+    <path class="kf musculo" d="M26.5 17 Q13 19 9.5 38 Q7.5 53 14 56.5 Q22 59 28 53 L28.5 26 Q28.5 17 26.5 17 Z"/>
+    <path class="kf musculo" d="M37.5 17 Q51 19 54.5 38 Q56.5 53 50 56.5 Q42 59 38 54.5 Q40.5 48 35.5 44 L35.5 26 Q35.5 17 37.5 17 Z"/>
+    <path class="sombra" d="M23 20 Q27 22 27 30 L27 52 Q24 56 19 57 Q26 48 23 20 Z"/>
+    <path class="sombra" d="M50 25 Q55 36 54 48 Q53 55 48 57 Q53 42 50 25 Z"/>
+    <path class="fino" d="M11.5 41 Q19 39 27 33 M13 48 Q20 47 27 44 M53 41 Q46 40 37 33"/>
+    <path class="k" d="M32 22 L32 26 M32 26 Q27 28 23.5 35 M32 26 Q37 28 40.5 35"/>
+    <ellipse class="brilho" cx="15" cy="34" rx="2.2" ry="6" transform="rotate(15 15 34)"/>
+    <ellipse class="brilho" cx="44" cy="30" rx="2" ry="5" transform="rotate(-15 44 30)"/>
+  </symbol>
+  <symbol id="i-neuronio" viewBox="0 0 64 64">
+    <path class="k" d="M19 20 L10 12 M13 15 L7 16 M15 23 L6 27 M22 17 L21 6 M21.5 10 L16 5 M27 19 L33 10"/>
+    <circle class="kf citoplasma" cx="21" cy="23" r="8.5"/>
+    <circle class="kf nucleo" cx="20" cy="22.5" r="3.4"/>
+    <path class="k" d="M27 29 Q37 39 46 50"/>
+    <rect class="kf gordura" x="-4.5" y="-2.8" width="9" height="5.6" rx="2.8" transform="translate(32.5 34.8) rotate(46)"/>
+    <rect class="kf gordura" x="-4.5" y="-2.8" width="9" height="5.6" rx="2.8" transform="translate(39.2 42) rotate(48)"/>
+    <path class="k" d="M46 50 L55 52 M46 50 L50 59 M46 50 L56 45"/>
+    <circle class="kf f-disc2" cx="55.5" cy="52.2" r="2.4"/>
+    <circle class="kf f-disc2" cx="50.3" cy="59" r="2.4"/>
+    <circle class="kf f-disc2" cx="56.4" cy="44.8" r="2.4"/>
+    <ellipse class="brilho" cx="17" cy="19" rx="2" ry="1.2" transform="rotate(-35 17 19)"/>
+  </symbol>
+  <symbol id="i-celula" viewBox="0 0 64 64">
+    <ellipse class="kf citoplasma" cx="32" cy="32" rx="28" ry="23"/>
+    <path class="sombra" d="M52 18 Q62 32 52 46 Q42 55 28 55 Q48 48 52 18 Z"/>
+    <path class="fino" d="M12 38 Q18 46 28 46 M10 32 Q14 42 26 42"/>
+    <path class="fino" d="M40 15 Q47 13 53 19 M40 19 Q46 17 50 22" style="stroke:#A85D00"/>
+    <circle class="kf nucleo" cx="27" cy="29" r="9.5"/>
+    <circle class="nucleo2" cx="29" cy="27" r="3"/>
+    <ellipse class="kf musculo2" cx="46" cy="37" rx="7" ry="3.8" transform="rotate(-20 46 37)"/>
+    <path class="fino" d="M40.8 38.5 L42.6 35.6 L44.4 39 L46.2 35.4 L48 38.6 L49.8 35.2"/>
+    <circle cx="36" cy="46" r="1.3" fill="#1C2430"/><circle cx="20" cy="47.5" r="1.3" fill="#1C2430"/><circle cx="43" cy="27" r="1.3" fill="#1C2430"/>
+    <ellipse class="brilho" cx="15" cy="21" rx="5" ry="2.2" transform="rotate(-35 15 21)"/>
+  </symbol>
+  <symbol id="i-dna" viewBox="0 0 64 64">
+    <path class="par-a" d="M21.5 8 L32 8"/><path class="par-t" d="M32 8 L42.5 8"/>
+    <path class="par-c" d="M25 26 L32 26"/><path class="par-g" d="M32 26 L39 26"/>
+    <path class="par-g" d="M25 38 L32 38"/><path class="par-c" d="M32 38 L39 38"/>
+    <path class="par-t" d="M21.5 56 L32 56"/><path class="par-a" d="M32 56 L42.5 56"/>
+    <path class="fita" d="M20 3 C20 16 44 18 44 32 C44 46 20 48 20 61"/>
+    <path class="fita-c" d="M20 3 C20 16 44 18 44 32 C44 46 20 48 20 61"/>
+    <path class="fita" d="M44 3 C44 16 20 18 20 32 C20 46 44 48 44 61"/>
+    <path class="tubo" style="stroke:#F2875F" d="M44 3 C44 16 20 18 20 32 C20 46 44 48 44 61"/>
+  </symbol>
+  <symbol id="i-microscopio" viewBox="0 0 64 64">
+    <path class="kf f-disc" d="M35 52 L43 52 Q53 38 42 23 L36.5 27 Q43 38 35 52 Z"/>
+    <rect class="kf f-disc" x="12" y="52" width="40" height="7" rx="2.5"/>
+    <rect class="kf cinza" x="16" y="38" width="25" height="4.5" rx="1"/>
+    <rect class="kf f-claro" x="21" y="35.5" width="12" height="2.5" rx=".6"/>
+    <rect class="kf branco" x="-4.5" y="-13" width="9" height="24" rx="1.5" transform="translate(30 20) rotate(-28)"/>
+    <rect class="kf" fill="#3A3F48" x="-3.5" y="-3" width="7" height="6" rx="1" transform="translate(23.2 4.6) rotate(-28)"/>
+    <rect class="kf" fill="#3A3F48" x="-2.2" y="-3" width="4.4" height="6" rx="1" transform="translate(35.3 32) rotate(-28)"/>
+    <circle class="kf f-disc2" cx="45" cy="35" r="4.2"/>
+    <rect class="brilho" x="-1.2" y="-9" width="2.4" height="16" rx="1.2" transform="translate(28.2 19) rotate(-28)"/>
+  </symbol>
+  <symbol id="i-estetoscopio" viewBox="0 0 64 64">
+    <path class="k" style="stroke-width:6" d="M17 8 Q14 22 26 31 M39 8 Q42 22 30 31 M28 31 Q28 47 37 51 Q47 55 49 45 L49 38"/>
+    <path class="tubo" d="M17 8 Q14 22 26 31 M39 8 Q42 22 30 31 M28 31 Q28 47 37 51 Q47 55 49 45 L49 38"/>
+    <circle class="kf cinza" cx="17" cy="6.5" r="3"/><circle class="kf cinza" cx="39" cy="6.5" r="3"/>
+    <circle class="kf cinza" cx="28" cy="31" r="3.4"/>
+    <circle class="kf cinza" cx="49" cy="30.5" r="8.5"/>
+    <circle class="kf branco" cx="49" cy="30.5" r="4.6"/>
+    <path class="sombra" d="M55 25 Q59 33 52 38.5 Q57 32 55 25 Z"/>
+  </symbol>
+  <symbol id="i-capsula" viewBox="0 0 64 64">
+    <g transform="translate(25 27) rotate(-40)">
+      <path class="kf f-disc2" d="M0 -7.5 L-12 -7.5 A7.5 7.5 0 0 0 -12 7.5 L0 7.5 Z"/>
+      <path class="kf branco" d="M0 -7.5 L12 -7.5 A7.5 7.5 0 0 1 12 7.5 L0 7.5 Z"/>
+      <rect class="brilho" x="-15" y="-4.5" width="10" height="2.4" rx="1.2"/>
+    </g>
+    <ellipse class="sombra" cx="46.5" cy="51.5" rx="11" ry="3.5"/>
+    <circle class="kf branco" cx="46" cy="44" r="10.5"/>
+    <path class="fino" d="M39 44 L53 44"/>
+    <path class="sombra" d="M53.5 37 Q58 44 52.5 51.5 Q47 55 41 52 Q53 50 53.5 37 Z"/>
+  </symbol>
+  <symbol id="i-frasco" viewBox="0 0 64 64">
+    <path class="branco" d="M28 6 L28 24 L12 54 Q10 58 14 58 L50 58 Q54 58 52 54 L36 24 L36 6 Z"/>
+    <path class="agua" d="M18.5 42 L45.5 42 L52 54 Q54 58 50 58 L14 58 Q10 58 12 54 Z"/>
+    <path class="sombra" d="M41 34 L52 54 Q54 58 50 58 L44 58 Q50 54 41 34 Z"/>
+    <circle class="kf branco" cx="28" cy="50" r="2.2"/><circle class="kf branco" cx="35" cy="46" r="1.6"/>
+    <path class="k" d="M28 6 L28 24 L12 54 Q10 58 14 58 L50 58 Q54 58 52 54 L36 24 L36 6 M25.5 6 L38.5 6"/>
+    <path class="fino" d="M36 30 L32 30 M38.5 35 L34 35"/>
+    <path class="brilho" d="M24 32 L17 46 L19.5 46 L26 33 Z"/>
+  </symbol>
+  <symbol id="i-atomo" viewBox="0 0 64 64">
+    <ellipse class="k" cx="32" cy="32" rx="27" ry="9.5"/>
+    <ellipse class="k" cx="32" cy="32" rx="27" ry="9.5" transform="rotate(60 32 32)"/>
+    <ellipse class="k" cx="32" cy="32" rx="27" ry="9.5" transform="rotate(120 32 32)"/>
+    <circle class="kf arterial" cx="29.5" cy="30.5" r="4.2"/>
+    <circle class="kf cinza" cx="34.5" cy="31" r="4.2"/>
+    <circle class="kf arterial" cx="32" cy="35" r="4.2"/>
+    <circle class="kf f-disc" cx="59" cy="32" r="3"/>
+    <circle class="kf f-disc" cx="18.5" cy="8.6" r="3"/>
+    <circle class="kf f-disc" cx="18.5" cy="55.4" r="3"/>
+  </symbol>
+  <symbol id="i-molecula" viewBox="0 0 64 64">
+    <path class="k" style="stroke-width:5" d="M32 28 L14 45 M32 28 L50 45"/>
+    <circle class="kf branco" cx="13.5" cy="45.5" r="8"/>
+    <circle class="kf branco" cx="50.5" cy="45.5" r="8"/>
+    <circle class="kf arterial" cx="32" cy="27" r="13"/>
+    <path class="sombra" d="M41 18 Q48 28 40 37 Q32 43 23 38 Q39 37 41 18 Z"/>
+    <circle class="brilho" cx="27" cy="22" r="3.6"/>
+    <circle class="brilho" cx="10.5" cy="42.5" r="2.2"/><circle class="brilho" cx="47.5" cy="42.5" r="2.2"/>
+  </symbol>
+  <symbol id="i-planta" viewBox="0 0 64 64">
+    <path class="k" style="stroke:#2E7D4F;stroke-width:3" d="M32 44 Q31 32 32 18"/>
+    <path class="kf planta" d="M31.5 32 Q19 33 13 21 Q27 18 31.5 32 Z"/>
+    <path class="kf planta" d="M32 25 Q44 25 50 12 Q36 10 32 25 Z"/>
+    <path class="fino" d="M30 31 Q22 28 17 23 M34 24 Q41 20 46 14"/>
+    <path class="kf f-disc2" d="M18 42 L46 42 L42 60 L22 60 Z"/>
+    <rect class="kf f-disc2" x="15" y="39" width="34" height="6" rx="2"/>
+    <path class="sombra" d="M40 45 L44.5 45 L41.5 59 L36 59 Z"/>
+    <ellipse class="brilho" cx="21" cy="23.5" rx="3" ry="1.4" transform="rotate(20 21 23.5)"/>
+  </symbol>
+  <symbol id="i-osso" viewBox="0 0 64 64">
+    <g transform="rotate(-40 32 32)">
+      <circle class="kf osso" cx="10" cy="26" r="6.5"/><circle class="kf osso" cx="10" cy="38" r="6.5"/>
+      <circle class="kf osso" cx="54" cy="26" r="6.5"/><circle class="kf osso" cx="54" cy="38" r="6.5"/>
+      <rect class="osso" x="9" y="26" width="46" height="12"/>
+      <path class="k" d="M14.5 27 L49.5 27 M14.5 37 L49.5 37"/>
+      <rect class="sombra" x="14" y="33" width="36" height="3.5"/>
+    </g>
   </symbol>
 
 </svg>

@@ -1,6 +1,6 @@
 ---
 name: grifo
-description: Monta apostilas, resumos, mapas, revisões, questões e flashcards ilustrados de qualquer assunto (faculdade, concursos, escola, certificações) em HTML/PDF A4 com design editorial, validação de conteúdo, revisão didática e crítica de design. Use para /resumo, /esquema, /lei-seca, /comparar, /pegadinhas, /questoes, /flashcards, /mnemonico, /edital, /cronograma, /revisao, /apostila, /validar, /grifo ou qualquer pedido de material de estudo.
+description: Monta apostilas, resumos, mapas, revisões, questões e flashcards ilustrados de qualquer assunto (faculdade, medicina, concursos, escola, certificações) em HTML/PDF A4 com design editorial, figuras rotuladas desenhadas do zero, estilos de cor (sóbrio, colorido, pastel, P&B) e material no idioma do usuário. Use para /resumo, /esquema, /lei-seca, /comparar, /pegadinhas, /questoes, /flashcards, /mnemonico, /edital, /cronograma, /revisao, /apostila, /validar, /grifo ou qualquer pedido de material de estudo, em qualquer língua (study guide, summary, cheat sheet, flashcards, resumen, apuntes, fiche de révision).
 license: MIT
 metadata:
   version: "1.0.0"
@@ -18,7 +18,9 @@ Caminhos abaixo são relativos à pasta deste SKILL.md.
 | Caminho | O que é | Quando ler |
 |---|---|---|
 | `references/comandos.md` | Sintaxe, flags e especificação de cada comando | Sempre: só a seção "Sintaxe" e a do comando |
-| `references/design.md` | Paleta, hierarquia, qual componente usar, ilustrações e ícones | Antes do HTML |
+| `references/design.md` | Paleta, estilos de cor, hierarquia, qual componente usar, ícones | Antes do HTML |
+| `references/ilustracoes.md` | Como desenhar figura rotulada do zero (anatomia, célula, aparelho…) | Quando o assunto tem estrutura física |
+| `references/idiomas.md` | Material em outra língua: rótulos, fontes, exames de outros países | Se o idioma não for pt-BR |
 | `references/componentes.md` | HTML de cada componente | Antes do HTML |
 | `references/fidelidade.md` | Fontes, citação e referências com link | Antes de pesquisar |
 | `references/bancas.md` | Estilo de bancas de concurso | Só se houver banca |
@@ -30,7 +32,8 @@ Caminhos abaixo são relativos à pasta deste SKILL.md.
 ## Comandos
 
 ```
-/<comando> <assunto ou arquivo> [--formato f] [--nivel n] [--banca b] [--folhas N] [--material arq]
+/<comando> <assunto ou arquivo> [--formato f] [--estilo e] [--nivel n] [--banca b] [--folhas N]
+          [--material arq] [--idioma xx]
 ```
 `/resumo`, `/esquema`, `/lei-seca`, `/comparar`, `/pegadinhas`, `/questoes`, `/flashcards`,
 `/mnemonico`, `/edital`, `/cronograma`, `/revisao`, `/apostila`, `/validar`, `/grifo` (ajuda).
@@ -51,13 +54,24 @@ Se o pedido não trouxer **assunto/arquivo** ou **formato**, pergunte **uma vez*
    - **Revisão rápida** — 1 folha de véspera (`/revisao`);
    - **Treino** — questões + gabarito comentado (`/questoes`) ou flashcards;
    - **Tudo incluso** — capa, sumário, resumo, mapa, flashcards, questões e gabarito (`/apostila`).
-3. **Nível** (só se não der para inferir): ensino médio, faculdade (padrão), concurso
+3. **Estilo visual** (cada pessoa aprende de um jeito):
+   - **Sóbrio** — azul-marinho e cinza, cor só onde tem significado (padrão);
+   - **Colorido** — cada tópico com uma cor diferente, faixas cheias;
+   - **Pastel** — cores por tópico em tons suaves, fundos claros;
+   - **P&B** — tons de cinza, para imprimir em preto e branco.
+4. **Nível** (só se não der para inferir): ensino médio, faculdade (padrão), concurso
    (pergunte a banca), certificação.
 
 O formato só conta como definido quando veio de **comando com barra** (`/esquema`, `/revisao`…),
 de `--formato`, ou de palavras explícitas do usuário ("só o mapa", "revisão rápida", "com
 questões"). Em linguagem natural, "faz uma apostila/resumo/material de X" **não** define o
-formato: pergunte. Com assunto e formato definidos, **não pergunte mais nada**: decida o resto.
+formato: pergunte. Quando for perguntar, pergunte o estilo junto, na mesma mensagem. Com assunto e formato
+definidos, **não pergunte mais nada**: estilo não informado = o que o usuário já usou
+nesta conversa, senão **sóbrio** (e cite `--estilo colorido|pastel|pb` em uma linha na
+entrega). Pedidos como "mais colorido", "menos cor", "pra imprimir em P&B" mudam o estilo.
+
+**Idioma:** escreva o material e responda na língua do usuário (ou `--idioma`). Fora
+de pt-BR, leia `references/idiomas.md` antes do HTML.
 Liberdade de criação: escolha componentes, ordem e ênfase pelo que ensina melhor.
 
 ### 2. Levantar o conteúdo (fidelidade antes de beleza)
@@ -72,6 +86,8 @@ que tem estrutura. Texto corrido só para conceito, curto e grifado.
 
 ### 4. Escrever o HTML-fonte a partir do template
 Copie `assets/templates/<comando>.html` para `<slug>-fonte.html` e troque todo `[[MARCADOR]]`.
+- `<html lang="…" data-tema="sobrio|colorido|pastel|pb">` conforme idioma e estilo
+  (`design.md` §1.1). Cor fixa por tópico: `class="cor-1"` … `cor-6` no bloco/coluna.
 - Só classes do design system (`references/componentes.md`); `style=""` só para ajuste pontual.
 - **Questões sempre em coluna única**, numa folha só delas. **Gabarito comentado e
   referências em folha separada, depois das questões** (nada de spoiler na mesma folha).
@@ -79,7 +95,9 @@ Copie `assets/templates/<comando>.html` para `<slug>-fonte.html` e troque todo `
 - Imagens: **ícone Lucide** (`<svg class="ico"><use href="#l-NOME"/></svg>`, ache o nome com
   `grep -i termo assets/lucide/nomes.txt`) ou **ilustração da biblioteca**
   (`<svg class="ilustra g"><use href="#i-NOME"/></svg>`, lista em `design.md` §4).
-  Só desenhe SVG novo se nenhum dos dois servir — custa tokens.
+- **Assunto com estrutura física** (anatomia, fisiologia, célula, planta, aparelho,
+  circuito, montagem de laboratório, relevo): **desenhe a figura rotulada do zero**
+  (`references/ilustracoes.md`) — é ela que ensina; ícone ao lado do texto não basta.
 
 ### 5. Verificar, montar e renderizar
 ```bash
@@ -97,7 +115,8 @@ HTML e dos PNGs + fontes usadas. Sem subagentes: três passes em sequência, rel
 Corrija BLOQUEANTES e IMPORTANTES, remonte e renderize (máx. 2 rodadas).
 
 ### 7. Entregar
-HTML + PDF. Em 2–4 linhas: o que foi gerado, `[VERIFICAR]` restantes, fontes principais.
+HTML + PDF. Em 2–4 linhas: o que foi gerado, estilo usado, `[VERIFICAR]` restantes,
+fontes principais.
 
 ## Regras inegociáveis
 1. **Fidelidade > estética.** Nada de memória sem conferência; dúvida = `[VERIFICAR]`.
@@ -105,5 +124,6 @@ HTML + PDF. Em 2–4 linhas: o que foi gerado, `[VERIFICAR]` restantes, fontes p
    Atos oficiais podem ser citados literalmente (Lei 9.610/98, art. 8º, IV).
 3. **Sem retratos de pessoas reais** (use `i-autor` + nome).
 4. **Legível em P&B.** Cor nunca é o único portador de significado: ícone + rótulo.
+   Em figura, a legenda diz o que cada cor significa.
 5. **Densidade de apostila.** Frases diretas, sem "neste resumo veremos"; bloco > 6 linhas
    sem destaque = reescrever.

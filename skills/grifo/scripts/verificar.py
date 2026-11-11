@@ -26,7 +26,7 @@ LIMITE_STYLE = 20
 VISUAIS = {
     "chave", "fluxo", "linha-tempo", "piramide", "piramide-legenda", "sigla", "relacao",
     "comparativo", "rotulada", "verdade", "edital", "formula", "codigo", "exemplo-frase",
-    "ilustra", "flashcards",
+    "ilustra", "flashcards", "figura",
     "questao", "gabarito",  # coluna só de questões/gabarito dispensa diagrama
 }
 VISUAIS_TAGS = {"table", "svg", "img"}

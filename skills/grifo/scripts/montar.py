@@ -34,7 +34,15 @@ _ABRE = rf"(?:<{_INLINE}\b[^>]*>)*"     # tags inline que podem abrir antes do a
 _FECHA = rf"(?:</{_INLINE}>)*"           # tags inline que podem fechar depois do gatilho
 _WS = r"(?P<ws>[ \t\r\n]+)"
 _ROMANO = r"[IVXLC]+\b"
-_UNIDADE = r"(?:dias?|m[eê]s(?:es)?|anos?|horas?|minutos?|semanas?|%)(?![\wÀ-ÿ])"
+_UNIDADE = (
+    r"(?:dias?|m[eê]s(?:es)?|anos?|horas?|minutos?|semanas?|%"
+    # en · es · fr · it · de
+    r"|days?|weeks?|months?|years?|hours?|minutes?|d[ií]as|años?|jours?|mois|ans|semaines?"
+    r"|giorni|mesi|anni|settimane|Tage[n]?|Wochen|Monate[n]?|Jahre[n]?|Stunden"
+    # unidades de ciências e saúde
+    r"|mL|L|dL|mg|µg|mcg|kg|g|cm|mm|nm|µm|bpm|mmHg|mEq|mmol|UI|IU|°C|K|Hz|kHz|V|mV|W|kW|J|kJ|kcal|Pa|kPa|atm|mol)"
+    r"(?![\wÀ-ÿ])"
+)
 
 # Cada regra: gatilho + fechamentos inline + ESPAÇO + (?=aberturas inline + alvo).
 # Só o grupo "ws" é substituído.
@@ -54,7 +62,7 @@ REGRAS = [
     rf"\bn[º°]\.?{_FECHA}{_WS}(?={_ABRE}\d)",
     # 5º, II  (dispositivo seguido de inciso)
     rf"(?<=\d[º°],){_FECHA}{_WS}(?={_ABRE}{_ROMANO})",
-    # 30 dias · 3 meses · 2 anos · 24 horas · 10 %
+    # 30 dias · 3 meses · 2 anos · 24 horas · 10 % · 70 mL · 120 mmHg · 30 days
     rf"(?<=\d){_FECHA}{_WS}(?={_ABRE}{_UNIDADE})",
     # dias úteis
     rf"\bdias{_FECHA}{_WS}(?={_ABRE}úteis\b)",

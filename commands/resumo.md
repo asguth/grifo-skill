@@ -1,6 +1,6 @@
 ---
 description: Apostila ilustrada de qualquer assunto (pergunta o formato se faltar)
-argument-hint: <assunto ou arquivo> [--formato f] [--nivel n] [--folhas N] [--material arq] [--banca b]
+argument-hint: <assunto ou arquivo> [--formato f] [--nivel n] [--folhas N] [--material arq] [--banca b] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

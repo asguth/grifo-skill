@@ -38,6 +38,11 @@ CASOS = [
     ("1 mês", f"1{N}mês"),
     ("2 anos e 24 horas", f"2{N}anos e 24{N}horas"),
     ("até 50 %", f"até 50{N}%"),
+    ("cerca de 70 mL e 5 L/min", f"cerca de 70{N}mL e 5{N}L/min"),
+    ("PA de 120 mmHg a 72 bpm", f"PA de 120{N}mmHg a 72{N}bpm"),
+    ("within 30 days", f"within 30{N}days"),
+    ("plazo de 15 días", f"plazo de 15{N}días"),
+    ("caso 3 Kids", "caso 3 Kids"),
     ("art. 36, p.ú.", f"art.{N}36,{N}p.ú."),
     ("parágrafo único", f"parágrafo{N}único"),
     # marcação inline entre gatilho e alvo
