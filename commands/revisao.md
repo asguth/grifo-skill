@@ -1,6 +1,6 @@
 ---
 description: Uma folha de revisão de véspera (super-resumo)
-argument-hint: <tópico> [--banca b] [--disciplina d-x]
+argument-hint: <tópico> [--banca b] [--formato f] [--nivel n]
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

@@ -124,6 +124,16 @@ def carregar_simbolos():
     return (estilo.group(1) if estilo else ""), simbolos
 
 
+def icones_lucide() -> dict:
+    """{nome: <symbol id="l-nome">} a partir de assets/lucide/lucide.svg (um símbolo por linha)."""
+    out = {}
+    for linha in (BASE / "lucide" / "lucide.svg").read_text(encoding="utf-8").splitlines():
+        m = re.match(r'<symbol id="([^"]+)"', linha)
+        if m:
+            out[m.group(1)] = linha.replace(f'id="{m.group(1)}"', f'id="l-{m.group(1)}"', 1)
+    return out
+
+
 MIME = {".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml"}
 
 
@@ -168,6 +178,13 @@ def embutir_fontes(html: str) -> str:
     return html.replace("</head>", estilo + "</head>", 1)
 
 
+def versao() -> str:
+    """Versão da skill: metadata.version do SKILL.md (atualizada a cada release)."""
+    skill = (BASE.parent / "SKILL.md").read_text(encoding="utf-8")
+    m = re.search(r'^\s*version:\s*"?([\w.-]+)"?', skill, re.M)
+    return m.group(1) if m else "?"
+
+
 def montar(html: str, fontes_embutidas: bool = False) -> str:
     css = (BASE / "grifo.css").read_text(encoding="utf-8")
     estilo_svg, simbolos = carregar_simbolos()
@@ -187,14 +204,26 @@ def montar(html: str, fontes_embutidas: bool = False) -> str:
         usados.append(nome)
         fila += re.findall(r'href="#(i-[\w-]+)"', simbolos[nome])
 
+    icones = []
+    nomes_l = sorted(set(re.findall(r'href="#l-([\w-]+)"', html)))
+    if nomes_l:
+        lucide = icones_lucide()
+        for n in nomes_l:
+            if n in lucide:
+                icones.append(lucide[n])
+            else:
+                print(f"aviso: ícone Lucide 'l-{n}' não existe (procure em assets/lucide/nomes.txt)", file=sys.stderr)
+
     sprite = (
         '<svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true">'
         f"<defs><style>{estilo_svg}</style></defs>"
         + "".join(simbolos[n] for n in usados)
+        + "".join(icones)
         + "</svg>"
     )
     if "<!--APOSTILA:CSS-->" not in html:
         print("aviso: marcador <!--APOSTILA:CSS--> não encontrado", file=sys.stderr)
+    css += f'\n:root {{ --versao: "v{versao()}"; }}'
     html = html.replace("<!--APOSTILA:CSS-->", f"<style>\n{css}\n</style>")
     html = html.replace("<!--APOSTILA:SPRITE-->", sprite)
     return html

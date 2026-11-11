@@ -1,178 +1,106 @@
 ---
 name: grifo
-description: Monta apostilas e resumos ilustrados para concursos públicos (estilo esquematizado - faixas coloridas, 2 colunas, personagens, fluxogramas, tabelas, lei seca grifada) em HTML/PDF A4, com validação de conteúdo, revisão didática e crítica de design. Use para /resumo, /esquema, /lei-seca, /comparar, /pegadinhas, /questoes, /flashcards, /mnemonico, /edital, /cronograma, /revisao, /apostila, /validar, /grifo (ajuda) ou qualquer pedido de resumo/material de estudo para concurso.
+description: Monta apostilas, resumos, mapas, revisões, questões e flashcards ilustrados de qualquer assunto (faculdade, concursos, escola, certificações) em HTML/PDF A4 com design editorial, validação de conteúdo, revisão didática e crítica de design. Use para /resumo, /esquema, /lei-seca, /comparar, /pegadinhas, /questoes, /flashcards, /mnemonico, /edital, /cronograma, /revisao, /apostila, /validar, /grifo ou qualquer pedido de material de estudo.
 license: MIT
+metadata:
+  version: "1.0.0"
 ---
 
 # Grifo-Skill
 
-Gera material de estudo para concursos no padrão das apostilas esquematizadas
-comerciais: **página A4, duas colunas, faixas de seção coloridas, corpo cinza-claro,
-listas com ✔, termos-chave em vermelho negrito, personagens e ícones ilustrados ao
-lado do texto, fluxogramas, pirâmides, tabelas comparativas e lei seca grifada.**
+Gera material de estudo **nível universitário** sobre **qualquer assunto**, a partir de
+um tema ou de um arquivo do usuário: folhas A4 em duas colunas, hierarquia editorial
+sóbria, diagramas, tabelas, ilustrações e questões inéditas. Tudo passa por três
+revisores (conteúdo, didática, design) antes da entrega.
 
-Todo material passa por **três revisores independentes** antes da entrega:
-conteúdo (fidelidade à lei/fonte), didática (é fácil de entender e cobre o que cai)
-e design (layout, legibilidade, consistência visual).
-
-Pastas desta skill (caminhos relativos a este SKILL.md):
+Caminhos abaixo são relativos à pasta deste SKILL.md.
 
 | Caminho | O que é | Quando ler |
 |---|---|---|
-| `references/comandos.md` | Especificação de cada comando | Sempre, só a seção do comando pedido |
-| `references/componentes.md` | Catálogo HTML de todos os componentes | Antes de escrever o HTML |
-| `references/design.md` | Gramática visual, estilo das ilustrações, regras de layout | Antes de escrever o HTML |
-| `references/bancas.md` | Perfis de banca (Cebraspe, FGV, FCC, Vunesp, Cesgranrio…) | Quando houver questões/pegadinhas |
-| `references/fidelidade.md` | Regras de fonte e citação | Antes de pesquisar/escrever |
-| `agentes/*.md` | Prompts dos 3 revisores | Etapa de validação |
-| `assets/grifo.css` | Design system (não editar por apostila) | Injetado pelo `montar.py` |
-| `assets/ilustracoes.svg` | Biblioteca de ilustrações (ids `i-*`) | Consultar ids disponíveis |
-| `scripts/montar.py` | Injeta CSS + ilustrações usadas → HTML autocontido | Sempre |
-| `scripts/renderizar.py` | HTML → PDF A4 + PNG por folha + relatório de layout (`--json`, `--pb`) | Sempre que possível |
-| `scripts/verificar.py` | Lint do HTML-fonte (classes, ilustrações, folhas, marcadores) | Antes de montar |
-| `assets/templates/*.html` | Esqueleto de cada comando, com os marcadores do `montar.py` | Início do passo 4 |
+| `references/comandos.md` | Sintaxe, flags e especificação de cada comando | Sempre: só a seção "Sintaxe" e a do comando |
+| `references/design.md` | Paleta, hierarquia, qual componente usar, ilustrações e ícones | Antes do HTML |
+| `references/componentes.md` | HTML de cada componente | Antes do HTML |
+| `references/fidelidade.md` | Fontes, citação e referências com link | Antes de pesquisar |
+| `references/bancas.md` | Estilo de bancas de concurso | Só se houver banca |
+| `agentes/*.md` | Prompts dos 3 revisores | Etapa 6 |
+| `assets/templates/*.html` | Esqueleto de cada comando | Início da etapa 4 |
+| `assets/lucide/nomes.txt` | 2.052 ícones Lucide (`nome: tags`) | Use `grep`, nunca leia inteiro |
+| `scripts/verificar.py`, `montar.py`, `renderizar.py` | Lint → HTML autocontido → PDF/PNG + revisão de layout | Etapa 5 |
 
 ## Comandos
 
-Sintaxe única (detalhes e ajuda completa em `references/comandos.md`, seção "Sintaxe"):
 ```
-/<comando> <tópico> [--banca b] [--cargo "x"] [--folhas N] [--material arquivo] [--disciplina d-x]
+/<comando> <assunto ou arquivo> [--formato f] [--nivel n] [--banca b] [--folhas N] [--material arq]
 ```
+`/resumo`, `/esquema`, `/lei-seca`, `/comparar`, `/pegadinhas`, `/questoes`, `/flashcards`,
+`/mnemonico`, `/edital`, `/cronograma`, `/revisao`, `/apostila`, `/validar`, `/grifo` (ajuda).
+`/cmd`, `cmd:` e linguagem natural → mesmo fluxo. Flag desconhecida → avisar e seguir com o
+padrão. Comando inexistente → mostrar a ajuda do `/grifo`. Detalhes em `references/comandos.md`.
 
-| Comando | Gera |
-|---|---|
-| `/resumo <tópico>` | Resumo ilustrado completo, 1–4 folhas A4 |
-| `/esquema <tópico>` | Uma folha só de mapa visual (diagrama do tópico inteiro) |
-| `/lei-seca <lei> [--artigos 1-10]` | Lei seca esquematizada: texto literal grifado + quadros laterais |
-| `/comparar <A> vs <B> [vs C]` | Folha comparativa (tabela + diferenças-pegadinha) |
-| `/pegadinhas <tópico>` | Folha de armadilhas típicas da banca |
-| `/questoes <tópico> [--n 10]` | Questões inéditas no estilo da banca + gabarito comentado |
-| `/flashcards <tópico> [--n 16]` | Cartões frente/verso para recortar |
-| `/mnemonico <lista ou tópico>` | Siglas/frases de memorização com quadro visual |
-| `/edital <edital>` | Edital verticalizado com checklist e peso por matéria |
-| `/cronograma <matérias> --horas N --prova dd/mm/aaaa` | Plano semanal com revisões espaçadas |
-| `/revisao <tópico>` | Folha única de revisão véspera (super-resumo) |
-| `/apostila <disciplina> [tópicos...]` | Junta folhas: capa, sumário, resumos, questões |
-| `/validar <arquivo.html>` | Roda só os 3 revisores sobre um material existente |
-| `/grifo [comando]` | Ajuda: lista comandos, flags e um exemplo de cada |
+## Fluxo (siga na ordem)
 
-**Como interpretar o pedido**
-- `/resumo X`, `resumo: X` e *"faz um resumo de X pra FGV"* → **mesmo fluxo**.
-  Linguagem natural vira flags: banca, cargo, nº de folhas, material anexado.
-- **Sem flags = padrões.** Formas posicionais antigas (`/questoes lgpd cebraspe 20`)
-  continuam valendo.
-- **Flag desconhecida ou valor inválido** → avisar em uma linha e seguir com o padrão.
-- **Comando inexistente** (`/resumao`, `/simulado`) → mostrar a ajuda do `/grifo`
-  (bloco em `references/comandos.md`) e sugerir o comando mais próximo.
-- `/grifo` ou `/grifo ajuda` → só mostrar a ajuda; não gerar arquivo.
-- No Claude Code, se o nome colidir com outro plugin: `/grifo-skill:resumo`.
+### 1. Entender o pedido — e perguntar quando faltar
+Se o pedido não trouxer **assunto/arquivo** ou **formato**, pergunte **uma vez**, numa
+única mensagem (no Claude Code, com a ferramenta de pergunta se houver), oferecendo opções:
 
-## Parâmetros comuns
+1. **Assunto ou arquivo:** "Sobre qual assunto — ou qual arquivo (PDF, slides, anotações) —
+   você quer o material?"
+2. **Formato:**
+   - **Explicação completa** — resumo didático 2–4 folhas + questões + gabarito (padrão de `/resumo`);
+   - **Só o mapa** — 1 folha de esquema visual (`/esquema`);
+   - **Revisão rápida** — 1 folha de véspera (`/revisao`);
+   - **Treino** — questões + gabarito comentado (`/questoes`) ou flashcards;
+   - **Tudo incluso** — capa, sumário, resumo, mapa, flashcards, questões e gabarito (`/apostila`).
+3. **Nível** (só se não der para inferir): ensino médio, faculdade (padrão), concurso
+   (pergunte a banca), certificação.
 
-- **banca**: `cebraspe`, `fgv`, `fcc`, `vunesp`, `cesgranrio`, `ibfc`, `quadrix`,
-  ou `indefinida` (padrão). Com `indefinida`, questões saem em **dois formatos**
-  (certo/errado e múltipla escolha A–E) e as pegadinhas cobrem os padrões comuns.
-  Se o usuário citar "Cebraspe ou FGV", usar `indefinida` priorizando essas duas.
-- **cargo / órgão**: ajusta profundidade e exemplos (ex.: ANPD → foco regulatório).
-- **material**: PDF, apostila, anotações, prints. Se fornecido, é a fonte primária.
-- **disciplina**: define a cor (`<body class="d-...">`, lista em `references/design.md`).
-  Se não informada, inferir pelo tópico.
-
-## Fluxo de trabalho (siga na ordem)
-
-### 1. Entender o pedido
-Identificar comando, tópico, banca, cargo e material. Perguntar **no máximo uma vez**
-e só se faltar o tópico. Todo o resto tem padrão.
+Com assunto e formato definidos (pelo usuário ou pela flag/comando), **não pergunte mais nada**:
+decida o resto. Liberdade de criação: escolha componentes, ordem e ênfase pelo que ensina melhor.
 
 ### 2. Levantar o conteúdo (fidelidade antes de beleza)
-Ler `references/fidelidade.md`. Resumo:
-- Material do usuário > texto oficial (Planalto, DOU, sites .gov.br, regimentos) >
-  súmulas/informativos oficiais > doutrina consolidada.
-- Dispositivo citado = conferido na fonte. Sem fonte acessível → `<span class="verificar">`.
-- Anotar as fontes usadas: vão no rodapé da última folha.
+Ler `references/fidelidade.md`. Material do usuário > fonte oficial/primária > literatura
+de referência. Todo número, data, fórmula, artigo ou definição técnica é conferido; sem
+fonte acessível → `<span class="verificar">`. Guarde as fontes **com URL** para as referências.
 
-### 3. Roteiro didático
-Antes do HTML, montar mentalmente o roteiro: subtemas → para cada um escolher
-**o componente pela forma do conteúdo** (tabela em `references/design.md` §3).
-Regra de ouro: **ilustre tudo que tem estrutura** (classificação, processo,
-hierarquia, comparação, prazos, regra+exceção). Texto corrido só para conceito puro,
-e mesmo assim curto, em bloco, com termos-chave grifados.
+### 3. Roteiro didático (nível faculdade)
+Para cada subtema: definição precisa → mecanismo/por quê → exemplo → erro comum.
+Escolha o componente pela forma do conteúdo (`references/design.md` §3) e ilustre tudo
+que tem estrutura. Texto corrido só para conceito, curto e grifado.
 
-### 4. Escrever o HTML-fonte (a partir do template)
-Ler `references/componentes.md` e `references/design.md`. **Copiar o template do
-comando** para `<slug>-fonte.html` e preencher — não escrever o esqueleto do zero
-(economiza tokens e padroniza a saída):
-
-| Comando | Template (`assets/templates/`) |
-|---|---|
-| `/resumo`, `/esquema`, `/lei-seca`, `/comparar`, `/pegadinhas`, `/mnemonico` | `resumo.html` (apague o que não usar) |
-| `/revisao` | `revisao.html` |
-| `/flashcards` | `flashcards.html` (8 cartões por folha) |
-| `/questoes` | `questoes.html` |
-| `/edital`, `/cronograma` | `edital.html` |
-| `/apostila` | `capa-sumario.html` + um `resumo.html` por tópico |
-
-- Trocar **todo** `[[MARCADOR]]` (o `verificar.py` avisa se sobrar) e a classe
-  `d-…` do `<body>` (cor da disciplina).
-- Nunca escrever CSS próprio extenso: usar as classes do design system. Ajustes
-  pontuais via `style=""` são aceitáveis (ex.: largura de coluna).
-- Ilustrações: `<svg class="ilustra g"><use href="#i-juiz"/></svg>`. Ids disponíveis
-  em `references/design.md` §4 (galeria: `docs/galeria.png` do repositório).
-  Se precisar de algo que não existe, desenhar um SVG inline novo **no mesmo estilo**
-  (regras em `references/design.md` §4).
+### 4. Escrever o HTML-fonte a partir do template
+Copie `assets/templates/<comando>.html` para `<slug>-fonte.html` e troque todo `[[MARCADOR]]`.
+- Só classes do design system (`references/componentes.md`); `style=""` só para ajuste pontual.
+- **Questões sempre em coluna única**, numa folha só delas. **Gabarito comentado e
+  referências em folha separada, depois das questões** (nada de spoiler na mesma folha).
+- Referências com link: `<a href="URL oficial">título</a>`.
+- Imagens: **ícone Lucide** (`<svg class="ico"><use href="#l-NOME"/></svg>`, ache o nome com
+  `grep -i termo assets/lucide/nomes.txt`) ou **ilustração da biblioteca**
+  (`<svg class="ilustra g"><use href="#i-NOME"/></svg>`, lista em `design.md` §4).
+  Só desenhe SVG novo se nenhum dos dois servir — custa tokens.
 
 ### 5. Verificar, montar e renderizar
 ```bash
-python3 <skill>/scripts/verificar.py <slug>-fonte.html          # lint: classes, ids, folhas
-python3 <skill>/scripts/montar.py <slug>-fonte.html <slug>.html  # [--fontes-embutidas]
-python3 <skill>/scripts/renderizar.py <slug>.html <pasta-saida> --json
+python3 <skill>/scripts/verificar.py <slug>-fonte.html
+python3 <skill>/scripts/montar.py <slug>-fonte.html <slug>.html     # [--fontes-embutidas]
+python3 <skill>/scripts/renderizar.py <slug>.html <saida> --json     # [--pb]
 ```
-- `verificar.py`: corrigir todo ERRO antes de montar.
-- `montar.py` injeta CSS + ilustrações usadas e protege referências com espaço
-  inseparável ("art. 59", "30 dias"). `--fontes-embutidas` embute Inter e Poppins
-  (PDF igual sem internet).
-- `renderizar.py` gera PDF + PNG por folha e o relatório de layout (estouro de página,
-  vazamento lateral, transbordo de caixa, colunas desequilibradas, fonte < 8 pt).
-  Corrigir todo aviso antes de seguir (encurtar texto, mover bloco, criar nova folha).
-  `--pb` gera também PNGs em cinza para conferir a leitura em P&B.
-- Sem Python/navegador disponível: entregar o HTML (imprime em PDF pelo navegador,
-  Ctrl+P → A4, margens nenhuma, gráficos de fundo ligado).
+Corrija todo ERRO do lint e todo aviso de layout (estouro, transbordo, colunas
+desequilibradas, fonte < 8 pt) antes de seguir. Sem Python/navegador: entregue o HTML
+(Ctrl+P → A4, sem margens, gráficos de fundo).
 
-### 6. Validação (3 revisores independentes)
-Os revisores **não podem ter escrito o material**: precisam olhar a frio.
-
-- **Se houver ferramenta de subagentes (Agent/Task)**: lançar os três em paralelo,
-  cada um com o conteúdo do respectivo arquivo de `agentes/` como prompt, mais:
-  caminho do HTML final, caminhos dos PNGs, banca, e a lista de fontes usadas.
-  - `agentes/validador-conteudo.md` — confere cada afirmação contra a fonte.
-  - `agentes/revisor-didatico.md` — clareza, cobertura do que cai, densidade.
-  - `agentes/critico-design.md` — olha os PNGs e o HTML, aplica o checklist visual.
-- **Sem subagentes**: fazer os três passes em sequência, cada um relendo o arquivo
-  do zero com o checklist do respectivo `agentes/*.md`, sem se apoiar na memória de
-  como foi escrito.
-
-Cada revisor devolve itens classificados **BLOQUEANTE / IMPORTANTE / SUGESTÃO**.
-Corrigir todos os BLOQUEANTES e IMPORTANTES; re-montar, re-renderizar.
-No máximo 2 rodadas; o que restar vira nota na entrega.
+### 6. Validação (3 revisores que não escreveram o material)
+Com subagentes: rode os três em paralelo, cada um com o seu `agentes/*.md` + caminhos do
+HTML e dos PNGs + fontes usadas. Sem subagentes: três passes em sequência, relendo do zero.
+Corrija BLOQUEANTES e IMPORTANTES, remonte e renderize (máx. 2 rodadas).
 
 ### 7. Entregar
-- HTML final (autocontido) + PDF quando gerado.
-- Em 2–4 linhas: o que foi gerado, itens `[VERIFICAR]` restantes, fontes.
-- Não descrever o conteúdo do arquivo: o usuário vai abrir.
+HTML + PDF. Em 2–4 linhas: o que foi gerado, `[VERIFICAR]` restantes, fontes principais.
 
 ## Regras inegociáveis
-
-1. **Fidelidade > estética.** Número, prazo, quórum, artigo, exceção: da fonte, nunca
-   de memória sem conferência. Dúvida = `[VERIFICAR]`, nunca invenção.
-2. **Direitos autorais.** Não copiar texto, esquemas ou imagens de apostilas,
-   cursinhos ou livros de terceiros. Lei e atos oficiais podem ser citados
-   literalmente (não têm proteção autoral — Lei 9.610/98, art. 8º, IV).
-   Material do usuário serve de fonte para resumir com palavras próprias.
-3. **Sem fotos de terceiros nem retratos de pessoas reais.** Autores/doutrinadores
-   reais = personagem genérico (`i-autor`) + nome escrito. Prédios, bandeiras,
-   símbolos: desenhar em SVG no estilo da biblioteca.
-4. **Legível em P&B.** Cor nunca é o único portador de significado: todo bloco
-   semântico tem ícone e rótulo.
-5. **Densidade de apostila, não de slide.** Frases telegráficas, sem introdução,
-   sem "neste resumo veremos". Mas nada de parede de texto: bloco > 6 linhas
-   sem destaque = reescrever ou quebrar.
+1. **Fidelidade > estética.** Nada de memória sem conferência; dúvida = `[VERIFICAR]`.
+2. **Direitos autorais.** Não copiar texto, esquemas, imagens ou questões de terceiros.
+   Atos oficiais podem ser citados literalmente (Lei 9.610/98, art. 8º, IV).
+3. **Sem retratos de pessoas reais** (use `i-autor` + nome).
+4. **Legível em P&B.** Cor nunca é o único portador de significado: ícone + rótulo.
+5. **Densidade de apostila.** Frases diretas, sem "neste resumo veremos"; bloco > 6 linhas
+   sem destaque = reescrever.

@@ -34,3 +34,10 @@ que todo o design system.
 <div class="pequeno"><b>Fontes:</b> Lei 13.709/2018 (redação vigente, consulta em
 dd/mm/aaaa); Enunciado CD/ANPD nº 1/2023. Atualizado até dd/mm/aaaa.</div>
 ```
+
+## Referências com link
+- Toda referência que existe on-line vai com link clicável para a **fonte oficial ou
+  primária** (`<a href="…">`): planalto.gov.br, DOU, site do tribunal/órgão, DOI do artigo,
+  página da editora/norma técnica. O link sai clicável no PDF.
+- Só use URL que você abriu ou tem certeza que existe; na dúvida, cite sem link.
+- Livros: autor, título em itálico, edição/ano (sem link, a menos que haja página oficial).

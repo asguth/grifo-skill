@@ -1,6 +1,6 @@
 ---
-description: Resumo ilustrado de um tópico, 1–4 folhas A4
-argument-hint: <tópico> [--banca b] [--cargo "x"] [--folhas N] [--material arq] [--disciplina d-x]
+description: Apostila ilustrada de qualquer assunto (pergunta o formato se faltar)
+argument-hint: <assunto ou arquivo> [--formato f] [--nivel n] [--folhas N] [--material arq] [--banca b]
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

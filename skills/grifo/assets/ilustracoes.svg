@@ -1,7 +1,7 @@
 <!--
   GRIFO-SKILL - biblioteca de ilustracoes (MIT)
   Estilo: flat, contorno #1C2430 2.5px arredondado, preenchimento na cor da
-  disciplina (classes .f-disc / .f-claro / .f-disc2 herdam o tema do <body>).
+  ilustração (.f-disc azul, .f-claro azul-claro, .f-disc2 coral: variáveis il-1, il-2 e il-claro do grifo.css).
 
   REGRA DO SPRITE: toda classe usada dentro de um <symbol> precisa estar no
   <style> deste arquivo, SEM seletor de ancestral (".f-disc{}" funciona;
@@ -18,9 +18,9 @@
       .k{fill:none;stroke:#1C2430;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
       .kf{stroke:#1C2430;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
       .pele{fill:#F6C9A0}.amarelo{fill:#FFE45C}.branco{fill:#fff}.cinza{fill:#E3E7EC}
-      .verm{fill:#D6283A}
-      .f-disc{fill:var(--disc,#44607A)}.s-disc{stroke:var(--disc,#44607A)}.f-claro{fill:var(--disc-claro,#E8EEF3)}.f-disc2{fill:var(--disc-2,#E8897A)}
-      .t-disc{fill:var(--disc,#44607A);font-family:Poppins,sans-serif;font-weight:800}.verde{fill:#16884A}.lar{fill:#E8790C}
+      .verm{fill:#B42318}
+      .f-disc{fill:var(--il-1,#3D7CC9)}.s-disc{stroke:var(--il-1,#3D7CC9)}.f-claro{fill:var(--il-claro,#DCEAF7)}.f-disc2{fill:var(--il-2,#F2875F)}
+      .t-disc{fill:var(--il-1,#3D7CC9);font-family:Poppins,sans-serif;font-weight:800}.verde{fill:#237A57}.lar{fill:#A85D00}
     </style>
   </defs>
 
@@ -147,8 +147,8 @@
     <path class="k" d="M32 24 L32 40" style="stroke:#fff;stroke-width:5"/><circle cx="32" cy="48" r="3" fill="#fff"/>
   </symbol>
   <symbol id="i-proibido" viewBox="0 0 64 64">
-    <circle class="kf branco" cx="32" cy="32" r="26"/><circle cx="32" cy="32" r="22" fill="none" stroke="#D6283A" stroke-width="6"/>
-    <path d="M17 47 L47 17" stroke="#D6283A" stroke-width="6" stroke-linecap="round"/>
+    <circle class="kf branco" cx="32" cy="32" r="26"/><circle cx="32" cy="32" r="22" fill="none" stroke="#B42318" stroke-width="6"/>
+    <path d="M17 47 L47 17" stroke="#B42318" stroke-width="6" stroke-linecap="round"/>
   </symbol>
   <symbol id="i-check" viewBox="0 0 64 64">
     <circle class="kf verde" cx="32" cy="32" r="26"/><path d="M19 33 L28 42 L46 22" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -209,7 +209,7 @@
   </symbol>
   <symbol id="i-dinheiro" viewBox="0 0 64 64">
     <rect class="kf verde" x="4" y="16" width="56" height="32" rx="4"/>
-    <circle class="kf branco" cx="32" cy="32" r="9"/><text x="27.5" y="37" font-size="13" font-weight="800" fill="#16884A" font-family="sans-serif">$</text>
+    <circle class="kf branco" cx="32" cy="32" r="9"/><text x="27.5" y="37" font-size="13" font-weight="800" fill="#237A57" font-family="sans-serif">$</text>
   </symbol>
   <symbol id="i-megafone" viewBox="0 0 64 64">
     <path class="kf f-disc" d="M10 24 L30 24 L52 10 L52 54 L30 40 L10 40 Z"/>

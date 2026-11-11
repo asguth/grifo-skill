@@ -57,7 +57,7 @@ Cabeçalho alternativo de 1ª folha (estilo resumo único):
 
 ## Listas
 ```html
-<ul class="check"><li>…</li></ul>        <!-- ✔ em caixinha (cor da disciplina) -->
+<ul class="check"><li>…</li></ul>        <!-- ✔ em caixinha (navy) -->
 <ul class="check verde"><li>…</li></ul>  <!-- ✔ em círculo verde -->
 ```
 
@@ -122,16 +122,16 @@ Cabeçalho alternativo de 1ª folha (estilo resumo único):
 ```html
 <div class="piramide-legenda">
   <svg viewBox="0 0 100 90">
-    <polygon points="50,2 64,26 36,26" fill="#C0263A"/>
-    <polygon points="36,28 64,28 76,50 24,50" fill="#E8790C"/>
-    <polygon points="24,52 76,52 88,72 12,72" fill="#F2B63C"/>
-    <polygon points="12,74 88,74 98,88 2,88" fill="#E8897A"/>
+    <polygon points="50,2 64,26 36,26" fill="#243B53"/>
+    <polygon points="36,28 64,28 76,50 24,50" fill="#4A6580"/>
+    <polygon points="24,52 76,52 88,72 12,72" fill="#8FA6BB"/>
+    <polygon points="12,74 88,74 98,88 2,88" fill="#C5D3DF"/>
   </svg>
   <ol>
-    <li><i style="background:#C0263A"></i>CF + tratados de DH com status de emenda</li>
-    <li><i style="background:#E8790C"></i>Normas supralegais (tratados de DH)</li>
-    <li><i style="background:#F2B63C"></i>Atos normativos primários</li>
-    <li><i style="background:#E8897A"></i>Atos normativos secundários</li>
+    <li><i style="background:#243B53"></i>CF + tratados de DH com status de emenda</li>
+    <li><i style="background:#4A6580"></i>Normas supralegais (tratados de DH)</li>
+    <li><i style="background:#8FA6BB"></i>Atos normativos primários</li>
+    <li><i style="background:#C5D3DF"></i>Atos normativos secundários</li>
   </ol>
 </div>
 ```
@@ -213,7 +213,7 @@ Pirâmide só em CSS: `.piramide > .nivel` (até 5 níveis, topo primeiro).
 ```html
 <div class="folha capa">
   <div class="titulo-capa">Direito Constitucional</div>
-  <div class="sub-capa">Apostila visual — Concurso X · Cargo Y</div>
+  <div class="sub-capa">Apostila visual — Curso/Concurso X</div>
   <svg class="ilustra gg" style="margin-top:20mm"><use href="#i-constituicao"/></svg>
   <div class="info-capa">Gerada com Grifo-Skill (MIT) · atualizado até dd/mm/aaaa</div>
 </div>
@@ -228,7 +228,7 @@ Pirâmide só em CSS: `.piramide > .nivel` (até 5 níveis, topo primeiro).
 </div>
 <div class="formula"><span class="rot">Juros compostos</span><i>M</i> = <i>C</i> · (1 + <i>i</i>)<sup><i>t</i></sup></div>
 ```
-Fonte serifada, fundo claro da disciplina. Variáveis em `<i>`; fração com `.frac`
+Fonte serifada, fundo neutro. Variáveis em `<i>`; fração com `.frac`
 (numerador e denominador em dois `<span>`); expoente com `<sup>`.
 
 ## Tabela-verdade
@@ -265,3 +265,21 @@ para a questão. Recuo preservado (é `<pre>`); linha longa quebra sozinha.
 Trecho analisado sublinhado e a função em rótulo acima (`data-funcao`).
 `.destaque` = marca-texto no trecho em foco; `.erro` = sublinhado e rótulo vermelhos
 (para a versão errada de uma frase).
+
+## Ícones Lucide (preferidos: custam quase nada em tokens)
+```html
+<svg class="ico"><use href="#l-scale"/></svg>               <!-- 6 mm, cor do texto -->
+<svg class="ico p vermelho"><use href="#l-octagon-x"/></svg> <!-- pequeno, semântico -->
+<svg class="ilustra g ico"><use href="#l-microscope"/></svg> <!-- grande, ao lado de bloco -->
+```
+Nomes: `grep -i "termo" assets/lucide/nomes.txt` (linha = `nome: tags em inglês`).
+
+## Questões e gabarito: sempre em folhas diferentes
+Folha de questões: `.questao` direto na `.folha`, em coluna única (sem `.apostila-colunas`).
+Folha seguinte: `.gabarito` + caixa de referências:
+```html
+<div class="caixa lei"><div class="rotulo">Referências</div><div class="corpo pequeno">
+  <a href="https://www.planalto.gov.br/ccivil_03/leis/l9784.htm">Lei 9.784/1999 — texto compilado</a>,
+  acesso em 11/11/2026. Autor, <i>Título</i>, ed. Questões inéditas.
+</div></div>
+```

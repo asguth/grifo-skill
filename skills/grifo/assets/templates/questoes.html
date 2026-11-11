@@ -1,5 +1,5 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
-<!-- Template Grifo-Skill (questões inéditas + gabarito em folha separada). Troque todo [[MARCADOR]]; apague blocos que não usar.
+<!-- Template Grifo-Skill (questões inéditas em coluna única + gabarito em folha separada). Troque todo [[MARCADOR]]; apague blocos que não usar.
      Componentes: references/componentes.md · escolha pela forma do conteúdo: design.md §3.
      Depois: verificar.py → montar.py → renderizar.py. -->
 <title>[[Tópico]] — [[Disciplina]]</title>
@@ -7,19 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 <!--APOSTILA:CSS-->
 </head>
-<!-- cor: d-portugues d-constitucional d-administrativo d-penal d-civil d-dados d-ti d-logica d-gestao d-contabil d-atualidades -->
-<body class="d-atualidades">
+<body>
 <!--APOSTILA:SPRITE-->
 <div class="folha">
   <div class="topo">
     <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
-    <div class="titulo-topo">[[Disciplina]]<small>[[Tópico]] · questões · banca [[banca]]</small></div>
+    <div class="titulo-topo">[[Disciplina]]<small>[[Tópico]] · questões inéditas · banca [[banca]]</small></div>
     <div class="pag">01</div>
   </div>
-  <div class="apostila-colunas">
-    <div class="coluna">
-      <div class="coluna-cab">[[Bloco 1]]</div>
-      <div class="questao">
+  <div class="questao">
         <div class="cab"><span class="n">01</span><span class="estilo">C/E</span>estilo [[Banca]] · inédita</div>
         <p>[[Assertiva inédita, no estilo da banca.]]</p>
         <div class="ce"><span>C</span><span>E</span></div>
@@ -29,37 +25,22 @@
         <p>[[Enunciado com caso concreto.]]</p>
         <ol class="alternativas"><li>[[A]]</li><li>[[B]]</li><li>[[C]]</li><li>[[D]]</li><li>[[E]]</li></ol>
       </div>
-    </div>
-    <div class="coluna">
-      <div class="coluna-cab">[[Bloco 2]]</div>
-      <svg class="ilustra g" style="align-self:center"><use href="#i-alvo"/></svg>
-    </div>
-  </div>
   <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>[[Fonte principal]] — atualizado até [[dd/mm/aaaa]]</span></div>
 </div>
 
 <div class="folha">
   <div class="topo">
     <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
-    <div class="titulo-topo">[[Disciplina]]<small>[[Tópico]] · gabarito comentado</small></div>
+    <div class="titulo-topo">[[Disciplina]]<small>[[Tópico]] · gabarito comentado e referências</small></div>
     <div class="pag">02</div>
   </div>
-  <div class="apostila-colunas">
-    <div class="coluna">
-      <div class="coluna-cab">Gabarito</div>
       <div class="gabarito"><h4>Gabarito comentado</h4>
         <div class="item"><b>01 — [[Certo/Errado]].</b> [[Por quê, com o dispositivo (art. X).]]</div>
         <div class="item"><b>02 — [[Letra]].</b> [[Por que a certa está certa; (A)… (B)… uma linha por distrator.]]</div>
       </div>
-      <p class="pequeno"><b>Fontes:</b> [[Lei nº …, texto compilado (planalto.gov.br), acesso em dd/mm/aaaa.]]</p>
-    </div>
-    <div class="coluna">
-      <div class="coluna-cab">Para revisar</div>
-      <table class="rotulada">
-        <tr><td>[[Questão que errou]]</td><td>[[Releia: art. X / bloco Y do resumo]]</td></tr>
-      </table>
-    </div>
-  </div>
+  <div class="caixa lei"><div class="rotulo">Referências</div><div class="corpo pequeno">
+    <a href="[[URL oficial]]">[[Lei nº …, texto compilado]]</a>, acesso em [[dd/mm/aaaa]]. [[Livro/artigo: autor, título, edição.]] Questões inéditas.
+  </div></div>
   <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>[[Fonte principal]] — atualizado até [[dd/mm/aaaa]]</span></div>
 </div>
 </body></html>

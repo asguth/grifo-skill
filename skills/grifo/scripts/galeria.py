@@ -36,7 +36,7 @@ CABECA = """<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title
 .gal div{text-align:center;font-size:8pt;color:var(--tinta-2);hyphens:manual;overflow-wrap:anywhere;line-height:1.1}
 .gal svg{width:14mm;height:14mm;display:block;margin:0 auto .5mm}
 </style>
-</head><body class="d-penal"><!--APOSTILA:SPRITE-->
+</head><body><!--APOSTILA:SPRITE-->
 """
 
 TOPO = ('<div class="topo"><div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>'
@@ -69,6 +69,10 @@ COMPONENTES = """
   <div class="tag-caixa"><span class="tag">Importante</span><p>Atos normativos secundários <span class="chave-v">não</span> são objeto de controle.</p></div>
   <div class="tag-caixa dica"><span class="tag dica">Dica</span><div class="relacao"><div class="de">Norma superior</div><div class="seta">➜</div><div class="para">Fundante</div></div></div>
   <div class="caixa pegadinha"><div class="rotulo">Pegadinha</div><div class="corpo">Banca troca <mark class="troca">reclusão</mark> por detenção.</div></div>
+  <div class="bloco"><div class="faixa">Ícones Lucide · ISC · 2.052 nomes</div><div class="corpo">
+   <p style="display:flex;flex-wrap:wrap;gap:3mm;align-items:center"><svg class="ico"><use href="#l-scale"/></svg><svg class="ico"><use href="#l-gavel"/></svg><svg class="ico"><use href="#l-brain"/></svg><svg class="ico"><use href="#l-book-open"/></svg><svg class="ico"><use href="#l-calculator"/></svg><svg class="ico"><use href="#l-database"/></svg><svg class="ico"><use href="#l-flask-conical"/></svg><svg class="ico"><use href="#l-globe"/></svg><svg class="ico vermelho"><use href="#l-octagon-x"/></svg><svg class="ico verde"><use href="#l-circle-check"/></svg><svg class="ico laranja"><use href="#l-triangle-exclamation-point"/></svg></p>
+   <p class="pequeno"><code>&lt;svg class="ico"&gt;&lt;use href="#l-scale"/&gt;&lt;/svg&gt;</code> · nomes em <code>assets/lucide/nomes.txt</code></p>
+  </div></div>
   <div class="sigla"><div class="letra"><b>L</b><span>Livre</span></div><div class="letra"><b>I</b><span>Informada</span></div><div class="letra"><b>I</b><span>Inequívoca</span></div></div>
   <div class="bloco contorno"><div class="faixa">Código · SQL</div><div class="corpo">
    <pre class="codigo"><span class="rot">SQL</span><b>SELECT</b> nome, cargo

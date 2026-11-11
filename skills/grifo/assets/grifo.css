@@ -1,60 +1,50 @@
 /* =====================================================================
-   GRIFO-SKILL — design system v1.1
-   Linguagem visual para resumos de concurso: A4, imprimível, legível
-   em preto e branco. Licença MIT.
+   GRIFO-SKILL — design system editorial (MIT)
+   Apostilas A4 imprimíveis e legíveis em preto e branco.
 
-   PRINCÍPIO: a COR DA DISCIPLINA identifica o assunto (cabeçalho,
-   diagramas). As CORES SEMÂNTICAS identificam a FUNÇÃO do bloco e são
-   iguais em todas as disciplinas — o aluno aprende uma vez:
-     regra = cor da disciplina | exceção = laranja | pegadinha = vermelho
-     dica = verde | lei seca = cinza | exemplo = azul
-   Todo bloco semântico também tem ÍCONE + RÓTULO (funciona sem cor).
+   PALETA ÚNICA (Educational Editorial Design System):
+     Navy  #243B53  títulos, cabeçalhos de seção/tabela, estrutura
+     Blue  #2F6B8A  apoio, relações entre conceitos, destaque de termo
+     Amber #A85D00  exceções, condições importantes, pontos que confundem
+     Red   #B42318  proibições, interpretações erradas, pegadinhas
+     Green #237A57  permitido, procedimento válido, alternativa correta
+     Slate #596579  referências, notas, metadados
+   O padrão é neutro; cor só quando comunica significado, e sempre com
+   ícone + rótulo (nunca só a cor). Se a cor sai sem perder sentido, tire.
    ===================================================================== */
 
 :root {
-  /* ---- cor da disciplina (troque via classe .d-* no <body>) ---- */
-  --disc: #44607A;
-  --disc-claro: #E8EEF3;
-  --disc-2: #D9705F;      /* cor secundária (faixas da coluna direita) */
+  /* primárias */
+  --navy: #243B53;  --azul: #2F6B8A;  --azul-claro: #E6F0F5;
+  /* semânticas (texto/borda) e fundos pálidos */
+  --ambar: #A85D00; --ambar-claro: #FDF3E6;
+  --verm: #B42318;  --verm-claro: #FDECEA;
+  --verde: #237A57; --verde-claro: #E8F4EE;
+  --slate: #596579;
+  /* neutros */
+  --tinta: #202A35; --tinta-2: #596579; --papel: #FFFFFF;
+  --sup: #F4F6F8;   --sup-2: #E7EDF2;   --linha: #CBD2DA; --mesa: #E7EDF2;
 
-  /* ---- cores semânticas (fixas) ---- */
-  --regra: var(--disc);
-  --excecao: #D9710B;   --excecao-claro: #FFF1E2;  /* 3,3:1 com branco (era #E8790C, 2,9:1) */
-  --pegadinha: #D6283A; --pegadinha-claro: #FDE8EA;
-  --dica: #16884A;      --dica-claro: #E3F6EA;
-  --lei: #55606E;       --lei-claro: #F3F4F6;
-  --exemplo: #1F6FD1;   --exemplo-claro: #E6F0FC;
+  /* papéis (os componentes usam estes nomes) */
+  --disc: var(--navy); --disc-claro: var(--sup-2); --disc-2: var(--azul);
+  --regra: var(--navy);
+  --excecao: var(--ambar);   --excecao-claro: var(--ambar-claro);
+  --pegadinha: var(--verm);  --pegadinha-claro: var(--verm-claro);
+  --dica: var(--verde);      --dica-claro: var(--verde-claro);
+  --lei: var(--slate);       --lei-claro: var(--sup);
+  --exemplo: var(--azul);    --exemplo-claro: var(--azul-claro);
 
-  /* ---- marca-texto ---- */
-  --mt-chave: #FFE45C;   /* palavra-chave: decore */
-  --mt-troca: #FFB3C7;   /* palavra que a banca costuma TROCAR */
+  /* ilustrações: paleta própria, mais viva (só nos desenhos, nunca em texto ou caixas) */
+  --il-1: #3D7CC9; --il-2: #F2875F; --il-claro: #DCEAF7;
 
-  /* ---- neutros ---- */
-  --tinta: #1C2430;
-  --tinta-2: #4A5568;
-  --linha: #CBD2DA;
-  --papel: #FFFFFF;
-  --mesa: #E9ECEF;
+  /* marca-texto: amarelo = decore (é o "grifo"); vermelho pálido = a banca troca */
+  --mt-chave: #FFE45C;
+  --mt-troca: #F7C9C3;
 
   --fonte-titulo: "Poppins", "Montserrat", "Segoe UI", system-ui, sans-serif;
   --fonte-corpo: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
   --raio: 6px;
 }
-
-/* ---- paleta de disciplinas ---- */
-.d-portugues    { --disc: #1F6FD1; --disc-claro: #E6F0FC; --disc-2: #E0782A; }
-.d-constitucional { --disc: #C0263A; --disc-claro: #FBE7EA; --disc-2: #3A5BA0; }
-.d-administrativo { --disc: #A33E8C; --disc-claro: #F7E6F3; --disc-2: #DC6E43; }
-.d-penal        { --disc: #5B4A7A; --disc-claro: #EEEAF4; --disc-2: #D9705F; }
-.d-civil        { --disc: #8A5A12; --disc-claro: #F8EEDD; --disc-2: #4E8C8C; }
-.d-dados        { --disc: #5B3FA0; --disc-claro: #EEE9F8; --disc-2: #DE7A2C; } /* LGPD, privacidade */
-.d-ti           { --disc: #0C8A7D; --disc-claro: #E0F4F1; --disc-2: #D2664A; }
-.d-logica       { --disc: #D9650B; --disc-claro: #FDEEDF; --disc-2: #3D7DD8; }
-.d-gestao       { --disc: #2E8B57; --disc-claro: #E3F3EA; --disc-2: #CF8414; }
-.d-contabil     { --disc: #355C9A; --disc-claro: #E6EDF7; --disc-2: #D9705F; }
-.d-atualidades  { --disc: #44607A; --disc-claro: #E8EEF3; --disc-2: #D9705F; }
-/* evite usar laranja/vermelho/verde puros como cor de disciplina se possível:
-   .d-logica e .d-constitucional são exceções históricas — o ícone resolve */
 
 /* ===================== base ===================== */
 * { box-sizing: border-box; }
@@ -70,13 +60,14 @@ p { margin: .25em 0 .45em; text-wrap: pretty; }
 ul, ol { margin: .2em 0 .4em; padding-left: 1.2em; }
 li { margin: .12em 0; text-wrap: pretty; }
 b, strong { font-weight: 700; }
-code { font-size: .92em; background: var(--lei-claro); padding: 0 .25em; border-radius: 3px; }
+a { color: var(--azul); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
+code { font-size: max(.92em, 8pt); background: var(--lei-claro); padding: 0 .25em; border-radius: 3px; }
 
 /* ===================== folha A4 ===================== */
 @page { size: A4; margin: 0; }
 .folha {
   width: 210mm; min-height: 297mm; margin: 10mm auto; padding: 11mm 12mm 14mm;
-  background: var(--papel); box-shadow: 0 2px 14px rgba(0,0,0,.14);
+  background: var(--papel); box-shadow: 0 1px 6px rgba(32,42,53,.12);
   position: relative; display: flex; flex-direction: column; gap: 3.2mm;
 }
 @media print {
@@ -136,7 +127,7 @@ code { font-size: .92em; background: var(--lei-claro); padding: 0 .25em; border-
 
 /* ===================== caixas semânticas ===================== */
 .caixa {
-  border: 2px solid var(--c, var(--disc)); border-radius: var(--raio);
+  border: 1.5px solid var(--c, var(--disc)); border-radius: var(--raio);
   background: var(--papel); break-inside: avoid; overflow: hidden;
 }
 .caixa > .rotulo {
@@ -187,11 +178,11 @@ mark.troca, .mt-troca { background: linear-gradient(transparent 38%, var(--mt-tr
 
 /* selos */
 .selo {
-  display: inline-block; transform: rotate(-3deg); border: 2px solid var(--pegadinha);
-  color: var(--pegadinha); font-family: var(--fonte-titulo); font-weight: 800;
+  display: inline-block; transform: rotate(-3deg); border: 2px solid var(--ambar);
+  color: var(--ambar); font-family: var(--fonte-titulo); font-weight: 800;
   font-size: 8pt; text-transform: uppercase; padding: .3mm 1.8mm; border-radius: 3px; letter-spacing: .05em;
 }
-.selo.cai-muito { border-color: var(--pegadinha); color: var(--pegadinha); }
+.selo.cai-muito { border-color: var(--ambar); color: var(--ambar); }
 .selo.novidade  { border-color: var(--exemplo); color: var(--exemplo); }
 .selo.decore    { border-color: var(--dica); color: var(--dica); }
 
@@ -276,7 +267,7 @@ table.comparativo th {
 }
 table.comparativo td { padding: .8mm 1.8mm; border-top: 1px solid var(--linha); vertical-align: top; }
 table.comparativo td + td, table.comparativo th + th { border-left: 1px solid var(--linha); }
-table.comparativo tr:nth-child(even) td { background: #FAFBFC; }
+table.comparativo tr:nth-child(even) td { background: var(--sup); }
 table.comparativo td.criterio { font-weight: 700; color: var(--disc); background: var(--disc-claro) !important; white-space: nowrap; }
 table.comparativo td.sim, table.comparativo td.nao { text-align: center; font-weight: 800; font-size: 10.5pt; }
 table.comparativo td.sim { color: var(--dica); }
@@ -321,16 +312,16 @@ table.comparativo tr.destaque td { background: var(--pegadinha-claro) !important
 .questao .ce { display: inline-flex; gap: 2mm; margin-top: 1mm; font-weight: 800; font-size: 8.5pt; }
 .questao .ce span { border: 1.5px solid var(--tinta-2); border-radius: 3px; padding: 0 1.8mm; }
 
-.gabarito { border-top: 2px dashed var(--linha); padding-top: 2mm; font-size: 8.4pt; color: var(--tinta-2); break-inside: avoid; }
+.gabarito { border-top: 2px dashed var(--linha); padding-top: 2mm; font-size: 9pt; color: var(--tinta); break-inside: avoid; }
 .gabarito h4 { font-size: 8.5pt; text-transform: uppercase; color: var(--tinta); margin-bottom: 1mm; }
 /* recuo pendente: 2ª linha alinha com o texto depois de "00 — " (2,85em em Inter 700) */
 .gabarito .item { margin: .6mm 0; padding-left: 2.85em; text-indent: -2.85em; }
 .gabarito .item b { color: var(--tinta); }
 
 /* ===================== FLASHCARDS (recorte) ===================== */
-.flashcards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px dashed #999; }
+.flashcards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px dashed var(--slate); }
 .flashcards .card {
-  min-height: 29mm; padding: 3mm 4mm; border: 1px dashed #999; display: flex; flex-direction: column; justify-content: center;
+  min-height: 29mm; padding: 3mm 4mm; border: 1px dashed var(--slate); display: flex; flex-direction: column; justify-content: center;
   text-align: center; break-inside: avoid; position: relative;
 }
 .flashcards .card .lado { position: absolute; top: 2mm; left: 3mm; font-size: 8pt; color: var(--tinta-2); text-transform: uppercase; letter-spacing: .08em; }
@@ -348,7 +339,7 @@ table.edital tr.materia td { background: var(--disc-claro); font-weight: 800; co
 table.edital td.peso { text-align: center; white-space: nowrap; }
 
 /* ===================== CAPA / SUMÁRIO ===================== */
-.capa { justify-content: center; align-items: flex-start; background: linear-gradient(160deg, var(--disc) 0 46%, #fff 46%); }
+.capa { justify-content: center; align-items: flex-start; background: var(--papel); border-top: 120mm solid var(--navy); }
 .capa .titulo-capa { color: #fff; font-family: var(--fonte-titulo); font-size: 34pt; font-weight: 800; text-transform: uppercase; line-height: 1; }
 .capa .sub-capa { color: #fff; font-size: 13pt; margin-top: 3mm; opacity: .95; }
 .capa .info-capa { margin-top: auto; font-size: 10pt; color: var(--tinta-2); }
@@ -373,60 +364,62 @@ svg .f-exc    { fill: var(--excecao); }   svg .s-exc { stroke: var(--excecao); }
 
 /* ===================== verificação ===================== */
 .verificar {
-  background: repeating-linear-gradient(45deg, #FFF6CC 0 6px, #FFEFA3 6px 12px);
-  border: 1.5px dashed #B88A00; padding: 0 1mm; border-radius: 3px; font-weight: 700;
+  background: var(--ambar-claro); border: 1.5px dashed var(--ambar);
+  padding: 0 1mm; border-radius: 3px; font-weight: 700;
 }
-.verificar::before { content: "[VERIFICAR] "; color: #8A6500; font-size: .85em; }
+.verificar::before { content: "[VERIFICAR] "; color: var(--ambar); font-size: .85em; }
 
 /* =====================================================================
-   LAYOUT APOSTILA (padrão) — inspirado em apostilas esquematizadas
-   comerciais: cabeçalho corrido, 2 colunas, faixas de seção, corpo
-   cinza-claro, personagens ilustrados ao lado do texto.
+   LAYOUT APOSTILA: cabeçalho corrido, 2 colunas, faixas de seção.
    ===================================================================== */
 
-/* cabeçalho corrido: logo | DISCIPLINA | nº página */
+/* cabeçalho corrido: logo + versão | DISCIPLINA | nº página.
+   --versao é definido pelo montar.py a partir do SKILL.md (metadata.version). */
 .topo {
-  display: grid; grid-template-columns: 14mm 1fr 14mm; align-items: center;
-  border-bottom: 2.5px solid var(--disc); padding-bottom: 1.6mm; margin-bottom: 1mm;
+  display: grid; grid-template-columns: 24mm 1fr 24mm; align-items: center;
+  border-bottom: 2px solid var(--navy); padding-bottom: 1.6mm; margin-bottom: 1mm;
 }
-.topo .logo { width: 11mm; height: 11mm; }
-.topo .logo svg { width: 100%; height: 100%; }
+.topo .logo { display: flex; align-items: flex-end; gap: 1mm; height: 11mm; }
+.topo .logo svg { width: 11mm; height: 11mm; flex: none; }
+.topo .logo::after {
+  content: var(--versao, ""); font-family: var(--fonte-corpo); font-size: 8pt;
+  font-weight: 600; color: var(--slate); line-height: 1; padding-bottom: .4mm;
+}
 .topo .titulo-topo {
   text-align: center; font-family: var(--fonte-titulo); font-weight: 800;
   font-size: 13pt; text-transform: uppercase; color: var(--tinta); letter-spacing: .02em;
 }
 .topo .titulo-topo small { display: block; font-size: 8pt; font-weight: 600; color: var(--tinta-2); letter-spacing: .06em; }
 .topo .pag {
-  justify-self: end; background: var(--disc-2); color: #fff; font-family: var(--fonte-titulo);
+  justify-self: end; background: var(--navy); color: #fff; font-family: var(--fonte-titulo);
   font-weight: 800; font-size: 13pt; width: 11mm; height: 11mm; display: grid; place-items: center; border-radius: 2px;
 }
 
 /* título de tópico grande, letra contornada (capa de assunto) */
 .titulo-topico {
   text-align: center; font-family: var(--fonte-titulo); font-weight: 900; font-size: 26pt;
-  text-transform: uppercase; line-height: 1.02; color: var(--disc-2);
-  -webkit-text-stroke: 1.4px #8A3A22; paint-order: stroke fill;
-  text-shadow: 2px 2px 0 rgba(0,0,0,.12); margin: 1mm 0 2mm;
+  text-transform: uppercase; line-height: 1.02; color: var(--navy);
+  margin: 1mm 0 2mm;
 }
 
 /* duas colunas com cabeçalho escuro de coluna */
 .apostila-colunas { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 4mm; align-items: start; }
 .apostila-colunas > .coluna { display: flex; flex-direction: column; gap: 2.6mm; }
 .coluna-cab {
-  background: #4A4F57; color: #fff; text-align: center; font-family: var(--fonte-titulo);
+  background: var(--navy); color: #fff; text-align: center; font-family: var(--fonte-titulo);
   font-weight: 800; font-size: 9.5pt; text-transform: uppercase; padding: 1.4mm 2mm; letter-spacing: .03em;
 }
 
 /* bloco: faixa + corpo cinza */
 .bloco { break-inside: avoid; }
 .bloco > .faixa {
-  background: var(--disc-2); color: #fff; font-family: var(--fonte-titulo); font-weight: 800;
+  background: var(--sup-2); color: var(--navy); border-left: 3px solid var(--navy); font-family: var(--fonte-titulo); font-weight: 800;
   font-size: 9.2pt; text-transform: uppercase; padding: 1.2mm 2.5mm; letter-spacing: .02em;
 }
-.bloco.primaria > .faixa { background: var(--disc); }
-.bloco.escura > .faixa { background: #4A4F57; }
+.bloco.primaria > .faixa { background: var(--navy); color: #fff; }
+.bloco.escura > .faixa { background: var(--slate); color: #fff; border-left-color: var(--slate); }
 .bloco > .faixa.arredondada, .bloco.pill > .faixa { border-radius: 999px; text-align: center; }
-.bloco > .corpo { background: #F1F2F4; padding: 1.8mm 2.4mm; font-size: 8.9pt; }
+.bloco > .corpo { background: var(--sup); padding: 1.8mm 2.4mm; font-size: 8.9pt; }
 /* respiro igual em cima e embaixo dentro de qualquer corpo de bloco/caixa */
 .corpo > :first-child { margin-top: 0; }
 .corpo > :last-child { margin-bottom: 0; }
@@ -451,25 +444,25 @@ ul.check li::before {
 ul.check.verde li::before { background: var(--dica); border-color: var(--dica); color: #fff; border-radius: 50%; }
 
 /* destaques no estilo das apostilas: vermelho escuro negrito */
-.chave-v { color: #B0182A; font-weight: 800; }
-.atencao-txt { color: #B0182A; font-weight: 800; font-style: italic; }
+.chave-v { color: var(--azul); font-weight: 800; }
+.atencao-txt { color: var(--ambar); font-weight: 800; font-style: italic; }
 .atencao-txt::before { content: "ATENÇÃO: "; }
 
 /* tags: IMPORTANTE (círculo com !), DICA (pílula) */
 .tag {
   display: inline-flex; align-items: center; gap: 1.5mm; font-family: var(--fonte-titulo);
   font-weight: 800; font-size: 8.5pt; text-transform: uppercase; letter-spacing: .04em;
-  border: 1.6px solid var(--pegadinha); color: var(--pegadinha); border-radius: 999px; padding: .4mm 3mm .4mm .5mm; background: #fff;
+  border: 1.6px solid var(--ambar); color: var(--ambar); border-radius: 999px; padding: .4mm 3mm .4mm .5mm; background: #fff;
 }
 .tag::before {
-  content: var(--tag-ico, "!"); width: 5mm; height: 5mm; border-radius: 50%; background: var(--pegadinha); color: #fff;
+  content: var(--tag-ico, "!"); width: 5mm; height: 5mm; border-radius: 50%; background: var(--ambar); color: #fff;
   display: grid; place-items: center; font-size: 9pt;
 }
-.tag.dica { border-color: var(--excecao); color: var(--excecao); --tag-ico: "★"; }
-.tag.dica::before { background: var(--excecao); }
+.tag.dica { border-color: var(--verde); color: var(--verde); --tag-ico: "★"; }
+.tag.dica::before { background: var(--verde); }
 .tag.atencao { --tag-ico: "⚠"; }
-.tag-caixa { border: 1.5px solid var(--pegadinha); border-radius: var(--raio); padding: 3mm 2.6mm 2mm; position: relative; margin-top: 3mm; break-inside: avoid; }
-.tag-caixa.dica { border-color: var(--excecao); }
+.tag-caixa { border: 1.5px solid var(--ambar); border-radius: var(--raio); padding: 3mm 2.6mm 2mm; position: relative; margin-top: 3mm; break-inside: avoid; }
+.tag-caixa.dica { border-color: var(--verde); }
 .tag-caixa > .tag { position: absolute; top: -3mm; left: 50%; transform: translateX(-50%); }
 
 /* texto + ilustração lado a lado */
@@ -489,12 +482,12 @@ ul.check.verde li::before { background: var(--dica); border-color: var(--dica); 
 .relacao .de { border: 1.5px solid var(--tinta); padding: .8mm 2mm; font-weight: 700; font-size: 8.6pt; text-transform: uppercase; text-align: center; }
 .relacao .seta { color: var(--tinta); font-weight: 900; }
 .relacao > div { overflow-wrap: break-word; }
-.relacao .para { background: var(--pegadinha); color: #fff; padding: .8mm 2mm; font-weight: 800; font-size: 8.6pt; text-transform: uppercase; text-align: center; }
+.relacao .para { background: var(--navy); color: #fff; padding: .8mm 2mm; font-weight: 800; font-size: 8.6pt; text-transform: uppercase; text-align: center; }
 
 /* tabela rótulo|conteúdo (estilo "Constituição rígida | que dá fundamento...") */
 table.rotulada { width: 100%; border-collapse: collapse; font-size: 9pt; break-inside: avoid; }
-table.rotulada td { border: 1.2px solid #7A2230; padding: 1.2mm 2mm; vertical-align: middle; }
-table.rotulada td:first-child { background: #FBE7EA; color: #7A2230; font-weight: 800; text-transform: uppercase; text-align: center; font-size: 8.2pt; width: 36%; }
+table.rotulada td { border: 1px solid var(--linha); padding: 1.2mm 2mm; vertical-align: middle; }
+table.rotulada td:first-child { background: var(--sup-2); color: var(--navy); font-weight: 800; text-transform: uppercase; text-align: center; font-size: 8.2pt; width: 36%; }
 
 /* pirâmide com legenda lateral */
 .piramide-legenda { display: grid; grid-template-columns: 30mm 1fr; gap: 3mm; align-items: center; break-inside: avoid; }
@@ -588,3 +581,15 @@ table.verdade tr.destaque td { background: var(--mt-chave); }
 .exemplo-frase .termo.destaque { background: linear-gradient(transparent 62%, var(--mt-chave) 62%); }
 .exemplo-frase .termo.erro { text-decoration-color: var(--pegadinha); }
 .exemplo-frase .termo.erro::before { background: var(--pegadinha); }
+
+/* ===================== ÍCONES LUCIDE (ISC) =====================
+   <svg class="ico"><use href="#l-scale"/></svg>   nomes: assets/lucide/nomes.txt
+   Traço na cor do texto (currentColor): .ico.vermelho / .verde / .laranja só
+   quando o ícone carrega significado. Grande ao lado de bloco: class="ilustra g ico". */
+.ico {
+  width: 6mm; height: 6mm; flex: none; vertical-align: -.2em; color: var(--navy);
+  fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.ico.p { width: 4.5mm; height: 4.5mm; }
+.ico.inline { width: 1.1em; height: 1.1em; }
+.ilustra.ico { stroke-width: 1.5; }

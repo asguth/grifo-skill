@@ -7,7 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
 <!--APOSTILA:CSS-->
 </head>
-<body class="d-logica">
+<body>
 <!--APOSTILA:SPRITE-->
 
 <!-- ============================ FOLHA 1 ============================ -->
@@ -120,7 +120,6 @@
   <div class="apostila-colunas">
     <div class="coluna">
       <div class="coluna-cab">Equivalências e negações</div>
-
       <div class="bloco primaria">
         <div class="faixa">Equivalências do condicional</div>
         <div class="corpo">
@@ -132,7 +131,6 @@
           <p class="atencao-txt">recíproca (q → p) e inversa (~p → ~q) NÃO são equivalentes a p → q.</p>
         </div>
       </div>
-
       <div class="bloco">
         <div class="faixa">Negações · leis de De Morgan</div>
         <div class="corpo">
@@ -146,7 +144,20 @@
           </table>
         </div>
       </div>
-
+      <div class="bloco">
+        <div class="faixa">Condição suficiente × necessária</div>
+        <div class="corpo">
+          <div class="formula"><span class="rot">Em p → q</span><i>p</i> é suficiente para <i>q</i> &nbsp;·&nbsp; <i>q</i> é necessária para <i>p</i></div>
+          <table class="rotulada">
+            <tr><td>Se p, então q</td><td><b>p → q</b></td></tr>
+            <tr><td>p somente se q</td><td><b>p → q</b> (o “somente se” aponta o consequente)</td></tr>
+            <tr><td>q, se p</td><td><b>p → q</b></td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="coluna">
+      <div class="coluna-cab">Classificação e pegadinhas</div>
       <div class="bloco">
         <div class="faixa">Tautologia, contradição, contingência</div>
         <div class="corpo">
@@ -160,27 +171,45 @@
           </div>
         </div>
       </div>
-
       <div class="caixa pegadinha"><div class="rotulo">Como a banca confunde</div><div class="corpo">
         <p>✗ Negar “se chove, levo guarda-chuva” com <mark class="troca">“se não chove, não levo”</mark>. → <span class="verde">Negação: “chove e não levo”.</span></p>
         <p>✗ Negar “Ana e Bia passaram” com <mark class="troca">“Ana e Bia não passaram”</mark>. → <span class="verde">“Ana não passou ou Bia não passou”.</span></p>
       </div></div>
+      <div class="bloco">
+        <div class="faixa">Negação de quantificadores</div>
+        <div class="corpo">
+          <table class="comparativo">
+            <tr><th>Proposição</th><th>Negação</th></tr>
+            <tr><td>Todo A é B</td><td><b>Algum A não é B</b></td></tr>
+            <tr><td>Algum A é B</td><td><b>Nenhum A é B</b></td></tr>
+            <tr><td>Nenhum A é B</td><td><b>Algum A é B</b></td></tr>
+          </table>
+          <p class="atencao-txt">“Nenhum A é B” não é a negação de “Todo A é B”.</p>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
+</div>
 
-    <div class="coluna">
-      <div class="coluna-cab">Fixação · questões inéditas</div>
-
-      <div class="questao">
+<!-- ============================ FOLHA 3 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Raciocínio Lógico<small>Fixação · questões inéditas</small></div>
+    <div class="pag">03</div>
+  </div>
+  <div class="questao">
         <div class="cab"><span class="n">01</span><span class="estilo">C/E</span>estilo Cebraspe · inédita</div>
         <p>A proposição “Se o servidor foi aprovado, então tomou posse” é equivalente a “Se o servidor não tomou posse, então não foi aprovado”.</p>
         <div class="ce"><span>C</span><span>E</span></div>
       </div>
-      <div class="questao">
+  <div class="questao">
         <div class="cab"><span class="n">02</span><span class="estilo">C/E</span>estilo Cebraspe · inédita</div>
         <p>A negação de “O candidato estudou e passou” é “O candidato não estudou e não passou”.</p>
         <div class="ce"><span>C</span><span>E</span></div>
       </div>
-      <div class="questao">
+  <div class="questao">
         <div class="cab"><span class="n">03</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
         <p>A negação de “Se chove, então a prova é adiada” é:</p>
         <ol class="alternativas">
@@ -191,7 +220,7 @@
           <li>Não chove e a prova não é adiada.</li>
         </ol>
       </div>
-      <div class="questao">
+  <div class="questao">
         <div class="cab"><span class="n">04</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
         <p>É uma tautologia:</p>
         <ol class="alternativas">
@@ -202,18 +231,37 @@
           <li>(p ∨ q) → p</li>
         </ol>
       </div>
+  <div class="questao">
+    <div class="cab"><span class="n">05</span><span class="estilo">C/E</span>estilo Cebraspe · inédita</div>
+    <p>A proposição “Ana é aprovada somente se estuda” equivale a “Se Ana é aprovada, então estuda”.</p>
+    <div class="ce"><span>C</span><span>E</span></div>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">06</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
+    <p>A negação de “Todo servidor é estável” é:</p>
+    <ol class="alternativas"><li>Nenhum servidor é estável.</li><li>Algum servidor não é estável.</li><li>Todo servidor não é estável.</li><li>Algum servidor é estável.</li><li>Nenhum servidor deixa de ser estável.</li></ol>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
+</div>
 
-      <div class="gabarito"><h4>Gabarito comentado</h4>
+<!-- ============================ FOLHA 4 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Raciocínio Lógico<small>Gabarito comentado e referências</small></div>
+    <div class="pag">04</div>
+  </div>
+  <div class="gabarito"><h4>Gabarito comentado</h4>
         <div class="item"><b>01 — Certo.</b> É a contrapositiva: p → q ≡ ~q → ~p.</div>
         <div class="item"><b>02 — Errado.</b> Pela lei de De Morgan, ~(p ∧ q) ≡ ~p ∨ ~q: “não estudou <b>ou</b> não passou”.</div>
         <div class="item"><b>03 — B.</b> ~(p → q) ≡ p ∧ ~q. (A) é a inversa; (C) é ~p ∨ q, equivalente à própria p → q; (D) é a recíproca; (E) nega as duas.</div>
         <div class="item"><b>04 — B.</b> p ∨ ~p é sempre V. (C) é contradição; (A), (D) e (E) são contingências — (E) é F quando p = F e q = V.</div>
+        <div class="item"><b>05 — Certo.</b> “p somente se q” ≡ p → q: estudar é condição necessária para ser aprovada.</div>
+        <div class="item"><b>06 — B.</b> ~(Todo A é B) ≡ Algum A não é B. (A) e (E) são contrárias, não negações; (C) equivale a (A); (D) não contradiz a original.</div>
       </div>
-      <p class="pequeno"><b>Fontes:</b> conteúdo de lógica proposicional clássica; tabelas e equivalências conferidas por enumeração de todos os valores de p e q.</p>
-      <svg class="ilustra" style="align-self:center"><use href="#i-calculadora"/></svg>
-    </div>
-  </div>
+  <p class="pequeno"><b>Referências:</b> conteúdo de lógica proposicional clássica; tabelas e equivalências conferidas por enumeração de todos os valores de p e q.</p>
   <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
 </div>
+
 </body>
 </html>

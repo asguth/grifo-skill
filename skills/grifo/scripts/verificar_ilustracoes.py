@@ -25,15 +25,16 @@ NS = "{http://www.w3.org/2000/svg}"
 
 # Manter em sincronia com references/design.md §4 ("Paleta permitida").
 PALETA = {
-    "#1C2430",                                           # contorno / tinta
-    "#FFFFFF", "#E3E7EC", "#5A6070", "#3A3F48", "#23262C",  # neutros
+    "#202A35", "#1C2430",                                # tinta / contorno
+    "#FFFFFF", "#F4F6F8", "#E7EDF2", "#E3E7EC",          # neutros
+    "#5A6070", "#3A3F48", "#23262C", "#596579",          # cinzas de roupa/objeto
+    "#243B53", "#2F6B8A",                                # navy, blue
+    "#3D7CC9", "#F2875F", "#DCEAF7",                     # ilustração: azul vivo, coral, azul claro
+    "#A85D00", "#B42318", "#237A57",                     # âmbar, vermelho, verde
     "#F6C9A0", "#6B4A32", "#2F2A26",                     # pele e cabelo
     "#7A4A2A", "#9A6236",                                # madeira
     "#FFE45C",                                           # marca-texto
-    "#D6283A", "#16884A", "#E8790C", "#1F6FD1",          # semânticas
     "#2E7D4F", "#1F4FA0", "#3D4F6E",                     # símbolos nacionais / roupa
-    # fallbacks das variáveis de tema (aparecem dentro de var(--x, #...))
-    "#44607A", "#E8EEF3", "#E8897A",
 }
 LIMITE_ELEMENTOS = 15
 LIMITE_IMAGEM = 40 * 1024  # mascote raster (WebP)

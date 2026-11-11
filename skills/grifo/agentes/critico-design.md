@@ -17,7 +17,7 @@ limpas, corpo cinza-claro, ilustrações consistentes, nada apertado, nada vazio
 2. **Hierarquia:** faixa → subtítulo → corpo, sem competição. Algo grita mais que
    deveria (vermelho demais, selos demais)?
 3. **Semântica de cor:** vermelho só para pegadinha/importante; laranja para
-   exceção/dica; cor da disciplina para regra. Uso trocado confunde o aluno.
+   exceção/dica; navy para estrutura e regra. Folha predominantemente neutra: cor sem significado = remover.
 4. **Ritmo visual:** ≥ 1 diagrama/tabela/ilustração por coluna; nenhum muro de
    texto; blocos com tamanhos variados mas alinhados.
 5. **Ilustrações:** relevantes ao bloco; mesmo estilo (contorno escuro, flat);
@@ -29,7 +29,7 @@ limpas, corpo cinza-claro, ilustrações consistentes, nada apertado, nada vazio
    alinhados ao texto; tabelas sem colunas espremidas.
 8. **Impressão:** legível em P&B (todo bloco semântico tem ícone + rótulo);
    contraste do texto branco sobre faixas clara (salmão/laranja) suficiente.
-9. **Consistência entre folhas:** `.topo` igual, numeração certa, mesma cor de disciplina.
+9. **Consistência entre folhas:** `.topo` igual (logo + versão), numeração certa; questões em coluna única e gabarito em folha separada.
 
 ## Saída
 ```

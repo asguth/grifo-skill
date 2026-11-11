@@ -41,7 +41,9 @@ def classes_do_css(css: str) -> set:
 
 def ids_do_sprite() -> set:
     svg = re.sub(r"<!--.*?-->", "", (ASSETS / "ilustracoes.svg").read_text(encoding="utf-8"), flags=re.S)
-    return set(re.findall(r'<symbol\s[^>]*\bid="([^"]+)"', svg))
+    ids = set(re.findall(r'<symbol\s[^>]*\bid="([^"]+)"', svg))
+    lucide = (ASSETS / "lucide" / "lucide.svg").read_text(encoding="utf-8")
+    return ids | {"l-" + n for n in re.findall(r'<symbol id="([^"]+)"', lucide)}
 
 
 class No:
@@ -117,8 +119,9 @@ def verificar(caminho: Path, classes_css: set, ids: set):
             if c not in conhecidas:
                 desconhecidas.setdefault(c, no.linha)
         href = no.attrs.get("href") or no.attrs.get("xlink:href") or ""
-        if no.tag == "use" and href.startswith("#i-") and href[1:] not in ids:
-            erros.append(f"linha {no.linha}: ilustração {href} não existe em ilustracoes.svg")
+        if no.tag == "use" and href.startswith(("#i-", "#l-")) and href[1:] not in ids:
+            onde = "assets/lucide/nomes.txt" if href.startswith("#l-") else "ilustracoes.svg"
+            erros.append(f"linha {no.linha}: {href} não existe em {onde}")
     for c, linha in sorted(desconhecidas.items(), key=lambda x: x[1]):
         erros.append(f"linha {linha}: classe .{c} não existe no grifo.css")
 

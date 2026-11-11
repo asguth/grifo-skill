@@ -1,6 +1,6 @@
 ---
 description: Tabela comparativa A vs B + como a banca confunde
-argument-hint: <A> vs <B> [vs C] [--banca b] [--disciplina d-x]
+argument-hint: <A> vs <B> [vs C] [--banca b] [--formato f] [--nivel n]
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

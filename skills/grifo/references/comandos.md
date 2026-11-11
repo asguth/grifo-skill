@@ -11,24 +11,25 @@ fluxo do SKILL.md (fonte → roteiro → HTML → montar → renderizar → 3 re
 
 | Flag | Valores | Padrão | Vale para |
 |---|---|---|---|
-| `--banca` | `fgv` `cebraspe` `fcc` `vunesp` `cesgranrio` `ibfc` `quadrix` `indefinida` | `indefinida` | todos que geram questão/pegadinha |
-| `--cargo` | texto entre aspas: `--cargo "Analista – ANPD"` | — | todos |
+| `--formato` | `completo` · `mapa` · `revisao` · `treino` · `tudo` (ver SKILL.md, etapa 1) | o do comando | todos |
+| `--nivel` | `medio` · `faculdade` · `concurso` · `certificacao` | `faculdade` (ou inferido) | todos |
+| `--banca` | `fgv` `cebraspe` `fcc` `vunesp` `cesgranrio` `ibfc` `quadrix` `indefinida` | `indefinida` | só `--nivel concurso` |
+| `--cargo` | texto entre aspas: `--cargo "Analista – ANPD"` | — | só concurso |
 | `--folhas` | número de folhas A4 (`1`–`4`; `/apostila` aceita mais) | o do comando | todos que geram folhas |
 | `--material` | caminho de arquivo ou anexo (PDF, apostila, anotações) — vira a fonte primária | — | todos |
-| `--disciplina` | classe de cor: `d-portugues` `d-constitucional` `d-administrativo` `d-penal` `d-civil` `d-dados` `d-ti` `d-logica` `d-gestao` `d-contabil` `d-atualidades` (o prefixo `d-` é opcional) | inferida pelo tópico | todos |
 | `--n` | quantidade de itens | `/questoes` 10 · `/flashcards` 16 | `/questoes`, `/flashcards` |
 | `--artigos` | intervalo ou lista: `1-10`, `5,7,11` | a lei toda | `/lei-seca` |
 | `--horas` | horas por semana | — (obrigatório) | `/cronograma` |
 | `--prova` | data da prova `dd/mm/aaaa` | — (obrigatório) | `/cronograma` |
 
 **Regras de leitura**
-1. **Sem flags = padrões atuais.** `/resumo atos administrativos` funciona sozinho.
+1. **Sem assunto ou sem formato → perguntar uma vez** (SKILL.md, etapa 1). Com os dois
+   definidos, o resto tem padrão: `/resumo fotossíntese` funciona sozinho.
 2. Tudo que não é flag é o **argumento principal** (tópico, lei, lista, arquivo…).
 3. **Forma livre também vale**, e é traduzida para as flags: *"resumo de atos
    administrativos pra FGV, cargo de analista, 2 folhas"* =
    `/resumo atos administrativos --banca fgv --cargo "analista" --folhas 2`.
-   As formas posicionais da v1.0 (`/resumo crase fgv`, `/questoes lgpd cebraspe 20`)
-   continuam aceitas.
+   Formas posicionais (`/questoes lgpd cebraspe 20`) também são aceitas.
 4. `/cmd`, `cmd:` e linguagem natural levam ao **mesmo fluxo**.
 5. **Flag desconhecida** ou valor inválido → avisar em uma linha (*"ignorei
    `--cor azul`: flag desconhecida"*) e seguir com o padrão. Nunca parar por isso.
@@ -42,14 +43,15 @@ Com o nome de um comando (`/grifo questoes`): mostra só a linha dele, as flags 
 aceita e o exemplo. Não gera arquivo nem roda o fluxo.
 
 ```
-GRIFO-SKILL · resumos ilustrados para concursos (MIT)
+GRIFO-SKILL · apostilas ilustradas de qualquer assunto (MIT)
 
-Sintaxe: /<comando> <tópico> [--banca b] [--cargo "x"] [--folhas N]
-                             [--material arquivo] [--disciplina d-x]
-Bancas: fgv · cebraspe · fcc · vunesp · cesgranrio · ibfc · quadrix · indefinida (padrão)
+Sintaxe: /<comando> <assunto ou arquivo> [--formato f] [--nivel n] [--folhas N]
+                                          [--material arquivo] [--banca b]
+Formatos: completo · mapa · revisao · treino · tudo     Níveis: medio · faculdade · concurso · certificacao
+Sem assunto ou formato? A skill pergunta antes de começar.
 
 /resumo      resumo ilustrado, 1–4 folhas
-             /resumo atos administrativos --banca fgv --folhas 2
+             /resumo ciclo de Krebs --nivel faculdade --folhas 2
 /esquema     uma folha de mapa visual
              /esquema controle de constitucionalidade
 /lei-seca    texto da lei grifado + quadros   [--artigos 1-10]
@@ -76,27 +78,27 @@ Bancas: fgv · cebraspe · fcc · vunesp · cesgranrio · ibfc · quadrix · ind
              /validar minha-apostila.html
 /grifo       esta ajuda   (/grifo questoes = ajuda de um comando)
 
-Também vale em linguagem natural: "faz um resumo de crase pra FGV".
+Também vale em linguagem natural: "faz uma apostila desse PDF, só o mapa".
 Conflito com outro plugin? Use /grifo-skill:resumo, /grifo-skill:grifo …
 ```
 
 ---
 
-## /resumo `<tópico> [--banca] [--cargo] [--folhas 1–4] [--material] [--disciplina]`
+## /resumo `<tópico> [--banca] [--cargo] [--folhas 1–4] [--material]`
 **Saída:** 1–4 folhas A4 no layout apostila (2 colunas).
 **Estrutura:**
-1. `.topo` em todas as folhas (logo Grifo, disciplina + tópico, nº da folha).
+1. `.topo` em todas as folhas (logo + versão, matéria + tópico, nº da folha).
 2. Na 1ª folha: `.titulo-topico` com o nome do assunto (opcional se o tópico for curto).
 3. Colunas com `.coluna-cab` (subárea) e `.bloco`s (um por subtema).
 4. Cada bloco usa o componente indicado pela forma do conteúdo (design.md §3).
 5. Pelo menos: 1 diagrama estrutural (chave, fluxo, pirâmide ou linha do tempo),
    1 tabela comparativa quando houver institutos parecidos, 1 caixa `IMPORTANTE`,
-   1 caixa `DICA` ou mnemônico, 1 quadro de pegadinhas da banca.
-6. Última folha termina com 3–6 questões de fixação + gabarito comentado + fontes.
-**Pronto quando:** cada subtema do item do edital tem bloco; todo dispositivo citado
-tem artigo; zero estouro de layout.
+   1 caixa `DICA` ou mnemônico, 1 quadro de erros comuns (ou pegadinhas, se concurso).
+6. Depois do conteúdo: 1 folha de **questões em coluna única** (3–8) e, **em folha
+   separada**, o gabarito comentado + as referências com link.
+**Pronto quando:** cada subtema tem bloco; todo dado citado tem fonte; zero aviso de layout.
 
-## /esquema `<tópico> [--disciplina] [--material]`
+## /esquema `<tópico> [--material]`
 **Saída:** 1 folha, retrato. Um mapa do tópico inteiro: raiz no centro/topo,
 ramos com `.chave`, `.fluxo` ou SVG próprio, ≤ 12 palavras por nó, ilustração nos
 ramos principais. Sem questões. Serve para colar na parede / revisão rápida.
@@ -112,7 +114,7 @@ Texto da lei: copiar da fonte oficial vigente, com a redação atualizada e a in
 da lei alteradora quando o dispositivo foi modificado ("Redação dada pela Lei X").
 Dispositivo revogado: mostrar riscado (`.riscado`) só se for clássico de prova.
 
-## /comparar `<A> vs <B> [vs C] [--banca] [--disciplina]`
+## /comparar `<A> vs <B> [vs C] [--banca]`
 **Saída:** 1 folha. `table.comparativo` com critérios em linhas (natureza, requisitos,
 prazo, competência, efeitos, exemplos), ✔/✘ onde for binário, linha `.destaque` na
 diferença mais cobrada. Abaixo: quadro "COMO A BANCA CONFUNDE" com 3–5 trocas típicas.
@@ -130,8 +132,10 @@ autoria da banca; pode-se apenas imitar o formato). Formato pela banca:
 - FGV/FCC/Vunesp/Cesgranrio/IBFC: múltipla escolha A–E (conferir no edital se o
   concurso usar outro nº de alternativas).
 - Indefinida: metade C/E, metade A–E.
-Gabarito comentado em folha separada no final: letra/item, por que está certo,
-por que cada distrator está errado (1 linha cada), dispositivo.
+Questões em **coluna única** (largura total), sem `.apostila-colunas`. Gabarito comentado
+**sempre em folha separada, depois das questões** (sem spoiler): letra/item, por que está
+certo, por que cada distrator está errado (1 linha cada), fonte. Referências com link no fim.
+Fora de concurso (`--nivel faculdade`): questões discursivas curtas e de aplicação também valem.
 Distribuir dificuldade: 30% fácil, 50% média, 20% difícil.
 
 ## /flashcards `<tópico> [--n 16] [--material]`
@@ -140,7 +144,7 @@ esquerda, verso à direita: dobrar no meio) — evita alinhamento de impressão 
 Frente: pergunta curta ou lacuna ("Prazo para ___"). Verso: resposta + artigo.
 8 cartões por folha. Um fato por cartão.
 
-## /mnemonico `<lista ou tópico> [--disciplina]`
+## /mnemonico `<lista ou tópico>`
 **Saída:** meia folha a uma folha. Para cada lista memorizável: sigla (`.sigla`)
 ou frase, a lista completa ao lado, e uma ilustração que ancore a imagem mental.
 Mnemônico ruim é pior que nenhum: só criar se encurtar de verdade a lista e
@@ -163,11 +167,11 @@ critério de eliminação, cargo.
 - 1 bloco semanal de questões mistas por matéria.
 Entregar também como tabela simples (o usuário pode querer levar para planilha).
 
-## /revisao `<tópico> [--banca] [--disciplina]`
+## /revisao `<tópico> [--banca]`
 **Saída:** exatamente 1 folha. Só o essencial: 1 diagrama, 1 tabela, lista
 "10 coisas que caem", pegadinhas em 1 linha cada. Fonte mínima 8.5pt.
 
-## /apostila `<disciplina> [tópicos...] [--banca] [--cargo] [--folhas] [--material]`
+## /apostila `<matéria> [tópicos...] [--banca] [--cargo] [--folhas] [--material]`
 **Saída:** um único HTML/PDF com: capa (`.folha.capa`), sumário (`.sumario`),
 resumos de cada tópico (reutilizar HTMLs-fonte já gerados na pasta se existirem;
 gerar os que faltarem), bloco de questões no fim de cada tópico, gabarito geral ao

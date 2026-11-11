@@ -1,6 +1,6 @@
 ---
 description: Uma folha de mapa visual do tópico inteiro
-argument-hint: <tópico> [--disciplina d-x] [--material arq]
+argument-hint: <tópico> [--formato f] [--nivel n] [--material arq]
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

@@ -1,6 +1,6 @@
 ---
 description: Apostila completa: capa, sumário, resumos e questões
-argument-hint: <disciplina> [tópicos…] [--banca b] [--cargo "x"] [--material arq]
+argument-hint: <matéria> [tópicos…] [--banca b] [--cargo "x"] [--material arq]
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,
