@@ -9,7 +9,7 @@ import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from montar import inseparaveis  # noqa: E402
+from montar import inseparaveis, quebras_suaves  # noqa: E402
 
 N = "&nbsp;"
 
@@ -71,6 +71,12 @@ class TestInseparaveis(unittest.TestCase):
 
     def test_quebra_de_linha_no_fonte(self):
         self.assertEqual(inseparaveis("art.\n   59"), f"art.{N}59")
+
+    def test_quebra_suave_na_barra(self):
+        self.assertEqual(quebras_suaves("conveniência/oportunidade"), "conveniência/<wbr>oportunidade")
+        self.assertEqual(quebras_suaves("Lei 8.112/1990"), "Lei 8.112/1990")
+        self.assertEqual(quebras_suaves('<a href="x/y">e/ou</a>'), '<a href="x/y">e/<wbr>ou</a>')
+        self.assertEqual(quebras_suaves("</b>/<i>"), "</b>/<i>")
 
     def test_minimo_de_casos(self):
         self.assertGreaterEqual(len(CASOS), 15)

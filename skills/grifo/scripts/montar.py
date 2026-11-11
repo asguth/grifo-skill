@@ -58,6 +58,9 @@ REGRAS = [
     rf"\bp\.{_WS}(?=ú\.)",
     rf"\bparágrafo{_WS}(?=único\b)",
 ]
+# ponto de quebra opcional depois de "/" entre letras (conveniência/oportunidade);
+# nunca entre dígitos (8.112/1990) — esses ficam juntos.
+_RE_BARRA = re.compile(r"(?<=[A-Za-zÀ-ÿ])/(?=[A-Za-zÀ-ÿ])")
 _RE_REGRAS = [re.compile(r) for r in REGRAS]
 _PROTEGIDO = re.compile(
     r"<!--.*?-->|<(style|script)\b.*?</\1\s*>|<[^>]*>", re.S | re.I
@@ -89,6 +92,19 @@ def inseparaveis(html: str) -> str:
     return html
 
 
+def quebras_suaves(html: str) -> str:
+    """Acrescenta <wbr> depois de "/" entre letras, fora de tags/style/script."""
+    inicios, fins = _intervalos_protegidos(html)
+
+    def trocar(m):
+        i = bisect.bisect_right(inicios, m.start()) - 1
+        if i >= 0 and m.start() < fins[i]:
+            return m.group(0)
+        return "/<wbr>"
+
+    return _RE_BARRA.sub(trocar, html)
+
+
 # --------------------------------------------------------------------------
 # sprite e CSS
 # --------------------------------------------------------------------------
@@ -107,7 +123,7 @@ def montar(html: str) -> str:
     css = (BASE / "grifo.css").read_text(encoding="utf-8")
     estilo_svg, simbolos = carregar_simbolos()
 
-    html = inseparaveis(html)
+    html = quebras_suaves(inseparaveis(html))
 
     usados, fila = [], re.findall(r'href="#(i-[\w-]+)"', html)
     while fila:  # resolve dependências (símbolo que usa outro símbolo)
