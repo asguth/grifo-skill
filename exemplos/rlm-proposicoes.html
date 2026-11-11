@@ -1,0 +1,885 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Proposições e conectivos — Raciocínio Lógico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   GRIFO-SKILL — design system v1.0
+   Linguagem visual para resumos de concurso: A4, imprimível, legível
+   em preto e branco. Licença MIT.
+
+   PRINCÍPIO: a COR DA DISCIPLINA identifica o assunto (cabeçalho,
+   diagramas). As CORES SEMÂNTICAS identificam a FUNÇÃO do bloco e são
+   iguais em todas as disciplinas — o aluno aprende uma vez:
+     regra = cor da disciplina | exceção = laranja | pegadinha = vermelho
+     dica = verde | lei seca = cinza | exemplo = azul
+   Todo bloco semântico também tem ÍCONE + RÓTULO (funciona sem cor).
+   ===================================================================== */
+
+:root {
+  /* ---- cor da disciplina (troque via classe .d-* no <body>) ---- */
+  --disc: #44607A;
+  --disc-claro: #E8EEF3;
+  --disc-2: #D9705F;      /* cor secundária (faixas da coluna direita) */
+
+  /* ---- cores semânticas (fixas) ---- */
+  --regra: var(--disc);
+  --excecao: #D9710B;   --excecao-claro: #FFF1E2;  /* 3,3:1 com branco (era #E8790C, 2,9:1) */
+  --pegadinha: #D6283A; --pegadinha-claro: #FDE8EA;
+  --dica: #16884A;      --dica-claro: #E3F6EA;
+  --lei: #55606E;       --lei-claro: #F3F4F6;
+  --exemplo: #1F6FD1;   --exemplo-claro: #E6F0FC;
+
+  /* ---- marca-texto ---- */
+  --mt-chave: #FFE45C;   /* palavra-chave: decore */
+  --mt-troca: #FFB3C7;   /* palavra que a banca costuma TROCAR */
+
+  /* ---- neutros ---- */
+  --tinta: #1C2430;
+  --tinta-2: #4A5568;
+  --linha: #CBD2DA;
+  --papel: #FFFFFF;
+  --mesa: #E9ECEF;
+
+  --fonte-titulo: "Poppins", "Montserrat", "Segoe UI", system-ui, sans-serif;
+  --fonte-corpo: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --raio: 6px;
+}
+
+/* ---- paleta de disciplinas ---- */
+.d-portugues    { --disc: #1F6FD1; --disc-claro: #E6F0FC; --disc-2: #E0782A; }
+.d-constitucional { --disc: #C0263A; --disc-claro: #FBE7EA; --disc-2: #3A5BA0; }
+.d-administrativo { --disc: #A33E8C; --disc-claro: #F7E6F3; --disc-2: #DC6E43; }
+.d-penal        { --disc: #5B4A7A; --disc-claro: #EEEAF4; --disc-2: #D9705F; }
+.d-civil        { --disc: #8A5A12; --disc-claro: #F8EEDD; --disc-2: #4E8C8C; }
+.d-dados        { --disc: #5B3FA0; --disc-claro: #EEE9F8; --disc-2: #DE7A2C; } /* LGPD, privacidade */
+.d-ti           { --disc: #0C8A7D; --disc-claro: #E0F4F1; --disc-2: #D2664A; }
+.d-logica       { --disc: #D9650B; --disc-claro: #FDEEDF; --disc-2: #3D7DD8; }
+.d-gestao       { --disc: #2E8B57; --disc-claro: #E3F3EA; --disc-2: #CF8414; }
+.d-contabil     { --disc: #355C9A; --disc-claro: #E6EDF7; --disc-2: #D9705F; }
+.d-atualidades  { --disc: #44607A; --disc-claro: #E8EEF3; --disc-2: #D9705F; }
+/* evite usar laranja/vermelho/verde puros como cor de disciplina se possível:
+   .d-logica e .d-constitucional são exceções históricas — o ícone resolve */
+
+/* ===================== base ===================== */
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+/* hifenização só no corpo de texto; títulos e rótulos quebram só em &shy; */
+html[lang="pt-BR"] { -webkit-hyphens: auto; hyphens: auto; hyphenate-limit-chars: 8 4 4; }
+body {
+  margin: 0; background: var(--mesa); color: var(--tinta);
+  font-family: var(--fonte-corpo); font-size: 9.5pt; line-height: 1.34;
+}
+h1, h2, h3, h4 { font-family: var(--fonte-titulo); margin: 0; line-height: 1.15; }
+p { margin: .25em 0 .45em; text-wrap: pretty; }
+ul, ol { margin: .2em 0 .4em; padding-left: 1.2em; }
+li { margin: .12em 0; text-wrap: pretty; }
+b, strong { font-weight: 700; }
+code { font-size: .92em; background: var(--lei-claro); padding: 0 .25em; border-radius: 3px; }
+
+/* ===================== folha A4 ===================== */
+@page { size: A4; margin: 0; }
+.folha {
+  width: 210mm; min-height: 297mm; margin: 10mm auto; padding: 11mm 12mm 14mm;
+  background: var(--papel); box-shadow: 0 2px 14px rgba(0,0,0,.14);
+  position: relative; display: flex; flex-direction: column; gap: 3.2mm;
+}
+@media print {
+  body { background: #fff; }
+  .folha { margin: 0; box-shadow: none; break-after: page; }
+  .folha:last-child { break-after: auto; }
+  .nao-imprimir { display: none !important; }
+}
+.rodape-folha {
+  position: absolute; bottom: 6mm; left: 12mm; right: 12mm;
+  display: flex; justify-content: space-between;
+  font-size: 8pt; color: var(--tinta-2); border-top: 1px solid var(--linha); padding-top: 1.5mm;
+}
+
+/* ===================== cabeçalho ===================== */
+.cabecalho {
+  display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2mm 4mm;
+  border-bottom: 3px solid var(--disc); padding-bottom: 2.5mm;
+}
+.cabecalho .disciplina {
+  grid-column: 1 / -1; justify-self: start;
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
+  font-weight: 700; font-size: 8pt; letter-spacing: .08em; text-transform: uppercase;
+  padding: 1mm 3mm; border-radius: 3px;
+}
+.cabecalho h1 {
+  font-size: 21pt; font-weight: 800; text-transform: uppercase; color: var(--disc);
+  letter-spacing: -.01em;
+}
+.cabecalho .fonte { font-size: 8.5pt; color: var(--tinta-2); margin-top: 1mm; }
+.cabecalho .meta { text-align: right; font-size: 8pt; color: var(--tinta-2); }
+
+/* incidência em prova: .incidencia[data-n="1..3"] */
+.incidencia { font-size: 11pt; letter-spacing: 1px; color: var(--disc); white-space: nowrap; }
+.incidencia::before { content: "Incidência "; font-size: 8pt; color: var(--tinta-2); letter-spacing: 0; }
+.incidencia[data-n="1"]::after { content: "★☆☆"; }
+.incidencia[data-n="2"]::after { content: "★★☆"; }
+.incidencia[data-n="3"]::after { content: "★★★"; }
+
+/* títulos de seção */
+.secao {
+  display: flex; align-items: center; gap: 2.5mm;
+  font-family: var(--fonte-titulo); font-weight: 800; font-size: 11.5pt;
+  text-transform: uppercase; color: var(--disc); margin-top: 1mm;
+}
+.secao::after { content: ""; flex: 1; height: 2px; background: var(--disc-claro); }
+.secao .num {
+  background: var(--disc); color: #fff; border-radius: 50%;
+  width: 6.2mm; height: 6.2mm; display: grid; place-items: center; font-size: 9pt;
+}
+
+/* ===================== grids ===================== */
+.colunas-2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 3mm; }
+.colunas-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.colunas-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 3mm; }
+.inteira { grid-column: 1 / -1; }
+
+/* ===================== caixas semânticas ===================== */
+.caixa {
+  border: 2px solid var(--c, var(--disc)); border-radius: var(--raio);
+  background: var(--papel); break-inside: avoid; overflow: hidden;
+}
+.caixa > .rotulo {
+  background: var(--c, var(--disc)); color: #fff;
+  font-family: var(--fonte-titulo); font-weight: 700; font-size: 8.8pt;
+  text-transform: uppercase; letter-spacing: .04em; padding: 1mm 2.5mm;
+  display: flex; align-items: center; gap: 1.5mm;
+}
+.caixa > .rotulo::before { content: var(--icone, "■"); font-size: 9.5pt; }
+.caixa > .corpo { padding: 2mm 2.8mm; background: var(--fundo, #fff); }
+
+.caixa.regra      { --c: var(--disc);      --fundo: #fff;                   --icone: "◆"; }
+.caixa.excecao    { --c: var(--excecao);   --fundo: var(--excecao-claro);   --icone: "⚠"; }
+.caixa.pegadinha  { --c: var(--pegadinha); --fundo: var(--pegadinha-claro); --icone: "✘"; }
+.caixa.dica       { --c: var(--dica);      --fundo: var(--dica-claro);      --icone: "✔"; }
+.caixa.exemplo    { --c: var(--exemplo);   --fundo: var(--exemplo-claro);   --icone: "▶"; }
+.caixa.lei        { --c: var(--lei);       --fundo: var(--lei-claro);       --icone: "§"; }
+.caixa.conceito   { --c: var(--disc);      --fundo: var(--disc-claro);      --icone: "◆"; }
+
+/* lei seca: citação com borda lateral e numeração do dispositivo */
+.lei-seca {
+  border-left: 4px solid var(--lei); background: var(--lei-claro);
+  padding: 1.6mm 2.5mm; font-size: 9.6pt; border-radius: 0 4px 4px 0; break-inside: avoid;
+}
+.lei-seca .disp { font-weight: 800; color: var(--lei); margin-right: 1mm; }
+.lei-seca + .lei-seca { margin-top: 1.2mm; }
+
+/* ===================== marca-texto e destaques ===================== */
+mark, .mt { background: linear-gradient(transparent 38%, var(--mt-chave) 38%, var(--mt-chave) 92%, transparent 92%); color: inherit; padding: 0 .1em; }
+mark.troca, .mt-troca { background: linear-gradient(transparent 38%, var(--mt-troca) 38%, var(--mt-troca) 92%, transparent 92%); }
+.cor { color: var(--disc); font-weight: 700; }
+.vermelho { color: var(--pegadinha); font-weight: 700; }
+.verde { color: var(--dica); font-weight: 700; }
+.laranja { color: var(--excecao); font-weight: 700; }
+.riscado { text-decoration: line-through; text-decoration-color: var(--pegadinha); text-decoration-thickness: 2px; }
+.caps { text-transform: uppercase; letter-spacing: .03em; font-weight: 700; }
+.pequeno { font-size: 8.5pt; color: var(--tinta-2); }
+
+/* chips (desinências, siglas, termos curtos) */
+.chip {
+  display: inline-block; border: 1.5px solid var(--disc); color: var(--disc);
+  border-radius: 999px; padding: 0 2mm; font-size: 8.5pt; font-weight: 700; line-height: 1.6;
+  background: #fff; white-space: nowrap;
+}
+.chip.cheio { background: var(--disc); color: #fff; }
+.chip.sim { border-color: var(--dica); color: var(--dica); }
+.chip.nao { border-color: var(--pegadinha); color: var(--pegadinha); }
+
+/* selos */
+.selo {
+  display: inline-block; transform: rotate(-3deg); border: 2px solid var(--pegadinha);
+  color: var(--pegadinha); font-family: var(--fonte-titulo); font-weight: 800;
+  font-size: 8pt; text-transform: uppercase; padding: .3mm 1.8mm; border-radius: 3px; letter-spacing: .05em;
+}
+.selo.cai-muito { border-color: var(--pegadinha); color: var(--pegadinha); }
+.selo.novidade  { border-color: var(--exemplo); color: var(--exemplo); }
+.selo.decore    { border-color: var(--dica); color: var(--dica); }
+
+/* ===================== CHAVE (classificação em árvore) =====================
+   <div class="chave">
+     <div class="raiz">PASSADO<small>ontem</small></div>
+     <div class="ramos">
+       <div class="ramo"><div class="no">Perfeito</div><div class="desc">...</div></div>
+     </div>
+   </div>                                                                      */
+.chave { display: grid; grid-template-columns: min-content minmax(0,1fr); align-items: center; gap: 0; break-inside: avoid; }
+.chave > .raiz {
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo); font-weight: 800;
+  text-transform: uppercase; font-size: 9.5pt; padding: 2mm 3mm; border-radius: var(--raio);
+  text-align: center; min-width: 22mm; max-width: 30mm; position: relative; z-index: 1;
+}
+.chave > .raiz small { display: block; font-weight: 500; text-transform: none; font-size: 8pt; opacity: .9; }
+.chave > .ramos {
+  display: flex; flex-direction: column; gap: 1.6mm;
+  border-left: 2.5px solid var(--disc); margin-left: 4mm; padding: 1mm 0 1mm 0;
+}
+.chave .ramo { display: grid; grid-template-columns: max-content minmax(0,1fr); gap: 2.5mm; align-items: center; position: relative; padding-left: 5mm; }
+.chave .ramo::before {
+  content: ""; position: absolute; left: 0; top: 50%; width: 5mm; border-top: 2.5px solid var(--disc);
+}
+.chave .ramo::after {
+  content: ""; position: absolute; left: 3.3mm; top: calc(50% - 1.5mm);
+  border: 1.5mm solid transparent; border-left-color: var(--disc); border-right: 0;
+}
+.chave .no {
+  background: var(--disc-claro); border: 1.5px solid var(--disc); color: var(--disc);
+  font-weight: 800; font-size: 9pt; text-transform: uppercase; padding: 1mm 2.5mm; border-radius: 4px;
+  text-align: center; min-width: 20mm; overflow-wrap: break-word;
+}
+.chave .no small { display: block; text-transform: none; font-weight: 600; font-size: 8pt; color: var(--tinta-2); }
+.chave .desc { font-size: 9.4pt; overflow-wrap: break-word; }
+.chave .desc b:first-child { color: var(--disc); }
+
+/* ===================== FLUXO (processo/rito) =====================
+   <div class="fluxo"> <div class="passo">..</div> <div class="passo">..</div> </div>
+   .fluxo.vertical para empilhar; .passo.decisao para pergunta (sim/não)        */
+.fluxo { display: flex; align-items: stretch; flex-wrap: wrap; gap: 5mm; break-inside: avoid; }
+.fluxo > .passo {
+  flex: 1 1 0; min-width: 0; position: relative;
+  border: 2px solid var(--disc); border-radius: var(--raio); background: #fff;
+  padding: 1.4mm 1.2mm; font-size: 8.6pt; text-align: center; overflow-wrap: break-word;
+}
+.fluxo > .passo .t { display: block; overflow-wrap: break-word; font-weight: 800; color: var(--disc); text-transform: uppercase; font-size: 8pt; letter-spacing: -.01em; }
+.fluxo > .passo:not(:last-child)::after {
+  content: "➜"; position: absolute; right: -4.6mm; top: 50%; transform: translateY(-50%);
+  color: var(--disc); font-size: 12pt; font-weight: 900;
+}
+.fluxo > .passo.decisao { border-style: dashed; background: var(--disc-claro); }
+.fluxo > .passo.decisao .t::before { content: "? "; }
+.fluxo > .passo.fim { background: var(--disc); color: #fff; }
+.fluxo > .passo.fim .t { color: #fff; }
+.fluxo.vertical { flex-direction: column; gap: 5mm; }
+.fluxo.vertical > .passo:not(:last-child)::after {
+  content: "▼"; right: auto; left: 50%; top: auto; bottom: -4.6mm; transform: translateX(-50%); font-size: 9pt;
+}
+
+/* ===================== LINHA DO TEMPO ===================== */
+.linha-tempo { position: relative; display: flex; justify-content: space-between; gap: 2mm; padding-top: 7mm; break-inside: avoid; }
+.linha-tempo::before {
+  content: ""; position: absolute; top: 3mm; left: 2mm; right: 2mm; height: 3px; background: var(--disc);
+}
+.linha-tempo .marco { flex: 1; text-align: center; position: relative; font-size: 8.8pt; }
+.linha-tempo .marco::before {
+  content: ""; position: absolute; top: -5.5mm; left: 50%; transform: translateX(-50%);
+  width: 3.5mm; height: 3.5mm; border-radius: 50%; background: #fff; border: 3px solid var(--disc);
+}
+.linha-tempo .marco .quando { display: block; font-weight: 800; color: var(--disc); }
+
+/* ===================== COMPARATIVO ===================== */
+table.comparativo {
+  width: 100%; border-collapse: separate; border-spacing: 0; font-size: 8.5pt;
+  border: 2px solid var(--disc); border-radius: var(--raio); overflow: hidden; break-inside: avoid;
+}
+table.comparativo th {
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
+  font-size: 8.6pt; text-transform: uppercase; padding: 1.3mm 2mm; text-align: left;
+}
+table.comparativo td { padding: .8mm 1.8mm; border-top: 1px solid var(--linha); vertical-align: top; }
+table.comparativo td + td, table.comparativo th + th { border-left: 1px solid var(--linha); }
+table.comparativo tr:nth-child(even) td { background: #FAFBFC; }
+table.comparativo td.criterio { font-weight: 700; color: var(--disc); background: var(--disc-claro) !important; white-space: nowrap; }
+table.comparativo td.sim, table.comparativo td.nao { text-align: center; font-weight: 800; font-size: 10.5pt; }
+table.comparativo td.sim { color: var(--dica); }
+table.comparativo td.nao { color: var(--pegadinha); }
+table.comparativo td.sim::before { content: "✔"; }
+table.comparativo td.nao::before { content: "✘"; }
+table.comparativo tr.destaque td { background: var(--pegadinha-claro) !important; }
+
+/* ===================== SIGLA / MNEMÔNICO =====================
+   <div class="sigla"><div class="letra"><b>L</b><span>Livre</span></div>...</div> */
+.sigla { display: flex; gap: 1.2mm; justify-content: center; flex-wrap: nowrap; break-inside: avoid; }
+.sigla .letra { display: flex; flex-direction: column; align-items: center; flex: 0 1 18mm; min-width: 0; }
+.sigla .letra b {
+  width: 11mm; height: 11mm; display: grid; place-items: center;
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
+  font-size: 17pt; font-weight: 800; border-radius: 4px;
+}
+.sigla .letra span { font-size: 8pt; font-weight: 700; margin-top: .8mm; text-align: center; line-height: 1.15; }
+
+/* ===================== PIRÂMIDE / HIERARQUIA ===================== */
+.piramide { display: flex; flex-direction: column; align-items: center; gap: 1mm; break-inside: avoid; }
+.piramide .nivel {
+  background: var(--disc); color: #fff; text-align: center; font-weight: 700; font-size: 9pt;
+  padding: 1.4mm 4mm; clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%);
+}
+.piramide .nivel:nth-child(1) { width: 35%; clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%); padding-top: 4mm; }
+.piramide .nivel:nth-child(2) { width: 50%; opacity: .92; }
+.piramide .nivel:nth-child(3) { width: 65%; opacity: .84; }
+.piramide .nivel:nth-child(4) { width: 80%; opacity: .76; }
+.piramide .nivel:nth-child(5) { width: 95%; opacity: .7; }
+
+/* ===================== QUESTÕES ===================== */
+.questao { border: 1.5px solid var(--linha); border-radius: var(--raio); padding: 2mm 2.6mm; break-inside: avoid; font-size: 9.2pt; }
+.questao .cab { display: flex; gap: 2mm; align-items: center; margin-bottom: 1mm; font-size: 8pt; color: var(--tinta-2); }
+.questao .cab .n { background: var(--tinta); color: #fff; font-weight: 800; border-radius: 3px; padding: 0 1.6mm; }
+.questao .cab .estilo { border: 1px solid var(--tinta-2); border-radius: 3px; padding: 0 1.3mm; text-transform: uppercase; font-weight: 700; }
+.questao ol.alternativas { list-style: none; padding-left: 0; margin: 1mm 0 0; counter-reset: alt; }
+.questao ol.alternativas li { counter-increment: alt; padding-left: 6mm; position: relative; }
+.questao ol.alternativas li::before {
+  content: "(" counter(alt, upper-alpha) ")"; position: absolute; left: 0; font-weight: 800;
+}
+.questao .ce { display: inline-flex; gap: 2mm; margin-top: 1mm; font-weight: 800; font-size: 8.5pt; }
+.questao .ce span { border: 1.5px solid var(--tinta-2); border-radius: 3px; padding: 0 1.8mm; }
+
+.gabarito { border-top: 2px dashed var(--linha); padding-top: 2mm; font-size: 8.4pt; color: var(--tinta-2); break-inside: avoid; }
+.gabarito h4 { font-size: 8.5pt; text-transform: uppercase; color: var(--tinta); margin-bottom: 1mm; }
+/* recuo pendente: 2ª linha alinha com o texto depois de "00 — " (2,85em em Inter 700) */
+.gabarito .item { margin: .6mm 0; padding-left: 2.85em; text-indent: -2.85em; }
+.gabarito .item b { color: var(--tinta); }
+
+/* ===================== FLASHCARDS (recorte) ===================== */
+.flashcards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px dashed #999; }
+.flashcards .card {
+  min-height: 29mm; padding: 3mm 4mm; border: 1px dashed #999; display: flex; flex-direction: column; justify-content: center;
+  text-align: center; break-inside: avoid; position: relative;
+}
+.flashcards .card .lado { position: absolute; top: 2mm; left: 3mm; font-size: 8pt; color: var(--tinta-2); text-transform: uppercase; letter-spacing: .08em; }
+.flashcards .card.frente { font-family: var(--fonte-titulo); font-size: 12pt; font-weight: 700; color: var(--disc); }
+.flashcards .card.verso { font-size: 9.6pt; background: var(--disc-claro); }
+.flashcards-instrucao { font-size: 8pt; color: var(--tinta-2); text-align: center; }
+
+/* ===================== EDITAL VERTICALIZADO ===================== */
+table.edital { width: 100%; border-collapse: collapse; font-size: 8.8pt; }
+table.edital th { background: var(--disc); color: #fff; text-align: left; padding: 1.2mm 1.6mm; font-size: 8pt; text-transform: uppercase; }
+table.edital td { border-bottom: 1px solid var(--linha); padding: 1mm 1.6mm; vertical-align: top; }
+table.edital td.check { width: 7mm; text-align: center; }
+table.edital td.check::before { content: "☐"; font-size: 11pt; }
+table.edital tr.materia td { background: var(--disc-claro); font-weight: 800; color: var(--disc); text-transform: uppercase; }
+table.edital td.peso { text-align: center; white-space: nowrap; }
+
+/* ===================== CAPA / SUMÁRIO ===================== */
+.capa { justify-content: center; align-items: flex-start; background: linear-gradient(160deg, var(--disc) 0 46%, #fff 46%); }
+.capa .titulo-capa { color: #fff; font-family: var(--fonte-titulo); font-size: 34pt; font-weight: 800; text-transform: uppercase; line-height: 1; }
+.capa .sub-capa { color: #fff; font-size: 13pt; margin-top: 3mm; opacity: .95; }
+.capa .info-capa { margin-top: auto; font-size: 10pt; color: var(--tinta-2); }
+.sumario ol { counter-reset: s; list-style: none; padding: 0; }
+.sumario li { display: flex; gap: 2mm; border-bottom: 1px dotted var(--linha); padding: 1.2mm 0; }
+.sumario li::before { counter-increment: s; content: counter(s, decimal-leading-zero); font-weight: 800; color: var(--disc); }
+.sumario li .pg { margin-left: auto; color: var(--tinta-2); }
+
+/* ===================== SVG: classes utilitárias =====================
+   Use em diagramas SVG inline para herdar a paleta. */
+svg .s-disc   { stroke: var(--disc); }
+svg .f-disc   { fill: var(--disc); }
+svg .f-claro  { fill: var(--disc-claro); }
+svg .f-branco { fill: #fff; }
+svg .s-linha  { stroke: var(--linha); }
+svg .t-disc   { fill: var(--disc); font-family: var(--fonte-titulo); font-weight: 800; }
+svg .t-corpo  { fill: var(--tinta); font-family: var(--fonte-corpo); }
+svg .t-branco { fill: #fff; font-family: var(--fonte-titulo); font-weight: 700; }
+svg .f-peg    { fill: var(--pegadinha); } svg .s-peg { stroke: var(--pegadinha); }
+svg .f-dica   { fill: var(--dica); }      svg .s-dica { stroke: var(--dica); }
+svg .f-exc    { fill: var(--excecao); }   svg .s-exc { stroke: var(--excecao); }
+
+/* ===================== verificação ===================== */
+.verificar {
+  background: repeating-linear-gradient(45deg, #FFF6CC 0 6px, #FFEFA3 6px 12px);
+  border: 1.5px dashed #B88A00; padding: 0 1mm; border-radius: 3px; font-weight: 700;
+}
+.verificar::before { content: "[VERIFICAR] "; color: #8A6500; font-size: .85em; }
+
+/* =====================================================================
+   LAYOUT APOSTILA (padrão) — inspirado em apostilas esquematizadas
+   comerciais: cabeçalho corrido, 2 colunas, faixas de seção, corpo
+   cinza-claro, personagens ilustrados ao lado do texto.
+   ===================================================================== */
+
+/* cabeçalho corrido: logo | DISCIPLINA | nº página */
+.topo {
+  display: grid; grid-template-columns: 14mm 1fr 14mm; align-items: center;
+  border-bottom: 2.5px solid var(--disc); padding-bottom: 1.6mm; margin-bottom: 1mm;
+}
+.topo .logo { width: 11mm; height: 11mm; }
+.topo .logo svg { width: 100%; height: 100%; }
+.topo .titulo-topo {
+  text-align: center; font-family: var(--fonte-titulo); font-weight: 800;
+  font-size: 13pt; text-transform: uppercase; color: var(--tinta); letter-spacing: .02em;
+}
+.topo .titulo-topo small { display: block; font-size: 8pt; font-weight: 600; color: var(--tinta-2); letter-spacing: .06em; }
+.topo .pag {
+  justify-self: end; background: var(--disc-2); color: #fff; font-family: var(--fonte-titulo);
+  font-weight: 800; font-size: 13pt; width: 11mm; height: 11mm; display: grid; place-items: center; border-radius: 2px;
+}
+
+/* título de tópico grande, letra contornada (capa de assunto) */
+.titulo-topico {
+  text-align: center; font-family: var(--fonte-titulo); font-weight: 900; font-size: 26pt;
+  text-transform: uppercase; line-height: 1.02; color: var(--disc-2);
+  -webkit-text-stroke: 1.4px #8A3A22; paint-order: stroke fill;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.12); margin: 1mm 0 2mm;
+}
+
+/* duas colunas com cabeçalho escuro de coluna */
+.apostila-colunas { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 4mm; align-items: start; }
+.apostila-colunas > .coluna { display: flex; flex-direction: column; gap: 2.6mm; }
+.coluna-cab {
+  background: #4A4F57; color: #fff; text-align: center; font-family: var(--fonte-titulo);
+  font-weight: 800; font-size: 9.5pt; text-transform: uppercase; padding: 1.4mm 2mm; letter-spacing: .03em;
+}
+
+/* bloco: faixa + corpo cinza */
+.bloco { break-inside: avoid; }
+.bloco > .faixa {
+  background: var(--disc-2); color: #fff; font-family: var(--fonte-titulo); font-weight: 800;
+  font-size: 9.2pt; text-transform: uppercase; padding: 1.2mm 2.5mm; letter-spacing: .02em;
+}
+.bloco.primaria > .faixa { background: var(--disc); }
+.bloco.escura > .faixa { background: #4A4F57; }
+.bloco > .faixa.arredondada, .bloco.pill > .faixa { border-radius: 999px; text-align: center; }
+.bloco > .corpo { background: #F1F2F4; padding: 1.8mm 2.4mm; font-size: 8.9pt; }
+/* respiro igual em cima e embaixo dentro de qualquer corpo de bloco/caixa */
+.corpo > :first-child { margin-top: 0; }
+.corpo > :last-child { margin-bottom: 0; }
+.tag-caixa > p:last-child, .com-ilustra > :last-child { margin-bottom: 0; }
+.bloco.contorno > .corpo { background: #fff; border: 1.5px solid var(--disc); border-top: 0; }
+
+/* subtítulo sublinhado colorido (dentro do bloco) */
+.sub {
+  font-family: var(--fonte-titulo); font-weight: 800; font-size: 8.8pt; text-transform: uppercase;
+  color: var(--disc); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 2px;
+  margin: 1mm 0 .6mm;
+}
+
+/* lista com ✔ em caixinha */
+ul.check { list-style: none; padding-left: 0; }
+ul.check li { position: relative; padding-left: 5.5mm; }
+ul.check li::before {
+  content: "✔"; position: absolute; left: 0; top: .15em; top: calc((1lh - 3.6mm) / 2); width: 3.6mm; height: 3.6mm;
+  border: 1.4px solid var(--disc); border-radius: 2px; color: var(--disc);
+  font-size: 7pt; font-weight: 900; display: grid; place-items: center; line-height: 1;
+}
+ul.check.verde li::before { background: var(--dica); border-color: var(--dica); color: #fff; border-radius: 50%; }
+
+/* destaques no estilo das apostilas: vermelho escuro negrito */
+.chave-v { color: #B0182A; font-weight: 800; }
+.atencao-txt { color: #B0182A; font-weight: 800; font-style: italic; }
+.atencao-txt::before { content: "ATENÇÃO: "; }
+
+/* tags: IMPORTANTE (círculo com !), DICA (pílula) */
+.tag {
+  display: inline-flex; align-items: center; gap: 1.5mm; font-family: var(--fonte-titulo);
+  font-weight: 800; font-size: 8.5pt; text-transform: uppercase; letter-spacing: .04em;
+  border: 1.6px solid var(--pegadinha); color: var(--pegadinha); border-radius: 999px; padding: .4mm 3mm .4mm .5mm; background: #fff;
+}
+.tag::before {
+  content: var(--tag-ico, "!"); width: 5mm; height: 5mm; border-radius: 50%; background: var(--pegadinha); color: #fff;
+  display: grid; place-items: center; font-size: 9pt;
+}
+.tag.dica { border-color: var(--excecao); color: var(--excecao); --tag-ico: "★"; }
+.tag.dica::before { background: var(--excecao); }
+.tag.atencao { --tag-ico: "⚠"; }
+.tag-caixa { border: 1.5px solid var(--pegadinha); border-radius: var(--raio); padding: 3mm 2.6mm 2mm; position: relative; margin-top: 3mm; break-inside: avoid; }
+.tag-caixa.dica { border-color: var(--excecao); }
+.tag-caixa > .tag { position: absolute; top: -3mm; left: 50%; transform: translateX(-50%); }
+
+/* texto + ilustração lado a lado */
+/* a ilustração nunca encolhe nem empurra o texto: coluna de texto minmax(0,1fr) */
+.com-ilustra { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 2mm; align-items: center; }
+.com-ilustra.esq { grid-template-columns: auto minmax(0,1fr); }
+.com-ilustra > * { min-width: 0; overflow-wrap: break-word; }
+.com-ilustra > .ilustra { flex: none; align-self: center; justify-self: center; min-width: auto; }
+.ilustra { width: 18mm; height: 18mm; display: block; }
+.ilustra.p { width: 12mm; height: 12mm; }
+.ilustra.g { width: 26mm; height: 26mm; }
+.ilustra.gg { width: 36mm; height: 36mm; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* relação A ➜ B (norma superior → fundante) */
+.relacao { display: grid; grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap: 2mm; align-items: center; margin: 1mm 0; }
+.relacao .de { border: 1.5px solid var(--tinta); padding: .8mm 2mm; font-weight: 700; font-size: 8.6pt; text-transform: uppercase; text-align: center; }
+.relacao .seta { color: var(--tinta); font-weight: 900; }
+.relacao > div { overflow-wrap: break-word; }
+.relacao .para { background: var(--pegadinha); color: #fff; padding: .8mm 2mm; font-weight: 800; font-size: 8.6pt; text-transform: uppercase; text-align: center; }
+
+/* tabela rótulo|conteúdo (estilo "Constituição rígida | que dá fundamento...") */
+table.rotulada { width: 100%; border-collapse: collapse; font-size: 9pt; break-inside: avoid; }
+table.rotulada td { border: 1.2px solid #7A2230; padding: 1.2mm 2mm; vertical-align: middle; }
+table.rotulada td:first-child { background: #FBE7EA; color: #7A2230; font-weight: 800; text-transform: uppercase; text-align: center; font-size: 8.2pt; width: 36%; }
+
+/* pirâmide com legenda lateral */
+.piramide-legenda { display: grid; grid-template-columns: 30mm 1fr; gap: 3mm; align-items: center; break-inside: avoid; }
+.piramide-legenda svg { width: 30mm; height: auto; }
+.piramide-legenda ol { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.2mm; font-size: 8.8pt; font-weight: 700; }
+.piramide-legenda li { display: flex; gap: 1.5mm; align-items: center; }
+.piramide-legenda li i { width: 3mm; height: 3mm; border-radius: 50%; flex: none; }
+
+/* ===================== quebras e títulos (v1.1) =====================
+   títulos, faixas, chips e TABELAS: sem hifenização automática (em célula de
+   tabela ela encolhe a largura mínima e o navegador espreme as colunas);
+   títulos com linhas equilibradas (nada de palavra sozinha na última linha). */
+h1, h2, h3, h4, .faixa, .coluna-cab, .titulo-topico, .titulo-topo, .secao, .sub,
+.rotulo, .tag, .chip, .selo, th, td, .chave .no, .chave .raiz,
+.fluxo .passo .t, .relacao > div, .linha-tempo .quando {
+  -webkit-hyphens: manual; hyphens: manual;
+}
+.faixa, .coluna-cab, .titulo-topico, .secao, th, .rotulo { text-wrap: balance; }
+
+/* ===================== FÓRMULA (RLM, estatística, financeira) =====================
+   <div class="formula"><span class="rot">Probabilidade</span>
+     P(A) = <span class="frac"><span>favoráveis</span><span>possíveis</span></span></div> */
+.formula {
+  font-family: "STIX Two Math", "Cambria Math", Cambria, Georgia, "Times New Roman", serif;
+  font-size: 11.5pt; text-align: center; background: var(--disc-claro);
+  border: 1.5px solid var(--disc); border-radius: var(--raio); padding: 2mm 3mm; margin: 1mm 0;
+  break-inside: avoid; line-height: 1.5;
+}
+.formula .rot {
+  display: block; font-family: var(--fonte-titulo); font-size: 8pt; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .05em; color: var(--disc); margin-bottom: .5mm;
+}
+.formula i, .formula var { font-style: italic; }
+.formula .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 .2em; }
+.formula .frac > span { padding: 0 .3em; }
+.formula .frac > span:first-child { border-bottom: 1.2px solid currentColor; }
+.formula .frac > span:last-child { font-size: .95em; }
+
+/* ===================== TABELA-VERDADE =====================
+   <table class="verdade"><tr><th>p</th><th>q</th><th>p ∧ q</th></tr>
+     <tr><td class="v">V</td><td class="f">F</td><td class="f res">F</td></tr></table>
+   V verde, F vermelho e a coluna de resultado (.res) sombreada; a letra
+   V/F continua escrita, então funciona em P&B. */
+table.verdade {
+  border-collapse: separate; border-spacing: 0; margin: 1mm auto; font-size: 9.5pt;
+  border: 2px solid var(--disc); border-radius: var(--raio); overflow: hidden; break-inside: avoid;
+}
+table.verdade th {
+  background: var(--disc); color: #fff; font-family: var(--fonte-corpo); font-weight: 800;
+  padding: 1mm 2mm; text-align: center; white-space: nowrap;
+}
+table.verdade td { text-align: center; font-weight: 800; padding: .6mm 2mm; border-top: 1px solid var(--linha); }
+table.verdade td + td, table.verdade th + th { border-left: 1px solid var(--linha); }
+table.verdade td.v { color: var(--dica); }
+table.verdade td.f { color: var(--pegadinha); }
+table.verdade td.res { background: var(--disc-claro); }
+table.verdade th.res { background: var(--disc-2); }
+table.verdade tr.destaque td { background: var(--mt-chave); }
+
+/* ===================== CÓDIGO (TI: SQL, pseudocódigo) =====================
+   <pre class="codigo"><span class="rot">SQL</span>SELECT …</pre>  — sem syntax highlight */
+.codigo {
+  font-family: "JetBrains Mono", "Cascadia Mono", Consolas, "Courier New", monospace;
+  font-size: 8.5pt; line-height: 1.45; background: var(--lei-claro); color: var(--tinta);
+  border-left: 4px solid var(--lei); border-radius: 0 4px 4px 0; padding: 2mm 3mm; margin: 1mm 0;
+  white-space: pre-wrap; overflow-wrap: anywhere; hyphens: none; position: relative; break-inside: avoid;
+}
+.codigo .rot {
+  position: absolute; top: 0; right: 0; background: var(--lei); color: #fff;
+  font-family: var(--fonte-titulo); font-size: 8pt; font-weight: 700; text-transform: uppercase;
+  padding: .2mm 2mm; border-radius: 0 0 0 3px; letter-spacing: .05em;
+}
+.codigo b { color: var(--disc); }
+
+/* ===================== EXEMPLO-FRASE (Português: análise) =====================
+   <p class="exemplo-frase"><span class="termo" data-funcao="sujeito">Os candidatos</span> …</p>
+   Trecho analisado sublinhado; função sintática em rótulo acima. */
+.exemplo-frase { font-size: 10.5pt; line-height: 1.3; margin: 1mm 0 2mm; }
+/* rótulo no fluxo (não absoluto): o termo fica tão largo quanto o rótulo e
+   os rótulos vizinhos nunca se sobrepõem */
+.exemplo-frase .termo {
+  display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom;
+  margin: 1mm .15em 0; font-weight: 600;
+  text-decoration: underline 2.2px var(--disc); text-underline-offset: 3px; text-decoration-skip-ink: none;
+}
+.exemplo-frase .termo::before {
+  content: attr(data-funcao); margin-bottom: .8mm; font-family: var(--fonte-titulo); font-size: 8pt;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #fff; background: var(--disc);
+  padding: 0 1.4mm; border-radius: 2px; white-space: nowrap; line-height: 1.5; text-decoration: none;
+}
+.exemplo-frase .termo.destaque { background: linear-gradient(transparent 62%, var(--mt-chave) 62%); }
+.exemplo-frase .termo.erro { text-decoration-color: var(--pegadinha); }
+.exemplo-frase .termo.erro::before { background: var(--pegadinha); }
+
+</style>
+</head>
+<body class="d-logica">
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true"><defs><style>
+      .k{fill:none;stroke:#1C2430;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+      .kf{stroke:#1C2430;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+      .pele{fill:#F6C9A0}.amarelo{fill:#FFE45C}.branco{fill:#fff}.cinza{fill:#E3E7EC}
+      .verm{fill:#D6283A}
+      .g-o{stroke:#1C2430;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.g-raposa{fill:#E8853A}.g-creme{fill:#FFF1DC}.g-mt{fill:#FFE45C}.g-mt2{fill:#C8F27A}.g-roxo{fill:#6A4C93}.g-tinta{fill:#1C2430}
+      .f-disc{fill:var(--disc,#44607A)}.s-disc{stroke:var(--disc,#44607A)}.f-claro{fill:var(--disc-claro,#E8EEF3)}.f-disc2{fill:var(--disc-2,#E8897A)}
+      .t-disc{fill:var(--disc,#44607A);font-family:Poppins,sans-serif;font-weight:800}.verde{fill:#16884A}.lar{fill:#E8790C}
+    </style></defs><symbol id="i-grifo" viewBox="0 0 240 240">
+  <g>
+    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
+    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
+    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
+  </g><g transform="translate(240 0) scale(-1 1)">
+    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
+    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
+    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
+  </g>
+
+  
+  <path class="g-o g-raposa" d="M150 200 C190 202 214 172 204 134 C196 158 176 172 152 172 Z"/>
+  <path class="g-o g-creme" d="M204 134 C216 160 206 190 184 198 C194 180 198 160 204 134 Z"/>
+
+  
+  <path class="g-o g-raposa" d="M80 206 C74 164 92 128 120 126 C148 128 166 164 160 206 Z"/>
+  <path class="g-o g-creme" d="M102 140 Q120 168 138 140 Q134 196 120 204 Q106 196 102 140 Z"/>
+  
+  <ellipse class="g-o g-creme" cx="104" cy="206" rx="13" ry="8"/>
+  <ellipse class="g-o g-creme" cx="136" cy="206" rx="13" ry="8"/>
+  <path d="M100 206 L100 211 M108 206 L108 211 M132 206 L132 211 M140 206 L140 211" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round"/>
+
+  
+  <g transform="translate(170 70) rotate(30)">
+    <rect class="g-o g-mt" x="-6" y="-26" width="12" height="40" rx="3"/>
+    <rect class="g-o g-roxo" x="-7" y="-34" width="14" height="12" rx="3"/>
+    <path class="g-o g-mt2" d="M-6 14 L6 14 L3 22 L-3 22 Z"/>
+  </g>
+
+  
+  <path class="g-o g-raposa" d="M90 80 L80 34 L114 62 Z"/>
+  <path class="g-o g-raposa" d="M150 80 L160 34 L126 62 Z"/>
+  <path class="g-creme" d="M91 70 L86 46 L104 62 Z"/>
+  <path class="g-creme" d="M149 70 L154 46 L136 62 Z"/>
+
+  
+  <path class="g-o g-raposa" d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z"/>
+  <path class="g-creme" d="M82 98 C92 106 104 104 110 112 C112 120 118 128 120 131 C104 128 88 116 82 98 Z"/>
+  <path class="g-creme" d="M158 98 C148 106 136 104 130 112 C128 120 122 128 120 131 C136 128 152 116 158 98 Z"/>
+  <path d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z" fill="none" stroke="#1C2430" stroke-width="4" stroke-linejoin="round"/>
+
+  
+  <ellipse class="g-tinta" cx="104" cy="90" rx="6" ry="7"/>
+  <ellipse class="g-tinta" cx="136" cy="90" rx="6" ry="7"/>
+  <circle cx="106" cy="87" r="2.2" fill="#fff"/><circle cx="138" cy="87" r="2.2" fill="#fff"/>
+  <ellipse class="g-tinta" cx="120" cy="108" rx="6" ry="4.2"/>
+  <path d="M112 116 Q116 121 120 116 Q124 121 128 116" fill="none" stroke="#1C2430" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="94" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
+  <ellipse cx="146" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
+</symbol><symbol id="i-lampada" viewBox="0 0 64 64">
+    <path class="kf amarelo" d="M32 6 Q50 6 50 24 Q50 34 42 40 L42 46 L22 46 L22 40 Q14 34 14 24 Q14 6 32 6 Z"/>
+    <rect class="kf f-disc" x="22" y="46" width="20" height="10" rx="2"/><path class="k" d="M26 60 L38 60"/>
+    <path class="k" d="M26 30 L32 24 L38 30"/><path class="k" d="M4 22 L8 22 M56 22 L60 22 M10 6 L13 9 M54 6 L51 9"/>
+  </symbol><symbol id="i-dialogo" viewBox="0 0 64 64">
+    <path class="kf f-disc" d="M6 8 L40 8 Q44 8 44 12 L44 30 Q44 34 40 34 L20 34 L11 42 L13 34 L10 34 Q6 34 6 30 Z"/>
+    <path class="k" d="M13 17 L37 17 M13 25 L30 25" style="stroke:#fff"/>
+    <path class="kf f-claro" d="M24 30 L54 30 Q58 30 58 34 L58 50 Q58 54 54 54 L51 54 L53 61 L44 54 L28 54 Q24 54 24 50 Z"/>
+    <circle cx="33" cy="42" r="2.6" fill="#1C2430"/><circle cx="41" cy="42" r="2.6" fill="#1C2430"/><circle cx="49" cy="42" r="2.6" fill="#1C2430"/>
+  </symbol><symbol id="i-calculadora" viewBox="0 0 64 64">
+    <rect class="kf f-disc" x="12" y="4" width="40" height="56" rx="5"/>
+    <rect class="kf f-claro" x="18" y="10" width="28" height="12" rx="2"/>
+    <path class="k" d="M30 16 L40 16"/>
+    <rect class="kf branco" x="18" y="28" width="7" height="6" rx="1"/><rect class="kf branco" x="28.5" y="28" width="7" height="6" rx="1"/><rect class="kf branco" x="39" y="28" width="7" height="6" rx="1"/>
+    <rect class="kf branco" x="18" y="38" width="7" height="6" rx="1"/><rect class="kf branco" x="28.5" y="38" width="7" height="6" rx="1"/><rect class="kf branco" x="39" y="38" width="7" height="6" rx="1"/>
+    <rect class="kf branco" x="18" y="48" width="7" height="6" rx="1"/><rect class="kf branco" x="28.5" y="48" width="7" height="6" rx="1"/><rect class="kf amarelo" x="39" y="48" width="7" height="6" rx="1"/>
+  </symbol></svg>
+
+<!-- ============================ FOLHA 1 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Raciocínio Lógico<small>Lógica proposicional · proposições, conectivos e tabela-verdade</small></div>
+    <div class="pag">01</div>
+  </div>
+
+  <div class="titulo-topico">Proposições</div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Noções gerais</div>
+
+      <div class="bloco primaria">
+        <div class="faixa">O que é proposição</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <p><span class="chave-v">Sentença declarativa</span> que pode ser classificada como <b>verdadeira (V)</b> ou <b>falsa (F)</b> — <mark>um único valor</mark>, nunca os dois.</p>
+            <svg class="ilustra g"><use href="#i-lampada"/></svg>
+          </div>
+          <div class="sub">Três princípios</div>
+          <ul class="check">
+            <li><b>Identidade:</b> se é V, é V; se é F, é F.</li>
+            <li><b>Não contradição:</b> não é V e F ao mesmo tempo.</li>
+            <li><b>Terceiro excluído:</b> ou é V ou é F; não há terceiro valor.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Não são proposições</div>
+        <div class="corpo">
+          <div class="chave">
+            <div class="raiz">Não é<small>sem valor V/<wbr>F</small></div>
+            <div class="ramos">
+              <div class="ramo"><div class="no">Pergunta</div><div class="desc">Que horas é a prova?</div></div>
+              <div class="ramo"><div class="no">Ordem</div><div class="desc">Estude a lei seca.</div></div>
+              <div class="ramo"><div class="no">Exclamação</div><div class="desc">Que prova difícil!</div></div>
+              <div class="ramo"><div class="no">Aberta<small>sentença</small></div><div class="desc"><span class="chip">x + 2 = 5</span></div></div>
+              <div class="ramo"><div class="no">Paradoxo</div><div class="desc">“Esta frase é falsa.”</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Simples × composta</div>
+        <div class="corpo">
+          <p><b>Simples:</b> uma ideia só (p: “Ana passou”). <b>Composta:</b> simples ligadas por <span class="chave-v">conectivos</span> (p ∧ q).</p>
+          <div class="formula"><span class="rot">Linhas da tabela-verdade</span>linhas = 2<sup><i>n</i></sup> &nbsp;·&nbsp; <i>n</i> = nº de proposições simples</div>
+          <p class="pequeno">2 proposições → 4 linhas · 3 → 8 · 4 → 16.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Conectivos</div>
+
+      <table class="comparativo">
+        <tr><th>Conectivo</th><th>Símbolo</th><th>Só é…</th></tr>
+        <tr><td class="criterio">Negação · não</td><td>~p</td><td>inverte o valor</td></tr>
+        <tr><td class="criterio">Conjunção · e</td><td>p ∧ q</td><td><b>V</b> se as duas forem V</td></tr>
+        <tr><td class="criterio">Disjunção · ou</td><td>p ∨ q</td><td><b>F</b> se as duas forem F</td></tr>
+        <tr><td class="criterio">Ou… ou…</td><td>p ⊻ q</td><td><b>V</b> se os valores forem diferentes</td></tr>
+        <tr class="destaque"><td class="criterio">Se… então…</td><td>p → q</td><td><b>F</b> só em V → F</td></tr>
+        <tr><td class="criterio">Se e somente se</td><td>p ↔ q</td><td><b>V</b> se os valores forem iguais</td></tr>
+      </table>
+
+      <div class="bloco primaria">
+        <div class="faixa">Tabela-verdade completa</div>
+        <div class="corpo">
+          <table class="verdade">
+            <tr><th>p</th><th>q</th><th class="res">p ∧ q</th><th class="res">p ∨ q</th><th class="res">p ⊻ q</th><th class="res">p → q</th><th class="res">p ↔ q</th></tr>
+            <tr><td class="v">V</td><td class="v">V</td><td class="v res">V</td><td class="v res">V</td><td class="f res">F</td><td class="v res">V</td><td class="v res">V</td></tr>
+            <tr class="destaque"><td class="v">V</td><td class="f">F</td><td class="f res">F</td><td class="v res">V</td><td class="v res">V</td><td class="f res">F</td><td class="f res">F</td></tr>
+            <tr><td class="f">F</td><td class="v">V</td><td class="f res">F</td><td class="v res">V</td><td class="v res">V</td><td class="v res">V</td><td class="f res">F</td></tr>
+            <tr><td class="f">F</td><td class="f">F</td><td class="f res">F</td><td class="f res">F</td><td class="f res">F</td><td class="v res">V</td><td class="v res">V</td></tr>
+          </table>
+          <p class="pequeno" style="text-align:center">Linha amarela: o único caso em que o condicional é falso.</p>
+        </div>
+      </div>
+
+      <div class="tag-caixa dica"><span class="tag dica">Dica</span>
+        <div class="com-ilustra">
+          <p>Leia <b>p → q</b> como uma <span class="chave-v">promessa</span>: “se passar, pago o jantar”. Só há mentira se <b>passou (V)</b> e <b>não pagou (F)</b>. Se não passou, a promessa não foi quebrada — o condicional é V.</p>
+          <svg class="ilustra"><use href="#i-dialogo"/></svg>
+        </div>
+      </div>
+
+      <div class="caixa pegadinha"><div class="rotulo">Como a banca confunde</div><div class="corpo">
+        <p>✗ “Ou estudo ou trabalho” como <mark class="troca">disjunção inclusiva</mark>. → <span class="verde">“Ou… ou…” é exclusiva (⊻).</span></p>
+        <p>✗ p → q falso quando p é <mark class="troca">falso</mark>. → <span class="verde">Antecedente F = condicional V.</span></p>
+      </div></div>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 2 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Raciocínio Lógico<small>Equivalências, negações e fixação · banca indefinida</small></div>
+    <div class="pag">02</div>
+  </div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Equivalências e negações</div>
+
+      <div class="bloco primaria">
+        <div class="faixa">Equivalências do condicional</div>
+        <div class="corpo">
+          <table class="rotulada">
+            <tr><td>Contrapositiva</td><td><b>p → q ≡ ~q → ~p</b></td></tr>
+            <tr><td>Em disjunção</td><td><b>p → q ≡ ~p ∨ q</b></td></tr>
+            <tr><td>Bicondicional</td><td><b>p ↔ q ≡ (p → q) ∧ (q → p)</b></td></tr>
+          </table>
+          <p class="atencao-txt">recíproca (q → p) e inversa (~p → ~q) NÃO são equivalentes a p → q.</p>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Negações · leis de De Morgan</div>
+        <div class="corpo">
+          <div class="formula"><span class="rot">De Morgan</span>~(p ∧ q) ≡ ~p ∨ ~q &nbsp;&nbsp;|&nbsp;&nbsp; ~(p ∨ q) ≡ ~p ∧ ~q</div>
+          <table class="comparativo">
+            <tr><th>Proposição</th><th>Negação</th></tr>
+            <tr><td>p ∧ q</td><td>~p ∨ ~q &nbsp;<span class="pequeno">(troca e/<wbr>ou e nega)</span></td></tr>
+            <tr><td>p ∨ q</td><td>~p ∧ ~q</td></tr>
+            <tr class="destaque"><td>p → q</td><td><b>p ∧ ~q</b> &nbsp;<span class="pequeno">(mantém, troca, nega)</span></td></tr>
+            <tr><td>p ↔ q</td><td>p ⊻ q</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Tautologia, contradição, contingência</div>
+        <div class="corpo">
+          <div class="chave">
+            <div class="raiz">Última coluna</div>
+            <div class="ramos">
+              <div class="ramo"><div class="no">Tautologia</div><div class="desc"><b>Só V.</b> <span class="chip">p ∨ ~p</span></div></div>
+              <div class="ramo"><div class="no">Contradição</div><div class="desc"><b>Só F.</b> <span class="chip">p ∧ ~p</span></div></div>
+              <div class="ramo"><div class="no">Contingência</div><div class="desc"><b>V e F.</b> <span class="chip">p → q</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caixa pegadinha"><div class="rotulo">Como a banca confunde</div><div class="corpo">
+        <p>✗ Negar “se chove, levo guarda-chuva” com <mark class="troca">“se não chove, não levo”</mark>. → <span class="verde">Negação: “chove e não levo”.</span></p>
+        <p>✗ Negar “Ana e Bia passaram” com <mark class="troca">“Ana e Bia não passaram”</mark>. → <span class="verde">“Ana não passou ou Bia não passou”.</span></p>
+      </div></div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Fixação · questões inéditas</div>
+
+      <div class="questao">
+        <div class="cab"><span class="n">01</span><span class="estilo">C/<wbr>E</span>estilo Cebraspe · inédita</div>
+        <p>A proposição “Se o servidor foi aprovado, então tomou posse” é equivalente a “Se o servidor não tomou posse, então não foi aprovado”.</p>
+        <div class="ce"><span>C</span><span>E</span></div>
+      </div>
+      <div class="questao">
+        <div class="cab"><span class="n">02</span><span class="estilo">C/<wbr>E</span>estilo Cebraspe · inédita</div>
+        <p>A negação de “O candidato estudou e passou” é “O candidato não estudou e não passou”.</p>
+        <div class="ce"><span>C</span><span>E</span></div>
+      </div>
+      <div class="questao">
+        <div class="cab"><span class="n">03</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
+        <p>A negação de “Se chove, então a prova é adiada” é:</p>
+        <ol class="alternativas">
+          <li>Se não chove, então a prova não é adiada.</li>
+          <li>Chove e a prova não é adiada.</li>
+          <li>Não chove ou a prova é adiada.</li>
+          <li>Se a prova é adiada, então chove.</li>
+          <li>Não chove e a prova não é adiada.</li>
+        </ol>
+      </div>
+      <div class="questao">
+        <div class="cab"><span class="n">04</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
+        <p>É uma tautologia:</p>
+        <ol class="alternativas">
+          <li>p → q</li>
+          <li>p ∨ ~p</li>
+          <li>p ∧ ~p</li>
+          <li>p ↔ q</li>
+          <li>(p ∨ q) → p</li>
+        </ol>
+      </div>
+
+      <div class="gabarito"><h4>Gabarito comentado</h4>
+        <div class="item"><b>01 — Certo.</b> É a contrapositiva: p → q ≡ ~q → ~p.</div>
+        <div class="item"><b>02 — Errado.</b> Pela lei de De Morgan, ~(p ∧ q) ≡ ~p ∨ ~q: “não estudou <b>ou</b> não passou”.</div>
+        <div class="item"><b>03 — B.</b> ~(p → q) ≡ p ∧ ~q. (A) é a inversa; (C) é ~p ∨ q, equivalente à própria p → q; (D) é a recíproca; (E) nega as duas.</div>
+        <div class="item"><b>04 — B.</b> p ∨ ~p é sempre V. (C) é contradição; (A), (D) e (E) são contingências — (E) é F quando p = F e q = V.</div>
+      </div>
+      <p class="pequeno"><b>Fontes:</b> conteúdo de lógica proposicional clássica; tabelas e equivalências conferidas por enumeração de todos os valores de p e q.</p>
+      <svg class="ilustra" style="align-self:center"><use href="#i-calculadora"/></svg>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
+</div>
+</body>
+</html>

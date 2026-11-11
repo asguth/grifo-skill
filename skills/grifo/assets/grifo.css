@@ -544,9 +544,9 @@ table.verdade {
 }
 table.verdade th {
   background: var(--disc); color: #fff; font-family: var(--fonte-corpo); font-weight: 800;
-  padding: 1mm 3.5mm; text-align: center; white-space: nowrap;
+  padding: 1mm 2mm; text-align: center; white-space: nowrap;
 }
-table.verdade td { text-align: center; font-weight: 800; padding: .6mm 3.5mm; border-top: 1px solid var(--linha); }
+table.verdade td { text-align: center; font-weight: 800; padding: .6mm 2mm; border-top: 1px solid var(--linha); }
 table.verdade td + td, table.verdade th + th { border-left: 1px solid var(--linha); }
 table.verdade td.v { color: var(--dica); }
 table.verdade td.f { color: var(--pegadinha); }

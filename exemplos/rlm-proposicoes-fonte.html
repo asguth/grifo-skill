@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Proposições e conectivos — Raciocínio Lógico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<!--APOSTILA:CSS-->
+</head>
+<body class="d-logica">
+<!--APOSTILA:SPRITE-->
+
+<!-- ============================ FOLHA 1 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Raciocínio Lógico<small>Lógica proposicional · proposições, conectivos e tabela-verdade</small></div>
+    <div class="pag">01</div>
+  </div>
+
+  <div class="titulo-topico">Proposições</div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Noções gerais</div>
+
+      <div class="bloco primaria">
+        <div class="faixa">O que é proposição</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <p><span class="chave-v">Sentença declarativa</span> que pode ser classificada como <b>verdadeira (V)</b> ou <b>falsa (F)</b> — <mark>um único valor</mark>, nunca os dois.</p>
+            <svg class="ilustra g"><use href="#i-lampada"/></svg>
+          </div>
+          <div class="sub">Três princípios</div>
+          <ul class="check">
+            <li><b>Identidade:</b> se é V, é V; se é F, é F.</li>
+            <li><b>Não contradição:</b> não é V e F ao mesmo tempo.</li>
+            <li><b>Terceiro excluído:</b> ou é V ou é F; não há terceiro valor.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Não são proposições</div>
+        <div class="corpo">
+          <div class="chave">
+            <div class="raiz">Não é<small>sem valor V/F</small></div>
+            <div class="ramos">
+              <div class="ramo"><div class="no">Pergunta</div><div class="desc">Que horas é a prova?</div></div>
+              <div class="ramo"><div class="no">Ordem</div><div class="desc">Estude a lei seca.</div></div>
+              <div class="ramo"><div class="no">Exclamação</div><div class="desc">Que prova difícil!</div></div>
+              <div class="ramo"><div class="no">Aberta<small>sentença</small></div><div class="desc"><span class="chip">x + 2 = 5</span></div></div>
+              <div class="ramo"><div class="no">Paradoxo</div><div class="desc">“Esta frase é falsa.”</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Simples × composta</div>
+        <div class="corpo">
+          <p><b>Simples:</b> uma ideia só (p: “Ana passou”). <b>Composta:</b> simples ligadas por <span class="chave-v">conectivos</span> (p ∧ q).</p>
+          <div class="formula"><span class="rot">Linhas da tabela-verdade</span>linhas = 2<sup><i>n</i></sup> &nbsp;·&nbsp; <i>n</i> = nº de proposições simples</div>
+          <p class="pequeno">2 proposições → 4 linhas · 3 → 8 · 4 → 16.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Conectivos</div>
+
+      <table class="comparativo">
+        <tr><th>Conectivo</th><th>Símbolo</th><th>Só é…</th></tr>
+        <tr><td class="criterio">Negação · não</td><td>~p</td><td>inverte o valor</td></tr>
+        <tr><td class="criterio">Conjunção · e</td><td>p ∧ q</td><td><b>V</b> se as duas forem V</td></tr>
+        <tr><td class="criterio">Disjunção · ou</td><td>p ∨ q</td><td><b>F</b> se as duas forem F</td></tr>
+        <tr><td class="criterio">Ou… ou…</td><td>p ⊻ q</td><td><b>V</b> se os valores forem diferentes</td></tr>
+        <tr class="destaque"><td class="criterio">Se… então…</td><td>p → q</td><td><b>F</b> só em V → F</td></tr>
+        <tr><td class="criterio">Se e somente se</td><td>p ↔ q</td><td><b>V</b> se os valores forem iguais</td></tr>
+      </table>
+
+      <div class="bloco primaria">
+        <div class="faixa">Tabela-verdade completa</div>
+        <div class="corpo">
+          <table class="verdade">
+            <tr><th>p</th><th>q</th><th class="res">p ∧ q</th><th class="res">p ∨ q</th><th class="res">p ⊻ q</th><th class="res">p → q</th><th class="res">p ↔ q</th></tr>
+            <tr><td class="v">V</td><td class="v">V</td><td class="v res">V</td><td class="v res">V</td><td class="f res">F</td><td class="v res">V</td><td class="v res">V</td></tr>
+            <tr class="destaque"><td class="v">V</td><td class="f">F</td><td class="f res">F</td><td class="v res">V</td><td class="v res">V</td><td class="f res">F</td><td class="f res">F</td></tr>
+            <tr><td class="f">F</td><td class="v">V</td><td class="f res">F</td><td class="v res">V</td><td class="v res">V</td><td class="v res">V</td><td class="f res">F</td></tr>
+            <tr><td class="f">F</td><td class="f">F</td><td class="f res">F</td><td class="f res">F</td><td class="f res">F</td><td class="v res">V</td><td class="v res">V</td></tr>
+          </table>
+          <p class="pequeno" style="text-align:center">Linha amarela: o único caso em que o condicional é falso.</p>
+        </div>
+      </div>
+
+      <div class="tag-caixa dica"><span class="tag dica">Dica</span>
+        <div class="com-ilustra">
+          <p>Leia <b>p → q</b> como uma <span class="chave-v">promessa</span>: “se passar, pago o jantar”. Só há mentira se <b>passou (V)</b> e <b>não pagou (F)</b>. Se não passou, a promessa não foi quebrada — o condicional é V.</p>
+          <svg class="ilustra"><use href="#i-dialogo"/></svg>
+        </div>
+      </div>
+
+      <div class="caixa pegadinha"><div class="rotulo">Como a banca confunde</div><div class="corpo">
+        <p>✗ “Ou estudo ou trabalho” como <mark class="troca">disjunção inclusiva</mark>. → <span class="verde">“Ou… ou…” é exclusiva (⊻).</span></p>
+        <p>✗ p → q falso quando p é <mark class="troca">falso</mark>. → <span class="verde">Antecedente F = condicional V.</span></p>
+      </div></div>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 2 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Raciocínio Lógico<small>Equivalências, negações e fixação · banca indefinida</small></div>
+    <div class="pag">02</div>
+  </div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Equivalências e negações</div>
+
+      <div class="bloco primaria">
+        <div class="faixa">Equivalências do condicional</div>
+        <div class="corpo">
+          <table class="rotulada">
+            <tr><td>Contrapositiva</td><td><b>p → q ≡ ~q → ~p</b></td></tr>
+            <tr><td>Em disjunção</td><td><b>p → q ≡ ~p ∨ q</b></td></tr>
+            <tr><td>Bicondicional</td><td><b>p ↔ q ≡ (p → q) ∧ (q → p)</b></td></tr>
+          </table>
+          <p class="atencao-txt">recíproca (q → p) e inversa (~p → ~q) NÃO são equivalentes a p → q.</p>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Negações · leis de De Morgan</div>
+        <div class="corpo">
+          <div class="formula"><span class="rot">De Morgan</span>~(p ∧ q) ≡ ~p ∨ ~q &nbsp;&nbsp;|&nbsp;&nbsp; ~(p ∨ q) ≡ ~p ∧ ~q</div>
+          <table class="comparativo">
+            <tr><th>Proposição</th><th>Negação</th></tr>
+            <tr><td>p ∧ q</td><td>~p ∨ ~q &nbsp;<span class="pequeno">(troca e/ou e nega)</span></td></tr>
+            <tr><td>p ∨ q</td><td>~p ∧ ~q</td></tr>
+            <tr class="destaque"><td>p → q</td><td><b>p ∧ ~q</b> &nbsp;<span class="pequeno">(mantém, troca, nega)</span></td></tr>
+            <tr><td>p ↔ q</td><td>p ⊻ q</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Tautologia, contradição, contingência</div>
+        <div class="corpo">
+          <div class="chave">
+            <div class="raiz">Última coluna</div>
+            <div class="ramos">
+              <div class="ramo"><div class="no">Tautologia</div><div class="desc"><b>Só V.</b> <span class="chip">p ∨ ~p</span></div></div>
+              <div class="ramo"><div class="no">Contradição</div><div class="desc"><b>Só F.</b> <span class="chip">p ∧ ~p</span></div></div>
+              <div class="ramo"><div class="no">Contingência</div><div class="desc"><b>V e F.</b> <span class="chip">p → q</span></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="caixa pegadinha"><div class="rotulo">Como a banca confunde</div><div class="corpo">
+        <p>✗ Negar “se chove, levo guarda-chuva” com <mark class="troca">“se não chove, não levo”</mark>. → <span class="verde">Negação: “chove e não levo”.</span></p>
+        <p>✗ Negar “Ana e Bia passaram” com <mark class="troca">“Ana e Bia não passaram”</mark>. → <span class="verde">“Ana não passou ou Bia não passou”.</span></p>
+      </div></div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Fixação · questões inéditas</div>
+
+      <div class="questao">
+        <div class="cab"><span class="n">01</span><span class="estilo">C/E</span>estilo Cebraspe · inédita</div>
+        <p>A proposição “Se o servidor foi aprovado, então tomou posse” é equivalente a “Se o servidor não tomou posse, então não foi aprovado”.</p>
+        <div class="ce"><span>C</span><span>E</span></div>
+      </div>
+      <div class="questao">
+        <div class="cab"><span class="n">02</span><span class="estilo">C/E</span>estilo Cebraspe · inédita</div>
+        <p>A negação de “O candidato estudou e passou” é “O candidato não estudou e não passou”.</p>
+        <div class="ce"><span>C</span><span>E</span></div>
+      </div>
+      <div class="questao">
+        <div class="cab"><span class="n">03</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
+        <p>A negação de “Se chove, então a prova é adiada” é:</p>
+        <ol class="alternativas">
+          <li>Se não chove, então a prova não é adiada.</li>
+          <li>Chove e a prova não é adiada.</li>
+          <li>Não chove ou a prova é adiada.</li>
+          <li>Se a prova é adiada, então chove.</li>
+          <li>Não chove e a prova não é adiada.</li>
+        </ol>
+      </div>
+      <div class="questao">
+        <div class="cab"><span class="n">04</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
+        <p>É uma tautologia:</p>
+        <ol class="alternativas">
+          <li>p → q</li>
+          <li>p ∨ ~p</li>
+          <li>p ∧ ~p</li>
+          <li>p ↔ q</li>
+          <li>(p ∨ q) → p</li>
+        </ol>
+      </div>
+
+      <div class="gabarito"><h4>Gabarito comentado</h4>
+        <div class="item"><b>01 — Certo.</b> É a contrapositiva: p → q ≡ ~q → ~p.</div>
+        <div class="item"><b>02 — Errado.</b> Pela lei de De Morgan, ~(p ∧ q) ≡ ~p ∨ ~q: “não estudou <b>ou</b> não passou”.</div>
+        <div class="item"><b>03 — B.</b> ~(p → q) ≡ p ∧ ~q. (A) é a inversa; (C) é ~p ∨ q, equivalente à própria p → q; (D) é a recíproca; (E) nega as duas.</div>
+        <div class="item"><b>04 — B.</b> p ∨ ~p é sempre V. (C) é contradição; (A), (D) e (E) são contingências — (E) é F quando p = F e q = V.</div>
+      </div>
+      <p class="pequeno"><b>Fontes:</b> conteúdo de lógica proposicional clássica; tabelas e equivalências conferidas por enumeração de todos os valores de p e q.</p>
+      <svg class="ilustra" style="align-self:center"><use href="#i-calculadora"/></svg>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
+</div>
+</body>
+</html>
