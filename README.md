@@ -217,9 +217,6 @@ colorido" / "mais sóbrio". Para um tópico manter sempre a mesma cor, a skill u
 
 **Funciona em inglês/espanhol?** Sim, escreve na sua língua (`--idioma` força uma).
 
-**Funciona sem internet?** A geração usa o modelo; para o PDF idêntico offline, monte com
-`montar.py --fontes-embutidas`.
-
 ## Estrutura
 
 ```
