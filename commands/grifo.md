@@ -1,6 +1,7 @@
 ---
 description: Ajuda do Grifo-Skill — lista todos os comandos, flags e exemplos
 argument-hint: [ajuda | <comando>]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

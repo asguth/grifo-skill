@@ -54,8 +54,11 @@ Se o pedido não trouxer **assunto/arquivo** ou **formato**, pergunte **uma vez*
 3. **Nível** (só se não der para inferir): ensino médio, faculdade (padrão), concurso
    (pergunte a banca), certificação.
 
-Com assunto e formato definidos (pelo usuário ou pela flag/comando), **não pergunte mais nada**:
-decida o resto. Liberdade de criação: escolha componentes, ordem e ênfase pelo que ensina melhor.
+O formato só conta como definido quando veio de **comando com barra** (`/esquema`, `/revisao`…),
+de `--formato`, ou de palavras explícitas do usuário ("só o mapa", "revisão rápida", "com
+questões"). Em linguagem natural, "faz uma apostila/resumo/material de X" **não** define o
+formato: pergunte. Com assunto e formato definidos, **não pergunte mais nada**: decida o resto.
+Liberdade de criação: escolha componentes, ordem e ênfase pelo que ensina melhor.
 
 ### 2. Levantar o conteúdo (fidelidade antes de beleza)
 Ler `references/fidelidade.md`. Material do usuário > fonte oficial/primária > literatura

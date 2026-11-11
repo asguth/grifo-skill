@@ -1,6 +1,7 @@
 ---
 description: Apostila ilustrada de qualquer assunto (pergunta o formato se faltar)
 argument-hint: <assunto ou arquivo> [--formato f] [--nivel n] [--folhas N] [--material arq] [--banca b]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

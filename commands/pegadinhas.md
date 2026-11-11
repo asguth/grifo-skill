@@ -1,6 +1,7 @@
 ---
 description: Armadilhas típicas da banca, com correção e fundamento
 argument-hint: <tópico> [--banca b] [--folhas N]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

@@ -1,6 +1,7 @@
 ---
 description: Plano semanal até a prova com revisões espaçadas
 argument-hint: <matérias ou edital> --horas N --prova dd/mm/aaaa
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

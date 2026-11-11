@@ -1,6 +1,7 @@
 ---
 description: Flashcards frente/verso para recortar
 argument-hint: <tópico> [--n 16] [--material arq]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

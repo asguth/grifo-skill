@@ -1,6 +1,7 @@
 ---
 description: Uma folha de revisão de véspera (super-resumo)
 argument-hint: <tópico> [--banca b] [--formato f] [--nivel n]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

@@ -1,6 +1,7 @@
 ---
 description: Mnemônicos visuais (siglas e frases) para decorar listas
 argument-hint: <lista ou tópico> [--formato f] [--nivel n]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

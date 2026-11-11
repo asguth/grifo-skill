@@ -1,6 +1,7 @@
 ---
 description: Lei seca grifada: o que decorar × o que a banca troca
 argument-hint: <lei> [--artigos 1-10] [--banca b] [--folhas N] [--material arq]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

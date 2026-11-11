@@ -1,6 +1,7 @@
 ---
 description: Roda os 3 revisores (conteúdo, didática, design) num HTML
 argument-hint: <arquivo.html> [--banca b] [--material arq]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

@@ -1,6 +1,7 @@
 ---
 description: Questões inéditas no estilo da banca + gabarito comentado
 argument-hint: <tópico> [--banca b] [--n 10] [--cargo "x"] [--material arq]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

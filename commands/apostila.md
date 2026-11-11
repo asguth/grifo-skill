@@ -1,6 +1,7 @@
 ---
 description: Apostila completa: capa, sumário, resumos e questões
 argument-hint: <matéria> [tópicos…] [--banca b] [--cargo "x"] [--material arq]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,

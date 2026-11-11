@@ -1,6 +1,7 @@
 ---
 description: Edital verticalizado com checklist e prioridades
 argument-hint: <edital ou --material edital.pdf> [--cargo "x"] [--banca b]
+disable-model-invocation: true
 ---
 
 **Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,
