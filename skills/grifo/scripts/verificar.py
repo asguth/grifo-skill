@@ -145,9 +145,12 @@ def verificar(caminho: Path, classes_css: set, ids: set):
             erros.append(f"linha {pag.linha}: folha numerada {num}, esperado {esperado:02d}")
         esperado = n + 1
 
-    for i, linha in enumerate(texto.splitlines(), 1):
-        for m in re.finditer(r"\[\[[^\]]{0,80}\]\]", linha):
-            avisos.append(f"linha {i}: marcador de template não preenchido: {m.group(0)}")
+    marcadores = [(i, m.group(0)) for i, linha in enumerate(texto.splitlines(), 1)
+                  for m in re.finditer(r"\[\[[^\]]{0,80}\]\]", linha)]
+    if marcadores:
+        i, primeiro = marcadores[0]
+        avisos.append(f"linha {i}: {len(marcadores)} marcador(es) de template não preenchido(s); "
+                      f"o primeiro é {primeiro}")
 
     for no in todos:
         if "verificar" in no.classes:

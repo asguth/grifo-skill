@@ -23,7 +23,7 @@
 
   /* ---- cores semânticas (fixas) ---- */
   --regra: var(--disc);
-  --excecao: #E8790C;   --excecao-claro: #FFF1E2;
+  --excecao: #D9710B;   --excecao-claro: #FFF1E2;  /* 3,3:1 com branco (era #E8790C, 2,9:1) */
   --pegadinha: #D6283A; --pegadinha-claro: #FDE8EA;
   --dica: #16884A;      --dica-claro: #E3F6EA;
   --lei: #55606E;       --lei-claro: #F3F4F6;
@@ -548,9 +548,9 @@ table.verdade {
 }
 table.verdade th {
   background: var(--disc); color: #fff; font-family: var(--fonte-corpo); font-weight: 800;
-  padding: 1mm 3.5mm; text-align: center; white-space: nowrap;
+  padding: 1mm 2mm; text-align: center; white-space: nowrap;
 }
-table.verdade td { text-align: center; font-weight: 800; padding: .6mm 3.5mm; border-top: 1px solid var(--linha); }
+table.verdade td { text-align: center; font-weight: 800; padding: .6mm 2mm; border-top: 1px solid var(--linha); }
 table.verdade td + td, table.verdade th + th { border-left: 1px solid var(--linha); }
 table.verdade td.v { color: var(--dica); }
 table.verdade td.f { color: var(--pegadinha); }

@@ -27,7 +27,7 @@
 
   /* ---- cores semânticas (fixas) ---- */
   --regra: var(--disc);
-  --excecao: #E8790C;   --excecao-claro: #FFF1E2;
+  --excecao: #D9710B;   --excecao-claro: #FFF1E2;  /* 3,3:1 com branco (era #E8790C, 2,9:1) */
   --pegadinha: #D6283A; --pegadinha-claro: #FDE8EA;
   --dica: #16884A;      --dica-claro: #E3F6EA;
   --lei: #55606E;       --lei-claro: #F3F4F6;
@@ -338,7 +338,7 @@ table.comparativo tr.destaque td { background: var(--pegadinha-claro) !important
 /* ===================== FLASHCARDS (recorte) ===================== */
 .flashcards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px dashed #999; }
 .flashcards .card {
-  min-height: 52mm; padding: 4mm; border: 1px dashed #999; display: flex; flex-direction: column; justify-content: center;
+  min-height: 29mm; padding: 3mm 4mm; border: 1px dashed #999; display: flex; flex-direction: column; justify-content: center;
   text-align: center; break-inside: avoid; position: relative;
 }
 .flashcards .card .lado { position: absolute; top: 2mm; left: 3mm; font-size: 8pt; color: var(--tinta-2); text-transform: uppercase; letter-spacing: .08em; }
@@ -517,10 +517,85 @@ table.rotulada td:first-child { background: #FBE7EA; color: #7A2230; font-weight
    títulos com linhas equilibradas (nada de palavra sozinha na última linha). */
 h1, h2, h3, h4, .faixa, .coluna-cab, .titulo-topico, .titulo-topo, .secao, .sub,
 .rotulo, .tag, .chip, .selo, th, td, .chave .no, .chave .raiz,
-.fluxo .passo .t, .sigla .letra span, .relacao > div, .linha-tempo .quando {
+.fluxo .passo .t, .relacao > div, .linha-tempo .quando {
   -webkit-hyphens: manual; hyphens: manual;
 }
 .faixa, .coluna-cab, .titulo-topico, .secao, th, .rotulo { text-wrap: balance; }
+
+/* ===================== FÓRMULA (RLM, estatística, financeira) =====================
+   <div class="formula"><span class="rot">Probabilidade</span>
+     P(A) = <span class="frac"><span>favoráveis</span><span>possíveis</span></span></div> */
+.formula {
+  font-family: "STIX Two Math", "Cambria Math", Cambria, Georgia, "Times New Roman", serif;
+  font-size: 11.5pt; text-align: center; background: var(--disc-claro);
+  border: 1.5px solid var(--disc); border-radius: var(--raio); padding: 2mm 3mm; margin: 1mm 0;
+  break-inside: avoid; line-height: 1.5;
+}
+.formula .rot {
+  display: block; font-family: var(--fonte-titulo); font-size: 8pt; font-weight: 800;
+  text-transform: uppercase; letter-spacing: .05em; color: var(--disc); margin-bottom: .5mm;
+}
+.formula i, .formula var { font-style: italic; }
+.formula .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 .2em; }
+.formula .frac > span { padding: 0 .3em; }
+.formula .frac > span:first-child { border-bottom: 1.2px solid currentColor; }
+.formula .frac > span:last-child { font-size: .95em; }
+
+/* ===================== TABELA-VERDADE =====================
+   <table class="verdade"><tr><th>p</th><th>q</th><th>p ∧ q</th></tr>
+     <tr><td class="v">V</td><td class="f">F</td><td class="f res">F</td></tr></table>
+   V verde, F vermelho e a coluna de resultado (.res) sombreada; a letra
+   V/F continua escrita, então funciona em P&B. */
+table.verdade {
+  border-collapse: separate; border-spacing: 0; margin: 1mm auto; font-size: 9.5pt;
+  border: 2px solid var(--disc); border-radius: var(--raio); overflow: hidden; break-inside: avoid;
+}
+table.verdade th {
+  background: var(--disc); color: #fff; font-family: var(--fonte-corpo); font-weight: 800;
+  padding: 1mm 2mm; text-align: center; white-space: nowrap;
+}
+table.verdade td { text-align: center; font-weight: 800; padding: .6mm 2mm; border-top: 1px solid var(--linha); }
+table.verdade td + td, table.verdade th + th { border-left: 1px solid var(--linha); }
+table.verdade td.v { color: var(--dica); }
+table.verdade td.f { color: var(--pegadinha); }
+table.verdade td.res { background: var(--disc-claro); }
+table.verdade th.res { background: var(--disc-2); }
+table.verdade tr.destaque td { background: var(--mt-chave); }
+
+/* ===================== CÓDIGO (TI: SQL, pseudocódigo) =====================
+   <pre class="codigo"><span class="rot">SQL</span>SELECT …</pre>  — sem syntax highlight */
+.codigo {
+  font-family: "JetBrains Mono", "Cascadia Mono", Consolas, "Courier New", monospace;
+  font-size: 8.5pt; line-height: 1.45; background: var(--lei-claro); color: var(--tinta);
+  border-left: 4px solid var(--lei); border-radius: 0 4px 4px 0; padding: 2mm 3mm; margin: 1mm 0;
+  white-space: pre-wrap; overflow-wrap: anywhere; hyphens: none; position: relative; break-inside: avoid;
+}
+.codigo .rot {
+  position: absolute; top: 0; right: 0; background: var(--lei); color: #fff;
+  font-family: var(--fonte-titulo); font-size: 8pt; font-weight: 700; text-transform: uppercase;
+  padding: .2mm 2mm; border-radius: 0 0 0 3px; letter-spacing: .05em;
+}
+.codigo b { color: var(--disc); }
+
+/* ===================== EXEMPLO-FRASE (Português: análise) =====================
+   <p class="exemplo-frase"><span class="termo" data-funcao="sujeito">Os candidatos</span> …</p>
+   Trecho analisado sublinhado; função sintática em rótulo acima. */
+.exemplo-frase { font-size: 10.5pt; line-height: 1.3; margin: 1mm 0 2mm; }
+/* rótulo no fluxo (não absoluto): o termo fica tão largo quanto o rótulo e
+   os rótulos vizinhos nunca se sobrepõem */
+.exemplo-frase .termo {
+  display: inline-flex; flex-direction: column; align-items: center; vertical-align: bottom;
+  margin: 1mm .15em 0; font-weight: 600;
+  text-decoration: underline 2.2px var(--disc); text-underline-offset: 3px; text-decoration-skip-ink: none;
+}
+.exemplo-frase .termo::before {
+  content: attr(data-funcao); margin-bottom: .8mm; font-family: var(--fonte-titulo); font-size: 8pt;
+  font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #fff; background: var(--disc);
+  padding: 0 1.4mm; border-radius: 2px; white-space: nowrap; line-height: 1.5; text-decoration: none;
+}
+.exemplo-frase .termo.destaque { background: linear-gradient(transparent 62%, var(--mt-chave) 62%); }
+.exemplo-frase .termo.erro { text-decoration-color: var(--pegadinha); }
+.exemplo-frase .termo.erro::before { background: var(--pegadinha); }
 
 </style>
 </head>
