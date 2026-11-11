@@ -19,7 +19,7 @@
 
   /* ---- cores semânticas (fixas) ---- */
   --regra: var(--disc);
-  --excecao: #E8790C;   --excecao-claro: #FFF1E2;
+  --excecao: #D9710B;   --excecao-claro: #FFF1E2;  /* 3,3:1 com branco (era #E8790C, 2,9:1) */
   --pegadinha: #D6283A; --pegadinha-claro: #FDE8EA;
   --dica: #16884A;      --dica-claro: #E3F6EA;
   --lei: #55606E;       --lei-claro: #F3F4F6;
