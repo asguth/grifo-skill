@@ -220,3 +220,48 @@ Pirâmide só em CSS: `.piramide > .nivel` (até 5 níveis, topo primeiro).
 <div class="folha sumario"><h2 class="secao">Sumário</h2>
   <ol><li>Teoria da Constituição<span class="pg">03</span></li></ol></div>
 ```
+
+## Fórmula (RLM, estatística, matemática financeira)
+```html
+<div class="formula"><span class="rot">Probabilidade clássica</span>
+  <i>P</i>(<i>A</i>) = <span class="frac"><span>casos favoráveis</span><span>casos possíveis</span></span>
+</div>
+<div class="formula"><span class="rot">Juros compostos</span><i>M</i> = <i>C</i> · (1 + <i>i</i>)<sup><i>t</i></sup></div>
+```
+Fonte serifada, fundo claro da disciplina. Variáveis em `<i>`; fração com `.frac`
+(numerador e denominador em dois `<span>`); expoente com `<sup>`.
+
+## Tabela-verdade
+```html
+<table class="verdade">
+  <tr><th>p</th><th>q</th><th class="res">p → q</th></tr>
+  <tr><td class="v">V</td><td class="v">V</td><td class="v res">V</td></tr>
+  <tr class="destaque"><td class="v">V</td><td class="f">F</td><td class="f res">F</td></tr>
+  <tr><td class="f">F</td><td class="v">V</td><td class="v res">V</td></tr>
+  <tr><td class="f">F</td><td class="f">F</td><td class="v res">V</td></tr>
+</table>
+```
+`td.v` = V (verde), `td.f` = F (vermelho), `.res` sombreia a coluna de resultado,
+`tr.destaque` marca a linha que decide (ex.: o único F do condicional). A letra continua
+escrita, então lê em P&B.
+
+## Código (TI: SQL, pseudocódigo, comandos)
+```html
+<pre class="codigo"><span class="rot">SQL</span><b>SELECT</b> nome
+  <b>FROM</b> servidor
+ <b>WHERE</b> lotacao = 'SEDE';</pre>
+```
+Monoespaçado, sem syntax highlight. `<b>` só para palavras reservadas que importam
+para a questão. Recuo preservado (é `<pre>`); linha longa quebra sozinha.
+
+## Exemplo de frase (Português: análise sintática, crase, regência)
+```html
+<p class="exemplo-frase">
+  <span class="termo" data-funcao="sujeito">Os candidatos</span>
+  <span class="termo" data-funcao="verbo">estudaram</span>
+  <span class="termo destaque" data-funcao="objeto direto">a lei seca</span>.
+</p>
+```
+Trecho analisado sublinhado e a função em rótulo acima (`data-funcao`).
+`.destaque` = marca-texto no trecho em foco; `.erro` = sublinhado e rótulo vermelhos
+(para a versão errada de uma frase).

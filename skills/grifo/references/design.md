@@ -72,6 +72,10 @@ Secundária (`--disc-2`): faixas padrão `.bloco`, nº da página.
 | Macete | `.tag-caixa.dica` |
 | Artigo literal | `.lei-seca` |
 | Caso prático | `.caixa.exemplo` |
+| Fórmula (RLM, estatística, financeira) | `.formula` (com `.frac` para frações) |
+| Lógica proposicional: valores de conectivos | `table.verdade` |
+| SQL, pseudocódigo, comando de terminal | `pre.codigo` |
+| Frase analisada (sintaxe, crase, regência, concordância) | `.exemplo-frase` com `.termo[data-funcao]` |
 | Conceito puro | `.bloco` com texto curto + `.chave-v` no termo + ilustração lateral (`.com-ilustra`) |
 
 Diagrama que nenhum componente resolve (ciclo, mapa, Venn, organograma largo):

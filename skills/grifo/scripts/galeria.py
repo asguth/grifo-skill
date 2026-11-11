@@ -54,12 +54,31 @@ COMPONENTES = """
    <div class="com-ilustra"><ul class="check"><li>Cargo público;</li><li>Profissão;</li><li>Habilitação;</li><li>Concurso público.</li></ul><svg class="ilustra g"><use href="#i-documento"/></svg></div>
   </div></div>
   <div class="bloco primaria"><div class="faixa">Requisitos subjetivos</div><div class="corpo"><div class="com-ilustra esq"><svg class="ilustra gg"><use href="#i-juiz"/></svg><p>Quando a culpabilidade, os antecedentes e a conduta social <span class="chave-v">indicarem</span>.</p></div></div></div>
+  <div class="bloco escura"><div class="faixa">Fórmula · probabilidade</div><div class="corpo">
+   <div class="formula"><span class="rot">Probabilidade clássica</span><i>P</i>(<i>A</i>) = <span class="frac"><span>casos favoráveis</span><span>casos possíveis</span></span></div>
+  </div></div>
+  <div class="bloco"><div class="faixa">Tabela-verdade · conjunção</div><div class="corpo">
+   <table class="verdade"><tr><th>p</th><th>q</th><th class="res">p ∧ q</th></tr>
+   <tr><td class="v">V</td><td class="v">V</td><td class="v res">V</td></tr>
+   <tr><td class="v">V</td><td class="f">F</td><td class="f res">F</td></tr>
+   <tr><td class="f">F</td><td class="v">V</td><td class="f res">F</td></tr>
+   <tr><td class="f">F</td><td class="f">F</td><td class="f res">F</td></tr></table>
+  </div></div>
  </div>
  <div class="coluna"><div class="coluna-cab">Destaques</div>
   <div class="tag-caixa"><span class="tag">Importante</span><p>Atos normativos secundários <span class="chave-v">não</span> são objeto de controle.</p></div>
   <div class="tag-caixa dica"><span class="tag dica">Dica</span><div class="relacao"><div class="de">Norma superior</div><div class="seta">➜</div><div class="para">Fundante</div></div></div>
   <div class="caixa pegadinha"><div class="rotulo">Pegadinha</div><div class="corpo">Banca troca <mark class="troca">reclusão</mark> por detenção.</div></div>
   <div class="sigla"><div class="letra"><b>L</b><span>Livre</span></div><div class="letra"><b>I</b><span>Informada</span></div><div class="letra"><b>I</b><span>Inequívoca</span></div></div>
+  <div class="bloco contorno"><div class="faixa">Código · SQL</div><div class="corpo">
+   <pre class="codigo"><span class="rot">SQL</span><b>SELECT</b> nome, cargo
+  <b>FROM</b> servidor
+ <b>WHERE</b> lotacao = 'SEDE'
+ <b>ORDER BY</b> nome;</pre>
+  </div></div>
+  <div class="bloco primaria"><div class="faixa">Análise sintática</div><div class="corpo">
+   <p class="exemplo-frase"><span class="termo" data-funcao="sujeito">Os candidatos</span> <span class="termo" data-funcao="verbo">estudaram</span> <span class="termo destaque" data-funcao="objeto direto">a lei seca</span>.</p>
+  </div></div>
  </div>
 </div>
 """
