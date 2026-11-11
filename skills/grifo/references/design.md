@@ -87,7 +87,11 @@ SVG inline usando as classes utilitárias `f-disc`, `f-claro`, `s-disc`, `t-disc
 ### Biblioteca (`assets/ilustracoes.svg`, viewBox 64×64)
 - **Personagens:** `i-juiz` (na bancada), `i-autor` (doutrinador), `i-servidora`,
   `i-estudante`, `i-pessoa` (titular/cidadão), `i-grupo` (coletividade).
-- **Mascote:** `i-grifo` (dica, abertura), `i-grifo-alerta` (pegadinha).
+- **Mascote:** `i-grifo` (neutro: cabeçalho, abertura), `i-grifo-dica` (selo ★: macete,
+  dica) e `i-grifo-alerta` (selo !: pegadinha). É o único símbolo raster: um WebP em
+  `assets/mascote/grifo.webp` (≤ 40 KB) que o `montar.py` embute como data URI; as poses
+  reaproveitam a mesma imagem e só acrescentam o selo vetorial. viewBox 0 0 240 240.
+  Não recolorir, distorcer nem redesenhar o mascote.
 - **Apontadores:** `i-mao-direita`, `i-mao-esquerda` (estilo apostila de gramática).
 - **Direito/Estado:** `i-balanca`, `i-martelo`, `i-documento` (§), `i-constituicao`,
   `i-predio-publico`, `i-congresso`.
@@ -145,7 +149,6 @@ Qualquer cor fora desta lista faz o `verificar_ilustracoes.py` falhar.
 | Marca-texto | `#FFE45C` |
 | Semânticas | vermelho `#D6283A`, verde `#16884A`, laranja `#E8790C`, azul `#1F6FD1` |
 | Símbolos nacionais | verde `#2E7D4F`, azul `#1F4FA0`, roupa `#3D4F6E` |
-| Mascote Grifo | `#E8853A`, `#FFF1DC`, `#C8F27A`, `#6A4C93`, `#F28B82` |
 
 ## 5. Checklist visual (o crítico de design usa este)
 1. Folha não estoura A4; colunas equilibradas.

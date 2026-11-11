@@ -19,7 +19,6 @@
       .kf{stroke:#1C2430;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
       .pele{fill:#F6C9A0}.amarelo{fill:#FFE45C}.branco{fill:#fff}.cinza{fill:#E3E7EC}
       .verm{fill:#D6283A}
-      .g-o{stroke:#1C2430;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.g-raposa{fill:#E8853A}.g-creme{fill:#FFF1DC}.g-mt{fill:#FFE45C}.g-mt2{fill:#C8F27A}.g-roxo{fill:#6A4C93}.g-tinta{fill:#1C2430}
       .f-disc{fill:var(--disc,#44607A)}.s-disc{stroke:var(--disc,#44607A)}.f-claro{fill:var(--disc-claro,#E8EEF3)}.f-disc2{fill:var(--disc-2,#E8897A)}
       .t-disc{fill:var(--disc,#44607A);font-family:Poppins,sans-serif;font-weight:800}.verde{fill:#16884A}.lar{fill:#E8790C}
     </style>
@@ -78,109 +77,22 @@
     <path class="k" d="M20 40 L44 40" style="stroke:#FFE45C"/>
   </symbol>
 
-  <!-- MASCOTE: Grifo, a raposa-grifo (asas de marca-texto). viewBox próprio 0 0 240 240 -->
+  <!-- MASCOTE: o Grifo (MIT). Raster em assets/mascote/grifo.webp, embutido como data URI
+       pelo montar.py. As poses reaproveitam o mesmo <image> e só acrescentam o selo vetorial. -->
   <symbol id="i-grifo" viewBox="0 0 240 240">
-  <g>
-    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
-    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
-    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
-  </g><g transform="translate(240 0) scale(-1 1)">
-    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
-    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
-    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
-  </g>
-
-  
-  <path class="g-o g-raposa" d="M150 200 C190 202 214 172 204 134 C196 158 176 172 152 172 Z"/>
-  <path class="g-o g-creme" d="M204 134 C216 160 206 190 184 198 C194 180 198 160 204 134 Z"/>
-
-  
-  <path class="g-o g-raposa" d="M80 206 C74 164 92 128 120 126 C148 128 166 164 160 206 Z"/>
-  <path class="g-o g-creme" d="M102 140 Q120 168 138 140 Q134 196 120 204 Q106 196 102 140 Z"/>
-  
-  <ellipse class="g-o g-creme" cx="104" cy="206" rx="13" ry="8"/>
-  <ellipse class="g-o g-creme" cx="136" cy="206" rx="13" ry="8"/>
-  <path d="M100 206 L100 211 M108 206 L108 211 M132 206 L132 211 M140 206 L140 211" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round"/>
-
-  
-  <g transform="translate(170 70) rotate(30)">
-    <rect class="g-o g-mt" x="-6" y="-26" width="12" height="40" rx="3"/>
-    <rect class="g-o g-roxo" x="-7" y="-34" width="14" height="12" rx="3"/>
-    <path class="g-o g-mt2" d="M-6 14 L6 14 L3 22 L-3 22 Z"/>
-  </g>
-
-  
-  <path class="g-o g-raposa" d="M90 80 L80 34 L114 62 Z"/>
-  <path class="g-o g-raposa" d="M150 80 L160 34 L126 62 Z"/>
-  <path class="g-creme" d="M91 70 L86 46 L104 62 Z"/>
-  <path class="g-creme" d="M149 70 L154 46 L136 62 Z"/>
-
-  
-  <path class="g-o g-raposa" d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z"/>
-  <path class="g-creme" d="M82 98 C92 106 104 104 110 112 C112 120 118 128 120 131 C104 128 88 116 82 98 Z"/>
-  <path class="g-creme" d="M158 98 C148 106 136 104 130 112 C128 120 122 128 120 131 C136 128 152 116 158 98 Z"/>
-  <path d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z" fill="none" stroke="#1C2430" stroke-width="4" stroke-linejoin="round"/>
-
-  
-  <ellipse class="g-tinta" cx="104" cy="90" rx="6" ry="7"/>
-  <ellipse class="g-tinta" cx="136" cy="90" rx="6" ry="7"/>
-  <circle cx="106" cy="87" r="2.2" fill="#fff"/><circle cx="138" cy="87" r="2.2" fill="#fff"/>
-  <ellipse class="g-tinta" cx="120" cy="108" rx="6" ry="4.2"/>
-  <path d="M112 116 Q116 121 120 116 Q124 121 128 116" fill="none" stroke="#1C2430" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <ellipse cx="94" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
-  <ellipse cx="146" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
-</symbol>
+    <image href="mascote/grifo.webp" x="0" y="0" width="240" height="240" preserveAspectRatio="xMidYMid meet"/>
+  </symbol>
+  <symbol id="i-grifo-dica" viewBox="0 0 240 240">
+    <use href="#i-grifo"/>
+    <circle class="amarelo" cx="204" cy="40" r="30" style="stroke:#1C2430;stroke-width:5"/>
+    <path class="kf" style="fill:#1C2430;stroke-width:3" d="M204 20 L210 33 L224 34 L213 43 L217 57 L204 49 L191 57 L195 43 L184 34 L198 33 Z"/>
+  </symbol>
   <symbol id="i-grifo-alerta" viewBox="0 0 240 240">
-  <g>
-    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
-    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
-    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
-  </g><g transform="translate(240 0) scale(-1 1)">
-    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
-    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
-    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
-  </g>
-
-  
-  <path class="g-o g-raposa" d="M150 200 C190 202 214 172 204 134 C196 158 176 172 152 172 Z"/>
-  <path class="g-o g-creme" d="M204 134 C216 160 206 190 184 198 C194 180 198 160 204 134 Z"/>
-
-  
-  <path class="g-o g-raposa" d="M80 206 C74 164 92 128 120 126 C148 128 166 164 160 206 Z"/>
-  <path class="g-o g-creme" d="M102 140 Q120 168 138 140 Q134 196 120 204 Q106 196 102 140 Z"/>
-  
-  <ellipse class="g-o g-creme" cx="104" cy="206" rx="13" ry="8"/>
-  <ellipse class="g-o g-creme" cx="136" cy="206" rx="13" ry="8"/>
-  <path d="M100 206 L100 211 M108 206 L108 211 M132 206 L132 211 M140 206 L140 211" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round"/>
-
-  
-  <g transform="translate(170 70) rotate(30)">
-    <rect class="g-o g-mt" x="-6" y="-26" width="12" height="40" rx="3"/>
-    <rect class="g-o g-roxo" x="-7" y="-34" width="14" height="12" rx="3"/>
-    <path class="g-o g-mt2" d="M-6 14 L6 14 L3 22 L-3 22 Z"/>
-  </g>
-
-  
-  <path class="g-o g-raposa" d="M90 80 L80 34 L114 62 Z"/>
-  <path class="g-o g-raposa" d="M150 80 L160 34 L126 62 Z"/>
-  <path class="g-creme" d="M91 70 L86 46 L104 62 Z"/>
-  <path class="g-creme" d="M149 70 L154 46 L136 62 Z"/>
-
-  
-  <path class="g-o g-raposa" d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z"/>
-  <path class="g-creme" d="M82 98 C92 106 104 104 110 112 C112 120 118 128 120 131 C104 128 88 116 82 98 Z"/>
-  <path class="g-creme" d="M158 98 C148 106 136 104 130 112 C128 120 122 128 120 131 C136 128 152 116 158 98 Z"/>
-  <path d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z" fill="none" stroke="#1C2430" stroke-width="4" stroke-linejoin="round"/>
-
-  
-  <ellipse class="g-tinta" cx="104" cy="90" rx="6" ry="7"/>
-  <ellipse class="g-tinta" cx="136" cy="90" rx="6" ry="7"/>
-  <circle cx="106" cy="87" r="2.2" fill="#fff"/><circle cx="138" cy="87" r="2.2" fill="#fff"/>
-  <ellipse class="g-tinta" cx="120" cy="108" rx="6" ry="4.2"/>
-  <path d="M112 116 Q116 121 120 116 Q124 121 128 116" fill="none" stroke="#1C2430" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-  <ellipse cx="94" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
-  <ellipse cx="146" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
-<circle cx="208" cy="40" r="26" fill="#D6283A" stroke="#1C2430" stroke-width="4"/><path d="M208 26 L208 44" stroke="#fff" stroke-width="8" stroke-linecap="round"/><circle cx="208" cy="56" r="4.5" fill="#fff"/></symbol>
+    <use href="#i-grifo"/>
+    <circle class="verm" cx="204" cy="40" r="30" style="stroke:#1C2430;stroke-width:5"/>
+    <path d="M204 24 L204 44" style="fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round"/>
+    <circle cx="204" cy="58" r="5" fill="#fff"/>
+  </symbol>
 
   <!-- mãos apontando (estilo das apostilas de gramática) -->
   <symbol id="i-mao-direita" viewBox="0 0 64 64">

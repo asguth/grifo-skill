@@ -24,7 +24,7 @@ AQUI = Path(__file__).resolve().parent
 SKILL = AQUI.parent
 REPO = SKILL.parent.parent
 SPRITE = SKILL / "assets" / "ilustracoes.svg"
-COLUNAS = 10
+COLUNAS = 9
 
 CABECA = """<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Galeria Grifo</title>
 <!-- GERADO POR scripts/galeria.py — não editar à mão -->
@@ -33,7 +33,7 @@ CABECA = """<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title
 <style>
 .gal-grupo{font-family:var(--fonte-titulo);font-weight:800;font-size:8.5pt;text-transform:uppercase;color:var(--disc);border-bottom:1.5px solid var(--disc-claro);margin-top:1.5mm}
 .gal{display:grid;grid-template-columns:repeat(%(col)d,minmax(0,1fr));gap:1.2mm 1mm}
-.gal div{text-align:center;font-size:8pt;color:var(--tinta-2);overflow-wrap:anywhere;line-height:1.1}
+.gal div{text-align:center;font-size:8pt;color:var(--tinta-2);hyphens:manual;overflow-wrap:anywhere;line-height:1.1}
 .gal svg{width:14mm;height:14mm;display:block;margin:0 auto .5mm}
 </style>
 </head><body class="d-penal"><!--APOSTILA:SPRITE-->

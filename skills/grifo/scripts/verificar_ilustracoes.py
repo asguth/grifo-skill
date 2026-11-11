@@ -9,6 +9,7 @@ Falha (exit 1) se algum símbolo:
   - usar classe que não existe no <style> do próprio sprite;
   - usar <use> apontando para id inexistente;
   - usar cor fora da paleta permitida (references/design.md §4);
+  - usar <image> que não aponte para um arquivo de assets/ com até 40 KB;
 e também se o arquivo não for XML válido ou houver <symbol> fora do <svg>
 (por exemplo, dentro de comentário).
 Avisa (sem falhar) quando um símbolo 64×64 passa de 15 elementos.
@@ -31,11 +32,11 @@ PALETA = {
     "#FFE45C",                                           # marca-texto
     "#D6283A", "#16884A", "#E8790C", "#1F6FD1",          # semânticas
     "#2E7D4F", "#1F4FA0", "#3D4F6E",                     # símbolos nacionais / roupa
-    "#E8853A", "#FFF1DC", "#C8F27A", "#6A4C93", "#F28B82",  # mascote
     # fallbacks das variáveis de tema (aparecem dentro de var(--x, #...))
     "#44607A", "#E8EEF3", "#E8897A",
 }
 LIMITE_ELEMENTOS = 15
+LIMITE_IMAGEM = 40 * 1024  # mascote raster (WebP)
 RE_SIMBOLO = re.compile(r"<symbol\s[^>]*\bid=")
 RE_COR = re.compile(r"#[0-9A-Fa-f]{3,8}\b")
 
@@ -102,6 +103,15 @@ def verificar(caminho: Path):
                         erros.append(f"{sid}: cor {cor} fora da paleta ({attr})")
             if el.tag in (f"{NS}linearGradient", f"{NS}radialGradient", f"{NS}filter"):
                 erros.append(f"{sid}: <{el.tag.replace(NS, '')}> não é permitido (estilo flat)")
+            if el.tag == f"{NS}image":
+                # raster só para o mascote: arquivo em assets/, embutido pelo montar.py
+                arq = caminho.parent / (href or "")
+                if not href or href.startswith(("data:", "http")):
+                    erros.append(f"{sid}: <image> deve apontar para um arquivo em assets/ (ex.: mascote/grifo.webp)")
+                elif not arq.is_file():
+                    erros.append(f"{sid}: <image> aponta para {href}, que não existe")
+                elif arq.stat().st_size > LIMITE_IMAGEM:
+                    erros.append(f"{sid}: {href} tem {arq.stat().st_size // 1024} KB (> {LIMITE_IMAGEM // 1024} KB)")
     return erros, avisos
 
 

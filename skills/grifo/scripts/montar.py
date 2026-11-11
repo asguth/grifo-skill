@@ -118,10 +118,26 @@ def carregar_simbolos():
     svg = re.sub(r"<!--.*?-->", "", svg, flags=re.S)  # comentários não entram no sprite
     estilo = re.search(r"<style>(.*?)</style>", svg, re.S)
     simbolos = {
-        m.group(1): m.group(0)
+        m.group(1): embutir_imagens(m.group(0))
         for m in re.finditer(r'<symbol id="([^"]+)".*?</symbol>', svg, re.S)
     }
     return (estilo.group(1) if estilo else ""), simbolos
+
+
+MIME = {".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml"}
+
+
+def embutir_imagens(simbolo: str) -> str:
+    """<image href="mascote/x.webp"> (relativo a assets/) -> data URI, para o HTML ficar autocontido."""
+    def trocar(m):
+        arq = BASE / m.group(1)
+        if not arq.exists():
+            print(f"aviso: imagem {m.group(1)} não existe em assets/", file=sys.stderr)
+            return m.group(0)
+        b64 = base64.b64encode(arq.read_bytes()).decode("ascii")
+        return f'href="data:{MIME.get(arq.suffix.lower(), "application/octet-stream")};base64,{b64}"'
+
+    return re.sub(r'href="(?!#|data:|https?:)([^"]+)"', trocar, simbolo)
 
 
 FONTES = [  # (família, peso, arquivo) — só o subconjunto latin e os pesos usados
