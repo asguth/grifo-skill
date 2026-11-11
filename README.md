@@ -17,6 +17,7 @@
   <img alt="Claude Code plugin" src="https://img.shields.io/badge/Claude%20Code-plugin-5B3FA0">
   <img alt="Claude.ai skill" src="https://img.shields.io/badge/Claude.ai-skill-D9710B">
   <img alt="Gratuito" src="https://img.shields.io/badge/pre%C3%A7o-gratuito-44607A">
+  <a href="https://buymeacoffee.com/asguth"><img alt="Buy Me a Coffee" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-apoie-FFDD00?logo=buymeacoffee&logoColor=000"></a>
 </p>
 
 <p align="center">
@@ -30,6 +31,7 @@
   <a href="#galeria">Galeria</a> ·
   <a href="#como-funciona">Como funciona</a> ·
   <a href="#perguntas-frequentes">FAQ</a> ·
+  <a href="#apoie-o-projeto">Apoie</a> ·
   <a href="CONTRIBUTING.md">Contribuir</a>
 </p>
 
@@ -246,6 +248,19 @@ Só não use a marca para sugerir que um material é oficial do projeto quando n
 PRs são bem-vindos — principalmente **novas ilustrações**, **perfis de banca** mais
 precisos e **exemplos** revisados por quem passou na prova. Veja o
 [CONTRIBUTING.md](CONTRIBUTING.md): rode os verificadores e anexe o PNG ao PR.
+
+## Apoie o projeto
+
+O Grifo-Skill é gratuito e vai continuar assim. Se ele te ajudou a estudar (ou a
+passar!), dá para apoiar a manutenção e as próximas ilustrações com um café:
+
+<p align="center">
+  <a href="https://buymeacoffee.com/asguth"><img alt="Pague um café no Buy Me a Coffee" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-pague%20um%20caf%C3%A9-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000"></a>
+</p>
+
+Outras formas de ajudar: deixe uma ⭐ no repositório, compartilhe com quem está
+estudando e [abra uma issue](https://github.com/asguth/grifo-skill/issues/new/choose)
+quando achar um erro de conteúdo.
 
 ## Licença
 
