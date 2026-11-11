@@ -466,8 +466,11 @@ ul.check.verde li::before { background: var(--dica); border-color: var(--dica); 
 .tag-caixa > .tag { position: absolute; top: -3mm; left: 50%; transform: translateX(-50%); }
 
 /* texto + ilustração lado a lado */
-.com-ilustra { display: grid; grid-template-columns: 1fr auto; gap: 2mm; align-items: center; }
-.com-ilustra.esq { grid-template-columns: auto 1fr; }
+/* a ilustração nunca encolhe nem empurra o texto: coluna de texto minmax(0,1fr) */
+.com-ilustra { display: grid; grid-template-columns: minmax(0,1fr) auto; gap: 2mm; align-items: center; }
+.com-ilustra.esq { grid-template-columns: auto minmax(0,1fr); }
+.com-ilustra > * { min-width: 0; overflow-wrap: break-word; }
+.com-ilustra > .ilustra { flex: none; align-self: center; justify-self: center; min-width: auto; }
 .ilustra { width: 18mm; height: 18mm; display: block; }
 .ilustra.p { width: 12mm; height: 12mm; }
 .ilustra.g { width: 26mm; height: 26mm; }
