@@ -1,0 +1,11 @@
+{
+  "name": "grifo-skill",
+  "owner": { "name": "Alberto Guth — GT Design" },
+  "plugins": [
+    {
+      "name": "grifo-skill",
+      "source": "./",
+      "description": "Resumos e apostilas ilustradas para concursos públicos, com validação de conteúdo, revisão didática e crítica de design."
+    }
+  ]
+}

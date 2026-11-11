@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Bases legais — LGPD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   GRIFO-SKILL — design system v1.0
+   Linguagem visual para resumos de concurso: A4, imprimível, legível
+   em preto e branco. Licença MIT.
+
+   PRINCÍPIO: a COR DA DISCIPLINA identifica o assunto (cabeçalho,
+   diagramas). As CORES SEMÂNTICAS identificam a FUNÇÃO do bloco e são
+   iguais em todas as disciplinas — o aluno aprende uma vez:
+     regra = cor da disciplina | exceção = laranja | pegadinha = vermelho
+     dica = verde | lei seca = cinza | exemplo = azul
+   Todo bloco semântico também tem ÍCONE + RÓTULO (funciona sem cor).
+   ===================================================================== */
+
+:root {
+  /* ---- cor da disciplina (troque via classe .d-* no <body>) ---- */
+  --disc: #44607A;
+  --disc-claro: #E8EEF3;
+  --disc-2: #D9705F;      /* cor secundária (faixas da coluna direita) */
+
+  /* ---- cores semânticas (fixas) ---- */
+  --regra: var(--disc);
+  --excecao: #E8790C;   --excecao-claro: #FFF1E2;
+  --pegadinha: #D6283A; --pegadinha-claro: #FDE8EA;
+  --dica: #16884A;      --dica-claro: #E3F6EA;
+  --lei: #55606E;       --lei-claro: #F3F4F6;
+  --exemplo: #1F6FD1;   --exemplo-claro: #E6F0FC;
+
+  /* ---- marca-texto ---- */
+  --mt-chave: #FFE45C;   /* palavra-chave: decore */
+  --mt-troca: #FFB3C7;   /* palavra que a banca costuma TROCAR */
+
+  /* ---- neutros ---- */
+  --tinta: #1C2430;
+  --tinta-2: #4A5568;
+  --linha: #CBD2DA;
+  --papel: #FFFFFF;
+  --mesa: #E9ECEF;
+
+  --fonte-titulo: "Poppins", "Montserrat", "Segoe UI", system-ui, sans-serif;
+  --fonte-corpo: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --raio: 6px;
+}
+
+/* ---- paleta de disciplinas ---- */
+.d-portugues    { --disc: #1F6FD1; --disc-claro: #E6F0FC; --disc-2: #E0782A; }
+.d-constitucional { --disc: #C0263A; --disc-claro: #FBE7EA; --disc-2: #3A5BA0; }
+.d-administrativo { --disc: #A33E8C; --disc-claro: #F7E6F3; --disc-2: #DC6E43; }
+.d-penal        { --disc: #5B4A7A; --disc-claro: #EEEAF4; --disc-2: #D9705F; }
+.d-civil        { --disc: #8A5A12; --disc-claro: #F8EEDD; --disc-2: #4E8C8C; }
+.d-dados        { --disc: #5B3FA0; --disc-claro: #EEE9F8; --disc-2: #DE7A2C; } /* LGPD, privacidade */
+.d-ti           { --disc: #0C8A7D; --disc-claro: #E0F4F1; --disc-2: #D2664A; }
+.d-logica       { --disc: #D9650B; --disc-claro: #FDEEDF; --disc-2: #3D7DD8; }
+.d-gestao       { --disc: #2E8B57; --disc-claro: #E3F3EA; --disc-2: #CF8414; }
+.d-contabil     { --disc: #355C9A; --disc-claro: #E6EDF7; --disc-2: #D9705F; }
+.d-atualidades  { --disc: #44607A; --disc-claro: #E8EEF3; --disc-2: #D9705F; }
+/* evite usar laranja/vermelho/verde puros como cor de disciplina se possível:
+   .d-logica e .d-constitucional são exceções históricas — o ícone resolve */
+
+/* ===================== base ===================== */
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0; background: var(--mesa); color: var(--tinta);
+  font-family: var(--fonte-corpo); font-size: 9.5pt; line-height: 1.34;
+}
+h1, h2, h3, h4 { font-family: var(--fonte-titulo); margin: 0; line-height: 1.15; }
+p { margin: .25em 0 .45em; }
+ul, ol { margin: .2em 0 .4em; padding-left: 1.2em; }
+li { margin: .12em 0; }
+b, strong { font-weight: 700; }
+code { font-size: .92em; background: var(--lei-claro); padding: 0 .25em; border-radius: 3px; }
+
+/* ===================== folha A4 ===================== */
+@page { size: A4; margin: 0; }
+.folha {
+  width: 210mm; min-height: 297mm; margin: 10mm auto; padding: 11mm 12mm 14mm;
+  background: var(--papel); box-shadow: 0 2px 14px rgba(0,0,0,.14);
+  position: relative; display: flex; flex-direction: column; gap: 3.2mm;
+}
+@media print {
+  body { background: #fff; }
+  .folha { margin: 0; box-shadow: none; break-after: page; }
+  .folha:last-child { break-after: auto; }
+  .nao-imprimir { display: none !important; }
+}
+.rodape-folha {
+  position: absolute; bottom: 6mm; left: 12mm; right: 12mm;
+  display: flex; justify-content: space-between;
+  font-size: 7.5pt; color: var(--tinta-2); border-top: 1px solid var(--linha); padding-top: 1.5mm;
+}
+
+/* ===================== cabeçalho ===================== */
+.cabecalho {
+  display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2mm 4mm;
+  border-bottom: 3px solid var(--disc); padding-bottom: 2.5mm;
+}
+.cabecalho .disciplina {
+  grid-column: 1 / -1; justify-self: start;
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
+  font-weight: 700; font-size: 8pt; letter-spacing: .08em; text-transform: uppercase;
+  padding: 1mm 3mm; border-radius: 3px;
+}
+.cabecalho h1 {
+  font-size: 21pt; font-weight: 800; text-transform: uppercase; color: var(--disc);
+  letter-spacing: -.01em;
+}
+.cabecalho .fonte { font-size: 8.5pt; color: var(--tinta-2); margin-top: 1mm; }
+.cabecalho .meta { text-align: right; font-size: 8pt; color: var(--tinta-2); }
+
+/* incidência em prova: .incidencia[data-n="1..3"] */
+.incidencia { font-size: 11pt; letter-spacing: 1px; color: var(--disc); white-space: nowrap; }
+.incidencia::before { content: "Incidência "; font-size: 7.5pt; color: var(--tinta-2); letter-spacing: 0; }
+.incidencia[data-n="1"]::after { content: "★☆☆"; }
+.incidencia[data-n="2"]::after { content: "★★☆"; }
+.incidencia[data-n="3"]::after { content: "★★★"; }
+
+/* títulos de seção */
+.secao {
+  display: flex; align-items: center; gap: 2.5mm;
+  font-family: var(--fonte-titulo); font-weight: 800; font-size: 11.5pt;
+  text-transform: uppercase; color: var(--disc); margin-top: 1mm;
+}
+.secao::after { content: ""; flex: 1; height: 2px; background: var(--disc-claro); }
+.secao .num {
+  background: var(--disc); color: #fff; border-radius: 50%;
+  width: 6.2mm; height: 6.2mm; display: grid; place-items: center; font-size: 9pt;
+}
+
+/* ===================== grids ===================== */
+.colunas-2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 3mm; }
+.colunas-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.colunas-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 3mm; }
+.inteira { grid-column: 1 / -1; }
+
+/* ===================== caixas semânticas ===================== */
+.caixa {
+  border: 2px solid var(--c, var(--disc)); border-radius: var(--raio);
+  background: var(--papel); break-inside: avoid; overflow: hidden;
+}
+.caixa > .rotulo {
+  background: var(--c, var(--disc)); color: #fff;
+  font-family: var(--fonte-titulo); font-weight: 700; font-size: 8.8pt;
+  text-transform: uppercase; letter-spacing: .04em; padding: 1mm 2.5mm;
+  display: flex; align-items: center; gap: 1.5mm;
+}
+.caixa > .rotulo::before { content: var(--icone, "■"); font-size: 9.5pt; }
+.caixa > .corpo { padding: 2mm 2.8mm; background: var(--fundo, #fff); }
+
+.caixa.regra      { --c: var(--disc);      --fundo: #fff;                   --icone: "◆"; }
+.caixa.excecao    { --c: var(--excecao);   --fundo: var(--excecao-claro);   --icone: "⚠"; }
+.caixa.pegadinha  { --c: var(--pegadinha); --fundo: var(--pegadinha-claro); --icone: "✘"; }
+.caixa.dica       { --c: var(--dica);      --fundo: var(--dica-claro);      --icone: "✔"; }
+.caixa.exemplo    { --c: var(--exemplo);   --fundo: var(--exemplo-claro);   --icone: "▶"; }
+.caixa.lei        { --c: var(--lei);       --fundo: var(--lei-claro);       --icone: "§"; }
+.caixa.conceito   { --c: var(--disc);      --fundo: var(--disc-claro);      --icone: "◆"; }
+
+/* lei seca: citação com borda lateral e numeração do dispositivo */
+.lei-seca {
+  border-left: 4px solid var(--lei); background: var(--lei-claro);
+  padding: 1.6mm 2.5mm; font-size: 9.6pt; border-radius: 0 4px 4px 0; break-inside: avoid;
+}
+.lei-seca .disp { font-weight: 800; color: var(--lei); margin-right: 1mm; }
+.lei-seca + .lei-seca { margin-top: 1.2mm; }
+
+/* ===================== marca-texto e destaques ===================== */
+mark, .mt { background: linear-gradient(transparent 38%, var(--mt-chave) 38%, var(--mt-chave) 92%, transparent 92%); color: inherit; padding: 0 .1em; }
+mark.troca, .mt-troca { background: linear-gradient(transparent 38%, var(--mt-troca) 38%, var(--mt-troca) 92%, transparent 92%); }
+.cor { color: var(--disc); font-weight: 700; }
+.vermelho { color: var(--pegadinha); font-weight: 700; }
+.verde { color: var(--dica); font-weight: 700; }
+.laranja { color: var(--excecao); font-weight: 700; }
+.riscado { text-decoration: line-through; text-decoration-color: var(--pegadinha); text-decoration-thickness: 2px; }
+.caps { text-transform: uppercase; letter-spacing: .03em; font-weight: 700; }
+.pequeno { font-size: 8.5pt; color: var(--tinta-2); }
+
+/* chips (desinências, siglas, termos curtos) */
+.chip {
+  display: inline-block; border: 1.5px solid var(--disc); color: var(--disc);
+  border-radius: 999px; padding: 0 2mm; font-size: 8.5pt; font-weight: 700; line-height: 1.6;
+  background: #fff; white-space: nowrap;
+}
+.chip.cheio { background: var(--disc); color: #fff; }
+.chip.sim { border-color: var(--dica); color: var(--dica); }
+.chip.nao { border-color: var(--pegadinha); color: var(--pegadinha); }
+
+/* selos */
+.selo {
+  display: inline-block; transform: rotate(-3deg); border: 2px solid var(--pegadinha);
+  color: var(--pegadinha); font-family: var(--fonte-titulo); font-weight: 800;
+  font-size: 7.5pt; text-transform: uppercase; padding: .3mm 1.8mm; border-radius: 3px; letter-spacing: .05em;
+}
+.selo.cai-muito { border-color: var(--pegadinha); color: var(--pegadinha); }
+.selo.novidade  { border-color: var(--exemplo); color: var(--exemplo); }
+.selo.decore    { border-color: var(--dica); color: var(--dica); }
+
+/* ===================== CHAVE (classificação em árvore) =====================
+   <div class="chave">
+     <div class="raiz">PASSADO<small>ontem</small></div>
+     <div class="ramos">
+       <div class="ramo"><div class="no">Perfeito</div><div class="desc">...</div></div>
+     </div>
+   </div>                                                                      */
+.chave { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 0; break-inside: avoid; }
+.chave > .raiz {
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo); font-weight: 800;
+  text-transform: uppercase; font-size: 9.5pt; padding: 2mm 3mm; border-radius: var(--raio);
+  text-align: center; min-width: 22mm; max-width: 30mm; position: relative; z-index: 1;
+}
+.chave > .raiz small { display: block; font-weight: 500; text-transform: none; font-size: 8pt; opacity: .9; }
+.chave > .ramos {
+  display: flex; flex-direction: column; gap: 1.6mm;
+  border-left: 2.5px solid var(--disc); margin-left: 4mm; padding: 1mm 0 1mm 0;
+}
+.chave .ramo { display: grid; grid-template-columns: auto 1fr; gap: 2.5mm; align-items: center; position: relative; padding-left: 5mm; }
+.chave .ramo::before {
+  content: ""; position: absolute; left: 0; top: 50%; width: 5mm; border-top: 2.5px solid var(--disc);
+}
+.chave .ramo::after {
+  content: ""; position: absolute; left: 3.3mm; top: calc(50% - 1.5mm);
+  border: 1.5mm solid transparent; border-left-color: var(--disc); border-right: 0;
+}
+.chave .no {
+  background: var(--disc-claro); border: 1.5px solid var(--disc); color: var(--disc);
+  font-weight: 800; font-size: 9pt; text-transform: uppercase; padding: 1mm 2.5mm; border-radius: 4px;
+  text-align: center; min-width: 20mm;
+}
+.chave .no small { display: block; text-transform: none; font-weight: 600; font-size: 7.5pt; color: var(--tinta-2); }
+.chave .desc { font-size: 9.4pt; }
+.chave .desc b:first-child { color: var(--disc); }
+
+/* ===================== FLUXO (processo/rito) =====================
+   <div class="fluxo"> <div class="passo">..</div> <div class="passo">..</div> </div>
+   .fluxo.vertical para empilhar; .passo.decisao para pergunta (sim/não)        */
+.fluxo { display: flex; align-items: stretch; flex-wrap: wrap; gap: 5mm; break-inside: avoid; }
+.fluxo > .passo {
+  flex: 1 1 0; min-width: 0; position: relative;
+  border: 2px solid var(--disc); border-radius: var(--raio); background: #fff;
+  padding: 1.4mm 1.2mm; font-size: 8.6pt; text-align: center; overflow-wrap: break-word;
+}
+.fluxo > .passo .t { display: block; font-weight: 800; color: var(--disc); text-transform: uppercase; font-size: 7.8pt; letter-spacing: -.01em; }
+.fluxo > .passo:not(:last-child)::after {
+  content: "➜"; position: absolute; right: -4.6mm; top: 50%; transform: translateY(-50%);
+  color: var(--disc); font-size: 12pt; font-weight: 900;
+}
+.fluxo > .passo.decisao { border-style: dashed; background: var(--disc-claro); }
+.fluxo > .passo.decisao .t::before { content: "? "; }
+.fluxo > .passo.fim { background: var(--disc); color: #fff; }
+.fluxo > .passo.fim .t { color: #fff; }
+.fluxo.vertical { flex-direction: column; gap: 5mm; }
+.fluxo.vertical > .passo:not(:last-child)::after {
+  content: "▼"; right: auto; left: 50%; top: auto; bottom: -4.6mm; transform: translateX(-50%); font-size: 9pt;
+}
+
+/* ===================== LINHA DO TEMPO ===================== */
+.linha-tempo { position: relative; display: flex; justify-content: space-between; gap: 2mm; padding-top: 7mm; break-inside: avoid; }
+.linha-tempo::before {
+  content: ""; position: absolute; top: 3mm; left: 2mm; right: 2mm; height: 3px; background: var(--disc);
+}
+.linha-tempo .marco { flex: 1; text-align: center; position: relative; font-size: 8.8pt; }
+.linha-tempo .marco::before {
+  content: ""; position: absolute; top: -5.5mm; left: 50%; transform: translateX(-50%);
+  width: 3.5mm; height: 3.5mm; border-radius: 50%; background: #fff; border: 3px solid var(--disc);
+}
+.linha-tempo .marco .quando { display: block; font-weight: 800; color: var(--disc); }
+
+/* ===================== COMPARATIVO ===================== */
+table.comparativo {
+  width: 100%; border-collapse: separate; border-spacing: 0; font-size: 8.5pt;
+  border: 2px solid var(--disc); border-radius: var(--raio); overflow: hidden; break-inside: avoid;
+}
+table.comparativo th {
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
+  font-size: 8.6pt; text-transform: uppercase; padding: 1.3mm 2mm; text-align: left;
+}
+table.comparativo td { padding: .8mm 1.8mm; border-top: 1px solid var(--linha); vertical-align: top; }
+table.comparativo td + td, table.comparativo th + th { border-left: 1px solid var(--linha); }
+table.comparativo tr:nth-child(even) td { background: #FAFBFC; }
+table.comparativo td.criterio { font-weight: 700; color: var(--disc); background: var(--disc-claro) !important; white-space: nowrap; }
+table.comparativo td.sim, table.comparativo td.nao { text-align: center; font-weight: 800; font-size: 10.5pt; }
+table.comparativo td.sim { color: var(--dica); }
+table.comparativo td.nao { color: var(--pegadinha); }
+table.comparativo td.sim::before { content: "✔"; }
+table.comparativo td.nao::before { content: "✘"; }
+table.comparativo tr.destaque td { background: var(--pegadinha-claro) !important; }
+
+/* ===================== SIGLA / MNEMÔNICO =====================
+   <div class="sigla"><div class="letra"><b>L</b><span>Livre</span></div>...</div> */
+.sigla { display: flex; gap: 1.2mm; justify-content: center; flex-wrap: nowrap; break-inside: avoid; }
+.sigla .letra { display: flex; flex-direction: column; align-items: center; flex: 0 1 18mm; min-width: 0; }
+.sigla .letra b {
+  width: 11mm; height: 11mm; display: grid; place-items: center;
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
+  font-size: 17pt; font-weight: 800; border-radius: 4px;
+}
+.sigla .letra span { font-size: 7.6pt; font-weight: 700; margin-top: .8mm; text-align: center; line-height: 1.15; }
+
+/* ===================== PIRÂMIDE / HIERARQUIA ===================== */
+.piramide { display: flex; flex-direction: column; align-items: center; gap: 1mm; break-inside: avoid; }
+.piramide .nivel {
+  background: var(--disc); color: #fff; text-align: center; font-weight: 700; font-size: 9pt;
+  padding: 1.4mm 4mm; clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%);
+}
+.piramide .nivel:nth-child(1) { width: 35%; clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%); padding-top: 4mm; }
+.piramide .nivel:nth-child(2) { width: 50%; opacity: .92; }
+.piramide .nivel:nth-child(3) { width: 65%; opacity: .84; }
+.piramide .nivel:nth-child(4) { width: 80%; opacity: .76; }
+.piramide .nivel:nth-child(5) { width: 95%; opacity: .7; }
+
+/* ===================== QUESTÕES ===================== */
+.questao { border: 1.5px solid var(--linha); border-radius: var(--raio); padding: 2mm 2.6mm; break-inside: avoid; font-size: 9.2pt; }
+.questao .cab { display: flex; gap: 2mm; align-items: center; margin-bottom: 1mm; font-size: 7.8pt; color: var(--tinta-2); }
+.questao .cab .n { background: var(--tinta); color: #fff; font-weight: 800; border-radius: 3px; padding: 0 1.6mm; }
+.questao .cab .estilo { border: 1px solid var(--tinta-2); border-radius: 3px; padding: 0 1.3mm; text-transform: uppercase; font-weight: 700; }
+.questao ol.alternativas { list-style: none; padding-left: 0; margin: 1mm 0 0; }
+.questao ol.alternativas li { counter-increment: alt; padding-left: 6mm; position: relative; }
+.questao ol.alternativas li::before {
+  content: "(" counter(alt, upper-alpha) ")"; position: absolute; left: 0; font-weight: 800;
+}
+.questao .ce { display: inline-flex; gap: 2mm; margin-top: 1mm; font-weight: 800; font-size: 8.5pt; }
+.questao .ce span { border: 1.5px solid var(--tinta-2); border-radius: 3px; padding: 0 1.8mm; }
+
+.gabarito { border-top: 2px dashed var(--linha); padding-top: 2mm; font-size: 8.4pt; color: var(--tinta-2); break-inside: avoid; }
+.gabarito h4 { font-size: 8.5pt; text-transform: uppercase; color: var(--tinta); margin-bottom: 1mm; }
+.gabarito .item { margin: .6mm 0; }
+.gabarito .item b { color: var(--tinta); }
+
+/* ===================== FLASHCARDS (recorte) ===================== */
+.flashcards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px dashed #999; }
+.flashcards .card {
+  min-height: 52mm; padding: 4mm; border: 1px dashed #999; display: flex; flex-direction: column; justify-content: center;
+  text-align: center; break-inside: avoid; position: relative;
+}
+.flashcards .card .lado { position: absolute; top: 2mm; left: 3mm; font-size: 7pt; color: var(--tinta-2); text-transform: uppercase; letter-spacing: .08em; }
+.flashcards .card.frente { font-family: var(--fonte-titulo); font-size: 12pt; font-weight: 700; color: var(--disc); }
+.flashcards .card.verso { font-size: 9.6pt; background: var(--disc-claro); }
+.flashcards-instrucao { font-size: 8pt; color: var(--tinta-2); text-align: center; }
+
+/* ===================== EDITAL VERTICALIZADO ===================== */
+table.edital { width: 100%; border-collapse: collapse; font-size: 8.8pt; }
+table.edital th { background: var(--disc); color: #fff; text-align: left; padding: 1.2mm 1.6mm; font-size: 8pt; text-transform: uppercase; }
+table.edital td { border-bottom: 1px solid var(--linha); padding: 1mm 1.6mm; vertical-align: top; }
+table.edital td.check { width: 7mm; text-align: center; }
+table.edital td.check::before { content: "☐"; font-size: 11pt; }
+table.edital tr.materia td { background: var(--disc-claro); font-weight: 800; color: var(--disc); text-transform: uppercase; }
+table.edital td.peso { text-align: center; white-space: nowrap; }
+
+/* ===================== CAPA / SUMÁRIO ===================== */
+.capa { justify-content: center; align-items: flex-start; background: linear-gradient(160deg, var(--disc) 0 46%, #fff 46%); }
+.capa .titulo-capa { color: #fff; font-family: var(--fonte-titulo); font-size: 34pt; font-weight: 800; text-transform: uppercase; line-height: 1; }
+.capa .sub-capa { color: #fff; font-size: 13pt; margin-top: 3mm; opacity: .95; }
+.capa .info-capa { margin-top: auto; font-size: 10pt; color: var(--tinta-2); }
+.sumario ol { counter-reset: s; list-style: none; padding: 0; }
+.sumario li { display: flex; gap: 2mm; border-bottom: 1px dotted var(--linha); padding: 1.2mm 0; }
+.sumario li::before { counter-increment: s; content: counter(s, decimal-leading-zero); font-weight: 800; color: var(--disc); }
+.sumario li .pg { margin-left: auto; color: var(--tinta-2); }
+
+/* ===================== SVG: classes utilitárias =====================
+   Use em diagramas SVG inline para herdar a paleta. */
+svg .s-disc   { stroke: var(--disc); }
+svg .f-disc   { fill: var(--disc); }
+svg .f-claro  { fill: var(--disc-claro); }
+svg .f-branco { fill: #fff; }
+svg .s-linha  { stroke: var(--linha); }
+svg .t-disc   { fill: var(--disc); font-family: var(--fonte-titulo); font-weight: 800; }
+svg .t-corpo  { fill: var(--tinta); font-family: var(--fonte-corpo); }
+svg .t-branco { fill: #fff; font-family: var(--fonte-titulo); font-weight: 700; }
+svg .f-peg    { fill: var(--pegadinha); } svg .s-peg { stroke: var(--pegadinha); }
+svg .f-dica   { fill: var(--dica); }      svg .s-dica { stroke: var(--dica); }
+svg .f-exc    { fill: var(--excecao); }   svg .s-exc { stroke: var(--excecao); }
+
+/* ===================== verificação ===================== */
+.verificar {
+  background: repeating-linear-gradient(45deg, #FFF6CC 0 6px, #FFEFA3 6px 12px);
+  border: 1.5px dashed #B88A00; padding: 0 1mm; border-radius: 3px; font-weight: 700;
+}
+.verificar::before { content: "[VERIFICAR] "; color: #8A6500; font-size: .85em; }
+
+/* =====================================================================
+   LAYOUT APOSTILA (padrão) — inspirado em apostilas esquematizadas
+   comerciais: cabeçalho corrido, 2 colunas, faixas de seção, corpo
+   cinza-claro, personagens ilustrados ao lado do texto.
+   ===================================================================== */
+
+/* cabeçalho corrido: logo | DISCIPLINA | nº página */
+.topo {
+  display: grid; grid-template-columns: 14mm 1fr 14mm; align-items: center;
+  border-bottom: 2.5px solid var(--disc); padding-bottom: 1.6mm; margin-bottom: 1mm;
+}
+.topo .logo { width: 11mm; height: 11mm; }
+.topo .logo svg { width: 100%; height: 100%; }
+.topo .titulo-topo {
+  text-align: center; font-family: var(--fonte-titulo); font-weight: 800;
+  font-size: 13pt; text-transform: uppercase; color: var(--tinta); letter-spacing: .02em;
+}
+.topo .titulo-topo small { display: block; font-size: 7.5pt; font-weight: 600; color: var(--tinta-2); letter-spacing: .06em; }
+.topo .pag {
+  justify-self: end; background: var(--disc-2); color: #fff; font-family: var(--fonte-titulo);
+  font-weight: 800; font-size: 13pt; width: 11mm; height: 11mm; display: grid; place-items: center; border-radius: 2px;
+}
+
+/* título de tópico grande, letra contornada (capa de assunto) */
+.titulo-topico {
+  text-align: center; font-family: var(--fonte-titulo); font-weight: 900; font-size: 26pt;
+  text-transform: uppercase; line-height: 1.02; color: var(--disc-2);
+  -webkit-text-stroke: 1.4px #8A3A22; paint-order: stroke fill;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.12); margin: 1mm 0 2mm;
+}
+
+/* duas colunas com cabeçalho escuro de coluna */
+.apostila-colunas { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 4mm; align-items: start; }
+.apostila-colunas > .coluna { display: flex; flex-direction: column; gap: 2.6mm; }
+.coluna-cab {
+  background: #4A4F57; color: #fff; text-align: center; font-family: var(--fonte-titulo);
+  font-weight: 800; font-size: 9.5pt; text-transform: uppercase; padding: 1.4mm 2mm; letter-spacing: .03em;
+}
+
+/* bloco: faixa + corpo cinza */
+.bloco { break-inside: avoid; }
+.bloco > .faixa {
+  background: var(--disc-2); color: #fff; font-family: var(--fonte-titulo); font-weight: 800;
+  font-size: 9.2pt; text-transform: uppercase; padding: 1.2mm 2.5mm; letter-spacing: .02em;
+}
+.bloco.primaria > .faixa { background: var(--disc); }
+.bloco.escura > .faixa { background: #4A4F57; }
+.bloco > .faixa.arredondada, .bloco.pill > .faixa { border-radius: 999px; text-align: center; }
+.bloco > .corpo { background: #F1F2F4; padding: 1.8mm 2.4mm; font-size: 8.9pt; }
+.bloco.contorno > .corpo { background: #fff; border: 1.5px solid var(--disc); border-top: 0; }
+
+/* subtítulo sublinhado colorido (dentro do bloco) */
+.sub {
+  font-family: var(--fonte-titulo); font-weight: 800; font-size: 8.8pt; text-transform: uppercase;
+  color: var(--disc); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 2px;
+  margin: 1mm 0 .6mm;
+}
+
+/* lista com ✔ em caixinha */
+ul.check { list-style: none; padding-left: 0; }
+ul.check li { position: relative; padding-left: 5.5mm; }
+ul.check li::before {
+  content: "✔"; position: absolute; left: 0; top: .15em; width: 3.6mm; height: 3.6mm;
+  border: 1.4px solid var(--disc); border-radius: 2px; color: var(--disc);
+  font-size: 7pt; font-weight: 900; display: grid; place-items: center; line-height: 1;
+}
+ul.check.verde li::before { background: var(--dica); border-color: var(--dica); color: #fff; border-radius: 50%; }
+
+/* destaques no estilo das apostilas: vermelho escuro negrito */
+.chave-v { color: #B0182A; font-weight: 800; }
+.atencao-txt { color: #B0182A; font-weight: 800; font-style: italic; }
+.atencao-txt::before { content: "ATENÇÃO: "; }
+
+/* tags: IMPORTANTE (círculo com !), DICA (pílula) */
+.tag {
+  display: inline-flex; align-items: center; gap: 1.5mm; font-family: var(--fonte-titulo);
+  font-weight: 800; font-size: 8.5pt; text-transform: uppercase; letter-spacing: .04em;
+  border: 1.6px solid var(--pegadinha); color: var(--pegadinha); border-radius: 999px; padding: .4mm 3mm .4mm .5mm; background: #fff;
+}
+.tag::before {
+  content: var(--tag-ico, "!"); width: 5mm; height: 5mm; border-radius: 50%; background: var(--pegadinha); color: #fff;
+  display: grid; place-items: center; font-size: 9pt;
+}
+.tag.dica { border-color: var(--excecao); color: var(--excecao); --tag-ico: "★"; }
+.tag.dica::before { background: var(--excecao); }
+.tag.atencao { --tag-ico: "⚠"; }
+.tag-caixa { border: 1.5px solid var(--pegadinha); border-radius: var(--raio); padding: 3mm 2.6mm 2mm; position: relative; margin-top: 3mm; break-inside: avoid; }
+.tag-caixa.dica { border-color: var(--excecao); }
+.tag-caixa > .tag { position: absolute; top: -3mm; left: 50%; transform: translateX(-50%); }
+
+/* texto + ilustração lado a lado */
+.com-ilustra { display: grid; grid-template-columns: 1fr auto; gap: 2mm; align-items: center; }
+.com-ilustra.esq { grid-template-columns: auto 1fr; }
+.ilustra { width: 18mm; height: 18mm; display: block; }
+.ilustra.p { width: 12mm; height: 12mm; }
+.ilustra.g { width: 26mm; height: 26mm; }
+.ilustra.gg { width: 36mm; height: 36mm; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* relação A ➜ B (norma superior → fundante) */
+.relacao { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2mm; align-items: center; margin: 1mm 0; }
+.relacao .de { border: 1.5px solid var(--tinta); padding: .8mm 2mm; font-weight: 700; font-size: 8.6pt; text-transform: uppercase; text-align: center; }
+.relacao .seta { color: var(--tinta); font-weight: 900; }
+.relacao .para { background: var(--pegadinha); color: #fff; padding: .8mm 2mm; font-weight: 800; font-size: 8.6pt; text-transform: uppercase; text-align: center; }
+
+/* tabela rótulo|conteúdo (estilo "Constituição rígida | que dá fundamento...") */
+table.rotulada { width: 100%; border-collapse: collapse; font-size: 9pt; break-inside: avoid; }
+table.rotulada td { border: 1.2px solid #7A2230; padding: 1.2mm 2mm; vertical-align: middle; }
+table.rotulada td:first-child { background: #FBE7EA; color: #7A2230; font-weight: 800; text-transform: uppercase; text-align: center; font-size: 8.2pt; width: 36%; }
+
+/* pirâmide com legenda lateral */
+.piramide-legenda { display: grid; grid-template-columns: 30mm 1fr; gap: 3mm; align-items: center; break-inside: avoid; }
+.piramide-legenda svg { width: 30mm; height: auto; }
+.piramide-legenda ol { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.2mm; font-size: 8.8pt; font-weight: 700; }
+.piramide-legenda li { display: flex; gap: 1.5mm; align-items: center; }
+.piramide-legenda li i { width: 3mm; height: 3mm; border-radius: 50%; flex: none; }
+
+</style>
+</head>
+<body class="d-dados">
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true"><defs><style>
+      .k{fill:none;stroke:#1C2430;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+      .kf{stroke:#1C2430;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+      .pele{fill:#F6C9A0}.amarelo{fill:#FFE45C}.branco{fill:#fff}.cinza{fill:#E3E7EC}
+      .verm{fill:#D6283A}
+      .g-o{stroke:#1C2430;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.g-raposa{fill:#E8853A}.g-creme{fill:#FFF1DC}.g-mt{fill:#FFE45C}.g-mt2{fill:#C8F27A}.g-roxo{fill:#6A4C93}.g-tinta{fill:#1C2430}
+      .f-disc{fill:var(--disc,#44607A)}.f-claro{fill:var(--disc-claro,#E8EEF3)}.f-disc2{fill:var(--disc-2,#E8897A)}
+      .t-disc{fill:var(--disc,#44607A);font-family:Poppins,sans-serif;font-weight:800}.verde{fill:#16884A}.lar{fill:#E8790C}
+    </style></defs><symbol id="i-grifo" viewBox="0 0 240 240">
+  <g>
+    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
+    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
+    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
+  </g><g transform="translate(240 0) scale(-1 1)">
+    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
+    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
+    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
+  </g>
+
+  
+  <path class="g-o g-raposa" d="M150 200 C190 202 214 172 204 134 C196 158 176 172 152 172 Z"/>
+  <path class="g-o g-creme" d="M204 134 C216 160 206 190 184 198 C194 180 198 160 204 134 Z"/>
+
+  
+  <path class="g-o g-raposa" d="M80 206 C74 164 92 128 120 126 C148 128 166 164 160 206 Z"/>
+  <path class="g-o g-creme" d="M102 140 Q120 168 138 140 Q134 196 120 204 Q106 196 102 140 Z"/>
+  
+  <ellipse class="g-o g-creme" cx="104" cy="206" rx="13" ry="8"/>
+  <ellipse class="g-o g-creme" cx="136" cy="206" rx="13" ry="8"/>
+  <path d="M100 206 L100 211 M108 206 L108 211 M132 206 L132 211 M140 206 L140 211" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round"/>
+
+  
+  <g transform="translate(170 70) rotate(30)">
+    <rect class="g-o g-mt" x="-6" y="-26" width="12" height="40" rx="3"/>
+    <rect class="g-o g-roxo" x="-7" y="-34" width="14" height="12" rx="3"/>
+    <path class="g-o g-mt2" d="M-6 14 L6 14 L3 22 L-3 22 Z"/>
+  </g>
+
+  
+  <path class="g-o g-raposa" d="M90 80 L80 34 L114 62 Z"/>
+  <path class="g-o g-raposa" d="M150 80 L160 34 L126 62 Z"/>
+  <path class="g-creme" d="M91 70 L86 46 L104 62 Z"/>
+  <path class="g-creme" d="M149 70 L154 46 L136 62 Z"/>
+
+  
+  <path class="g-o g-raposa" d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z"/>
+  <path class="g-creme" d="M82 98 C92 106 104 104 110 112 C112 120 118 128 120 131 C104 128 88 116 82 98 Z"/>
+  <path class="g-creme" d="M158 98 C148 106 136 104 130 112 C128 120 122 128 120 131 C136 128 152 116 158 98 Z"/>
+  <path d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z" fill="none" stroke="#1C2430" stroke-width="4" stroke-linejoin="round"/>
+
+  
+  <ellipse class="g-tinta" cx="104" cy="90" rx="6" ry="7"/>
+  <ellipse class="g-tinta" cx="136" cy="90" rx="6" ry="7"/>
+  <circle cx="106" cy="87" r="2.2" fill="#fff"/><circle cx="138" cy="87" r="2.2" fill="#fff"/>
+  <ellipse class="g-tinta" cx="120" cy="108" rx="6" ry="4.2"/>
+  <path d="M112 116 Q116 121 120 116 Q124 121 128 116" fill="none" stroke="#1C2430" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="94" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
+  <ellipse cx="146" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
+</symbol><symbol id="i-escudo-dados" viewBox="0 0 64 64">
+    <path class="kf f-disc" d="M32 4 L54 12 L54 30 Q54 50 32 60 Q10 50 10 30 L10 12 Z"/>
+    <path class="kf f-claro" d="M32 12 L46 17 L46 30 Q46 44 32 51 Q18 44 18 30 L18 17 Z"/>
+    <circle class="kf branco" cx="32" cy="26" r="5"/><path class="kf branco" d="M23 42 Q24 33 32 33 Q40 33 41 42 Z"/>
+  </symbol><symbol id="i-cadeado" viewBox="0 0 64 64">
+    <path class="k" d="M20 28 L20 20 Q20 8 32 8 Q44 8 44 20 L44 28"/>
+    <rect class="kf f-disc" x="12" y="28" width="40" height="30" rx="5"/>
+    <circle class="kf amarelo" cx="32" cy="40" r="4"/><path class="k" d="M32 44 L32 50" style="stroke:#FFE45C"/>
+  </symbol><symbol id="i-documento" viewBox="0 0 64 64">
+    <path class="kf branco" d="M12 4 L42 4 L54 16 L54 60 L12 60 Z"/>
+    <path class="kf f-claro" d="M42 4 L42 16 L54 16"/>
+    <text x="20" y="34" class="t-disc" font-size="16">§</text>
+    <path class="k" d="M30 28 L46 28 M20 40 L46 40 M20 48 L40 48"/>
+  </symbol><symbol id="i-balanca" viewBox="0 0 64 64">
+    <path class="k" d="M32 8 L32 54"/><path class="kf f-disc" d="M20 58 L44 58 L40 52 L24 52 Z"/>
+    <path class="k" d="M10 16 L54 16"/><circle class="kf f-disc" cx="32" cy="10" r="3.5"/>
+    <path class="k" d="M10 16 L4 34 M10 16 L16 34 M54 16 L48 34 M54 16 L60 34"/>
+    <path class="kf f-claro" d="M2 34 L18 34 Q10 44 2 34 Z"/><path class="kf f-claro" d="M46 34 L62 34 Q54 44 46 34 Z"/>
+  </symbol><symbol id="i-grupo" viewBox="0 0 64 64">
+    <circle class="kf pele" cx="18" cy="22" r="8"/><circle class="kf pele" cx="46" cy="22" r="8"/>
+    <path class="kf f-claro" d="M4 54 Q4 34 18 34 Q32 34 32 54 Z"/><path class="kf f-claro" d="M32 54 Q32 34 46 34 Q60 34 60 54 Z"/>
+    <circle class="kf pele" cx="32" cy="26" r="9"/><path class="kf f-disc" d="M16 60 Q16 38 32 38 Q48 38 48 60 Z"/>
+  </symbol><symbol id="i-grifo-alerta" viewBox="0 0 240 240">
+  <g>
+    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
+    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
+    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
+  </g><g transform="translate(240 0) scale(-1 1)">
+    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
+    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
+    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
+  </g>
+
+  
+  <path class="g-o g-raposa" d="M150 200 C190 202 214 172 204 134 C196 158 176 172 152 172 Z"/>
+  <path class="g-o g-creme" d="M204 134 C216 160 206 190 184 198 C194 180 198 160 204 134 Z"/>
+
+  
+  <path class="g-o g-raposa" d="M80 206 C74 164 92 128 120 126 C148 128 166 164 160 206 Z"/>
+  <path class="g-o g-creme" d="M102 140 Q120 168 138 140 Q134 196 120 204 Q106 196 102 140 Z"/>
+  
+  <ellipse class="g-o g-creme" cx="104" cy="206" rx="13" ry="8"/>
+  <ellipse class="g-o g-creme" cx="136" cy="206" rx="13" ry="8"/>
+  <path d="M100 206 L100 211 M108 206 L108 211 M132 206 L132 211 M140 206 L140 211" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round"/>
+
+  
+  <g transform="translate(170 70) rotate(30)">
+    <rect class="g-o g-mt" x="-6" y="-26" width="12" height="40" rx="3"/>
+    <rect class="g-o g-roxo" x="-7" y="-34" width="14" height="12" rx="3"/>
+    <path class="g-o g-mt2" d="M-6 14 L6 14 L3 22 L-3 22 Z"/>
+  </g>
+
+  
+  <path class="g-o g-raposa" d="M90 80 L80 34 L114 62 Z"/>
+  <path class="g-o g-raposa" d="M150 80 L160 34 L126 62 Z"/>
+  <path class="g-creme" d="M91 70 L86 46 L104 62 Z"/>
+  <path class="g-creme" d="M149 70 L154 46 L136 62 Z"/>
+
+  
+  <path class="g-o g-raposa" d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z"/>
+  <path class="g-creme" d="M82 98 C92 106 104 104 110 112 C112 120 118 128 120 131 C104 128 88 116 82 98 Z"/>
+  <path class="g-creme" d="M158 98 C148 106 136 104 130 112 C128 120 122 128 120 131 C136 128 152 116 158 98 Z"/>
+  <path d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z" fill="none" stroke="#1C2430" stroke-width="4" stroke-linejoin="round"/>
+
+  
+  <ellipse class="g-tinta" cx="104" cy="90" rx="6" ry="7"/>
+  <ellipse class="g-tinta" cx="136" cy="90" rx="6" ry="7"/>
+  <circle cx="106" cy="87" r="2.2" fill="#fff"/><circle cx="138" cy="87" r="2.2" fill="#fff"/>
+  <ellipse class="g-tinta" cx="120" cy="108" rx="6" ry="4.2"/>
+  <path d="M112 116 Q116 121 120 116 Q124 121 128 116" fill="none" stroke="#1C2430" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="94" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
+  <ellipse cx="146" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
+<circle cx="208" cy="40" r="26" fill="#D6283A" stroke="#1C2430" stroke-width="4"/><path d="M208 26 L208 44" stroke="#fff" stroke-width="8" stroke-linecap="round"/><circle cx="208" cy="56" r="4.5" fill="#fff"/></symbol></svg>
+
+<!-- ============================ FOLHA 1 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Proteção de Dados (LGPD)<small>Bases legais do tratamento · arts. 5º, 7º a 11 e 14</small></div>
+    <div class="pag">01</div>
+  </div>
+
+  <div class="titulo-topico">Bases legais</div>
+
+  <div class="apostila-colunas">
+    <!-- COLUNA ESQUERDA -->
+    <div class="coluna">
+      <div class="coluna-cab">Noções gerais</div>
+
+      <div class="bloco primaria">
+        <div class="faixa">O que é base legal</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <p>É a <span class="chave-v">hipótese autorizadora</span> prevista em lei para tratar dados pessoais. Todo tratamento precisa de <b>pelo menos uma</b>: o tratamento <mark class="troca">somente</mark> poderá ser realizado nas hipóteses listadas (caput dos arts. 7º e 11).</p>
+            <svg class="ilustra g"><use href="#i-escudo-dados"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Qual artigo usar?</div>
+        <div class="corpo">
+          <div class="fluxo vertical">
+            <div class="passo decisao"><span class="t">O dado é sensível?</span>conferir lista do art. 5º, II</div>
+            <div class="passo" style="display:grid;grid-template-columns:1fr 1fr;gap:2mm;border:0;padding:0;background:none">
+              <div class="passo fim" style="border:2px solid var(--disc);border-radius:6px;padding:1.6mm"><span class="t">Não ➜ art. 7º</span>10 hipóteses (I a X)</div>
+              <div class="passo fim" style="border:2px solid var(--disc);border-radius:6px;padding:1.6mm"><span class="t">Sim ➜ art. 11</span>rol próprio e mais restrito</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Dado pessoal sensível · art. 5º, II</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <ul class="check">
+              <li>Origem <b>racial ou étnica</b>;</li>
+              <li>Convicção <b>religiosa</b>;</li>
+              <li>Opinião <b>política</b>;</li>
+              <li>Filiação a <b>sindicato</b> ou a organização de caráter religioso, filosófico ou político;</li>
+              <li>Dado referente à <b>saúde</b> ou à <b>vida sexual</b>;</li>
+              <li>Dado <b>genético</b> ou <b>biométrico</b>;</li>
+            </ul>
+            <svg class="ilustra g"><use href="#i-cadeado"/></svg>
+          </div>
+          <p class="pequeno">…quando <span class="chave-v">vinculado a uma pessoa natural</span>.</p>
+        </div>
+      </div>
+
+      <div class="tag-caixa"><span class="tag">Importante</span>
+        <p><span class="chave-v">Não há hierarquia</span> entre as bases legais. O consentimento é <b>uma</b> das hipóteses, não a principal nem a preferencial.</p>
+      </div>
+
+      <div class="bloco escura">
+        <div class="faixa">Consentimento · art. 5º, XII</div>
+        <div class="corpo">
+          <p>Manifestação <b>livre, informada e inequívoca</b> pela qual o titular concorda com o tratamento para uma <mark>finalidade determinada</mark>.</p>
+          <div class="sigla">
+            <div class="letra"><b>L</b><span>Livre</span></div>
+            <div class="letra"><b>I</b><span>Informada</span></div>
+            <div class="letra"><b>I</b><span>Inequívoca</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUNA DIREITA -->
+    <div class="coluna">
+      <div class="coluna-cab">Art. 7º · dados pessoais</div>
+
+      <table class="comparativo">
+        <tr><th style="width:12mm">Inc.</th><th>Hipótese</th></tr>
+        <tr><td class="criterio">I</td><td><b>Consentimento</b> do titular</td></tr>
+        <tr><td class="criterio">II</td><td>Cumprimento de <b>obrigação legal ou regulatória</b> pelo controlador</td></tr>
+        <tr><td class="criterio">III</td><td>Pela <b>administração pública</b>, para execução de <b>políticas públicas</b> previstas em leis/regulamentos ou respaldadas em contratos, convênios ou instrumentos congêneres</td></tr>
+        <tr><td class="criterio">IV</td><td><b>Estudos por órgão de pesquisa</b>, garantida, <mark class="troca">sempre que possível</mark>, a anonimização</td></tr>
+        <tr><td class="criterio">V</td><td><b>Execução de contrato</b> ou procedimentos preliminares de contrato do qual o titular seja parte, <mark class="troca">a pedido do titular</mark></td></tr>
+        <tr><td class="criterio">VI</td><td><b>Exercício regular de direitos</b> em processo judicial, administrativo ou arbitral</td></tr>
+        <tr><td class="criterio">VII</td><td><b>Proteção da vida</b> ou da incolumidade física do titular <b>ou de terceiro</b></td></tr>
+        <tr><td class="criterio">VIII</td><td><b>Tutela da saúde</b>, <mark class="troca">exclusivamente</mark> em procedimento realizado por profissionais de saúde, serviços de saúde ou autoridade sanitária</td></tr>
+        <tr class="destaque"><td class="criterio">IX</td><td><b>Legítimo interesse</b> do controlador ou de terceiro, <mark class="troca">exceto</mark> se prevalecerem direitos e liberdades fundamentais do titular</td></tr>
+        <tr class="destaque"><td class="criterio">X</td><td><b>Proteção do crédito</b>, inclusive quanto ao disposto na legislação pertinente</td></tr>
+      </table>
+      <p class="pequeno" style="margin:-1.5mm 0 0">Em vermelho: hipóteses que <b>não existem</b> para dados sensíveis.</p>
+
+      <div class="bloco">
+        <div class="faixa">Regras do consentimento · art. 8º</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <ul class="check">
+              <li>Por <b>escrito</b> ou outro meio que demonstre a vontade do titular;</li>
+              <li>Se por escrito: em <span class="chave-v">cláusula destacada</span> (§1º);</li>
+              <li><b>Ônus da prova</b>: do <span class="chave-v">controlador</span> (§2º);</li>
+              <li><b>Vedado</b> tratamento com vício de consentimento (§3º);</li>
+              <li>Autorizações <b>genéricas</b> são <span class="chave-v">nulas</span> (§4º);</li>
+              <li><b>Revogável a qualquer momento</b>, por manifestação expressa, em procedimento <b>gratuito e facilitado</b> (§5º).</li>
+            </ul>
+            <svg class="ilustra g"><use href="#i-documento"/></svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 2 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Proteção de Dados (LGPD)<small>Bases legais do tratamento · arts. 5º, 7º a 11 e 14</small></div>
+    <div class="pag">02</div>
+  </div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Art. 11 · dados sensíveis</div>
+
+      <div class="bloco primaria">
+        <div class="faixa">Hipóteses do art. 11</div>
+        <div class="corpo">
+          <div class="sub">I · Com consentimento</div>
+          <p>De forma <span class="chave-v">específica e destacada</span>, para <b>finalidades específicas</b>.</p>
+          <div class="sub">II · Sem consentimento, quando indispensável para:</div>
+          <ul class="check">
+            <li><b>a)</b> obrigação legal ou regulatória do controlador;</li>
+            <li><b>b)</b> tratamento compartilhado pela <b>administração pública</b> para políticas públicas previstas em leis ou regulamentos;</li>
+            <li><b>c)</b> estudos por órgão de pesquisa (anonimização sempre que possível);</li>
+            <li><b>d)</b> exercício regular de direitos, <mark>inclusive em contrato</mark> e em processo judicial, administrativo e arbitral;</li>
+            <li><b>e)</b> proteção da vida ou da incolumidade física do titular ou de terceiro;</li>
+            <li><b>f)</b> tutela da saúde, exclusivamente por profissionais/serviços de saúde ou autoridade sanitária;</li>
+            <li><b>g)</b> <span class="chave-v">prevenção à fraude</span> e segurança do titular na identificação e autenticação de cadastro em sistemas eletrônicos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tag-caixa dica"><span class="tag dica">Dica</span>
+        <div class="relacao"><div class="de">Dado comum</div><div class="seta">➜</div><div class="para" style="background:var(--disc)">Consentimento</div></div>
+        <div class="relacao"><div class="de">Dado sensível</div><div class="seta">➜</div><div class="para">Específico e destacado</div></div>
+      </div>
+
+      <div class="bloco escura">
+        <div class="faixa">Art. 7º × Art. 11</div>
+        <div class="corpo" style="padding:1.5mm">
+          <table class="comparativo">
+            <tr><th>Hipótese</th><th>Comum</th><th>Sensível</th></tr>
+            <tr><td class="criterio">Consentimento</td><td class="sim"></td><td class="sim"></td></tr>
+            <tr><td class="criterio">Obrigação legal</td><td class="sim"></td><td class="sim"></td></tr>
+            <tr><td class="criterio">Políticas públicas</td><td class="sim"></td><td class="sim"></td></tr>
+            <tr><td class="criterio">Contrato (inciso próprio)</td><td class="sim"></td><td class="nao"></td></tr>
+            <tr class="destaque"><td class="criterio">Legítimo interesse</td><td class="sim"></td><td class="nao"></td></tr>
+            <tr class="destaque"><td class="criterio">Proteção do crédito</td><td class="sim"></td><td class="nao"></td></tr>
+            <tr class="destaque"><td class="criterio">Prevenção à fraude</td><td class="nao"></td><td class="sim"></td></tr>
+          </table>
+          <p class="pequeno" style="margin:1mm 0 0">Execução de contrato não é alínea própria do art. 11, mas a alínea <b>d</b> cobre o exercício regular de direitos <b>inclusive em contrato</b>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Pontos que mais caem</div>
+
+      <div class="bloco">
+        <div class="faixa">Legítimo interesse · art. 10</div>
+        <div class="corpo">
+          <div class="com-ilustra esq">
+            <svg class="ilustra g"><use href="#i-balanca"/></svg>
+            <ul class="check">
+              <li>Finalidades legítimas, a partir de <b>situações concretas</b>;</li>
+              <li>Só dados <span class="chave-v">estritamente necessários</span> (§1º);</li>
+              <li>Controlador garante <b>transparência</b> (§2º);</li>
+              <li>ANPD <b>poderá</b> solicitar <b>relatório de impacto</b> (§3º).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Crianças e adolescentes · art. 14</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <p>Sempre no <span class="chave-v">melhor interesse</span>. Para crianças, o §1º exige consentimento específico e em destaque de <b>pelo menos um dos pais</b> ou do responsável legal.</p>
+            <svg class="ilustra g"><use href="#i-grupo"/></svg>
+          </div>
+          <div class="caixa conceito"><div class="rotulo">Enunciado CD/ANPD nº 1/2023</div>
+            <div class="corpo">O tratamento pode usar <b>qualquer hipótese</b> do art. 7º ou do art. 11, desde que observado e prevalecente o <b>melhor interesse</b>, avaliado no caso concreto.</div></div>
+        </div>
+      </div>
+
+      <div class="caixa pegadinha">
+        <div class="rotulo">Como a banca confunde</div>
+        <div class="corpo">
+          <p>✘ Dado sensível pode ser tratado com base em <mark class="troca">legítimo interesse</mark>. <span class="verde">→ Não há essa hipótese no art. 11.</span></p>
+          <p>✘ Órgão de pesquisa deve <mark class="troca">sempre</mark> anonimizar. <span class="verde">→ "Sempre que possível".</span></p>
+          <p>✘ Dados de crianças <mark class="troca">só</mark> com consentimento dos pais. <span class="verde">→ Enunciado ANPD 1/2023 admite as demais hipóteses.</span></p>
+          <p>✘ O ônus de provar o consentimento é do <mark class="troca">titular</mark>. <span class="verde">→ É do controlador (art. 8º, §2º).</span></p>
+        </div>
+      </div>
+
+      <div class="com-ilustra esq" style="margin-top:1mm">
+        <svg class="ilustra"><use href="#i-grifo-alerta"/></svg>
+        <p class="atencao-txt" style="margin:0">a prevenção à fraude (art. 11, II, g) existe só para dados sensíveis, e não aparece no art. 7º.</p>
+      </div>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 3 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Proteção de Dados (LGPD)<small>Fixação · banca indefinida (Cebraspe / FGV)</small></div>
+    <div class="pag">03</div>
+  </div>
+
+  <div class="questao">
+    <div class="cab"><span class="n">01</span><span class="estilo">C/E</span>estilo Cebraspe · inédita</div>
+    <p>O tratamento de dados pessoais sensíveis pode ser realizado com fundamento no legítimo interesse do controlador, desde que não prevaleçam os direitos e liberdades fundamentais do titular.</p>
+    <div class="ce"><span>C</span><span>E</span></div>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">02</span><span class="estilo">C/E</span>estilo Cebraspe · inédita</div>
+    <p>Dados pessoais sensíveis podem ser tratados sem consentimento do titular quando indispensáveis à garantia da prevenção à fraude e à segurança do titular nos processos de identificação e autenticação de cadastro em sistemas eletrônicos.</p>
+    <div class="ce"><span>C</span><span>E</span></div>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">03</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
+    <p>A Clínica Vida Plena, que presta serviços de saúde, trata dados de exames de seus pacientes durante os atendimentos realizados por sua equipe médica. Em vez de colher consentimento, fundamenta o tratamento na tutela da saúde. À luz da LGPD, a conduta da clínica é:</p>
+    <ol class="alternativas">
+      <li>irregular, pois dados sensíveis só podem ser tratados com consentimento específico e destacado.</li>
+      <li>regular, pois a tutela da saúde, em procedimento realizado por profissionais ou serviços de saúde, autoriza o tratamento de dados sensíveis sem consentimento.</li>
+      <li>regular, desde que a clínica demonstre seu legítimo interesse em relatório de impacto.</li>
+      <li>irregular, pois a tutela da saúde só pode ser invocada por autoridade sanitária.</li>
+      <li>regular, apenas se houver autorização prévia da ANPD.</li>
+    </ol>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">04</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
+    <p>Sobre o consentimento na LGPD, assinale a afirmativa correta.</p>
+    <ol class="alternativas">
+      <li>Pode ser dado de forma genérica, desde que por escrito.</li>
+      <li>Cabe ao titular provar que o consentimento foi obtido em desconformidade com a lei.</li>
+      <li>Se fornecido por escrito, deve constar de cláusula destacada das demais cláusulas contratuais.</li>
+      <li>Uma vez fornecido, só pode ser revogado mediante aviso prévio ao controlador.</li>
+      <li>É a base legal preferencial, devendo ser buscada antes das demais hipóteses.</li>
+    </ol>
+  </div>
+
+  <div class="gabarito">
+    <h4>Gabarito comentado</h4>
+    <div class="item"><b>01 — Errado.</b> O legítimo interesse está no art. 7º, IX, mas não consta do rol do art. 11, que rege os dados sensíveis.</div>
+    <div class="item"><b>02 — Certo.</b> Art. 11, II, "g", resguardados os direitos do art. 9º e salvo prevalência de direitos e liberdades fundamentais do titular.</div>
+    <div class="item"><b>03 — B.</b> Art. 11, II, "f". (A) há hipóteses sem consentimento; (C) legítimo interesse não se aplica a dado sensível; (D) a alínea abrange profissionais, serviços de saúde <i>ou</i> autoridade sanitária; (E) a lei não exige autorização prévia da ANPD.</div>
+    <div class="item"><b>04 — C.</b> Art. 8º, §1º. (A) autorizações genéricas são nulas (§4º); (B) o ônus é do controlador (§2º); (D) a revogação é a qualquer momento, por procedimento gratuito e facilitado (§5º); (E) não há hierarquia entre as bases.</div>
+  </div>
+
+  <div class="caixa lei" style="margin-top:2mm">
+    <div class="rotulo">Fontes</div>
+    <div class="corpo pequeno">Lei 13.709/2018 (LGPD), arts. 5º, II e XII; 7º; 8º; 10; 11; 14 — redação vigente, incluídas as alterações da Lei 13.853/2019. Enunciado CD/ANPD nº 1/2023. Questões inéditas, criadas para este material. Conferir alterações posteriores a 11/11/2026.</div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Exemplo — atualizado até 11/11/2026</span></div>
+</div>
+</body>
+</html>

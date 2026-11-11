@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Lei 8.112/90 — Servidores Públicos Federais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   GRIFO-SKILL — design system v1.0
+   Linguagem visual para resumos de concurso: A4, imprimível, legível
+   em preto e branco. Licença MIT.
+
+   PRINCÍPIO: a COR DA DISCIPLINA identifica o assunto (cabeçalho,
+   diagramas). As CORES SEMÂNTICAS identificam a FUNÇÃO do bloco e são
+   iguais em todas as disciplinas — o aluno aprende uma vez:
+     regra = cor da disciplina | exceção = laranja | pegadinha = vermelho
+     dica = verde | lei seca = cinza | exemplo = azul
+   Todo bloco semântico também tem ÍCONE + RÓTULO (funciona sem cor).
+   ===================================================================== */
+
+:root {
+  /* ---- cor da disciplina (troque via classe .d-* no <body>) ---- */
+  --disc: #44607A;
+  --disc-claro: #E8EEF3;
+  --disc-2: #D9705F;      /* cor secundária (faixas da coluna direita) */
+
+  /* ---- cores semânticas (fixas) ---- */
+  --regra: var(--disc);
+  --excecao: #E8790C;   --excecao-claro: #FFF1E2;
+  --pegadinha: #D6283A; --pegadinha-claro: #FDE8EA;
+  --dica: #16884A;      --dica-claro: #E3F6EA;
+  --lei: #55606E;       --lei-claro: #F3F4F6;
+  --exemplo: #1F6FD1;   --exemplo-claro: #E6F0FC;
+
+  /* ---- marca-texto ---- */
+  --mt-chave: #FFE45C;   /* palavra-chave: decore */
+  --mt-troca: #FFB3C7;   /* palavra que a banca costuma TROCAR */
+
+  /* ---- neutros ---- */
+  --tinta: #1C2430;
+  --tinta-2: #4A5568;
+  --linha: #CBD2DA;
+  --papel: #FFFFFF;
+  --mesa: #E9ECEF;
+
+  --fonte-titulo: "Poppins", "Montserrat", "Segoe UI", system-ui, sans-serif;
+  --fonte-corpo: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --raio: 6px;
+}
+
+/* ---- paleta de disciplinas ---- */
+.d-portugues    { --disc: #1F6FD1; --disc-claro: #E6F0FC; --disc-2: #E0782A; }
+.d-constitucional { --disc: #C0263A; --disc-claro: #FBE7EA; --disc-2: #3A5BA0; }
+.d-administrativo { --disc: #A33E8C; --disc-claro: #F7E6F3; --disc-2: #DC6E43; }
+.d-penal        { --disc: #5B4A7A; --disc-claro: #EEEAF4; --disc-2: #D9705F; }
+.d-civil        { --disc: #8A5A12; --disc-claro: #F8EEDD; --disc-2: #4E8C8C; }
+.d-dados        { --disc: #5B3FA0; --disc-claro: #EEE9F8; --disc-2: #DE7A2C; } /* LGPD, privacidade */
+.d-ti           { --disc: #0C8A7D; --disc-claro: #E0F4F1; --disc-2: #D2664A; }
+.d-logica       { --disc: #D9650B; --disc-claro: #FDEEDF; --disc-2: #3D7DD8; }
+.d-gestao       { --disc: #2E8B57; --disc-claro: #E3F3EA; --disc-2: #CF8414; }
+.d-contabil     { --disc: #355C9A; --disc-claro: #E6EDF7; --disc-2: #D9705F; }
+.d-atualidades  { --disc: #44607A; --disc-claro: #E8EEF3; --disc-2: #D9705F; }
+/* evite usar laranja/vermelho/verde puros como cor de disciplina se possível:
+   .d-logica e .d-constitucional são exceções históricas — o ícone resolve */
+
+/* ===================== base ===================== */
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0; background: var(--mesa); color: var(--tinta);
+  font-family: var(--fonte-corpo); font-size: 9.5pt; line-height: 1.34;
+}
+h1, h2, h3, h4 { font-family: var(--fonte-titulo); margin: 0; line-height: 1.15; }
+p { margin: .25em 0 .45em; }
+ul, ol { margin: .2em 0 .4em; padding-left: 1.2em; }
+li { margin: .12em 0; }
+b, strong { font-weight: 700; }
+code { font-size: .92em; background: var(--lei-claro); padding: 0 .25em; border-radius: 3px; }
+
+/* ===================== folha A4 ===================== */
+@page { size: A4; margin: 0; }
+.folha {
+  width: 210mm; min-height: 297mm; margin: 10mm auto; padding: 11mm 12mm 14mm;
+  background: var(--papel); box-shadow: 0 2px 14px rgba(0,0,0,.14);
+  position: relative; display: flex; flex-direction: column; gap: 3.2mm;
+}
+@media print {
+  body { background: #fff; }
+  .folha { margin: 0; box-shadow: none; break-after: page; }
+  .folha:last-child { break-after: auto; }
+  .nao-imprimir { display: none !important; }
+}
+.rodape-folha {
+  position: absolute; bottom: 6mm; left: 12mm; right: 12mm;
+  display: flex; justify-content: space-between;
+  font-size: 7.5pt; color: var(--tinta-2); border-top: 1px solid var(--linha); padding-top: 1.5mm;
+}
+
+/* ===================== cabeçalho ===================== */
+.cabecalho {
+  display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 2mm 4mm;
+  border-bottom: 3px solid var(--disc); padding-bottom: 2.5mm;
+}
+.cabecalho .disciplina {
+  grid-column: 1 / -1; justify-self: start;
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
+  font-weight: 700; font-size: 8pt; letter-spacing: .08em; text-transform: uppercase;
+  padding: 1mm 3mm; border-radius: 3px;
+}
+.cabecalho h1 {
+  font-size: 21pt; font-weight: 800; text-transform: uppercase; color: var(--disc);
+  letter-spacing: -.01em;
+}
+.cabecalho .fonte { font-size: 8.5pt; color: var(--tinta-2); margin-top: 1mm; }
+.cabecalho .meta { text-align: right; font-size: 8pt; color: var(--tinta-2); }
+
+/* incidência em prova: .incidencia[data-n="1..3"] */
+.incidencia { font-size: 11pt; letter-spacing: 1px; color: var(--disc); white-space: nowrap; }
+.incidencia::before { content: "Incidência "; font-size: 7.5pt; color: var(--tinta-2); letter-spacing: 0; }
+.incidencia[data-n="1"]::after { content: "★☆☆"; }
+.incidencia[data-n="2"]::after { content: "★★☆"; }
+.incidencia[data-n="3"]::after { content: "★★★"; }
+
+/* títulos de seção */
+.secao {
+  display: flex; align-items: center; gap: 2.5mm;
+  font-family: var(--fonte-titulo); font-weight: 800; font-size: 11.5pt;
+  text-transform: uppercase; color: var(--disc); margin-top: 1mm;
+}
+.secao::after { content: ""; flex: 1; height: 2px; background: var(--disc-claro); }
+.secao .num {
+  background: var(--disc); color: #fff; border-radius: 50%;
+  width: 6.2mm; height: 6.2mm; display: grid; place-items: center; font-size: 9pt;
+}
+
+/* ===================== grids ===================== */
+.colunas-2 { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 3mm; }
+.colunas-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3mm; }
+.colunas-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 3mm; }
+.inteira { grid-column: 1 / -1; }
+
+/* ===================== caixas semânticas ===================== */
+.caixa {
+  border: 2px solid var(--c, var(--disc)); border-radius: var(--raio);
+  background: var(--papel); break-inside: avoid; overflow: hidden;
+}
+.caixa > .rotulo {
+  background: var(--c, var(--disc)); color: #fff;
+  font-family: var(--fonte-titulo); font-weight: 700; font-size: 8.8pt;
+  text-transform: uppercase; letter-spacing: .04em; padding: 1mm 2.5mm;
+  display: flex; align-items: center; gap: 1.5mm;
+}
+.caixa > .rotulo::before { content: var(--icone, "■"); font-size: 9.5pt; }
+.caixa > .corpo { padding: 2mm 2.8mm; background: var(--fundo, #fff); }
+
+.caixa.regra      { --c: var(--disc);      --fundo: #fff;                   --icone: "◆"; }
+.caixa.excecao    { --c: var(--excecao);   --fundo: var(--excecao-claro);   --icone: "⚠"; }
+.caixa.pegadinha  { --c: var(--pegadinha); --fundo: var(--pegadinha-claro); --icone: "✘"; }
+.caixa.dica       { --c: var(--dica);      --fundo: var(--dica-claro);      --icone: "✔"; }
+.caixa.exemplo    { --c: var(--exemplo);   --fundo: var(--exemplo-claro);   --icone: "▶"; }
+.caixa.lei        { --c: var(--lei);       --fundo: var(--lei-claro);       --icone: "§"; }
+.caixa.conceito   { --c: var(--disc);      --fundo: var(--disc-claro);      --icone: "◆"; }
+
+/* lei seca: citação com borda lateral e numeração do dispositivo */
+.lei-seca {
+  border-left: 4px solid var(--lei); background: var(--lei-claro);
+  padding: 1.6mm 2.5mm; font-size: 9.6pt; border-radius: 0 4px 4px 0; break-inside: avoid;
+}
+.lei-seca .disp { font-weight: 800; color: var(--lei); margin-right: 1mm; }
+.lei-seca + .lei-seca { margin-top: 1.2mm; }
+
+/* ===================== marca-texto e destaques ===================== */
+mark, .mt { background: linear-gradient(transparent 38%, var(--mt-chave) 38%, var(--mt-chave) 92%, transparent 92%); color: inherit; padding: 0 .1em; }
+mark.troca, .mt-troca { background: linear-gradient(transparent 38%, var(--mt-troca) 38%, var(--mt-troca) 92%, transparent 92%); }
+.cor { color: var(--disc); font-weight: 700; }
+.vermelho { color: var(--pegadinha); font-weight: 700; }
+.verde { color: var(--dica); font-weight: 700; }
+.laranja { color: var(--excecao); font-weight: 700; }
+.riscado { text-decoration: line-through; text-decoration-color: var(--pegadinha); text-decoration-thickness: 2px; }
+.caps { text-transform: uppercase; letter-spacing: .03em; font-weight: 700; }
+.pequeno { font-size: 8.5pt; color: var(--tinta-2); }
+
+/* chips (desinências, siglas, termos curtos) */
+.chip {
+  display: inline-block; border: 1.5px solid var(--disc); color: var(--disc);
+  border-radius: 999px; padding: 0 2mm; font-size: 8.5pt; font-weight: 700; line-height: 1.6;
+  background: #fff; white-space: nowrap;
+}
+.chip.cheio { background: var(--disc); color: #fff; }
+.chip.sim { border-color: var(--dica); color: var(--dica); }
+.chip.nao { border-color: var(--pegadinha); color: var(--pegadinha); }
+
+/* selos */
+.selo {
+  display: inline-block; transform: rotate(-3deg); border: 2px solid var(--pegadinha);
+  color: var(--pegadinha); font-family: var(--fonte-titulo); font-weight: 800;
+  font-size: 7.5pt; text-transform: uppercase; padding: .3mm 1.8mm; border-radius: 3px; letter-spacing: .05em;
+}
+.selo.cai-muito { border-color: var(--pegadinha); color: var(--pegadinha); }
+.selo.novidade  { border-color: var(--exemplo); color: var(--exemplo); }
+.selo.decore    { border-color: var(--dica); color: var(--dica); }
+
+/* ===================== CHAVE (classificação em árvore) =====================
+   <div class="chave">
+     <div class="raiz">PASSADO<small>ontem</small></div>
+     <div class="ramos">
+       <div class="ramo"><div class="no">Perfeito</div><div class="desc">...</div></div>
+     </div>
+   </div>                                                                      */
+.chave { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 0; break-inside: avoid; }
+.chave > .raiz {
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo); font-weight: 800;
+  text-transform: uppercase; font-size: 9.5pt; padding: 2mm 3mm; border-radius: var(--raio);
+  text-align: center; min-width: 22mm; max-width: 30mm; position: relative; z-index: 1;
+}
+.chave > .raiz small { display: block; font-weight: 500; text-transform: none; font-size: 8pt; opacity: .9; }
+.chave > .ramos {
+  display: flex; flex-direction: column; gap: 1.6mm;
+  border-left: 2.5px solid var(--disc); margin-left: 4mm; padding: 1mm 0 1mm 0;
+}
+.chave .ramo { display: grid; grid-template-columns: auto 1fr; gap: 2.5mm; align-items: center; position: relative; padding-left: 5mm; }
+.chave .ramo::before {
+  content: ""; position: absolute; left: 0; top: 50%; width: 5mm; border-top: 2.5px solid var(--disc);
+}
+.chave .ramo::after {
+  content: ""; position: absolute; left: 3.3mm; top: calc(50% - 1.5mm);
+  border: 1.5mm solid transparent; border-left-color: var(--disc); border-right: 0;
+}
+.chave .no {
+  background: var(--disc-claro); border: 1.5px solid var(--disc); color: var(--disc);
+  font-weight: 800; font-size: 9pt; text-transform: uppercase; padding: 1mm 2.5mm; border-radius: 4px;
+  text-align: center; min-width: 20mm;
+}
+.chave .no small { display: block; text-transform: none; font-weight: 600; font-size: 7.5pt; color: var(--tinta-2); }
+.chave .desc { font-size: 9.4pt; }
+.chave .desc b:first-child { color: var(--disc); }
+
+/* ===================== FLUXO (processo/rito) =====================
+   <div class="fluxo"> <div class="passo">..</div> <div class="passo">..</div> </div>
+   .fluxo.vertical para empilhar; .passo.decisao para pergunta (sim/não)        */
+.fluxo { display: flex; align-items: stretch; flex-wrap: wrap; gap: 5mm; break-inside: avoid; }
+.fluxo > .passo {
+  flex: 1 1 0; min-width: 0; position: relative;
+  border: 2px solid var(--disc); border-radius: var(--raio); background: #fff;
+  padding: 1.4mm 1.2mm; font-size: 8.6pt; text-align: center; overflow-wrap: break-word;
+}
+.fluxo > .passo .t { display: block; font-weight: 800; color: var(--disc); text-transform: uppercase; font-size: 7.8pt; letter-spacing: -.01em; }
+.fluxo > .passo:not(:last-child)::after {
+  content: "➜"; position: absolute; right: -4.6mm; top: 50%; transform: translateY(-50%);
+  color: var(--disc); font-size: 12pt; font-weight: 900;
+}
+.fluxo > .passo.decisao { border-style: dashed; background: var(--disc-claro); }
+.fluxo > .passo.decisao .t::before { content: "? "; }
+.fluxo > .passo.fim { background: var(--disc); color: #fff; }
+.fluxo > .passo.fim .t { color: #fff; }
+.fluxo.vertical { flex-direction: column; gap: 5mm; }
+.fluxo.vertical > .passo:not(:last-child)::after {
+  content: "▼"; right: auto; left: 50%; top: auto; bottom: -4.6mm; transform: translateX(-50%); font-size: 9pt;
+}
+
+/* ===================== LINHA DO TEMPO ===================== */
+.linha-tempo { position: relative; display: flex; justify-content: space-between; gap: 2mm; padding-top: 7mm; break-inside: avoid; }
+.linha-tempo::before {
+  content: ""; position: absolute; top: 3mm; left: 2mm; right: 2mm; height: 3px; background: var(--disc);
+}
+.linha-tempo .marco { flex: 1; text-align: center; position: relative; font-size: 8.8pt; }
+.linha-tempo .marco::before {
+  content: ""; position: absolute; top: -5.5mm; left: 50%; transform: translateX(-50%);
+  width: 3.5mm; height: 3.5mm; border-radius: 50%; background: #fff; border: 3px solid var(--disc);
+}
+.linha-tempo .marco .quando { display: block; font-weight: 800; color: var(--disc); }
+
+/* ===================== COMPARATIVO ===================== */
+table.comparativo {
+  width: 100%; border-collapse: separate; border-spacing: 0; font-size: 8.5pt;
+  border: 2px solid var(--disc); border-radius: var(--raio); overflow: hidden; break-inside: avoid;
+}
+table.comparativo th {
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
+  font-size: 8.6pt; text-transform: uppercase; padding: 1.3mm 2mm; text-align: left;
+}
+table.comparativo td { padding: .8mm 1.8mm; border-top: 1px solid var(--linha); vertical-align: top; }
+table.comparativo td + td, table.comparativo th + th { border-left: 1px solid var(--linha); }
+table.comparativo tr:nth-child(even) td { background: #FAFBFC; }
+table.comparativo td.criterio { font-weight: 700; color: var(--disc); background: var(--disc-claro) !important; white-space: nowrap; }
+table.comparativo td.sim, table.comparativo td.nao { text-align: center; font-weight: 800; font-size: 10.5pt; }
+table.comparativo td.sim { color: var(--dica); }
+table.comparativo td.nao { color: var(--pegadinha); }
+table.comparativo td.sim::before { content: "✔"; }
+table.comparativo td.nao::before { content: "✘"; }
+table.comparativo tr.destaque td { background: var(--pegadinha-claro) !important; }
+
+/* ===================== SIGLA / MNEMÔNICO =====================
+   <div class="sigla"><div class="letra"><b>L</b><span>Livre</span></div>...</div> */
+.sigla { display: flex; gap: 1.2mm; justify-content: center; flex-wrap: nowrap; break-inside: avoid; }
+.sigla .letra { display: flex; flex-direction: column; align-items: center; flex: 0 1 18mm; min-width: 0; }
+.sigla .letra b {
+  width: 11mm; height: 11mm; display: grid; place-items: center;
+  background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
+  font-size: 17pt; font-weight: 800; border-radius: 4px;
+}
+.sigla .letra span { font-size: 7.6pt; font-weight: 700; margin-top: .8mm; text-align: center; line-height: 1.15; }
+
+/* ===================== PIRÂMIDE / HIERARQUIA ===================== */
+.piramide { display: flex; flex-direction: column; align-items: center; gap: 1mm; break-inside: avoid; }
+.piramide .nivel {
+  background: var(--disc); color: #fff; text-align: center; font-weight: 700; font-size: 9pt;
+  padding: 1.4mm 4mm; clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%);
+}
+.piramide .nivel:nth-child(1) { width: 35%; clip-path: polygon(50% 0, 50% 0, 100% 100%, 0 100%); padding-top: 4mm; }
+.piramide .nivel:nth-child(2) { width: 50%; opacity: .92; }
+.piramide .nivel:nth-child(3) { width: 65%; opacity: .84; }
+.piramide .nivel:nth-child(4) { width: 80%; opacity: .76; }
+.piramide .nivel:nth-child(5) { width: 95%; opacity: .7; }
+
+/* ===================== QUESTÕES ===================== */
+.questao { border: 1.5px solid var(--linha); border-radius: var(--raio); padding: 2mm 2.6mm; break-inside: avoid; font-size: 9.2pt; }
+.questao .cab { display: flex; gap: 2mm; align-items: center; margin-bottom: 1mm; font-size: 7.8pt; color: var(--tinta-2); }
+.questao .cab .n { background: var(--tinta); color: #fff; font-weight: 800; border-radius: 3px; padding: 0 1.6mm; }
+.questao .cab .estilo { border: 1px solid var(--tinta-2); border-radius: 3px; padding: 0 1.3mm; text-transform: uppercase; font-weight: 700; }
+.questao ol.alternativas { list-style: none; padding-left: 0; margin: 1mm 0 0; }
+.questao ol.alternativas li { counter-increment: alt; padding-left: 6mm; position: relative; }
+.questao ol.alternativas li::before {
+  content: "(" counter(alt, upper-alpha) ")"; position: absolute; left: 0; font-weight: 800;
+}
+.questao .ce { display: inline-flex; gap: 2mm; margin-top: 1mm; font-weight: 800; font-size: 8.5pt; }
+.questao .ce span { border: 1.5px solid var(--tinta-2); border-radius: 3px; padding: 0 1.8mm; }
+
+.gabarito { border-top: 2px dashed var(--linha); padding-top: 2mm; font-size: 8.4pt; color: var(--tinta-2); break-inside: avoid; }
+.gabarito h4 { font-size: 8.5pt; text-transform: uppercase; color: var(--tinta); margin-bottom: 1mm; }
+.gabarito .item { margin: .6mm 0; }
+.gabarito .item b { color: var(--tinta); }
+
+/* ===================== FLASHCARDS (recorte) ===================== */
+.flashcards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px dashed #999; }
+.flashcards .card {
+  min-height: 52mm; padding: 4mm; border: 1px dashed #999; display: flex; flex-direction: column; justify-content: center;
+  text-align: center; break-inside: avoid; position: relative;
+}
+.flashcards .card .lado { position: absolute; top: 2mm; left: 3mm; font-size: 7pt; color: var(--tinta-2); text-transform: uppercase; letter-spacing: .08em; }
+.flashcards .card.frente { font-family: var(--fonte-titulo); font-size: 12pt; font-weight: 700; color: var(--disc); }
+.flashcards .card.verso { font-size: 9.6pt; background: var(--disc-claro); }
+.flashcards-instrucao { font-size: 8pt; color: var(--tinta-2); text-align: center; }
+
+/* ===================== EDITAL VERTICALIZADO ===================== */
+table.edital { width: 100%; border-collapse: collapse; font-size: 8.8pt; }
+table.edital th { background: var(--disc); color: #fff; text-align: left; padding: 1.2mm 1.6mm; font-size: 8pt; text-transform: uppercase; }
+table.edital td { border-bottom: 1px solid var(--linha); padding: 1mm 1.6mm; vertical-align: top; }
+table.edital td.check { width: 7mm; text-align: center; }
+table.edital td.check::before { content: "☐"; font-size: 11pt; }
+table.edital tr.materia td { background: var(--disc-claro); font-weight: 800; color: var(--disc); text-transform: uppercase; }
+table.edital td.peso { text-align: center; white-space: nowrap; }
+
+/* ===================== CAPA / SUMÁRIO ===================== */
+.capa { justify-content: center; align-items: flex-start; background: linear-gradient(160deg, var(--disc) 0 46%, #fff 46%); }
+.capa .titulo-capa { color: #fff; font-family: var(--fonte-titulo); font-size: 34pt; font-weight: 800; text-transform: uppercase; line-height: 1; }
+.capa .sub-capa { color: #fff; font-size: 13pt; margin-top: 3mm; opacity: .95; }
+.capa .info-capa { margin-top: auto; font-size: 10pt; color: var(--tinta-2); }
+.sumario ol { counter-reset: s; list-style: none; padding: 0; }
+.sumario li { display: flex; gap: 2mm; border-bottom: 1px dotted var(--linha); padding: 1.2mm 0; }
+.sumario li::before { counter-increment: s; content: counter(s, decimal-leading-zero); font-weight: 800; color: var(--disc); }
+.sumario li .pg { margin-left: auto; color: var(--tinta-2); }
+
+/* ===================== SVG: classes utilitárias =====================
+   Use em diagramas SVG inline para herdar a paleta. */
+svg .s-disc   { stroke: var(--disc); }
+svg .f-disc   { fill: var(--disc); }
+svg .f-claro  { fill: var(--disc-claro); }
+svg .f-branco { fill: #fff; }
+svg .s-linha  { stroke: var(--linha); }
+svg .t-disc   { fill: var(--disc); font-family: var(--fonte-titulo); font-weight: 800; }
+svg .t-corpo  { fill: var(--tinta); font-family: var(--fonte-corpo); }
+svg .t-branco { fill: #fff; font-family: var(--fonte-titulo); font-weight: 700; }
+svg .f-peg    { fill: var(--pegadinha); } svg .s-peg { stroke: var(--pegadinha); }
+svg .f-dica   { fill: var(--dica); }      svg .s-dica { stroke: var(--dica); }
+svg .f-exc    { fill: var(--excecao); }   svg .s-exc { stroke: var(--excecao); }
+
+/* ===================== verificação ===================== */
+.verificar {
+  background: repeating-linear-gradient(45deg, #FFF6CC 0 6px, #FFEFA3 6px 12px);
+  border: 1.5px dashed #B88A00; padding: 0 1mm; border-radius: 3px; font-weight: 700;
+}
+.verificar::before { content: "[VERIFICAR] "; color: #8A6500; font-size: .85em; }
+
+/* =====================================================================
+   LAYOUT APOSTILA (padrão) — inspirado em apostilas esquematizadas
+   comerciais: cabeçalho corrido, 2 colunas, faixas de seção, corpo
+   cinza-claro, personagens ilustrados ao lado do texto.
+   ===================================================================== */
+
+/* cabeçalho corrido: logo | DISCIPLINA | nº página */
+.topo {
+  display: grid; grid-template-columns: 14mm 1fr 14mm; align-items: center;
+  border-bottom: 2.5px solid var(--disc); padding-bottom: 1.6mm; margin-bottom: 1mm;
+}
+.topo .logo { width: 11mm; height: 11mm; }
+.topo .logo svg { width: 100%; height: 100%; }
+.topo .titulo-topo {
+  text-align: center; font-family: var(--fonte-titulo); font-weight: 800;
+  font-size: 13pt; text-transform: uppercase; color: var(--tinta); letter-spacing: .02em;
+}
+.topo .titulo-topo small { display: block; font-size: 7.5pt; font-weight: 600; color: var(--tinta-2); letter-spacing: .06em; }
+.topo .pag {
+  justify-self: end; background: var(--disc-2); color: #fff; font-family: var(--fonte-titulo);
+  font-weight: 800; font-size: 13pt; width: 11mm; height: 11mm; display: grid; place-items: center; border-radius: 2px;
+}
+
+/* título de tópico grande, letra contornada (capa de assunto) */
+.titulo-topico {
+  text-align: center; font-family: var(--fonte-titulo); font-weight: 900; font-size: 26pt;
+  text-transform: uppercase; line-height: 1.02; color: var(--disc-2);
+  -webkit-text-stroke: 1.4px #8A3A22; paint-order: stroke fill;
+  text-shadow: 2px 2px 0 rgba(0,0,0,.12); margin: 1mm 0 2mm;
+}
+
+/* duas colunas com cabeçalho escuro de coluna */
+.apostila-colunas { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 4mm; align-items: start; }
+.apostila-colunas > .coluna { display: flex; flex-direction: column; gap: 2.6mm; }
+.coluna-cab {
+  background: #4A4F57; color: #fff; text-align: center; font-family: var(--fonte-titulo);
+  font-weight: 800; font-size: 9.5pt; text-transform: uppercase; padding: 1.4mm 2mm; letter-spacing: .03em;
+}
+
+/* bloco: faixa + corpo cinza */
+.bloco { break-inside: avoid; }
+.bloco > .faixa {
+  background: var(--disc-2); color: #fff; font-family: var(--fonte-titulo); font-weight: 800;
+  font-size: 9.2pt; text-transform: uppercase; padding: 1.2mm 2.5mm; letter-spacing: .02em;
+}
+.bloco.primaria > .faixa { background: var(--disc); }
+.bloco.escura > .faixa { background: #4A4F57; }
+.bloco > .faixa.arredondada, .bloco.pill > .faixa { border-radius: 999px; text-align: center; }
+.bloco > .corpo { background: #F1F2F4; padding: 1.8mm 2.4mm; font-size: 8.9pt; }
+.bloco.contorno > .corpo { background: #fff; border: 1.5px solid var(--disc); border-top: 0; }
+
+/* subtítulo sublinhado colorido (dentro do bloco) */
+.sub {
+  font-family: var(--fonte-titulo); font-weight: 800; font-size: 8.8pt; text-transform: uppercase;
+  color: var(--disc); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 2px;
+  margin: 1mm 0 .6mm;
+}
+
+/* lista com ✔ em caixinha */
+ul.check { list-style: none; padding-left: 0; }
+ul.check li { position: relative; padding-left: 5.5mm; }
+ul.check li::before {
+  content: "✔"; position: absolute; left: 0; top: .15em; width: 3.6mm; height: 3.6mm;
+  border: 1.4px solid var(--disc); border-radius: 2px; color: var(--disc);
+  font-size: 7pt; font-weight: 900; display: grid; place-items: center; line-height: 1;
+}
+ul.check.verde li::before { background: var(--dica); border-color: var(--dica); color: #fff; border-radius: 50%; }
+
+/* destaques no estilo das apostilas: vermelho escuro negrito */
+.chave-v { color: #B0182A; font-weight: 800; }
+.atencao-txt { color: #B0182A; font-weight: 800; font-style: italic; }
+.atencao-txt::before { content: "ATENÇÃO: "; }
+
+/* tags: IMPORTANTE (círculo com !), DICA (pílula) */
+.tag {
+  display: inline-flex; align-items: center; gap: 1.5mm; font-family: var(--fonte-titulo);
+  font-weight: 800; font-size: 8.5pt; text-transform: uppercase; letter-spacing: .04em;
+  border: 1.6px solid var(--pegadinha); color: var(--pegadinha); border-radius: 999px; padding: .4mm 3mm .4mm .5mm; background: #fff;
+}
+.tag::before {
+  content: var(--tag-ico, "!"); width: 5mm; height: 5mm; border-radius: 50%; background: var(--pegadinha); color: #fff;
+  display: grid; place-items: center; font-size: 9pt;
+}
+.tag.dica { border-color: var(--excecao); color: var(--excecao); --tag-ico: "★"; }
+.tag.dica::before { background: var(--excecao); }
+.tag.atencao { --tag-ico: "⚠"; }
+.tag-caixa { border: 1.5px solid var(--pegadinha); border-radius: var(--raio); padding: 3mm 2.6mm 2mm; position: relative; margin-top: 3mm; break-inside: avoid; }
+.tag-caixa.dica { border-color: var(--excecao); }
+.tag-caixa > .tag { position: absolute; top: -3mm; left: 50%; transform: translateX(-50%); }
+
+/* texto + ilustração lado a lado */
+.com-ilustra { display: grid; grid-template-columns: 1fr auto; gap: 2mm; align-items: center; }
+.com-ilustra.esq { grid-template-columns: auto 1fr; }
+.ilustra { width: 18mm; height: 18mm; display: block; }
+.ilustra.p { width: 12mm; height: 12mm; }
+.ilustra.g { width: 26mm; height: 26mm; }
+.ilustra.gg { width: 36mm; height: 36mm; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* relação A ➜ B (norma superior → fundante) */
+.relacao { display: grid; grid-template-columns: 1fr auto 1fr; gap: 2mm; align-items: center; margin: 1mm 0; }
+.relacao .de { border: 1.5px solid var(--tinta); padding: .8mm 2mm; font-weight: 700; font-size: 8.6pt; text-transform: uppercase; text-align: center; }
+.relacao .seta { color: var(--tinta); font-weight: 900; }
+.relacao .para { background: var(--pegadinha); color: #fff; padding: .8mm 2mm; font-weight: 800; font-size: 8.6pt; text-transform: uppercase; text-align: center; }
+
+/* tabela rótulo|conteúdo (estilo "Constituição rígida | que dá fundamento...") */
+table.rotulada { width: 100%; border-collapse: collapse; font-size: 9pt; break-inside: avoid; }
+table.rotulada td { border: 1.2px solid #7A2230; padding: 1.2mm 2mm; vertical-align: middle; }
+table.rotulada td:first-child { background: #FBE7EA; color: #7A2230; font-weight: 800; text-transform: uppercase; text-align: center; font-size: 8.2pt; width: 36%; }
+
+/* pirâmide com legenda lateral */
+.piramide-legenda { display: grid; grid-template-columns: 30mm 1fr; gap: 3mm; align-items: center; break-inside: avoid; }
+.piramide-legenda svg { width: 30mm; height: auto; }
+.piramide-legenda ol { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 1.2mm; font-size: 8.8pt; font-weight: 700; }
+.piramide-legenda li { display: flex; gap: 1.5mm; align-items: center; }
+.piramide-legenda li i { width: 3mm; height: 3mm; border-radius: 50%; flex: none; }
+
+</style>
+</head>
+<body class="d-administrativo">
+<svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true"><defs><style>
+      .k{fill:none;stroke:#1C2430;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+      .kf{stroke:#1C2430;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+      .pele{fill:#F6C9A0}.amarelo{fill:#FFE45C}.branco{fill:#fff}.cinza{fill:#E3E7EC}
+      .verm{fill:#D6283A}
+      .g-o{stroke:#1C2430;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.g-raposa{fill:#E8853A}.g-creme{fill:#FFF1DC}.g-mt{fill:#FFE45C}.g-mt2{fill:#C8F27A}.g-roxo{fill:#6A4C93}.g-tinta{fill:#1C2430}
+      .f-disc{fill:var(--disc,#44607A)}.f-claro{fill:var(--disc-claro,#E8EEF3)}.f-disc2{fill:var(--disc-2,#E8897A)}
+      .t-disc{fill:var(--disc,#44607A);font-family:Poppins,sans-serif;font-weight:800}.verde{fill:#16884A}.lar{fill:#E8790C}
+    </style></defs><symbol id="i-grifo" viewBox="0 0 240 240">
+  <g>
+    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
+    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
+    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
+  </g><g transform="translate(240 0) scale(-1 1)">
+    <path class="g-o g-mt" d="M106 150 C84 156 44 150 20 120 C30 120 38 118 44 114 C30 110 20 100 14 86 C28 88 40 86 50 82 C40 72 34 60 34 46 C62 62 96 96 106 150 Z"/>
+    <path class="g-o g-mt2" d="M104 146 C88 148 66 144 52 130 C60 128 66 126 70 122 C62 118 56 110 54 102 C64 104 74 102 80 98 C88 110 100 126 104 146 Z"/>
+    <path d="M44 114 C60 122 80 128 100 132 M50 82 C66 96 84 110 102 122" fill="none" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round" opacity=".3"/>
+  </g>
+
+  
+  <path class="g-o g-raposa" d="M150 200 C190 202 214 172 204 134 C196 158 176 172 152 172 Z"/>
+  <path class="g-o g-creme" d="M204 134 C216 160 206 190 184 198 C194 180 198 160 204 134 Z"/>
+
+  
+  <path class="g-o g-raposa" d="M80 206 C74 164 92 128 120 126 C148 128 166 164 160 206 Z"/>
+  <path class="g-o g-creme" d="M102 140 Q120 168 138 140 Q134 196 120 204 Q106 196 102 140 Z"/>
+  
+  <ellipse class="g-o g-creme" cx="104" cy="206" rx="13" ry="8"/>
+  <ellipse class="g-o g-creme" cx="136" cy="206" rx="13" ry="8"/>
+  <path d="M100 206 L100 211 M108 206 L108 211 M132 206 L132 211 M140 206 L140 211" stroke="#1C2430" stroke-width="2.5" stroke-linecap="round"/>
+
+  
+  <g transform="translate(170 70) rotate(30)">
+    <rect class="g-o g-mt" x="-6" y="-26" width="12" height="40" rx="3"/>
+    <rect class="g-o g-roxo" x="-7" y="-34" width="14" height="12" rx="3"/>
+    <path class="g-o g-mt2" d="M-6 14 L6 14 L3 22 L-3 22 Z"/>
+  </g>
+
+  
+  <path class="g-o g-raposa" d="M90 80 L80 34 L114 62 Z"/>
+  <path class="g-o g-raposa" d="M150 80 L160 34 L126 62 Z"/>
+  <path class="g-creme" d="M91 70 L86 46 L104 62 Z"/>
+  <path class="g-creme" d="M149 70 L154 46 L136 62 Z"/>
+
+  
+  <path class="g-o g-raposa" d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z"/>
+  <path class="g-creme" d="M82 98 C92 106 104 104 110 112 C112 120 118 128 120 131 C104 128 88 116 82 98 Z"/>
+  <path class="g-creme" d="M158 98 C148 106 136 104 130 112 C128 120 122 128 120 131 C136 128 152 116 158 98 Z"/>
+  <path d="M80 92 C80 70 98 58 120 58 C142 58 160 70 160 92 C160 112 142 128 120 132 C98 128 80 112 80 92 Z" fill="none" stroke="#1C2430" stroke-width="4" stroke-linejoin="round"/>
+
+  
+  <ellipse class="g-tinta" cx="104" cy="90" rx="6" ry="7"/>
+  <ellipse class="g-tinta" cx="136" cy="90" rx="6" ry="7"/>
+  <circle cx="106" cy="87" r="2.2" fill="#fff"/><circle cx="138" cy="87" r="2.2" fill="#fff"/>
+  <ellipse class="g-tinta" cx="120" cy="108" rx="6" ry="4.2"/>
+  <path d="M112 116 Q116 121 120 116 Q124 121 128 116" fill="none" stroke="#1C2430" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="94" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
+  <ellipse cx="146" cy="104" rx="5" ry="3" fill="#F28B82" opacity=".55"/>
+</symbol><symbol id="i-documento" viewBox="0 0 64 64">
+    <path class="kf branco" d="M12 4 L42 4 L54 16 L54 60 L12 60 Z"/>
+    <path class="kf f-claro" d="M42 4 L42 16 L54 16"/>
+    <text x="20" y="34" class="t-disc" font-size="16">§</text>
+    <path class="k" d="M30 28 L46 28 M20 40 L46 40 M20 48 L40 48"/>
+  </symbol><symbol id="i-servidora" viewBox="0 0 64 64">
+    <path class="kf" fill="#5A6070" d="M18 18 Q18 4 32 4 Q46 4 46 18 L46 30 L18 30 Z"/>
+    <circle class="kf pele" cx="32" cy="20" r="10"/>
+    <path class="kf" fill="#5A6070" d="M22 16 Q26 10 32 10 Q38 10 42 16 Q36 13 32 13 Q28 13 22 16 Z"/>
+    <path class="kf" fill="#3D4F6E" d="M14 62 Q14 34 32 34 Q50 34 50 62 Z"/>
+    <path class="kf branco" d="M27 34 L32 42 L37 34"/>
+    <rect class="kf amarelo" x="38" y="44" width="7" height="8" rx="1"/>
+    <circle cx="28.5" cy="20" r="1.2" fill="#1C2430"/><circle cx="35.5" cy="20" r="1.2" fill="#1C2430"/>
+    <path class="k" d="M29 25 Q32 27 35 25"/>
+  </symbol><symbol id="i-calendario" viewBox="0 0 64 64">
+    <rect class="kf branco" x="6" y="12" width="52" height="46" rx="5"/>
+    <path class="kf f-disc" d="M6 17 Q6 12 11 12 L53 12 Q58 12 58 17 L58 24 L6 24 Z"/>
+    <path class="k" d="M18 6 L18 16 M46 6 L46 16"/>
+    <rect class="f-claro" x="14" y="31" width="8" height="7"/><rect class="f-claro" x="28" y="31" width="8" height="7"/>
+    <rect class="verm" x="42" y="31" width="8" height="7"/><rect class="f-claro" x="14" y="44" width="8" height="7"/>
+  </symbol><symbol id="i-alerta" viewBox="0 0 64 64">
+    <path class="kf lar" d="M32 6 L60 56 L4 56 Z"/>
+    <path class="k" d="M32 24 L32 40" style="stroke:#fff;stroke-width:5"/><circle cx="32" cy="48" r="3" fill="#fff"/>
+  </symbol><symbol id="i-relogio" viewBox="0 0 64 64">
+    <circle class="kf branco" cx="32" cy="34" r="24"/><circle cx="32" cy="34" r="19" class="f-claro"/>
+    <path class="k" d="M32 20 L32 34 L42 40"/><path class="kf f-disc" d="M26 4 L38 4 L38 10 L26 10 Z"/>
+  </symbol></svg>
+
+<!-- ============================ FOLHA 1 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Direito Administrativo<small>Lei 8.112/1990 · regime jurídico dos servidores federais</small></div>
+    <div class="pag">01</div>
+  </div>
+
+  <div class="titulo-topico">Servidor público federal</div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Provimento · art. 8º</div>
+
+      <table class="rotulada">
+        <tr><td>Nomeação</td><td>Única forma <span class="chave-v">originária</span>: primeiro vínculo com o cargo</td></tr>
+        <tr><td>Promoção</td><td>Sobe na carreira</td></tr>
+        <tr><td>Readaptação</td><td>Cargo compatível com <b>limitação física ou mental</b> verificada em inspeção médica (art. 24)</td></tr>
+        <tr><td>Reversão</td><td>Retorno do <b>aposentado</b> à atividade (art. 25)</td></tr>
+        <tr><td>Aproveitamento</td><td>Retorno do servidor <b>em disponibilidade</b>, obrigatório, em cargo compatível (art. 30)</td></tr>
+        <tr><td>Reintegração</td><td>Volta do estável quando <b>invalidada a demissão</b>, com ressarcimento das vantagens (art. 28)</td></tr>
+        <tr><td>Recondução</td><td>Estável volta ao cargo anterior: <b>inabilitado no estágio</b> de outro cargo ou <b>reintegração</b> do anterior ocupante (art. 29)</td></tr>
+      </table>
+      <p class="pequeno" style="margin:-1mm 0 0">As 6 últimas são formas <b>derivadas</b>: o servidor já tem vínculo.</p>
+
+      <div class="bloco">
+        <div class="faixa">Vacância · art. 33</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <ul class="check">
+              <li>Exoneração;</li>
+              <li>Demissão;</li>
+              <li><mark>Promoção</mark>;</li>
+              <li><mark>Readaptação</mark>;</li>
+              <li>Aposentadoria;</li>
+              <li>Posse em outro cargo <b>inacumulável</b>;</li>
+              <li>Falecimento.</li>
+            </ul>
+            <svg class="ilustra g"><use href="#i-documento"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="tag-caixa dica"><span class="tag dica">Dica</span>
+        <p><b>Promoção</b> e <b>readaptação</b> são, ao mesmo tempo, forma de <span class="chave-v">provimento</span> (do novo cargo) e de <span class="chave-v">vacância</span> (do cargo antigo).</p>
+      </div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Da nomeação à estabilidade</div>
+
+      <div class="bloco primaria">
+        <div class="faixa">Linha do tempo do ingresso</div>
+        <div class="corpo">
+          <div class="fluxo vertical">
+            <div class="passo"><span class="t">Nomeação</span>publicação do ato de provimento</div>
+            <div class="passo"><span class="t">Posse · 30 dias</span>da publicação (art. 13, §1º). Não tomou posse ➜ ato <b>tornado sem efeito</b> (§6º)</div>
+            <div class="passo"><span class="t">Exercício · 15 dias</span>da posse (art. 15, §1º). Não entrou ➜ <b>exonerado</b> (§2º)</div>
+            <div class="passo fim"><span class="t">Estabilidade · 3 anos</span>de efetivo exercício (CF, art. 41)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Posse · art. 13</div>
+        <div class="corpo">
+          <div class="com-ilustra esq">
+            <svg class="ilustra g"><use href="#i-servidora"/></svg>
+            <ul class="check" style="margin:0">
+              <li>Pode ser por <b>procuração específica</b> (§3º);</li>
+              <li>Só há posse no provimento por <span class="chave-v">nomeação</span> (§4º).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tag-caixa"><span class="tag">Importante</span>
+        <p>O art. 20 ainda diz <mark class="troca">24 meses</mark> de estágio probatório. Depois da EC 19/98, a estabilidade exige <b>3 anos</b>, e STF e STJ entendem que o estágio acompanha esse prazo. Se a questão pedir "segundo a literalidade da Lei 8.112", são 24 meses.</p>
+      </div>
+
+      <div class="bloco escura">
+        <div class="faixa">Fatores do estágio · art. 20</div>
+        <div class="corpo">
+          <div class="sigla">
+            <div class="letra"><b>A</b><span>Assiduidade</span></div>
+            <div class="letra"><b>D</b><span>Disciplina</span></div>
+            <div class="letra"><b>C</b><span>Capacidade de iniciativa</span></div>
+            <div class="letra"><b>P</b><span>Produtividade</span></div>
+            <div class="letra"><b>R</b><span>Responsa<span>Responsabili&shy;dade</span>shy;bilidade</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Lei 8.112/1990 — atualizado até 11/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 2 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Direito Administrativo<small>Lei 8.112/1990 · regime jurídico dos servidores federais</small></div>
+    <div class="pag">02</div>
+  </div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Mobilidade</div>
+
+      <table class="comparativo">
+        <tr><th>Critério</th><th>Remoção · art. 36</th><th>Redistribuição · art. 37</th></tr>
+        <tr><td class="criterio">Quem se move</td><td>O <b>servidor</b></td><td>O <b>cargo</b> (ocupado ou vago)</td></tr>
+        <tr><td class="criterio">Âmbito</td><td>Mesmo quadro, com ou sem mudança de sede</td><td>Outro órgão ou entidade do <b>mesmo Poder</b></td></tr>
+      </table>
+
+      <div class="chave">
+        <div class="raiz">Remoção<small>art. 36, p.ú.</small></div>
+        <div class="ramos">
+          <div class="ramo"><div class="no">De ofício</div><div class="desc">No interesse da Administração</div></div>
+          <div class="ramo"><div class="no">A pedido</div><div class="desc">A critério da Administração</div></div>
+          <div class="ramo"><div class="no">A pedido</div><div class="desc"><b>Independente</b> do interesse da Administração: acompanhar <b>cônjuge</b> deslocado, <b>saúde</b> (junta médica) ou <b>processo seletivo</b></div></div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Férias · arts. 76 e 77</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <ul class="check">
+              <li><b>30 dias</b> por ano; 1º período exige <span class="chave-v">12 meses</span> de exercício;</li>
+              <li>Acumula até <b>2 períodos</b>, só por <b>necessidade do serviço</b>;</li>
+              <li>Parcela em até <span class="chave-v">3 etapas</span>, a pedido e no interesse da Administração;</li>
+              <li>Adicional de <b>1/3</b>, sem precisar pedir.</li>
+            </ul>
+            <svg class="ilustra g"><use href="#i-calendario"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco primaria">
+        <div class="faixa">Concessões: ausências sem prejuízo · art. 97</div>
+        <div class="corpo">
+          <table class="rotulada">
+            <tr><td>1 dia</td><td>Doação de <b>sangue</b></td></tr>
+            <tr><td>Até 2 dias</td><td><b>Alistamento</b> ou recadastramento eleitoral</td></tr>
+            <tr><td>8 dias consecutivos</td><td><b>Casamento</b> ou <b>falecimento</b> de cônjuge, companheiro, pais, madrasta ou padrasto, filhos, enteados, menor sob guarda ou tutela e irmãos</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Licenças · art. 81</div>
+
+      <table class="comparativo">
+        <tr><th style="width:30%">Licença</th><th style="width:15%">Pago?</th><th>Regra-chave</th></tr>
+        <tr><td class="criterio">Doença em pessoa da família</td><td>Em parte</td><td>A cada 12 meses: até <b>60 dias com</b> + até <b>90 dias sem</b> remuneração (art. 83, §2º)</td></tr>
+        <tr><td class="criterio">Afastamento do cônjuge</td><td class="nao"></td><td>Prazo <b>indeterminado</b> (art. 84, §1º)</td></tr>
+        <tr><td class="criterio">Serviço militar</td><td>—</td><td>Na forma da legislação específica</td></tr>
+        <tr><td class="criterio">Atividade política</td><td>—</td><td>Regras próprias do art. 86</td></tr>
+        <tr class="destaque"><td class="criterio">Capacitação</td><td class="sim"></td><td>Após cada <b>quinquênio</b>, até <b>3 meses</b>; períodos <mark class="troca">não acumuláveis</mark> (art. 87)</td></tr>
+        <tr class="destaque"><td class="criterio">Interesses particulares</td><td class="nao"></td><td>Até <b>3 anos</b> consecutivos; <mark class="troca">não</mark> para quem está em estágio probatório; pode ser interrompida (art. 91)</td></tr>
+        <tr><td class="criterio">Mandato classista</td><td class="nao"></td><td>Confederação, federação, sindicato etc. (art. 92)</td></tr>
+      </table>
+
+      <div class="tag-caixa"><span class="tag">Importante</span>
+        <div class="com-ilustra">
+          <p>Licença para <b>tratamento da própria saúde</b>, à <b>gestante</b> e à <b>paternidade</b> <span class="chave-v">não estão no art. 81</span>: ficam no capítulo da <b>Seguridade Social</b> do servidor.</p>
+          <svg class="ilustra"><use href="#i-alerta"/></svg>
+        </div>
+      </div>
+
+      <div class="caixa pegadinha">
+        <div class="rotulo">Como a banca confunde</div>
+        <div class="corpo">
+          <p>✘ Servidor em estágio pode tirar licença para <mark class="troca">interesses particulares</mark>. <span class="verde">→ Não pode (art. 91).</span></p>
+          <p>✘ Licença para capacitação de 3 meses pode ser <mark class="troca">acumulada</mark>. <span class="verde">→ Não acumula.</span></p>
+          <p>✘ Férias acumulam a <mark class="troca">pedido do servidor</mark>. <span class="verde">→ Só por necessidade do serviço.</span></p>
+          <p>✘ Redistribuição é deslocamento do <mark class="troca">servidor</mark>. <span class="verde">→ É do cargo.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Lei 8.112/1990 — atualizado até 11/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 3 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Direito Administrativo<small>Lei 8.112/1990 · regime disciplinar</small></div>
+    <div class="pag">03</div>
+  </div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Penalidades · art. 127</div>
+
+      <div class="piramide-legenda">
+        <svg viewBox="0 0 100 90">
+          <polygon points="50,2 70,34 30,34" fill="#B0182A"/>
+          <polygon points="30,37 70,37 84,60 16,60" fill="#DC6E43"/>
+          <polygon points="16,63 84,63 98,88 2,88" fill="#F2B63C"/>
+        </svg>
+        <ol>
+          <li><i style="background:#B0182A"></i>Demissão · cassação de aposentadoria ou disponibilidade · destituição de cargo em comissão ou de função comissionada</li>
+          <li><i style="background:#DC6E43"></i>Suspensão (até 90 dias)</li>
+          <li><i style="background:#F2B63C"></i>Advertência (por escrito)</li>
+        </ol>
+      </div>
+
+      <table class="comparativo">
+        <tr><th>Penalidade</th><th>Prescreve em</th><th>Registro cancelado</th></tr>
+        <tr><td class="criterio">Advertência</td><td><b>180 dias</b></td><td>Após <b>3 anos</b></td></tr>
+        <tr><td class="criterio">Suspensão</td><td><b>2 anos</b></td><td>Após <b>5 anos</b></td></tr>
+        <tr><td class="criterio">Demissão e afins</td><td><b>5 anos</b></td><td>—</td></tr>
+      </table>
+      <p class="pequeno" style="margin:-1mm 0 0">Cancelamento: sem nova infração no período e sem efeito retroativo (art. 131). Prescrição: art. 142.</p>
+
+      <div class="bloco">
+        <div class="faixa">Prescrição · art. 142</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <ul class="check">
+              <li>Conta da data em que o fato se tornou <span class="chave-v">conhecido</span> (§1º);</li>
+              <li>Abertura de sindicância ou PAD <b>interrompe</b> até a decisão final (§3º);</li>
+              <li>Infração também crime: prazos da <b>lei penal</b> (§2º).</li>
+            </ul>
+            <svg class="ilustra g"><use href="#i-relogio"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Suspensão · art. 130</div>
+        <div class="corpo">
+          <ul class="check">
+            <li>Reincidência em falta de advertência e outras infrações; máximo de <b>90 dias</b>;</li>
+            <li>Recusa injustificada a inspeção médica: até <b>15 dias</b> (§1º);</li>
+            <li>Pode virar <span class="chave-v">multa de 50% por dia</span>, com o servidor em serviço (§2º).</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bloco escura">
+        <div class="faixa">Quem aplica · art. 141</div>
+        <div class="corpo">
+          <table class="rotulada">
+            <tr><td>Demissão e cassação</td><td>Presidente da República, presidentes das Casas Legislativas e dos Tribunais Federais, PGR</td></tr>
+            <tr><td>Suspensão &gt; 30 dias</td><td>Autoridade imediatamente inferior a essas</td></tr>
+            <tr><td>Advertência ou suspensão até 30 dias</td><td>Chefe da repartição</td></tr>
+            <tr><td>Destituição de cargo em comissão</td><td>Autoridade que nomeou</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Apuração</div>
+
+      <table class="comparativo">
+        <tr><th>Critério</th><th>Sindicância</th><th>PAD</th><th>Rito sumário</th></tr>
+        <tr><td class="criterio">Prazo</td><td><b>30</b> + 30</td><td><b>60</b> + 60</td><td><b>30</b> + até 15</td></tr>
+        <tr><td class="criterio">Comissão</td><td>—</td><td><b>3</b> estáveis</td><td><b>2</b> estáveis</td></tr>
+        <tr><td class="criterio">Resultado</td><td>Arquivamento, advertência, suspensão <b>até 30 dias</b> ou abertura de PAD</td><td>Qualquer penalidade</td><td>Acumulação ilegal, abandono, inassiduidade</td></tr>
+      </table>
+
+      <div class="bloco primaria">
+        <div class="faixa">Fases do PAD · art. 151</div>
+        <div class="corpo">
+          <div class="fluxo">
+            <div class="passo"><span class="t">Instauração</span>publicação do ato da comissão</div>
+            <div class="passo"><span class="t">Inquérito</span>instrução, defesa e relatório</div>
+            <div class="passo fim"><span class="t">Julgamento</span>em 20 dias (art. 167)</div>
+          </div>
+          <table class="rotulada" style="margin-top:2mm">
+            <tr><td>Defesa escrita</td><td><b>10 dias</b>; dois ou mais indiciados: <b>20 dias</b> comuns (art. 161)</td></tr>
+            <tr><td>Citação por edital</td><td><b>15 dias</b> da última publicação (art. 163)</td></tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="bloco">
+        <div class="faixa">Rito sumário: as 3 hipóteses</div>
+        <div class="corpo">
+          <div class="com-ilustra esq">
+            <svg class="ilustra g"><use href="#i-calendario"/></svg>
+            <ul class="check" style="margin:0">
+              <li><b>Acumulação ilegal</b> de cargos;</li>
+              <li><b>Abandono</b>: ausência intencional por <span class="chave-v">mais de 30 dias consecutivos</span> (art. 138);</li>
+              <li><b>Inassiduidade</b>: <span class="chave-v">60 dias interpolados</span> em 12 meses, sem justa causa (art. 139).</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="caixa dica">
+        <div class="rotulo">Afastamento preventivo · art. 147</div>
+        <div class="corpo">Até <b>60 dias</b>, prorrogável por igual prazo, <span class="chave-v">sem prejuízo da remuneração</span>, para o servidor não influir na apuração.</div>
+      </div>
+
+      <div class="caixa pegadinha">
+        <div class="rotulo">Como a banca confunde</div>
+        <div class="corpo">
+          <p>✘ Prescrição conta da data do <mark class="troca">fato</mark>. <span class="verde">→ Do conhecimento do fato.</span></p>
+          <p>✘ Sindicância aplica suspensão de até <mark class="troca">90 dias</mark>. <span class="verde">→ Até 30 dias.</span></p>
+          <p>✘ Revisão do PAD pode <mark class="troca">agravar</mark> a pena. <span class="verde">→ Nunca (art. 182, p.ú.).</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Lei 8.112/1990 — atualizado até 11/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 4 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Direito Administrativo<small>Lei 8.112/1990 · fixação · banca indefinida</small></div>
+    <div class="pag">04</div>
+  </div>
+
+  <div class="questao">
+    <div class="cab"><span class="n">01</span><span class="estilo">C/E</span>estilo Cebraspe · inédita</div>
+    <p>Conforme a Lei 8.112/1990, a promoção e a readaptação constituem simultaneamente formas de provimento e de vacância de cargo público.</p>
+    <div class="ce"><span>C</span><span>E</span></div>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">02</span><span class="estilo">C/E</span>estilo Cebraspe · inédita</div>
+    <p>A ação disciplinar relativa a infração punível com advertência prescreve em 180 dias, contados da data em que o fato foi praticado.</p>
+    <div class="ce"><span>C</span><span>E</span></div>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">03</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
+    <p>Pedro foi nomeado para cargo efetivo em autarquia federal. O ato foi publicado em 2 de março, mas Pedro só compareceu para tomar posse 40 dias depois, sem qualquer justificativa legal. Segundo a Lei 8.112/1990:</p>
+    <ol class="alternativas">
+      <li>Pedro deve ser exonerado de ofício.</li>
+      <li>o ato de provimento deve ser tornado sem efeito.</li>
+      <li>a posse é válida, pois o prazo de 30 dias conta da data do exercício.</li>
+      <li>Pedro deve ser demitido por abandono de cargo.</li>
+      <li>a posse é válida se Pedro entrar em exercício em até 15 dias.</li>
+    </ol>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">04</span><span class="estilo">A–E</span>estilo FGV · inédita</div>
+    <p>Marta, servidora estável, faltou ao serviço sem causa justificada por 62 dias intercalados nos últimos 12 meses. Quanto à apuração e à penalidade, é correto afirmar que:</p>
+    <ol class="alternativas">
+      <li>trata-se de abandono de cargo, apurável por sindicância.</li>
+      <li>trata-se de inassiduidade habitual, apurável pelo rito sumário e punível com demissão.</li>
+      <li>a penalidade máxima cabível é a suspensão de 90 dias.</li>
+      <li>a apuração exige comissão de três servidores estáveis e prazo de 60 dias.</li>
+      <li>não há infração, pois as faltas não foram consecutivas.</li>
+    </ol>
+  </div>
+
+  <div class="gabarito">
+    <h4>Gabarito comentado</h4>
+    <div class="item"><b>01 — Certo.</b> Arts. 8º e 33: ambas aparecem nas duas listas.</div>
+    <div class="item"><b>02 — Errado.</b> O prazo de 180 dias está certo (art. 142, III), mas conta da data em que o fato se tornou <i>conhecido</i> (§1º).</div>
+    <div class="item"><b>03 — B.</b> Art. 13, §§1º e 6º: posse em 30 dias da publicação; fora do prazo, o ato fica sem efeito. (A) exoneração é para quem não entra em exercício (art. 15, §2º); (C) o prazo conta da publicação; (D) não há abandono sem posse; (E) o exercício pressupõe posse válida.</div>
+    <div class="item"><b>04 — B.</b> Art. 139: 60 dias interpolados em 12 meses = inassiduidade habitual; apuração pelo rito sumário (art. 133 c/c art. 140), pena de demissão (art. 132, III). (A) abandono exige mais de 30 dias consecutivos e intenção; (C) a pena é demissão; (D) o rito sumário usa comissão de 2 estáveis e 30 dias; (E) faltas interpoladas configuram a infração.</div>
+  </div>
+
+  <div class="caixa lei" style="margin-top:2mm">
+    <div class="rotulo">Fontes</div>
+    <div class="corpo pequeno">Lei 8.112/1990 — texto compilado (Câmara dos Deputados, Legislação Informatizada), consulta em 11/11/2026: arts. 8º, 13, 15, 20, 24 a 30, 33, 36, 37, 76, 77, 81, 83, 84, 86, 87, 91, 92, 97, 127, 130 a 133, 138 a 142, 145, 147, 149, 151, 152, 161, 163, 167, 174 e 182. CF, art. 41 (EC 19/1998). Questões inéditas, criadas para este material. Conferir alterações posteriores.</div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Lei 8.112/1990 — atualizado até 11/11/2026</span></div>
+</div>
+</body>
+</html>
