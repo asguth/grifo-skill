@@ -3,7 +3,12 @@ description: Ajuda do Grifo-Skill — lista todos os comandos, flags e exemplos
 argument-hint: [ajuda | <comando>]
 ---
 
-Use a skill **grifo** para executar o comando `/grifo` (ajuda) com os argumentos:
+**Primeiro passo obrigatório:** carregue a skill do plugin com a ferramenta **Skill**,
+nome `grifo-skill:grifo` (ou `grifo`). Ela informa a pasta da skill ("Base directory");
+todos os caminhos citados (`references/`, `scripts/`, `assets/`) são relativos a essa
+pasta — não procure os arquivos em outro lugar.
+
+Depois execute o comando `/grifo` (ajuda) com os argumentos:
 
 $ARGUMENTS
 
