@@ -27,6 +27,7 @@ VISUAIS = {
     "chave", "fluxo", "linha-tempo", "piramide", "piramide-legenda", "sigla", "relacao",
     "comparativo", "rotulada", "verdade", "edital", "formula", "codigo", "exemplo-frase",
     "ilustra", "flashcards",
+    "questao", "gabarito",  # coluna só de questões/gabarito dispensa diagrama
 }
 VISUAIS_TAGS = {"table", "svg", "img"}
 

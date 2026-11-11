@@ -28,7 +28,9 @@ Pastas desta skill (caminhos relativos a este SKILL.md):
 | `assets/grifo.css` | Design system (não editar por apostila) | Injetado pelo `montar.py` |
 | `assets/ilustracoes.svg` | Biblioteca de ilustrações (ids `i-*`) | Consultar ids disponíveis |
 | `scripts/montar.py` | Injeta CSS + ilustrações usadas → HTML autocontido | Sempre |
-| `scripts/renderizar.py` | HTML → PDF A4 + PNG por folha + alerta de estouro | Sempre que possível |
+| `scripts/renderizar.py` | HTML → PDF A4 + PNG por folha + relatório de layout (`--json`, `--pb`) | Sempre que possível |
+| `scripts/verificar.py` | Lint do HTML-fonte (classes, ilustrações, folhas, marcadores) | Antes de montar |
+| `assets/templates/*.html` | Esqueleto de cada comando, com os marcadores do `montar.py` | Início do passo 4 |
 
 ## Comandos
 
@@ -96,37 +98,45 @@ Regra de ouro: **ilustre tudo que tem estrutura** (classificação, processo,
 hierarquia, comparação, prazos, regra+exceção). Texto corrido só para conceito puro,
 e mesmo assim curto, em bloco, com termos-chave grifados.
 
-### 4. Escrever o HTML-fonte
-Ler `references/componentes.md` e `references/design.md`. Escrever um arquivo
-`<slug>-fonte.html` com:
-```html
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
-<title>Tópico — Disciplina</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
-<!--APOSTILA:CSS-->
-</head>
-<body class="d-<disciplina>">
-<!--APOSTILA:SPRITE-->
-<div class="folha"> ... </div>
-</body></html>
-```
+### 4. Escrever o HTML-fonte (a partir do template)
+Ler `references/componentes.md` e `references/design.md`. **Copiar o template do
+comando** para `<slug>-fonte.html` e preencher — não escrever o esqueleto do zero
+(economiza tokens e padroniza a saída):
+
+| Comando | Template (`assets/templates/`) |
+|---|---|
+| `/resumo`, `/esquema`, `/lei-seca`, `/comparar`, `/pegadinhas`, `/mnemonico` | `resumo.html` (apague o que não usar) |
+| `/revisao` | `revisao.html` |
+| `/flashcards` | `flashcards.html` (8 cartões por folha) |
+| `/questoes` | `questoes.html` |
+| `/edital`, `/cronograma` | `edital.html` |
+| `/apostila` | `capa-sumario.html` + um `resumo.html` por tópico |
+
+- Trocar **todo** `[[MARCADOR]]` (o `verificar.py` avisa se sobrar) e a classe
+  `d-…` do `<body>` (cor da disciplina).
 - Nunca escrever CSS próprio extenso: usar as classes do design system. Ajustes
   pontuais via `style=""` são aceitáveis (ex.: largura de coluna).
-- Ilustrações: `<svg class="ilustra g"><use href="#i-juiz"/></svg>`. Ids disponíveis:
-  ver comentários de `assets/ilustracoes.svg` ou `references/design.md` §4.
+- Ilustrações: `<svg class="ilustra g"><use href="#i-juiz"/></svg>`. Ids disponíveis
+  em `references/design.md` §4 (galeria: `docs/galeria.png` do repositório).
   Se precisar de algo que não existe, desenhar um SVG inline novo **no mesmo estilo**
   (regras em `references/design.md` §4).
 
-### 5. Montar e renderizar
+### 5. Verificar, montar e renderizar
 ```bash
-python3 <skill>/scripts/montar.py <slug>-fonte.html <slug>.html
-python3 <skill>/scripts/renderizar.py <slug>.html <pasta-saida>
+python3 <skill>/scripts/verificar.py <slug>-fonte.html          # lint: classes, ids, folhas
+python3 <skill>/scripts/montar.py <slug>-fonte.html <slug>.html  # [--fontes-embutidas]
+python3 <skill>/scripts/renderizar.py <slug>.html <pasta-saida> --json
 ```
-`renderizar.py` gera PDF + PNG por folha e lista estouros de layout. Corrigir todo
-estouro antes de seguir (encurtar texto, mover bloco, criar nova folha).
-Sem Python/navegador disponível: entregar o HTML (imprime em PDF pelo navegador,
-Ctrl+P → A4, margens nenhuma, gráficos de fundo ligado).
+- `verificar.py`: corrigir todo ERRO antes de montar.
+- `montar.py` injeta CSS + ilustrações usadas e protege referências com espaço
+  inseparável ("art. 59", "30 dias"). `--fontes-embutidas` embute Inter e Poppins
+  (PDF igual sem internet).
+- `renderizar.py` gera PDF + PNG por folha e o relatório de layout (estouro de página,
+  vazamento lateral, transbordo de caixa, colunas desequilibradas, fonte < 8 pt).
+  Corrigir todo aviso antes de seguir (encurtar texto, mover bloco, criar nova folha).
+  `--pb` gera também PNGs em cinza para conferir a leitura em P&B.
+- Sem Python/navegador disponível: entregar o HTML (imprime em PDF pelo navegador,
+  Ctrl+P → A4, margens nenhuma, gráficos de fundo ligado).
 
 ### 6. Validação (3 revisores independentes)
 Os revisores **não podem ter escrito o material**: precisam olhar a frio.

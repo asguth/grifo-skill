@@ -330,7 +330,7 @@ table.comparativo tr.destaque td { background: var(--pegadinha-claro) !important
 /* ===================== FLASHCARDS (recorte) ===================== */
 .flashcards { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px dashed #999; }
 .flashcards .card {
-  min-height: 52mm; padding: 4mm; border: 1px dashed #999; display: flex; flex-direction: column; justify-content: center;
+  min-height: 29mm; padding: 3mm 4mm; border: 1px dashed #999; display: flex; flex-direction: column; justify-content: center;
   text-align: center; break-inside: avoid; position: relative;
 }
 .flashcards .card .lado { position: absolute; top: 2mm; left: 3mm; font-size: 8pt; color: var(--tinta-2); text-transform: uppercase; letter-spacing: .08em; }
