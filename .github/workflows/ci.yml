@@ -26,58 +26,39 @@ jobs:
 
       - name: Instalar Playwright + Chromium
         run: |
-          python -m pip install --upgrade pip
           pip install playwright pillow
           python -m playwright install --with-deps chromium
 
-      - name: Biblioteca de ilustrações
-        run: python $S/verificar_ilustracoes.py
-
-      - name: Testes do montar.py (espaço inseparável)
-        run: python $S/test_montar.py
-
-      - name: Contraste das cores das disciplinas
-        run: python $S/verificar_contraste.py
-
-      - name: Lint dos HTML-fonte e dos templates
-        run: python $S/verificar.py exemplos/*-fonte.html skills/grifo/assets/templates/*.html
-
-      - name: Montar exemplos e conferir que o HTML versionado está atualizado
+      - name: Verificadores
         run: |
-          for f in exemplos/*-fonte.html; do
-            python $S/montar.py "$f" "${f%-fonte.html}.html"
-          done
-          git diff --stat --exit-code -- exemplos/*.html || {
-            echo "::error::HTML de exemplo desatualizado: rode montar.py e versione o resultado"; exit 1; }
+          python ferramentas/verificar_ilustracoes.py
+          python ferramentas/test_montar.py
+          python ferramentas/verificar_contraste.py
+          python $S/verificar.py exemplos/*-fonte.html skills/grifo/assets/templates/*.html
 
-      - name: Renderizar (falha em estouro de layout)
+      - name: Montar e renderizar exemplos (falha em estouro de layout)
         run: |
           mkdir -p saida
           falhou=0
-          for f in exemplos/*.html; do
-            case "$f" in *-fonte.html) continue;; esac
-            python $S/renderizar.py "$f" saida --json > "saida/$(basename "$f" .html).json"
-            python - "saida/$(basename "$f" .html).json" <<'PY' || falhou=1
+          for f in exemplos/*-fonte.html; do
+            html="saida/$(basename "${f%-fonte.html}").html"
+            python $S/montar.py "$f" "$html"
+            python $S/renderizar.py "$html" saida --json > "${html%.html}.json"
+            python - "${html%.html}.json" <<'PY' || falhou=1
           import json, sys
           rel = json.load(open(sys.argv[1], encoding="utf-8"))
           estouro = {"pagina", "lateral", "transborda"}
-          ruins = [a for a in rel["avisos"] if a["tipo"] in estouro]
           for a in rel["avisos"]:
               nivel = "error" if a["tipo"] in estouro else "warning"
               print(f"::{nivel}::{rel['arquivo']} folha {a['folha']} [{a['tipo']}] {a['elemento'] or ''} {a['msg']}")
           print(f"{rel['arquivo']}: {rel['folhas']} folha(s), {len(rel['avisos'])} aviso(s)")
-          sys.exit(1 if ruins else 0)
+          sys.exit(any(a["tipo"] in estouro for a in rel["avisos"]))
           PY
           done
           exit $falhou
 
-      - name: Publicar PDFs e PNGs
+      - uses: actions/upload-artifact@v4
         if: always()
-        uses: actions/upload-artifact@v4
         with:
           name: exemplos-renderizados
-          path: |
-            saida/*.pdf
-            saida/*.png
-            saida/*.json
-          if-no-files-found: warn
+          path: saida/

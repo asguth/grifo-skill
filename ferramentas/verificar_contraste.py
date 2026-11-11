@@ -9,7 +9,7 @@ import re
 import sys
 from pathlib import Path
 
-CSS = Path(__file__).resolve().parent.parent / "assets" / "grifo.css"
+CSS = Path(__file__).resolve().parent.parent / "skills" / "grifo" / "assets" / "grifo.css"
 MINIMO = 4.5
 # (texto, fundo) como os componentes realmente combinam
 PARES = [

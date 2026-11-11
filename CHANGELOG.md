@@ -1,58 +1,29 @@
 # Changelog
 
 Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/);
-versões seguem [SemVer](https://semver.org/lang/pt-BR/).
+versões seguem [SemVer](https://semver.org/lang/pt-BR/). A cada tag `vX.Y.Z` o workflow
+de release grava a versão na skill (aparece ao lado do logo em cada folha) e publica o zip.
 
-## [1.1.0] — 2026-11
+## [1.0.0] — 2026-11
 
-### Novo
-- **Mascote e marca novos**: o Grifo (MIT) nas apostilas (`i-grifo`, `i-grifo-dica`,
-  `i-grifo-alerta`, um único WebP de 29 KB) e em `docs/marca/` (logo, ícone, mascote e
-  imagem de compartilhamento), gerados por `ferramentas/gerar_marca.py`.
-- **README novo**: GIF animado, mosaico e prévias dos exemplos, galeria, FAQ, marca e
-  apoio pelo Buy Me a Coffee.
-- **Comandos com sintaxe única e flags**: `--banca`, `--cargo`, `--folhas`,
-  `--material`, `--disciplina` (e `--n`, `--artigos`, `--horas`, `--prova` onde
-  fazem sentido). Sem flags = padrões; forma livre continua valendo.
-- **`/grifo`**: ajuda com todos os comandos, flags e um exemplo de cada.
-- **Templates por comando** (`assets/templates/`): resumo, revisão, flashcards,
-  questões, edital e capa + sumário.
-- **Componentes**: `.formula` (RLM/estatística), `table.verdade` (tabela-verdade
-  com V/F coloridos), `pre.codigo` (SQL/pseudocódigo) e `.exemplo-frase`
-  (análise sintática com rótulo da função).
-- **12 ilustrações** para matérias além de Direito: calculadora, gráfico,
-  ampulheta, código, rede, diálogo, globo, mapa, escola, hospital, distintivo
-  genérico e troféu (46 no total).
-- **Fontes offline**: `montar.py --fontes-embutidas` embute Inter e Poppins (OFL).
-- **Exemplos novos**: Português — crase (2 folhas) e RLM — proposições (2 folhas).
-- **Scripts**: `verificar.py` (lint do HTML-fonte), `verificar_ilustracoes.py`,
-  `verificar_contraste.py`, `galeria.py` (galeria gerada dos símbolos) e
-  `test_montar.py`.
-- **`renderizar.py`**: aponta transbordo de caixa, colunas desequilibradas
-  (> 25%) e fonte < 8 pt; flags `--pb` (PNG em cinza), `--json` e `--estrito`.
-- **CI** no GitHub Actions; `CONTRIBUTING.md` e templates de issue.
+Primeira versão pública.
 
-### Melhorado
-- **Quebras de linha**: espaço inseparável automático em "art. 59", "§ 1º",
-  "inciso IV", "Lei nº 8.112", "30 dias úteis", "p.ú." etc.; quebra opcional depois
-  de "/" entre palavras.
-- **Tipografia**: hifenização em pt-BR no corpo (não em títulos e tabelas), títulos e
-  faixas com linhas equilibradas, respiro uniforme dentro dos blocos, recuo pendente
-  nas listas e no gabarito, marcador ✔ alinhado à primeira linha.
-- Fonte mínima de 8 pt em todo o design system; flashcards cabem 8 por folha.
-- Laranja de exceção (`--excecao`) com contraste 3,3:1 para texto branco.
-- `assets/apostila.css` renomeado para `assets/grifo.css`.
-
-### Corrigido
-- Seis ilustrações (`i-juiz`, `i-autor`, `i-servidora`, `i-estudante`,
-  `i-congresso`, `i-constituicao`) ficavam dentro de um comentário quebrado do
-  `ilustracoes.svg`.
-- `.com-ilustra`: a ilustração não encolhe nem é invadida por palavras longas.
-- "Conveniência/oportunidade" vazava a coluna na Lei 9.784; sigla "ADCPR" da
-  Lei 8.112 tinha marcação corrompida e "Produtividade" não cabia na caixa.
-- `montar.py` gravava CRLF no Windows.
-
-## [1.0.0] — 2026-11-11
-- Primeira versão: skill `grifo`, 13 comandos, design system, 34 ilustrações,
-  `montar.py`, `renderizar.py`, três revisores e três exemplos (LGPD,
-  Lei 9.784/99, Lei 8.112/90).
+- **Skill `grifo`** para Claude Code (plugin), Claude.ai (zip) e Codex (`~/.codex/skills`):
+  apostilas, resumos, mapas, revisões, questões e flashcards ilustrados de **qualquer
+  assunto** (faculdade, concursos, ensino médio, certificações), em HTML e PDF A4.
+- **Pergunta antes de começar** quando falta o assunto/arquivo ou o formato (explicação
+  completa, só o mapa, revisão rápida, treino ou tudo incluso).
+- **14 comandos** com sintaxe única e flags (`--formato`, `--nivel`, `--folhas`,
+  `--material`, `--banca`…), mais `/grifo` de ajuda.
+- **Design editorial**: paleta neutra com cores semânticas (navy, blue, amber, red,
+  green, slate), contraste ≥ 4,5:1, legível em P&B; versão da skill ao lado do logo.
+- **Ilustrações**: 47 próprias e coloridas (com o mascote Grifo) + 2.052 ícones Lucide
+  por nome, sem gastar tokens desenhando SVG.
+- **Questões sem spoiler**: coluna única; gabarito comentado e referências com link em
+  folha separada.
+- **Três revisores** (conteúdo, didática, design) antes da entrega.
+- **Scripts**: `verificar.py` (lint), `montar.py` (HTML autocontido, espaço inseparável
+  em "art. 59"/"30 dias", fontes embutidas opcionais) e `renderizar.py` (PDF, PNG e
+  revisão de layout em JSON).
+- **Templates** por comando, cinco exemplos (LGPD, Lei 8.112, Lei 9.784, crase,
+  lógica proposicional), CI e templates de issue.

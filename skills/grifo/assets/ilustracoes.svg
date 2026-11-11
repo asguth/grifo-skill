@@ -10,7 +10,7 @@
   Uso: montar.py copia so os <symbol> usados para um <svg class="sprite"> e a
   folha referencia com <svg class="ilustra"><use href="#i-lupa"/></svg>.
   Todos os simbolos: viewBox 0 0 64 64, exceto o mascote (0 0 240 240).
-  Verificacao: scripts/verificar_ilustracoes.py
+  Verificacao (repositorio): ferramentas/verificar_ilustracoes.py
 -->
 <svg xmlns="http://www.w3.org/2000/svg" class="sprite" aria-hidden="true">
   <defs>

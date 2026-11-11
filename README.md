@@ -1,269 +1,231 @@
 <p align="center">
-  <img src="docs/marca/logo.png" alt="Grifo-Skill — resumos ilustrados para concursos públicos" width="560">
+  <img src="docs/marca/logo.png" alt="Grifo-Skill — apostilas ilustradas de qualquer assunto" width="520">
+  <a href="https://github.com/asguth/grifo-skill/releases/latest"><img alt="Versão" src="https://img.shields.io/github/v/release/asguth/grifo-skill?label=vers%C3%A3o&color=243B53"></a>
 </p>
 
-<h1 align="center">Grifo-Skill: resumos e apostilas ilustradas para concursos públicos, feitos com IA</h1>
+<h1 align="center">Grifo-Skill: apostilas e resumos ilustrados de qualquer assunto, feitos com IA</h1>
 
 <p align="center">
-  <b>Skill e plugin open source (MIT) para Claude que transforma qualquer tópico do edital em
-  resumo esquematizado A4 — com faixas coloridas, ilustrações, fluxogramas, tabelas,
-  lei seca grifada e questões inéditas no estilo da banca.</b>
+  <b>Skill open source (MIT) para Claude e Codex que transforma um tema — ou o seu PDF, slides
+  ou anotações — em material de estudo A4 nível universitário: resumo esquematizado, mapa,
+  revisão, questões inéditas com gabarito comentado e flashcards.</b>
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-16884A"></a>
-  <a href="CHANGELOG.md"><img alt="Versão 1.1.0" src="https://img.shields.io/badge/vers%C3%A3o-1.1.0-1F6FD1"></a>
+  <a href="LICENSE"><img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-237A57"></a>
   <a href="https://github.com/asguth/grifo-skill/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/asguth/grifo-skill/actions/workflows/ci.yml/badge.svg"></a>
-  <img alt="Claude Code plugin" src="https://img.shields.io/badge/Claude%20Code-plugin-5B3FA0">
-  <img alt="Claude.ai skill" src="https://img.shields.io/badge/Claude.ai-skill-D9710B">
-  <img alt="Gratuito" src="https://img.shields.io/badge/pre%C3%A7o-gratuito-44607A">
+  <img alt="Claude Code plugin" src="https://img.shields.io/badge/Claude%20Code-plugin-243B53">
+  <img alt="Claude.ai skill" src="https://img.shields.io/badge/Claude.ai-skill-2F6B8A">
+  <img alt="Codex skill" src="https://img.shields.io/badge/Codex-skill-596579">
   <a href="https://buymeacoffee.com/asguth"><img alt="Buy Me a Coffee" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-apoie-FFDD00?logo=buymeacoffee&logoColor=000"></a>
 </p>
 
 <p align="center">
-  <img src="docs/demo.gif" alt="Animação folheando resumos gerados pelo Grifo-Skill: LGPD, Lei 8.112, Lei 9.784, crase e lógica proposicional" width="560">
+  <img src="docs/demo.gif" alt="Animação folheando apostilas geradas pelo Grifo-Skill" width="560">
 </p>
 
 <p align="center">
   <a href="#instalação">Instalação</a> ·
-  <a href="#comandos">Comandos</a> ·
-  <a href="#exemplos-prontos">Exemplos</a> ·
+  <a href="#como-usar">Como usar</a> ·
+  <a href="#exemplos">Exemplos</a> ·
   <a href="#galeria">Galeria</a> ·
   <a href="#como-funciona">Como funciona</a> ·
   <a href="#perguntas-frequentes">FAQ</a> ·
-  <a href="#apoie-o-projeto">Apoie</a> ·
-  <a href="CONTRIBUTING.md">Contribuir</a>
+  <a href="#apoie-o-projeto">Apoie</a>
 </p>
 
 ---
 
 ## O que é
 
-O **Grifo-Skill** é uma *skill* de IA que monta **resumos para concurso público** no
-padrão das apostilas esquematizadas impressas: folha A4, duas colunas, faixas de seção,
-termos-chave grifados, personagens e ícones ilustrados, **mapas mentais**, fluxogramas,
-pirâmides, **tabelas comparativas**, **lei seca grifada** e **questões inéditas** no
-estilo de Cebraspe, FGV, FCC, Vunesp, Cesgranrio, IBFC e Quadrix. O resultado é um
-**HTML autocontido e um PDF pronto para imprimir**.
+O **Grifo-Skill** gera **apostilas ilustradas** sobre o que você estiver estudando —
+Bioquímica, Cálculo, Direito, Português, Programação, Contabilidade, uma disciplina da
+faculdade ou um edital de concurso. Você diz o assunto (ou anexa o arquivo) e o formato;
+ele pesquisa em fontes confiáveis, monta folhas A4 com **design editorial** (hierarquia
+clara, cor só onde carrega significado, legível impresso em preto e branco) e entrega
+**HTML e PDF**.
 
-Todo material passa por **três revisores automáticos** antes de chegar até você:
+Antes da entrega, **três revisores** olham o material a frio:
 
 | Revisor | O que confere |
 |---|---|
-| 🔎 **Validador de conteúdo** | Cada artigo, prazo, número e gabarito contra a fonte oficial |
-| 🎓 **Revisor didático** | Se dá para entender sozinho, se cobre o que cai e se a ordem faz sentido |
-| 🎨 **Crítico de design** | Olha a página renderizada: layout, hierarquia, cores e ilustrações |
+| 🔎 **Validador de conteúdo** | Cada dado, data, fórmula, artigo e gabarito contra a fonte |
+| 🎓 **Revisor didático** | Nível superior: definição precisa, mecanismo, exemplo, erro comum |
+| 🎨 **Crítico de design** | Layout, hierarquia, cores e ilustrações nas páginas renderizadas |
 
-**Para quem é:** concurseiros de qualquer área (Direito, Português, Raciocínio Lógico,
-TI, Administração, Contabilidade…), professores e cursinhos que querem material próprio,
-e quem estuda por **revisão espaçada** com flashcards e folhas de véspera.
+## Como usar
 
-## Destaques da v1.1
+Peça do seu jeito — se faltar o assunto ou o formato, a skill **pergunta antes de começar**:
 
-- **Comandos com flags** (`--banca`, `--cargo`, `--folhas`, `--material`, `--disciplina`)
-  e o novo **`/grifo`** de ajuda.
-- **Novos componentes**: fórmula, **tabela-verdade**, bloco de **código** e **análise
-  sintática** — além de Direito, agora atende bem RLM, TI e Português.
-- **46 ilustrações próprias**, 12 novas (calculadora, gráfico, código, rede, globo…).
-- **Tipografia de apostila**: nada de "(art. ⏎ 59)" ou "30 ⏎ dias" — espaço inseparável
-  automático, hifenização em português e títulos equilibrados.
-- **Revisão de layout automática**: estouro de página, transbordo de caixa, colunas
-  desequilibradas, fonte < 8 pt e prévia em preto e branco.
-- **PDF offline** com fontes embutidas. Lista completa no [CHANGELOG](CHANGELOG.md).
+> **Você:** faz uma apostila desse PDF de farmacologia
+> **Grifo:** Qual formato? *Explicação completa* · *Só o mapa* · *Revisão rápida* · *Treino (questões/flashcards)* · *Tudo incluso*
+
+Ou vá direto ao comando:
+
+| Comando | O que gera | Exemplo |
+|---|---|---|
+| `/resumo` | Explicação completa, 1–4 folhas + questões + gabarito | `/resumo ciclo de Krebs --nivel faculdade` |
+| `/esquema` | Uma folha de mapa visual | `/esquema tipos de memória RAM` |
+| `/revisao` | Uma folha de revisão de véspera | `/revisao derivadas` |
+| `/questoes` | Questões **inéditas** + gabarito comentado em folha separada | `/questoes LGPD --nivel concurso --banca cebraspe` |
+| `/flashcards` | Cartões frente/verso para recortar (8 por folha) | `/flashcards anatomia do coração` |
+| `/comparar` | Tabela A × B + confusões comuns | `/comparar mitose vs meiose` |
+| `/mnemonico` | Siglas e frases para decorar | `/mnemonico camadas do modelo OSI` |
+| `/apostila` | Tudo incluso: capa, sumário, resumos, mapa, questões | `/apostila microeconomia --material notas.pdf` |
+| `/lei-seca` · `/pegadinhas` · `/edital` · `/cronograma` | Para concursos | `/lei-seca Lei 9.784/1999 --artigos 53-55` |
+| `/validar` | Roda os 3 revisores num HTML existente | `/validar minha-apostila.html` |
+| `/grifo` | Ajuda com todos os comandos e flags | `/grifo questoes` |
+
+Flags comuns: `--formato completo|mapa|revisao|treino|tudo` · `--nivel medio|faculdade|concurso|certificacao`
+· `--folhas N` · `--material arquivo` · `--banca` (concursos). Detalhes em
+[`references/comandos.md`](skills/grifo/references/comandos.md).
 
 ## Instalação
 
-### Claude Code (plugin com os slash commands)
+### Claude Code (plugin, com os slash commands)
 ```
 /plugin marketplace add asguth/grifo-skill
 /plugin install grifo-skill@grifo-skill
 ```
-Depois digite `/grifo` para ver todos os comandos. Para testar uma cópia local:
-`claude --plugin-dir caminho/para/grifo-skill`.
+Digite `/grifo` para ver os comandos. Conflito de nome com outro plugin? Use
+`/grifo-skill:resumo`.
 
-### Claude.ai / app Claude (skill)
-1. Baixe **`grifo-skill.zip`** na página de [Releases](https://github.com/asguth/grifo-skill/releases)
-   (ou compacte a pasta `skills/grifo`).
-2. No Claude, abra **Configurações → Capacidades → Skills** e faça upload do zip.
-3. Peça: *"/resumo controle de constitucionalidade --banca fgv"* ou, em linguagem
-   natural, *"faz um resumo de crase pra Vunesp"*.
+### Claude.ai / app Claude
+1. Baixe **`grifo-skill.zip`** em [Releases](https://github.com/asguth/grifo-skill/releases/latest).
+2. Em **Configurações → Capacidades → Skills**, faça upload do zip.
+3. Peça: *"faz um resumo de termodinâmica"* ou anexe um arquivo.
 
-> Para gerar o PDF e as imagens de revisão, o ambiente precisa executar código
-> (Python + Playwright ou Chrome). Sem isso, a skill entrega o HTML, que você imprime
-> pelo navegador (Ctrl+P → A4, sem margens, com gráficos de fundo).
-
-### Outros modelos
-`skills/grifo/SKILL.md` + `references/` funcionam como prompt de sistema em qualquer LLM
-com execução de código. Os revisores ficam em `skills/grifo/agentes/`.
-
-## Comandos
-
-Sintaxe única para todos:
+### Codex (OpenAI)
+Copie a pasta da skill para o diretório de skills do Codex:
+```bash
+git clone https://github.com/asguth/grifo-skill
+cp -r grifo-skill/skills/grifo ~/.codex/skills/grifo
 ```
-/<comando> <tópico> [--banca b] [--cargo "x"] [--folhas N] [--material arquivo] [--disciplina d-x]
-```
+No Codex, peça normalmente (*"apostila de estatística, só o mapa"*) ou escreva o comando
+no texto (*"/questoes LGPD"*). Dentro deste repositório, o [`AGENTS.md`](AGENTS.md) já
+aponta o Codex para a skill.
 
-| Comando | O que gera | Exemplo |
-|---|---|---|
-| `/resumo` | Resumo ilustrado completo (1–4 folhas) | `/resumo atos administrativos --banca fgv --folhas 2` |
-| `/esquema` | Uma folha de mapa visual | `/esquema controle de constitucionalidade` |
-| `/lei-seca` | Lei seca grifada (decorar × o que a banca troca) | `/lei-seca Lei 9.784/1999 --artigos 53-55` |
-| `/comparar` | Tabela comparativa + como a banca confunde | `/comparar remoção vs redistribuição` |
-| `/pegadinhas` | Armadilhas da banca, com correção e fundamento | `/pegadinhas licitações --banca fcc` |
-| `/questoes` | Questões **inéditas** + gabarito comentado | `/questoes LGPD --banca cebraspe --n 20` |
-| `/flashcards` | Cartões frente/verso para recortar (8 por folha) | `/flashcards LGPD` |
-| `/mnemonico` | Siglas e frases para decorar | `/mnemonico requisitos do ato administrativo` |
-| `/edital` | Edital verticalizado com checklist e prioridades | `/edital --material edital.pdf --cargo "Técnico"` |
-| `/cronograma` | Plano semanal com revisões espaçadas | `/cronograma português, RLM --horas 20 --prova 15/03/2027` |
-| `/revisao` | Uma folha de revisão de véspera | `/revisao processo administrativo` |
-| `/apostila` | Capa + sumário + resumos + questões | `/apostila direito administrativo --banca fgv` |
-| `/validar` | Roda os 3 revisores num HTML existente | `/validar minha-apostila.html` |
-| `/grifo` | Ajuda: comandos, flags e exemplos | `/grifo questoes` |
+> Para gerar PDF e imagens, o ambiente precisa de Python + Playwright (ou Chrome). Sem
+> isso, a skill entrega o HTML, que você imprime pelo navegador (Ctrl+P → A4, sem margens,
+> gráficos de fundo).
 
-- **Sem flags = padrões.** Banca padrão: `indefinida` (questões nos dois formatos, C/E e A–E).
-- **Linguagem natural vale igual**: *"resumo de atos administrativos pra FGV, 2 folhas"*.
-- **Material próprio**: anexe sua apostila, PDF ou anotações (`--material`) e ele vira a
-  fonte principal.
-- Conflito de nome com outro plugin no Claude Code? Use o namespace:
-  `/grifo-skill:resumo`, `/grifo-skill:grifo`.
-
-Especificação completa: [`references/comandos.md`](skills/grifo/references/comandos.md).
-
-## Exemplos prontos
+## Exemplos
 
 <p align="center">
-  <img src="docs/exemplos/mosaico.png" alt="Primeira folha de cada um dos cinco exemplos gerados pelo Grifo-Skill">
+  <img src="docs/exemplos/mosaico.png" alt="Primeira folha de cada um dos cinco exemplos">
 </p>
 
-| Material | Disciplina | Folhas | PDF | Prévia |
+| Material | Área | Folhas | PDF | Prévia |
 |---|---|---|---|---|
-| LGPD — bases legais | Proteção de dados | 3 | [PDF](exemplos/lgpd-bases-legais.pdf) | [folha 1](docs/exemplos/lgpd-bases-legais-p1.png) · [2](docs/exemplos/lgpd-bases-legais-p2.png) · [3](docs/exemplos/lgpd-bases-legais-p3.png) |
-| Lei 8.112/90 — servidores públicos federais | Dir. Administrativo | 4 | [PDF](exemplos/lei-8112-servidores.pdf) | [1](docs/exemplos/lei-8112-servidores-p1.png) · [2](docs/exemplos/lei-8112-servidores-p2.png) · [3](docs/exemplos/lei-8112-servidores-p3.png) · [4](docs/exemplos/lei-8112-servidores-p4.png) |
-| Lei 9.784/99 — processo administrativo federal | Dir. Administrativo | 3 | [PDF](exemplos/lei-9784-processo-administrativo.pdf) | [1](docs/exemplos/lei-9784-processo-administrativo-p1.png) · [2](docs/exemplos/lei-9784-processo-administrativo-p2.png) · [3](docs/exemplos/lei-9784-processo-administrativo-p3.png) |
-| **Novo:** Crase | Língua Portuguesa | 2 | [PDF](exemplos/portugues-crase.pdf) | [1](docs/exemplos/portugues-crase-p1.png) · [2](docs/exemplos/portugues-crase-p2.png) |
-| **Novo:** Proposições e tabela-verdade | Raciocínio Lógico | 2 | [PDF](exemplos/rlm-proposicoes.pdf) | [1](docs/exemplos/rlm-proposicoes-p1.png) · [2](docs/exemplos/rlm-proposicoes-p2.png) |
+| Crase | Língua Portuguesa | 4 | [PDF](exemplos/portugues-crase.pdf) | [1](docs/exemplos/portugues-crase-p1.png) · [2](docs/exemplos/portugues-crase-p2.png) · [3](docs/exemplos/portugues-crase-p3.png) · [4](docs/exemplos/portugues-crase-p4.png) |
+| Proposições e tabela-verdade | Lógica | 4 | [PDF](exemplos/rlm-proposicoes.pdf) | [1](docs/exemplos/rlm-proposicoes-p1.png) · [2](docs/exemplos/rlm-proposicoes-p2.png) · [3](docs/exemplos/rlm-proposicoes-p3.png) · [4](docs/exemplos/rlm-proposicoes-p4.png) |
+| LGPD — bases legais | Proteção de dados | 4 | [PDF](exemplos/lgpd-bases-legais.pdf) | [1](docs/exemplos/lgpd-bases-legais-p1.png) · [2](docs/exemplos/lgpd-bases-legais-p2.png) · [3](docs/exemplos/lgpd-bases-legais-p3.png) · [4](docs/exemplos/lgpd-bases-legais-p4.png) |
+| Lei 8.112/90 — servidores federais | Direito Administrativo | 5 | [PDF](exemplos/lei-8112-servidores.pdf) | [1](docs/exemplos/lei-8112-servidores-p1.png) · [2](docs/exemplos/lei-8112-servidores-p2.png) · [3](docs/exemplos/lei-8112-servidores-p3.png) · [4](docs/exemplos/lei-8112-servidores-p4.png) · [5](docs/exemplos/lei-8112-servidores-p5.png) |
+| Lei 9.784/99 — processo administrativo | Direito Administrativo | 4 | [PDF](exemplos/lei-9784-processo-administrativo.pdf) | [1](docs/exemplos/lei-9784-processo-administrativo-p1.png) · [2](docs/exemplos/lei-9784-processo-administrativo-p2.png) · [3](docs/exemplos/lei-9784-processo-administrativo-p3.png) · [4](docs/exemplos/lei-9784-processo-administrativo-p4.png) |
 
-<details>
-<summary><b>Ver a folha 1 do exemplo de LGPD em tamanho real</b></summary>
-
-![Resumo de LGPD — bases legais do tratamento de dados, folha 1, gerado pelo Grifo-Skill](docs/exemplos/lgpd-bases-legais-p1.png)
-</details>
+Em todos: questões em coluna única e o **gabarito comentado + referências com link** numa
+folha separada, para não dar spoiler.
 
 ## Galeria
 
-**46 ilustrações próprias** (flat, contorno escuro, mudam de cor com a disciplina) — a
-galeria é gerada automaticamente a partir da biblioteca:
+**47 ilustrações próprias e coloridas** (com o mascote Grifo) e **2.052 ícones
+[Lucide](https://lucide.dev)** por nome — a skill não gasta tokens desenhando:
 
-![Galeria com as 46 ilustrações do Grifo-Skill: personagens, Direito, dados, estudo, exatas, TI e sociedade](docs/galeria.png)
+![Galeria de ilustrações do Grifo-Skill](docs/galeria.png)
 
 <details>
-<summary><b>Componentes do design system</b> (blocos, destaques, fórmula, tabela-verdade, código, análise sintática)</summary>
+<summary><b>Componentes do design system</b> (blocos, destaques, fórmula, tabela-verdade, código, análise sintática, ícones)</summary>
 
-![Galeria de componentes do design system Grifo](docs/galeria-componentes.png)
+![Galeria de componentes](docs/galeria-componentes.png)
 </details>
 
 ## Como funciona
 
 ```
-pedido ─▶ fontes oficiais ─▶ roteiro didático ─▶ template + HTML (design system)
-      ─▶ verificar.py ─▶ montar.py ─▶ renderizar.py (PDF + PNG + relatório)
-      ─▶ 3 revisores em paralelo ─▶ correções ─▶ entrega
+pedido ─▶ (pergunta assunto/formato, se faltar) ─▶ fontes ─▶ roteiro didático
+       ─▶ template + HTML ─▶ verificar.py ─▶ montar.py ─▶ renderizar.py (PDF + PNG + relatório)
+       ─▶ 3 revisores ─▶ correções ─▶ entrega
 ```
 
-- **Design system "Grifo"** (`assets/grifo.css`): cores por disciplina e cores
-  **semânticas fixas** (vermelho = pegadinha, laranja = exceção, verde = macete,
-  cinza = lei seca, azul = exemplo). O aluno aprende o código uma vez e lê qualquer
-  matéria. Contraste conferido por script.
-- **Biblioteca de ilustrações** (`assets/ilustracoes.svg`) com o mascote **Grifo**.
-- **Templates** (`assets/templates/`): o esqueleto de cada comando.
-
-| Script | Faz |
-|---|---|
-| `verificar.py` | Lint do HTML-fonte: classes, ilustrações, numeração das folhas, `[VERIFICAR]` |
-| `montar.py` | Injeta CSS + só as ilustrações usadas → HTML único; espaço inseparável; `--fontes-embutidas` |
-| `renderizar.py` | PDF A4 + PNG por folha + relatório de layout (`--json`, `--pb`, `--estrito`) |
-| `verificar_ilustracoes.py` | Valida a biblioteca (ids, viewBox, classes, paleta) |
-| `verificar_contraste.py` | Texto branco ≥ 3:1 sobre as cores de todas as disciplinas |
-| `galeria.py` | Regera a galeria a partir dos símbolos |
+- **Design editorial** (`assets/grifo.css`): navy e blue para estrutura e apoio; âmbar,
+  vermelho e verde só para exceção, erro e acerto; slate para referências. Contraste
+  ≥ 4,5:1 conferido por script; todo destaque tem ícone e rótulo.
+- **`montar.py`**: HTML único e autocontido, só com as ilustrações e ícones usados,
+  espaço inseparável em "art. 59"/"30 dias", versão da skill ao lado do logo e
+  `--fontes-embutidas` para PDF offline.
+- **`renderizar.py`**: PDF A4 + PNG por folha + relatório (estouro, transbordo, colunas
+  desequilibradas, fonte < 8 pt) em texto ou `--json`; `--pb` gera prévia em cinza.
 
 ## Regras que a skill segue
 
-- **Fidelidade acima de estética:** todo artigo, prazo e número vem da fonte oficial.
-  O que não for conferido aparece marcado como `[VERIFICAR]`.
-- **Sem cópia:** não reproduz texto, esquemas ou imagens de cursinhos, livros ou
-  apostilas de terceiros, nem questões reais de prova. Lei e atos oficiais podem ser
-  citados literalmente (Lei 9.610/98, art. 8º, IV).
-- **Sem fotos de terceiros nem retratos de pessoas reais:** todas as ilustrações são próprias.
-- **Legível em preto e branco:** todo bloco tem ícone e rótulo, não só cor.
+- **Fidelidade acima de estética:** todo dado vem de fonte conferida; o que não for
+  conferido sai marcado como `[VERIFICAR]`. Referências com link para a fonte oficial.
+- **Sem cópia:** nada de texto, esquema, imagem ou questão de terceiros. Atos oficiais
+  podem ser citados (Lei 9.610/98, art. 8º, IV).
+- **Sem retratos de pessoas reais.**
+- **Legível em preto e branco.**
 
-> ⚠️ Material gerado por IA pode conter erros, mesmo depois da validação. Confira
-> sempre a lei seca vigente antes da prova.
+> ⚠️ Material gerado por IA pode conter erros, mesmo depois da revisão. Confira as fontes.
 
 ## Perguntas frequentes
 
-**É de graça?** Sim. Código, ilustrações, mascote e exemplos são MIT. Você só precisa
-de acesso ao Claude (Claude Code ou Claude.ai).
+**É de graça?** Sim. Código, ilustrações, mascote e exemplos são MIT.
 
-**Serve para qual banca?** Cebraspe, FGV, FCC, Vunesp, Cesgranrio, IBFC e Quadrix têm
-perfil próprio; sem banca, as questões saem em certo/errado e múltipla escolha.
+**Serve para faculdade ou só concurso?** Para qualquer assunto e nível. Concursos ganham
+extras (banca, lei seca, pegadinhas, edital).
 
-**Posso vender o material que gerar?** Pode — a licença MIT permite uso comercial.
-Confira o conteúdo e não inclua material de terceiros.
+**Posso usar meu material?** Sim: anexe PDF, slides ou anotações (`--material`); ele vira
+a fonte principal.
 
-**Funciona sem internet?** A geração usa o Claude; para o PDF sair idêntico offline,
-monte com `montar.py --fontes-embutidas`.
+**Posso vender o que gerar?** Pode (MIT). Confira o conteúdo e não inclua material de terceiros.
 
-**Só Direito?** Não: há cores, ilustrações e componentes para Português, Raciocínio
-Lógico, TI, gestão, contabilidade e atualidades.
+**Funciona sem internet?** A geração usa o modelo; para o PDF idêntico offline, monte com
+`montar.py --fontes-embutidas`.
 
 ## Estrutura
 
 ```
-.claude-plugin/        manifest do plugin e marketplace (Claude Code)
-commands/              slash commands (/resumo, /questoes, /grifo, …)
-skills/grifo/
-  SKILL.md             fluxo principal
-  references/          comandos, componentes, design, bancas, fidelidade
+skills/grifo/          a skill (vai no grifo-skill.zip)
+  SKILL.md             fluxo principal (metadata.version = versão impressa nas folhas)
+  references/          comandos, design, componentes, fidelidade, bancas
   agentes/             validador de conteúdo, revisor didático, crítico de design
-  assets/              grifo.css, ilustracoes.svg, mascote/, fontes/ (OFL), templates/
-  scripts/             verificar, montar, renderizar, galeria e testes
-exemplos/              fonte, HTML e PDF de cada exemplo + galeria
-docs/                  imagens do README, GIF e marca
-ferramentas/           atualizar_docs.py (regera PDFs, PNGs e GIF do README)
-.github/               CI e templates de issue
+  assets/              grifo.css, ilustracoes.svg, lucide/, mascote/, fontes/, templates/
+  scripts/             verificar.py, montar.py, renderizar.py
+commands/              slash commands do Claude Code
+.claude-plugin/        manifest do plugin e marketplace
+AGENTS.md              instruções para Codex e outros agentes
+exemplos/              fontes HTML e PDFs dos exemplos
+ferramentas/           verificadores, galeria, docs, versão e marca (desenvolvimento)
+docs/                  imagens do README e marca
 ```
 
 ## Marca
 
 <img src="docs/marca/icone.png" alt="Ícone do Grifo-Skill" width="96" align="left">
 
-O **Grifo** — o mascote do projeto — e o logo também são **MIT**, como o resto do
-repositório: use em materiais gerados, apresentações e forks. Os arquivos ficam em
-[`docs/marca/`](docs/marca) (logo, ícone, mascote e imagem de compartilhamento).
-Só não use a marca para sugerir que um material é oficial do projeto quando não é.
+O **Grifo** — mascote do projeto — e o logo também são **MIT**: use em materiais gerados,
+apresentações e forks. Arquivos em [`docs/marca/`](docs/marca). Só não use a marca para
+sugerir que um material é oficial do projeto quando não é.
 <br clear="left">
 
 ## Contribuindo
 
-PRs são bem-vindos — principalmente **novas ilustrações**, **perfis de banca** mais
-precisos e **exemplos** revisados por quem passou na prova. Veja o
-[CONTRIBUTING.md](CONTRIBUTING.md): rode os verificadores e anexe o PNG ao PR.
+PRs são bem-vindos — novas ilustrações, perfis de banca, exemplos de outras áreas.
+Veja o [CONTRIBUTING.md](CONTRIBUTING.md) e o [CHANGELOG](CHANGELOG.md).
 
 ## Apoie o projeto
 
-O Grifo-Skill é gratuito e vai continuar assim. Se ele te ajudou a estudar (ou a
-passar!), dá para apoiar a manutenção e as próximas ilustrações com um café:
+O Grifo-Skill é gratuito e vai continuar assim. Se ele te ajudou, dá para apoiar com um café:
 
 <p align="center">
   <a href="https://buymeacoffee.com/asguth"><img alt="Pague um café no Buy Me a Coffee" src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-pague%20um%20caf%C3%A9-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=000"></a>
 </p>
 
-Outras formas de ajudar: deixe uma ⭐ no repositório, compartilhe com quem está
-estudando e [abra uma issue](https://github.com/asguth/grifo-skill/issues/new/choose)
-quando achar um erro de conteúdo.
+Ou deixe uma ⭐, compartilhe com quem estuda e [abra uma issue](https://github.com/asguth/grifo-skill/issues/new/choose)
+quando achar um erro.
 
 ## Licença
 
-[MIT](LICENSE) © 2026 Alberto Guth (GT Design). Use, modifique e distribua à vontade,
-inclusive para fins comerciais, mantendo o aviso de copyright. As fontes Inter e Poppins
-embutidas opcionalmente seguem a [SIL Open Font License](skills/grifo/assets/fontes/OFL.txt).
+[MIT](LICENSE) © 2026 Alberto Guth (GT Design). Fontes Inter e Poppins:
+[SIL OFL](skills/grifo/assets/fontes/OFL.txt). Ícones Lucide:
+[ISC](skills/grifo/assets/lucide/LICENSE).

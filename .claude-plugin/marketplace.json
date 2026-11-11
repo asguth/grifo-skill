@@ -7,12 +7,12 @@
     {
       "name": "grifo-skill",
       "source": "./",
-      "description": "Resumos e apostilas ilustradas para concursos públicos, com validação de conteúdo, revisão didática e crítica de design.",
-      "version": "1.1.0"
+      "description": "Apostilas e resumos ilustrados de qualquer assunto, com validação de conteúdo, revisão didática e crítica de design.",
+      "version": "1.0.0"
     }
   ],
   "metadata": {
-    "version": "1.1.0",
-    "description": "Grifo-Skill: resumos e apostilas ilustradas para concursos públicos (MIT)."
+    "version": "1.0.0",
+    "description": "Grifo-Skill: apostilas ilustradas de qualquer assunto (MIT)."
   }
 }

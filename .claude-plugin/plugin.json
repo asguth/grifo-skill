@@ -1,25 +1,22 @@
 {
   "name": "grifo-skill",
-  "version": "1.1.0",
-  "description": "Resumos e apostilas ilustradas para concursos públicos (A4, esquematizadas), com flags por banca/cargo, validação de conteúdo, revisão didática e crítica de design.",
+  "version": "1.0.0",
+  "description": "Apostilas, resumos, mapas, questões e flashcards ilustrados de qualquer assunto (A4/PDF, design editorial), com validação de conteúdo, revisão didática e crítica de design.",
   "author": {
     "name": "Alberto Guth — GT Design"
   },
   "license": "MIT",
   "keywords": [
-    "concursos",
-    "concurso-publico",
-    "resumo",
-    "apostila",
     "estudos",
+    "apostila",
+    "resumo",
+    "mapa-mental",
     "flashcards",
     "questoes",
-    "cebraspe",
-    "fgv",
-    "fcc",
-    "vunesp",
-    "lei-seca",
-    "pdf"
+    "faculdade",
+    "concursos",
+    "pdf",
+    "educacao"
   ],
   "homepage": "https://github.com/asguth/grifo-skill",
   "repository": "https://github.com/asguth/grifo-skill",

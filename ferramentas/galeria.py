@@ -20,9 +20,9 @@ import sys
 import tempfile
 from pathlib import Path
 
-AQUI = Path(__file__).resolve().parent
-SKILL = AQUI.parent
-REPO = SKILL.parent.parent
+REPO = Path(__file__).resolve().parent.parent
+SKILL = REPO / "skills" / "grifo"
+AQUI = SKILL / "scripts"
 SPRITE = SKILL / "assets" / "ilustracoes.svg"
 COLUNAS = 9
 
@@ -43,7 +43,7 @@ TOPO = ('<div class="topo"><div class="logo"><svg viewBox="0 0 64 64"><use href=
         '<div class="titulo-topo">{titulo}<small>design system grifo</small></div><div class="pag">{n:02d}</div></div>')
 
 RODAPE = ('<div class="rodape-folha"><span>Grifo-Skill · MIT</span>'
-          '<span>Gerado por scripts/galeria.py · {n} ilustrações</span></div>')
+          '<span>Gerado por ferramentas/galeria.py · {n} ilustrações</span></div>')
 
 # Folha 2: amostra de componentes (atualize quando criar componente novo).
 COMPONENTES = """

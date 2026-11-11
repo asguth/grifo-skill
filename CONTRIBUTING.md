@@ -1,7 +1,8 @@
 # Contribuindo com o Grifo-Skill
 
 Obrigado por ajudar! O Grifo-Skill é MIT e vive de contribuições pequenas e bem
-conferidas. Este guia cobre os três tipos de PR mais comuns.
+conferidas. Prefira ícone Lucide a desenhar ilustração nova: a biblioteca só cresce
+com desenhos que nenhum dos 2.052 ícones resolve. Este guia cobre os três tipos de PR mais comuns.
 
 ## Antes de qualquer PR
 
@@ -15,9 +16,9 @@ python -m playwright install chromium
 Rode os verificadores (são os mesmos do CI) e só abra o PR com tudo passando:
 
 ```bash
-python skills/grifo/scripts/verificar_ilustracoes.py   # biblioteca de ilustrações
-python skills/grifo/scripts/test_montar.py             # espaço inseparável
-python skills/grifo/scripts/verificar_contraste.py     # contraste das cores
+python ferramentas/verificar_ilustracoes.py           # biblioteca de ilustrações
+python ferramentas/test_montar.py                     # espaço inseparável
+python ferramentas/verificar_contraste.py             # contraste das cores
 python skills/grifo/scripts/verificar.py exemplos/*-fonte.html
 ```
 
@@ -38,10 +39,10 @@ folha afetada** (antes e depois, se for mudança visual).
    sprite).
 2. Desenhe em `viewBox="0 0 64 64"`, no máximo 15 elementos, contorno `#1C2430` 2.5px,
    sem gradiente, só cores da paleta. Use as classes do sprite (`kf`, `k`, `f-disc`,
-   `f-claro`, `f-disc2`…) para a ilustração mudar de cor com a disciplina.
+   `f-claro`, `f-disc2`…) da paleta de ilustração.
 3. Acrescente o `<symbol id="i-…">` em `skills/grifo/assets/ilustracoes.svg`, na seção
    de comentário certa (ou crie uma: `<!-- NOME DA SEÇÃO -->`).
-4. Rode `verificar_ilustracoes.py` e `galeria.py` (atualiza `docs/galeria.png`).
+4. Rode `ferramentas/verificar_ilustracoes.py` e `ferramentas/galeria.py` (atualiza `docs/galeria.png`).
 5. Liste o novo id em `design.md` §4 e anexe o recorte da galeria ao PR.
 
 Não aceitamos: retrato ou caricatura de pessoa real, brasão/logotipo real, emblemas

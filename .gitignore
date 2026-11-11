@@ -7,3 +7,7 @@ _render/
 grifo-skill-repo.zip
 grifo-skill.zip
 saida/
+graphify-out/
+# HTML montado: gerado a partir dos *-fonte.html (CI e ferramentas/atualizar_docs.py)
+exemplos/*.html
+!exemplos/*-fonte.html

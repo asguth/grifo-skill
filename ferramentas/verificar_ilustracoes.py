@@ -20,7 +20,7 @@ import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
-SVG_PADRAO = Path(__file__).resolve().parent.parent / "assets" / "ilustracoes.svg"
+SVG_PADRAO = Path(__file__).resolve().parent.parent / "skills" / "grifo" / "assets" / "ilustracoes.svg"
 NS = "{http://www.w3.org/2000/svg}"
 
 # Manter em sincronia com references/design.md §4 ("Paleta permitida").

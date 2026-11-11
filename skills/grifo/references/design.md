@@ -27,7 +27,7 @@ de vermelho.
 - Um componente = no máximo uma cor semântica. Nunca pintar um parágrafo inteiro para
   destacar uma frase.
 - Caixas de aviso/erro/sucesso: fundo pálido + texto e ícone da cor semântica.
-- Contraste mínimo 4,5:1 em todo texto (`scripts/verificar_contraste.py`).
+- Contraste mínimo 4,5:1 em todo texto (no repositório: `ferramentas/verificar_contraste.py`).
 
 ### Marca-texto
 - `<mark>` amarelo = palavra para decorar (é o "grifo" do nome). Máx. ~1 por frase.
@@ -110,7 +110,7 @@ azul-claro `#DCEAF7`, amarelo `#FFE45C`, pele, madeira), via `.f-disc`, `.f-disc
   `i-escola`, `i-hospital` (placa "H", sem cruz vermelha — emblema protegido),
   `i-policia` (distintivo genérico, sem brasão real), `i-trofeu`.
 
-A galeria completa (gerada por `scripts/galeria.py`) fica em `docs/galeria.png`.
+Galeria completa: `docs/galeria.png` do repositório.
 
 Tamanhos: `.ilustra.p` 12mm (ao lado de título), `.ilustra` 18mm, `.ilustra.g` 26mm
 (ao lado de bloco), `.ilustra.gg` 36mm (destaque de folha). Use 2–5 ilustrações
@@ -138,8 +138,8 @@ Regras do estilo, obrigatórias:
 - Nada de `<symbol>` dentro de comentário, e nada de `-->` dentro do comentário de
   cabeçalho (fecha o comentário antes da hora).
 - `id` único, sempre com `viewBox`; `<use>` interno só para ids que existem.
-- Rode `python3 scripts/verificar_ilustracoes.py` (falha com exit 1 se algo disso
-  quebrar) e `python3 scripts/galeria.py` para ver o símbolo na galeria.
+- No repositório, rode `ferramentas/verificar_ilustracoes.py` (falha com exit 1 se algo disso
+  quebrar) e `ferramentas/galeria.py` para ver o símbolo na galeria.
 
 ### Paleta permitida nas ilustrações
 Qualquer cor fora desta lista faz o `verificar_ilustracoes.py` falhar.

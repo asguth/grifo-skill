@@ -69,7 +69,7 @@ def main():
                 paginas[slug].append(out)
         print(f"ok: {slug} ({rel['folhas']} folhas)")
 
-    rodar(S / "galeria.py")
+    rodar(REPO / "ferramentas" / "galeria.py")
     print("ok: galeria")
 
     # --- GIF: folhas 1 e 2 de cada exemplo, corte seco (fade gera quadros pesados e borrados) ---

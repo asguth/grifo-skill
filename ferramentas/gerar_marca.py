@@ -69,7 +69,7 @@ def main():
     pecas = {
         "logo.png": ((1600, 520), True, html(
             f"""<div class="logo"><img src="{src}"><div><div class="nome"><span class="g">Grifo</span><span class="s">-Skill</span></div>
-            <div class="frase">Resumos ilustrados para concursos</div></div></div>""",
+            <div class="frase">Apostilas ilustradas de qualquer assunto</div></div></div>""",
             marca_texto + """
             .logo{width:1600px;height:520px;display:flex;align-items:center;gap:56px;padding:0 70px}
             .logo img{height:440px}
@@ -81,8 +81,8 @@ def main():
         "social.png": ((1280, 640), False, html(
             f"""<div class="soc"><img src="{src}"><div class="txt">
               <div class="nome"><span class="g">Grifo</span><span class="s">-Skill</span></div>
-              <div class="frase">Resumos ilustrados para concursos</div>
-              <div class="selos"><span>Skill de IA para Claude</span><span>Open source · MIT</span><span>PDF A4 pronto</span></div>
+              <div class="frase">Apostilas ilustradas de qualquer assunto</div>
+              <div class="selos"><span>Skill para Claude e Codex</span><span>Open source · MIT</span><span>PDF A4 pronto</span></div>
             </div></div>""",
             marca_texto + f"""
             .soc{{width:1280px;height:640px;background:#F6F7F9;display:flex;align-items:center;gap:40px;padding:0 70px;
