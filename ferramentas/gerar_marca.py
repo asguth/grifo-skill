@@ -73,7 +73,6 @@ def main():
 
     marca_texto = f"""
       .nome{{font-family:Poppins;font-weight:900;color:{AZUL_ESCURO};letter-spacing:-.02em;line-height:1}}
-      .nome .s{{color:{AZUL}}}
       .frase{{font-family:Inter;font-weight:600;color:{AZUL};letter-spacing:.01em}}"""
 
     pecas = {
@@ -98,7 +97,7 @@ def main():
             marca_texto + f"""
             .soc{{width:1280px;height:640px;background:#F6F7F9;display:flex;align-items:center;gap:40px;padding:0 70px;
                   border-bottom:14px solid {AZUL}}}
-            .soc img{{height:500px}}
+            .soc img{{height:400px}}
             .nome{{font-size:118px}} .frase{{font-size:42px;margin-top:18px;color:{AZUL_ESCURO}}}
             .selos{{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}}
             .selos span{{font-family:Inter;font-weight:700;font-size:22px;color:{AZUL};border:2.5px solid {AZUL};
