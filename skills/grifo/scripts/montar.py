@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """Monta um HTML autocontido do Grifo-Skill.
 
-Uso:  python3 montar.py entrada.html saida.html
+Uso:  python3 montar.py entrada.html saida.html [--fontes-embutidas]
+
+  --fontes-embutidas  troca os <link> do Google Fonts por @font-face com Inter e
+                      Poppins embutidas (assets/fontes, OFL): o PDF sai igual sem
+                      internet. Acrescenta ~110 KB ao HTML.
 
 No HTML de entrada, use os marcadores:
   <!--APOSTILA:CSS-->     -> substituído pelo conteúdo de assets/grifo.css
@@ -14,6 +18,7 @@ legais e números de suas unidades ("art. 59", "§ 1º", "inciso IV", "Lei nº
 dentro de tags, atributos, comentários, <style> ou <script>.
 Licença MIT.
 """
+import base64
 import bisect
 import re
 import sys
@@ -119,11 +124,41 @@ def carregar_simbolos():
     return (estilo.group(1) if estilo else ""), simbolos
 
 
-def montar(html: str) -> str:
+FONTES = [  # (família, peso, arquivo) — só o subconjunto latin e os pesos usados
+    ("Inter", "100 900", "inter-latin-var.woff2"),
+    ("Poppins", "600", "poppins-latin-600.woff2"),
+    ("Poppins", "700", "poppins-latin-700.woff2"),
+    ("Poppins", "800", "poppins-latin-800.woff2"),
+    ("Poppins", "900", "poppins-latin-900.woff2"),
+]
+
+
+def css_fontes_embutidas() -> str:
+    regras = []
+    for familia, peso, arquivo in FONTES:
+        b64 = base64.b64encode((BASE / "fontes" / arquivo).read_bytes()).decode("ascii")
+        regras.append(
+            f"@font-face{{font-family:'{familia}';font-style:normal;font-weight:{peso};"
+            f"font-display:block;src:url(data:font/woff2;base64,{b64}) format('woff2');}}"
+        )
+    return "/* Inter e Poppins — SIL Open Font License 1.1 (assets/fontes/OFL.txt) */\n" + "\n".join(regras)
+
+
+def embutir_fontes(html: str) -> str:
+    html = re.sub(r'<link[^>]+href="https://fonts\.(?:googleapis|gstatic)\.com[^"]*"[^>]*>\s*', "", html)
+    estilo = f"<style>\n{css_fontes_embutidas()}\n</style>\n"
+    if "<!--APOSTILA:CSS-->" in html:
+        return html.replace("<!--APOSTILA:CSS-->", estilo + "<!--APOSTILA:CSS-->", 1)
+    return html.replace("</head>", estilo + "</head>", 1)
+
+
+def montar(html: str, fontes_embutidas: bool = False) -> str:
     css = (BASE / "grifo.css").read_text(encoding="utf-8")
     estilo_svg, simbolos = carregar_simbolos()
 
     html = quebras_suaves(inseparaveis(html))
+    if fontes_embutidas:
+        html = embutir_fontes(html)
 
     usados, fila = [], re.findall(r'href="#(i-[\w-]+)"', html)
     while fila:  # resolve dependências (símbolo que usa outro símbolo)
@@ -153,8 +188,11 @@ if __name__ == "__main__":
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
         sys.stderr.reconfigure(encoding="utf-8")
-    if len(sys.argv) != 3:
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    flags = {a for a in sys.argv[1:] if a.startswith("--")}
+    if len(args) != 2 or flags - {"--fontes-embutidas"}:
         sys.exit(__doc__)
-    entrada, saida = map(Path, sys.argv[1:])
-    saida.write_text(montar(entrada.read_text(encoding="utf-8")), encoding="utf-8", newline="\n")
+    entrada, saida = map(Path, args)
+    html = montar(entrada.read_text(encoding="utf-8"), "--fontes-embutidas" in flags)
+    saida.write_text(html, encoding="utf-8", newline="\n")
     print(f"ok: {saida}")
