@@ -18,6 +18,7 @@ BASE = Path(__file__).resolve().parent.parent / "assets"
 
 def carregar_simbolos():
     svg = (BASE / "ilustracoes.svg").read_text(encoding="utf-8")
+    svg = re.sub(r"<!--.*?-->", "", svg, flags=re.S)  # comentários não entram no sprite
     estilo = re.search(r"<style>(.*?)</style>", svg, re.S)
     simbolos = {
         m.group(1): m.group(0)

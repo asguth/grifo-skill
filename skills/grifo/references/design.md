@@ -110,6 +110,32 @@ Regras do estilo, obrigatórias:
 - Inserir inline na folha como `<svg class="ilustra g" viewBox="0 0 64 64">…</svg>`.
   Se ficar boa e for reutilizável, sugerir ao usuário adicioná-la à biblioteca.
 
+### Regra do sprite (ao adicionar símbolos à biblioteca)
+- Toda classe usada dentro de um `<symbol>` precisa estar declarada no `<style>`
+  do **próprio** `ilustracoes.svg`, **sem seletor de ancestral**: `.f-disc{…}`
+  funciona; `svg .f-disc{…}` (como no `grifo.css`) **não** atravessa a shadow tree
+  criada pelo `<use>` e a ilustração sai preta.
+- Nada de `<symbol>` dentro de comentário, e nada de `-->` dentro do comentário de
+  cabeçalho (fecha o comentário antes da hora).
+- `id` único, sempre com `viewBox`; `<use>` interno só para ids que existem.
+- Rode `python3 scripts/verificar_ilustracoes.py` (falha com exit 1 se algo disso
+  quebrar) e `python3 scripts/galeria.py` para ver o símbolo na galeria.
+
+### Paleta permitida nas ilustrações
+Qualquer cor fora desta lista faz o `verificar_ilustracoes.py` falhar.
+
+| Uso | Cores |
+|---|---|
+| Contorno e tinta | `#1C2430` |
+| Tema (via classe) | `var(--disc)`, `var(--disc-claro)`, `var(--disc-2)` (`.f-disc`, `.f-claro`, `.f-disc2`, `.t-disc`) |
+| Neutros | `#FFFFFF`/`#fff`, `#E3E7EC`, `#5A6070`, `#3A3F48`, `#23262C` |
+| Pele e cabelo | `#F6C9A0`, `#6B4A32`, `#2F2A26` |
+| Madeira (bancada) | `#7A4A2A`, `#9A6236` |
+| Marca-texto | `#FFE45C` |
+| Semânticas | vermelho `#D6283A`, verde `#16884A`, laranja `#E8790C`, azul `#1F6FD1` |
+| Símbolos nacionais | verde `#2E7D4F`, azul `#1F4FA0`, roupa `#3D4F6E` |
+| Mascote Grifo | `#E8853A`, `#FFF1DC`, `#C8F27A`, `#6A4C93`, `#F28B82` |
+
 ## 5. Checklist visual (o crítico de design usa este)
 1. Folha não estoura A4; colunas equilibradas.
 2. Toda folha tem `.topo` com nº correto.
