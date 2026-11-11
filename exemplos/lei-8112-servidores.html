@@ -96,7 +96,7 @@ code { font-size: .92em; background: var(--lei-claro); padding: 0 .25em; border-
 .rodape-folha {
   position: absolute; bottom: 6mm; left: 12mm; right: 12mm;
   display: flex; justify-content: space-between;
-  font-size: 7.5pt; color: var(--tinta-2); border-top: 1px solid var(--linha); padding-top: 1.5mm;
+  font-size: 8pt; color: var(--tinta-2); border-top: 1px solid var(--linha); padding-top: 1.5mm;
 }
 
 /* ===================== cabeçalho ===================== */
@@ -119,7 +119,7 @@ code { font-size: .92em; background: var(--lei-claro); padding: 0 .25em; border-
 
 /* incidência em prova: .incidencia[data-n="1..3"] */
 .incidencia { font-size: 11pt; letter-spacing: 1px; color: var(--disc); white-space: nowrap; }
-.incidencia::before { content: "Incidência "; font-size: 7.5pt; color: var(--tinta-2); letter-spacing: 0; }
+.incidencia::before { content: "Incidência "; font-size: 8pt; color: var(--tinta-2); letter-spacing: 0; }
 .incidencia[data-n="1"]::after { content: "★☆☆"; }
 .incidencia[data-n="2"]::after { content: "★★☆"; }
 .incidencia[data-n="3"]::after { content: "★★★"; }
@@ -197,7 +197,7 @@ mark.troca, .mt-troca { background: linear-gradient(transparent 38%, var(--mt-tr
 .selo {
   display: inline-block; transform: rotate(-3deg); border: 2px solid var(--pegadinha);
   color: var(--pegadinha); font-family: var(--fonte-titulo); font-weight: 800;
-  font-size: 7.5pt; text-transform: uppercase; padding: .3mm 1.8mm; border-radius: 3px; letter-spacing: .05em;
+  font-size: 8pt; text-transform: uppercase; padding: .3mm 1.8mm; border-radius: 3px; letter-spacing: .05em;
 }
 .selo.cai-muito { border-color: var(--pegadinha); color: var(--pegadinha); }
 .selo.novidade  { border-color: var(--exemplo); color: var(--exemplo); }
@@ -234,7 +234,7 @@ mark.troca, .mt-troca { background: linear-gradient(transparent 38%, var(--mt-tr
   font-weight: 800; font-size: 9pt; text-transform: uppercase; padding: 1mm 2.5mm; border-radius: 4px;
   text-align: center; min-width: 20mm; overflow-wrap: break-word;
 }
-.chave .no small { display: block; text-transform: none; font-weight: 600; font-size: 7.5pt; color: var(--tinta-2); }
+.chave .no small { display: block; text-transform: none; font-weight: 600; font-size: 8pt; color: var(--tinta-2); }
 .chave .desc { font-size: 9.4pt; overflow-wrap: break-word; }
 .chave .desc b:first-child { color: var(--disc); }
 
@@ -247,7 +247,7 @@ mark.troca, .mt-troca { background: linear-gradient(transparent 38%, var(--mt-tr
   border: 2px solid var(--disc); border-radius: var(--raio); background: #fff;
   padding: 1.4mm 1.2mm; font-size: 8.6pt; text-align: center; overflow-wrap: break-word;
 }
-.fluxo > .passo .t { display: block; overflow-wrap: break-word; font-weight: 800; color: var(--disc); text-transform: uppercase; font-size: 7.8pt; letter-spacing: -.01em; }
+.fluxo > .passo .t { display: block; overflow-wrap: break-word; font-weight: 800; color: var(--disc); text-transform: uppercase; font-size: 8pt; letter-spacing: -.01em; }
 .fluxo > .passo:not(:last-child)::after {
   content: "➜"; position: absolute; right: -4.6mm; top: 50%; transform: translateY(-50%);
   color: var(--disc); font-size: 12pt; font-weight: 900;
@@ -302,7 +302,7 @@ table.comparativo tr.destaque td { background: var(--pegadinha-claro) !important
   background: var(--disc); color: #fff; font-family: var(--fonte-titulo);
   font-size: 17pt; font-weight: 800; border-radius: 4px;
 }
-.sigla .letra span { font-size: 7.6pt; font-weight: 700; margin-top: .8mm; text-align: center; line-height: 1.15; }
+.sigla .letra span { font-size: 8pt; font-weight: 700; margin-top: .8mm; text-align: center; line-height: 1.15; }
 
 /* ===================== PIRÂMIDE / HIERARQUIA ===================== */
 .piramide { display: flex; flex-direction: column; align-items: center; gap: 1mm; break-inside: avoid; }
@@ -318,7 +318,7 @@ table.comparativo tr.destaque td { background: var(--pegadinha-claro) !important
 
 /* ===================== QUESTÕES ===================== */
 .questao { border: 1.5px solid var(--linha); border-radius: var(--raio); padding: 2mm 2.6mm; break-inside: avoid; font-size: 9.2pt; }
-.questao .cab { display: flex; gap: 2mm; align-items: center; margin-bottom: 1mm; font-size: 7.8pt; color: var(--tinta-2); }
+.questao .cab { display: flex; gap: 2mm; align-items: center; margin-bottom: 1mm; font-size: 8pt; color: var(--tinta-2); }
 .questao .cab .n { background: var(--tinta); color: #fff; font-weight: 800; border-radius: 3px; padding: 0 1.6mm; }
 .questao .cab .estilo { border: 1px solid var(--tinta-2); border-radius: 3px; padding: 0 1.3mm; text-transform: uppercase; font-weight: 700; }
 .questao ol.alternativas { list-style: none; padding-left: 0; margin: 1mm 0 0; counter-reset: alt; }
@@ -341,7 +341,7 @@ table.comparativo tr.destaque td { background: var(--pegadinha-claro) !important
   min-height: 52mm; padding: 4mm; border: 1px dashed #999; display: flex; flex-direction: column; justify-content: center;
   text-align: center; break-inside: avoid; position: relative;
 }
-.flashcards .card .lado { position: absolute; top: 2mm; left: 3mm; font-size: 7pt; color: var(--tinta-2); text-transform: uppercase; letter-spacing: .08em; }
+.flashcards .card .lado { position: absolute; top: 2mm; left: 3mm; font-size: 8pt; color: var(--tinta-2); text-transform: uppercase; letter-spacing: .08em; }
 .flashcards .card.frente { font-family: var(--fonte-titulo); font-size: 12pt; font-weight: 700; color: var(--disc); }
 .flashcards .card.verso { font-size: 9.6pt; background: var(--disc-claro); }
 .flashcards-instrucao { font-size: 8pt; color: var(--tinta-2); text-align: center; }
@@ -403,7 +403,7 @@ svg .f-exc    { fill: var(--excecao); }   svg .s-exc { stroke: var(--excecao); }
   text-align: center; font-family: var(--fonte-titulo); font-weight: 800;
   font-size: 13pt; text-transform: uppercase; color: var(--tinta); letter-spacing: .02em;
 }
-.topo .titulo-topo small { display: block; font-size: 7.5pt; font-weight: 600; color: var(--tinta-2); letter-spacing: .06em; }
+.topo .titulo-topo small { display: block; font-size: 8pt; font-weight: 600; color: var(--tinta-2); letter-spacing: .06em; }
 .topo .pag {
   justify-self: end; background: var(--disc-2); color: #fff; font-family: var(--fonte-titulo);
   font-weight: 800; font-size: 13pt; width: 11mm; height: 11mm; display: grid; place-items: center; border-radius: 2px;
@@ -517,7 +517,7 @@ table.rotulada td:first-child { background: #FBE7EA; color: #7A2230; font-weight
    títulos com linhas equilibradas (nada de palavra sozinha na última linha). */
 h1, h2, h3, h4, .faixa, .coluna-cab, .titulo-topico, .titulo-topo, .secao, .sub,
 .rotulo, .tag, .chip, .selo, th, td, .chave .no, .chave .raiz,
-.fluxo .passo .t, .sigla .letra span, .relacao > div, .linha-tempo .quando {
+.fluxo .passo .t, .relacao > div, .linha-tempo .quando {
   -webkit-hyphens: manual; hyphens: manual;
 }
 .faixa, .coluna-cab, .titulo-topico, .secao, th, .rotulo { text-wrap: balance; }
@@ -699,7 +699,7 @@ h1, h2, h3, h4, .faixa, .coluna-cab, .titulo-topico, .titulo-topo, .secao, .sub,
             <div class="letra"><b>D</b><span>Disciplina</span></div>
             <div class="letra"><b>C</b><span>Capacidade de iniciativa</span></div>
             <div class="letra"><b>P</b><span>Produtividade</span></div>
-            <div class="letra"><b>R</b><span>Responsa<span>Responsabili&shy;dade</span>shy;bilidade</span></div>
+            <div class="letra"><b>R</b><span>Responsabilidade</span></div>
           </div>
         </div>
       </div>

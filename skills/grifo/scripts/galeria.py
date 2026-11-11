@@ -32,9 +32,9 @@ CABECA = """<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title
 <!--APOSTILA:CSS-->
 <style>
 .gal-grupo{font-family:var(--fonte-titulo);font-weight:800;font-size:8.5pt;text-transform:uppercase;color:var(--disc);border-bottom:1.5px solid var(--disc-claro);margin-top:1.5mm}
-.gal{display:grid;grid-template-columns:repeat(%(col)d,minmax(0,1fr));gap:1.6mm 1mm}
-.gal div{text-align:center;font-size:6.6pt;color:var(--tinta-2);overflow-wrap:anywhere;line-height:1.15}
-.gal svg{width:15mm;height:15mm;display:block;margin:0 auto .6mm}
+.gal{display:grid;grid-template-columns:repeat(%(col)d,minmax(0,1fr));gap:1.2mm 1mm}
+.gal div{text-align:center;font-size:8pt;color:var(--tinta-2);overflow-wrap:anywhere;line-height:1.1}
+.gal svg{width:14mm;height:14mm;display:block;margin:0 auto .5mm}
 </style>
 </head><body class="d-penal"><!--APOSTILA:SPRITE-->
 """
