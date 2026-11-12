@@ -32,6 +32,7 @@ jobs:
         run: |
           python ferramentas/verificar_ilustracoes.py
           python ferramentas/test_montar.py
+          python ferramentas/test_figura.py
           python ferramentas/verificar_contraste.py
           python $S/verificar.py exemplos/*-fonte.html skills/grifo/assets/templates/*.html
 

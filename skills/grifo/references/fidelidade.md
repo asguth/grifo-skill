@@ -5,7 +5,8 @@ que todo o design system.
 
 ## Hierarquia de fontes
 1. **Material enviado pelo usuário** (apostila, PDF, edital). Resumir com palavras
-   próprias; nunca copiar layout/esquemas de terceiros.
+   próprias; nunca copiar texto, layout ou esquemas de terceiros. Figura só de acervo
+   com licença aberta (abaixo).
 2. **Texto normativo oficial vigente:** planalto.gov.br, in.gov.br (DOU), sites
    .gov.br dos órgãos (resoluções, portarias, regimentos), câmara/senado (legislação
    compilada). Se um portal bloquear acesso automático, usar outro espelho oficial
@@ -34,6 +35,15 @@ que todo o design system.
 <div class="pequeno"><b>Fontes:</b> Lei 13.709/2018 (redação vigente, consulta em
 dd/mm/aaaa); Enunciado CD/ANPD nº 1/2023. Atualizado até dd/mm/aaaa.</div>
 ```
+
+## Figuras de terceiros
+- Só com **licença aberta**: CC0, domínio público, CC BY, CC BY-SA (sem alterar a imagem).
+  NC, ND, "todos os direitos reservados" ou licença desconhecida: não usar.
+- **Sempre com crédito** na legenda (`.credito`): autor, link da página do arquivo, licença
+  com link. Domínio público também leva crédito: é honestidade, não só obrigação legal.
+- Baixe com `scripts/figura.py` (lê a licença e grava o crédito); método completo em
+  `references/ilustracoes.md`.
+- Figura de acervo também erra: confira contra o texto e a fonte primária.
 
 ## Referências com link
 - Toda referência que existe on-line vai com link clicável para a **fonte oficial ou

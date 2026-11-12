@@ -7,12 +7,16 @@ ERROS (exit 1):
   - classe usada que não existe no grifo.css (nem num <style> do próprio arquivo);
   - <use href="#i-…"> apontando para ilustração que não existe no sprite;
   - .folha sem .topo (exceto .folha.capa);
+  - <img> de figura sem crédito (.credito), com endereço remoto ou arquivo inexistente;
   - numeração das folhas (.topo .pag) fora de sequência.
 AVISOS (exit 0, ou 1 com --estrito):
   - sobrou class="verificar" ([VERIFICAR] no texto final);
   - .coluna sem nenhum diagrama, tabela ou ilustração;
   - <style> inline com mais de 20 linhas (use as classes do design system);
-  - marcador de template não preenchido ([[…]]).
+  - marcador de template não preenchido ([[…]]);
+  - .figura com desenho SVG inline (figura didática vem de acervo aberto ou de gerador:
+    references/ilustracoes.md);
+  - imagem de figura com mais de 900 KB.
 Licença MIT.
 """
 import re
@@ -124,6 +128,33 @@ def verificar(caminho: Path, classes_css: set, ids: set):
             erros.append(f"linha {no.linha}: {href} não existe em {onde}")
     for c, linha in sorted(desconhecidas.items(), key=lambda x: x[1]):
         erros.append(f"linha {linha}: classe .{c} não existe no grifo.css")
+
+    base = caminho.resolve().parent
+    for no in todos:
+        if no.tag != "img":
+            continue
+        src = no.attrs.get("src") or ""
+        fig = no.pai
+        while fig is not None and "figura" not in fig.classes:
+            fig = fig.pai
+        if fig is None:
+            continue
+        if not any("credito" in d.classes for d in fig.descendentes()):
+            erros.append(f"linha {no.linha}: figura sem crédito (<span class=\"credito\">autor, fonte, licença</span>)")
+        if src.startswith(("http:", "https:", "//")):
+            erros.append(f"linha {no.linha}: imagem remota ({src[:50]}); baixe com scripts/figura.py e use caminho local")
+        elif not src.startswith("data:"):
+            arq = base / src
+            if not arq.is_file():
+                erros.append(f"linha {no.linha}: imagem {src} não existe")
+            elif arq.stat().st_size > 900 * 1024:
+                avisos.append(f"linha {no.linha}: imagem {src} tem {arq.stat().st_size // 1024} KB; reduza (figura.py --largura)")
+    for no in todos:
+        if no.tag == "figure" and "figura" in no.classes and any(f.tag == "svg" for f in no.filhos):
+            n = sum(1 for d in no.descendentes() if d.tag in {"path", "circle", "rect", "ellipse", "polygon"})
+            if n >= 8:
+                avisos.append(f"linha {no.linha}: figura desenhada à mão em SVG ({n} formas); "
+                              "use acervo aberto ou gerador (references/ilustracoes.md)")
 
     folhas = [n for n in todos if n.tag == "div" and "folha" in n.classes]
     esperado = None

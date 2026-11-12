@@ -5,7 +5,7 @@
 <h1 align="center">Grifo-Skill: illustrated study guides on any subject, made with AI</h1>
 
 <p align="center">
-  <b>Open-source (MIT) skill for Claude and Codex that turns a topic — or your PDF, slides
+  <b>Open-source skill for Claude and Codex that turns a topic — or your PDF, slides
   or notes — into university-level A4 study material: structured summary, concept map,
   night-before review, original practice questions with an explained answer key, and
   flashcards.</b>
@@ -20,8 +20,10 @@
 ## What it does
 
 Tell it the subject (or attach a file) and the format. It researches reliable sources,
-lays out A4 pages with **editorial design** and **labeled figures drawn from scratch**
-(heart in cross-section, cell, chloroplast, circuits…), and delivers **HTML and PDF**.
+lays out A4 pages with **editorial design** and **figures from open-licensed collections**
+(OpenStax, Servier, NIH, Wikimedia Commons, each credited) or **generated from data**
+(RDKit molecules, matplotlib plots), and delivers **HTML and PDF**. The AI does not draw
+anatomy from memory.
 The material is written **in your language**: ask in English, get English — labels,
 dates, hyphenation and question format included.
 
@@ -90,12 +92,25 @@ from the browser (Ctrl+P → A4, no margins, background graphics).
 
 - **Accuracy over looks:** every fact comes from a checked source; anything unchecked is
   marked `[VERIFY]`. References link to the official source of your country.
-- **No copying:** no third-party text, figures, images or exam questions.
+- **No copying:** no third-party text, diagrams or exam questions. Third-party images only
+  under open licenses (public domain, CC0, CC BY, CC BY-SA), always credited.
 - **No portraits of real people.** **Readable in black and white.**
 
-> ⚠️ AI-generated material can contain errors even after review. Check the sources.
+## Limitations and responsibility
+
+> ⚠️ Grifo-Skill produces study material with AI. It **supports** studying and **does not
+> replace** textbooks, classes, atlases, official law or teachers. Text, questions and
+> figures may contain errors, including conceptual ones, even after review. Check
+> everything against the cited sources. Use is at your own responsibility; the project is
+> provided "as is", without warranty. Every page footer reads "Made with Grifo-Skill ·
+> AI-generated: check the sources".
 
 ## License
 
-[MIT](LICENSE) © 2026 Alberto Guth (GT Design). Inter and Poppins fonts:
+© 2026 Alberto Guth (GT Design), [details in LICENSE](LICENSE). **Code: MIT.** **Design and
+content** (CSS, templates, mascot, logo, guides, examples): **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)**:
+generated material embeds that design, so it keeps the credit **"Made with Grifo-Skill —
+github.com/asguth/grifo-skill"** (the page footer already prints it). Third-party figures keep
+their own license and credit ([CREDITOS.md](CREDITOS.md)). Versions up to 1.0.0 were MIT only.
+Inter and Poppins fonts:
 [SIL OFL](skills/grifo/assets/fontes/OFL.txt). Lucide icons: ISC.

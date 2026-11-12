@@ -47,7 +47,7 @@ Com o nome de um comando (`/grifo questoes`): mostra só a linha dele, as flags 
 aceita e o exemplo. Não gera arquivo nem roda o fluxo.
 
 ```
-GRIFO-SKILL · apostilas ilustradas de qualquer assunto (MIT)
+GRIFO-SKILL · apostilas ilustradas de qualquer assunto (código MIT · design CC BY 4.0)
 
 Sintaxe: /<comando> <assunto ou arquivo> [--formato f] [--estilo e] [--nivel n] [--folhas N]
                                           [--material arquivo] [--banca b] [--idioma xx]
@@ -96,8 +96,8 @@ Conflito com outro plugin? Use /grifo-skill:resumo, /grifo-skill:grifo …
 2. Na 1ª folha: `.titulo-topico` com o nome do assunto (opcional se o tópico for curto).
 3. Colunas com `.coluna-cab` (subárea) e `.bloco`s (um por subtema).
 4. Cada bloco usa o componente indicado pela forma do conteúdo (design.md §3).
-   Assunto com estrutura física (órgão, célula, aparelho, circuito): figura rotulada
-   desenhada do zero na 1ª folha (`ilustracoes.md`).
+   Assunto com estrutura física (órgão, célula, aparelho, circuito): figura de acervo
+   aberto ou gerada a partir de dados na 1ª folha, com crédito (`ilustracoes.md`).
 5. Pelo menos: 1 diagrama estrutural (chave, fluxo, pirâmide ou linha do tempo),
    1 tabela comparativa quando houver institutos parecidos, 1 caixa `IMPORTANTE`,
    1 caixa `DICA` ou mnemônico, 1 quadro de erros comuns (ou pegadinhas, se concurso).

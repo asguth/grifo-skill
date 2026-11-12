@@ -6,13 +6,13 @@
 <h1 align="center">Grifo-Skill: apostilas e resumos ilustrados de qualquer assunto, feitos com IA</h1>
 
 <p align="center">
-  <b>Skill open source (MIT) para Claude e Codex que transforma um tema — ou o seu PDF, slides
+  <b>Skill open source para Claude e Codex que transforma um tema — ou o seu PDF, slides
   ou anotações — em material de estudo A4 nível universitário: resumo esquematizado, mapa,
   revisão, questões inéditas com gabarito comentado e flashcards.</b>
 </p>
 
 <p align="center">
-  <a href="LICENSE"><img alt="Licença MIT" src="https://img.shields.io/badge/licen%C3%A7a-MIT-237A57"></a>
+  <a href="LICENSE"><img alt="Licença: código MIT, design CC BY 4.0" src="https://img.shields.io/badge/licen%C3%A7a-MIT%20%2B%20CC%20BY%204.0-237A57"></a>
   <a href="https://github.com/asguth/grifo-skill/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/asguth/grifo-skill/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Claude Code plugin" src="https://img.shields.io/badge/Claude%20Code-plugin-243B53">
   <img alt="Claude.ai skill" src="https://img.shields.io/badge/Claude.ai-skill-2F6B8A">
@@ -149,21 +149,27 @@ aponta o Codex para a skill.
 | Coração: anatomia e ciclo cardíaco · estilo **colorido** | Medicina / Fisiologia | 4 | [PDF](exemplos/medicina-coracao.pdf) | [1](docs/exemplos/medicina-coracao-p1.png) · [2](docs/exemplos/medicina-coracao-p2.png) · [3](docs/exemplos/medicina-coracao-p3.png) · [4](docs/exemplos/medicina-coracao-p4.png) |
 | Photosynthesis (em inglês) · estilo **pastel** | Biology | 1 | [PDF](exemplos/en-photosynthesis.pdf) | [1](docs/exemplos/en-photosynthesis-p1.png) |
 
-Os dois últimos mostram **figuras desenhadas do zero** (coração em corte com 12 estruturas
-numeradas, sistema de condução, cloroplasto): quando o assunto tem estrutura física, a
-skill desenha a figura rotulada em vez de pôr um ícone ao lado do texto
-([`references/ilustracoes.md`](skills/grifo/references/ilustracoes.md)).
+Os dois últimos mostram **figuras de acervo aberto** (coração em corte rotulado em
+português, sistema de condução e cloroplasto da OpenStax), cada uma com autor e licença na
+legenda. A IA **não desenha anatomia de cabeça**: a figura vem de quem é da área ou é
+gerada a partir de dados ([`references/ilustracoes.md`](skills/grifo/references/ilustracoes.md)).
 
 Em todos: questões em coluna única e o **gabarito comentado + referências com link** numa
 folha separada, para não dar spoiler.
 
 ## Galeria
 
-**60 ilustrações próprias e coloridas** (com o mascote Grifo e um conjunto de saúde e
-ciências com volume) e **2.052 ícones [Lucide](https://lucide.dev)** por nome. Para
-anatomia, célula, aparelhos e circuitos, a skill desenha **figuras rotuladas do zero**:
+O mascote Grifo, **2.052 ícones [Lucide](https://lucide.dev)** por nome (amostra abaixo) e
+nenhuma ilustração "pronta". Figura didática vem de onde é confiável:
 
-![Galeria de ilustrações do Grifo-Skill](docs/galeria.png)
+| Conteúdo | Origem da figura |
+|---|---|
+| Anatomia, célula, órgão, aparelho | **Acervo aberto**: OpenStax, Servier Medical Art, NIH e diagramas do Wikimedia Commons, buscados e baixados por `scripts/figura.py`, que lê a licença e escreve o crédito |
+| Molécula, reação | **RDKit** a partir do SMILES conferido |
+| Gráfico, curva, circuito | **matplotlib** / **schemdraw** a partir da equação ou dos dados |
+| Processo, classificação, prazo | componentes do design system (fluxo, chave, linha do tempo) |
+
+![Mascote e amostra de ícones do Grifo-Skill](docs/galeria.png)
 
 <details>
 <summary><b>Componentes do design system</b> (blocos, destaques, fórmula, tabela-verdade, código, análise sintática, ícones)</summary>
@@ -183,7 +189,10 @@ pedido ─▶ (pergunta assunto/formato, se faltar) ─▶ fontes ─▶ roteiro
   vermelho e verde só para exceção, erro e acerto; slate para referências; estilos
   `colorido`, `pastel` e `pb` por `data-tema`. Contraste ≥ 4,5:1 conferido por script
   em todos os estilos; todo destaque tem ícone e rótulo.
-- **`montar.py`**: HTML único e autocontido, só com as ilustrações e ícones usados,
+- **`figura.py`**: busca no Wikimedia Commons só licenças abertas (CC0, domínio público,
+  CC BY, CC BY-SA), baixa, reduz e devolve o `<figure>` com o crédito; desenha moléculas
+  com RDKit. O `verificar.py` recusa figura sem crédito.
+- **`montar.py`**: HTML único e autocontido, com as figuras, o mascote e os ícones usados,
   espaço inseparável em "art. 59"/"30 dias", versão da skill ao lado do logo e
   `--fontes-embutidas` para PDF offline.
 - **`renderizar.py`**: PDF A4 + PNG por folha + relatório (estouro, transbordo, colunas
@@ -193,16 +202,26 @@ pedido ─▶ (pergunta assunto/formato, se faltar) ─▶ fontes ─▶ roteiro
 
 - **Fidelidade acima de estética:** todo dado vem de fonte conferida; o que não for
   conferido sai marcado como `[VERIFICAR]`. Referências com link para a fonte oficial.
-- **Sem cópia:** nada de texto, esquema, imagem ou questão de terceiros. Atos oficiais
-  podem ser citados (Lei 9.610/98, art. 8º, IV).
+- **Sem cópia:** nada de texto, esquema ou questão de terceiros. Imagem de terceiros só
+  com licença aberta e crédito. Atos oficiais podem ser citados (Lei 9.610/98, art. 8º, IV).
+- **Aviso em toda folha:** o rodapé imprime "Feito com Grifo-Skill · gerado com IA:
+  confira nas fontes".
 - **Sem retratos de pessoas reais.**
 - **Legível em preto e branco.**
 
-> ⚠️ Material gerado por IA pode conter erros, mesmo depois da revisão. Confira as fontes.
+## Limitações e responsabilidade
+
+> ⚠️ O Grifo-Skill gera material de estudo com IA. Ele **auxilia** o estudo e **não
+> substitui** livros, aulas, atlas, legislação oficial nem orientação de professores.
+> Textos, questões e figuras podem conter erros, inclusive conceituais, mesmo depois da
+> revisão. Confira tudo nas fontes indicadas antes de estudar ou usar o material. Figuras
+> são de apoio, sem valor de referência clínica. O uso é de responsabilidade de quem usa;
+> o projeto é fornecido "no estado em que se encontra", sem garantias.
 
 ## Perguntas frequentes
 
-**É de graça?** Sim. Código, ilustrações, mascote e exemplos são MIT.
+**É de graça?** Sim. O código é MIT; design, mascote, guias e exemplos são CC BY 4.0
+(uso livre com crédito).
 
 **Serve para faculdade ou só concurso?** Para qualquer assunto e nível. Concursos ganham
 extras (banca, lei seca, pegadinhas, edital).
@@ -210,7 +229,8 @@ extras (banca, lei seca, pegadinhas, edital).
 **Posso usar meu material?** Sim: anexe PDF, slides ou anotações (`--material`); ele vira
 a fonte principal.
 
-**Posso vender o que gerar?** Pode (MIT). Confira o conteúdo e não inclua material de terceiros.
+**Posso vender o que gerar?** Pode, mantendo o crédito "Feito com Grifo-Skill" (o rodapé
+já traz) e os créditos das figuras. Confira o conteúdo antes.
 
 **Dá para mudar as cores?** Sim: `--estilo colorido`, `pastel` ou `pb`, ou peça "mais
 colorido" / "mais sóbrio". Para um tópico manter sempre a mesma cor, a skill usa `cor-1`…`cor-6`.
@@ -224,12 +244,12 @@ skills/grifo/          a skill (vai no grifo-skill.zip)
   SKILL.md             fluxo principal (metadata.version = versão impressa nas folhas)
   references/          comandos, design, ilustrações, idiomas, componentes, fidelidade, bancas
   agentes/             validador de conteúdo, revisor didático, crítico de design
-  assets/              grifo.css, ilustracoes.svg, lucide/, mascote/, fontes/, templates/
-  scripts/             verificar.py, montar.py, renderizar.py
+  assets/              grifo.css, ilustracoes.svg (mascote), lucide/, mascote/, fontes/, templates/
+  scripts/             figura.py, verificar.py, montar.py, renderizar.py
 commands/              slash commands do Claude Code
 .claude-plugin/        manifest do plugin e marketplace
 AGENTS.md              instruções para Codex e outros agentes
-exemplos/              fontes HTML e PDFs dos exemplos
+exemplos/              fontes HTML, figuras (com crédito) e PDFs dos exemplos
 ferramentas/           verificadores, galeria, docs, versão e marca (desenvolvimento)
 docs/                  imagens do README e marca
 ```
@@ -238,14 +258,14 @@ docs/                  imagens do README e marca
 
 <img src="docs/marca/icone.png" alt="Ícone do Grifo-Skill" width="96" align="left">
 
-O **Grifo** — mascote do projeto — e o logo também são **MIT**: use em materiais gerados,
-apresentações e forks. Arquivos em [`docs/marca/`](docs/marca). Só não use a marca para
+O **Grifo** — mascote do projeto — e o logo são **CC BY 4.0**: use em materiais gerados,
+apresentações e forks, com o crédito. Arquivos em [`docs/marca/`](docs/marca). Só não use a marca para
 sugerir que um material é oficial do projeto quando não é.
 <br clear="left">
 
 ## Contribuindo
 
-PRs são bem-vindos — novas ilustrações, perfis de banca, exemplos de outras áreas.
+PRs são bem-vindos — perfis de banca, exemplos de outras áreas, componentes.
 Veja o [CONTRIBUTING.md](CONTRIBUTING.md) e o [CHANGELOG](CHANGELOG.md).
 
 ## Apoie o projeto
@@ -261,6 +281,14 @@ quando achar um erro.
 
 ## Licença
 
-[MIT](LICENSE) © 2026 Alberto Guth (GT Design). Fontes Inter e Poppins:
-[SIL OFL](skills/grifo/assets/fontes/OFL.txt). Ícones Lucide:
-[ISC](skills/grifo/assets/lucide/LICENSE).
+© 2026 Alberto Guth (GT Design). [Detalhes em LICENSE](LICENSE).
+
+- **Código** (scripts, ferramentas, plugin): **MIT**.
+- **Design e conteúdo** (CSS, templates, mascote, logo, guias, exemplos): **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt-br)**.
+  Todo material gerado incorpora esse design, então leva o crédito
+  **"Feito com Grifo-Skill — github.com/asguth/grifo-skill"** (o rodapé das folhas já imprime).
+- **Terceiros**, sempre com crédito: fontes Inter e Poppins ([SIL OFL](skills/grifo/assets/fontes/OFL.txt)),
+  ícones Lucide ([ISC](skills/grifo/assets/lucide/LICENSE)) e figuras de acervo aberto,
+  cada uma na sua licença (domínio público, CC0, CC BY, CC BY-SA). Lista em [CREDITOS.md](CREDITOS.md).
+
+Versões até a 1.0.0 foram publicadas só sob MIT.

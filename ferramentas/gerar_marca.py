@@ -8,7 +8,7 @@ Uso:  python ferramentas/gerar_marca.py
   docs/marca/icone.png    512×512 (avatar do GitHub e favicon)
   docs/marca/social.png   1280×640 (social preview do GitHub)
   skills/grifo/assets/mascote/grifo.webp   448×448, ≤ 40 KB (usado nas apostilas)
-O mascote e a marca são MIT, como o resto do repositório.
+O mascote e a marca são CC BY 4.0 (LICENSE, parte 2).
 """
 import base64
 import io
@@ -92,7 +92,7 @@ def main():
             f"""<div class="soc"><img src="{src}"><div class="txt">
               <div class="nome"><span>Grifo</span><span class="s">-Skill</span></div>
               <div class="frase">Apostilas ilustradas de qualquer assunto</div>
-              <div class="selos"><span>Skill para Claude e Codex</span><span>Open source · MIT</span><span>PDF A4 pronto</span></div>
+              <div class="selos"><span>Skill para Claude e Codex</span><span>Open source</span><span>PDF A4 pronto</span></div>
             </div></div>""",
             marca_texto + f"""
             .soc{{width:1280px;height:640px;background:#F6F7F9;display:flex;align-items:center;gap:40px;padding:0 70px;

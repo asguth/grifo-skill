@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""Gera a galeria de ilustrações e componentes do Grifo-Skill.
+"""Gera a galeria (mascote, amostra de ícones Lucide e componentes) do Grifo-Skill.
 
 Uso:  python3 galeria.py [pasta_exemplos] [pasta_docs]
       (padrão: <repo>/exemplos e <repo>/docs)
 
-1. Lê os <symbol> de assets/ilustracoes.svg (na ordem do arquivo, agrupados
-   pelos comentários de seção) e escreve exemplos/galeria-fonte.html —
+1. Lê os <symbol> de assets/ilustracoes.svg (o mascote), junta uma amostra de
+   ícones Lucide por área e escreve exemplos/galeria-fonte.html —
    nunca editar esse arquivo à mão: ele é sobrescrito.
 2. Monta (montar.py) -> exemplos/galeria.html.
 3. Renderiza (renderizar.py) e copia a folha 1 para docs/galeria.png e a
@@ -25,6 +25,13 @@ SKILL = REPO / "skills" / "grifo"
 AQUI = SKILL / "scripts"
 SPRITE = SKILL / "assets" / "ilustracoes.svg"
 COLUNAS = 10
+# amostra de ícones Lucide por área (não há biblioteca de ilustrações prontas)
+LUCIDE = [
+    ("Direito e Estado", "scale gavel landmark scroll-text file-text stamp shield-check lock users user-round"),
+    ("Saúde e biologia", "heart-pulse stethoscope brain microscope dna pill syringe bone activity sprout"),
+    ("Exatas e TI", "calculator sigma chart-line chart-column flask-conical atom cpu database code network"),
+    ("Estudo e sinais", "book-open lightbulb target clock calendar-days triangle-exclamation-point ban circle-check search messages-square"),
+]
 
 CABECA = """<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Galeria Grifo</title>
 <!-- GERADO POR scripts/galeria.py — não editar à mão -->
@@ -39,6 +46,8 @@ CABECA = """<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title
 .gal{display:grid;grid-template-columns:repeat(%(col)d,minmax(0,1fr));gap:1.2mm 1mm}
 .gal div{text-align:center;font-size:8pt;color:var(--tinta-2);hyphens:manual;overflow-wrap:normal;line-height:1.1}
 .gal svg{width:12.5mm;height:12.5mm;display:block;margin:0 auto .5mm}
+.gal svg.ico{width:10mm;height:10mm;margin:1.2mm auto 1mm;color:var(--navy)}
+.gal-nota{font-size:8.6pt;color:var(--tinta-2);margin-top:3mm}
 </style>
 </head><body><!--APOSTILA:SPRITE-->
 """
@@ -46,8 +55,8 @@ CABECA = """<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title
 TOPO = ('<div class="topo"><div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>'
         '<div class="titulo-topo">{titulo}<small>design system grifo</small></div><div class="pag">{n:02d}</div></div>')
 
-RODAPE = ('<div class="rodape-folha"><span>Grifo-Skill · MIT</span>'
-          '<span>ids com prefixo i- (ex.: i-coracao) · ferramentas/galeria.py · {n} ilustrações</span></div>')
+RODAPE = ('<div class="rodape-folha"><span>Grifo-Skill</span>'
+          '<span>ferramentas/galeria.py · mascote + {n} ícones Lucide de amostra (2.052 no total)</span></div>')
 
 # Folha 2: amostra de componentes (atualize quando criar componente novo).
 COMPONENTES = """
@@ -55,9 +64,9 @@ COMPONENTES = """
  <div class="coluna"><div class="coluna-cab">Blocos e listas</div>
   <div class="bloco"><div class="faixa">Penas restritivas de direito</div><div class="corpo">
    <div class="sub">Interdição temporária de direitos</div>
-   <div class="com-ilustra"><ul class="check"><li>Cargo público;</li><li>Profissão;</li><li>Habilitação;</li><li>Concurso público.</li></ul><svg class="ilustra g"><use href="#i-documento"/></svg></div>
+   <div class="com-ilustra"><ul class="check"><li>Cargo público;</li><li>Profissão;</li><li>Habilitação;</li><li>Concurso público.</li></ul><svg class="ilustra g ico"><use href="#l-file-text"/></svg></div>
   </div></div>
-  <div class="bloco primaria"><div class="faixa">Requisitos subjetivos</div><div class="corpo"><div class="com-ilustra esq"><svg class="ilustra gg"><use href="#i-juiz"/></svg><p>Quando a culpabilidade, os antecedentes e a conduta social <span class="chave-v">indicarem</span>.</p></div></div></div>
+  <div class="bloco primaria"><div class="faixa">Requisitos subjetivos</div><div class="corpo"><div class="com-ilustra esq"><svg class="ilustra gg ico"><use href="#l-gavel"/></svg><p>Quando a culpabilidade, os antecedentes e a conduta social <span class="chave-v">indicarem</span>.</p></div></div></div>
   <div class="bloco escura"><div class="faixa">Fórmula · probabilidade</div><div class="corpo">
    <div class="formula"><span class="rot">Probabilidade clássica</span><i>P</i>(<i>A</i>) = <span class="frac"><span>casos favoráveis</span><span>casos possíveis</span></span></div>
   </div></div>
@@ -110,9 +119,11 @@ def simbolos_por_grupo(svg: str):
 
 def gerar_fonte() -> tuple[str, int]:
     grupos = simbolos_por_grupo(SPRITE.read_text(encoding="utf-8"))
-    total = sum(len(ids) for _, ids in grupos)
+    grupos = [(g, [f"#{i}" for i in ids]) for g, ids in grupos]
+    grupos += [(g, [f"#l-{n}" for n in nomes.split()]) for g, nomes in LUCIDE]
+    total = sum(len(nomes.split()) for _, nomes in LUCIDE)
     partes = [CABECA % {"col": COLUNAS}]
-    partes.append('<div class="folha">' + TOPO.format(titulo="Galeria de ilustrações", n=1))
+    partes.append('<div class="folha">' + TOPO.format(titulo="Mascote e ícones", n=1))
     # grupos pequenos dividem a mesma linha; grupos com >= COLUNAS/2 itens ocupam a largura toda
     partes.append('<div class="gal-grupos">')
     for grupo, ids in grupos:
@@ -120,9 +131,14 @@ def gerar_fonte() -> tuple[str, int]:
         n = COLUNAS if cheio else len(ids)
         partes.append(f'<div class="gal-bloco{" cheio" if cheio else ""}" style="--n:{n}">'
                       f'<div class="gal-grupo">{html.escape(grupo)} · {len(ids)}</div><div class="gal">')
-        partes += [f'<div><svg><use href="#{i}"/></svg>{i[2:]}</div>' for i in ids]
+        for i in ids:
+            cls = ' class="ico"' if i.startswith("#l-") else ""
+            partes.append(f'<div><svg{cls}><use href="{i}"/></svg>{i[3:]}</div>')
         partes.append("</div></div>")
     partes.append("</div>")
+    partes.append('<p class="gal-nota"><b>Figuras didáticas</b> (anatomia, célula, molécula, circuito) não vêm daqui: '
+                  'vêm de acervo aberto com crédito ou de gerador a partir de dados. '
+                  'Ver <code>references/ilustracoes.md</code> e <code>scripts/figura.py</code>.</p>')
     partes.append(RODAPE.format(n=total) + "</div>\n")
     partes.append('<div class="folha">' + TOPO.format(titulo="Galeria de componentes", n=2))
     partes.append(COMPONENTES + RODAPE.format(n=total) + "</div>\n</body></html>\n")
@@ -136,7 +152,7 @@ def main():
     docs = Path(sys.argv[2]) if len(sys.argv) > 2 else REPO / "docs"
     fonte, total = gerar_fonte()
     (exemplos / "galeria-fonte.html").write_text(fonte, encoding="utf-8", newline="\n")
-    print(f"ok: galeria-fonte.html com {total} ilustrações")
+    print(f"ok: galeria-fonte.html com mascote e {total} ícones")
     py = sys.executable
     subprocess.run([py, str(AQUI / "montar.py"), str(exemplos / "galeria-fonte.html"),
                     str(exemplos / "galeria.html")], check=True)

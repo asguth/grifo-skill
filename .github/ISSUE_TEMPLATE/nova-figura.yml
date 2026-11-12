@@ -1,0 +1,34 @@
+name: 'Fonte de figura'
+description: 'Sugira um acervo ou uma figura com licença aberta para um assunto'
+title: "[figura] "
+labels: ["figura"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        O Grifo-Skill não desenha figura didática à mão: usa acervo aberto (CC0, domínio
+        público, CC BY, CC BY-SA) ou gerador a partir de dados (references/ilustracoes.md).
+        Sugestões de acervos, figuras boas ou figuras erradas que a skill usou são bem-vindas.
+  - type: input
+    id: assunto
+    attributes:
+      label: 'Assunto'
+      placeholder: 'néfron, ciclo de Krebs, circuito RC…'
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: 'Link da figura ou do acervo'
+      placeholder: 'https://commons.wikimedia.org/wiki/File:…'
+  - type: input
+    id: licenca
+    attributes:
+      label: 'Licença'
+      placeholder: 'CC BY 4.0'
+  - type: textarea
+    id: motivo
+    attributes:
+      label: 'Por que essa figura (ou o que está errado na atual)'
+    validations:
+      required: true

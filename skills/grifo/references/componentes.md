@@ -43,14 +43,14 @@ Cabeçalho alternativo de 1ª folha (estilo resumo único):
 <div class="bloco pill"> … </div>      <!-- faixa arredondada centralizada -->
 ```
 
-## Texto + ilustração
+## Texto + ícone
 ```html
-<div class="com-ilustra">          <!-- ilustração à direita -->
+<div class="com-ilustra">          <!-- ícone à direita -->
   <ul class="check"><li>Cargo público;</li><li>Profissão;</li></ul>
-  <svg class="ilustra g"><use href="#i-documento"/></svg>
+  <svg class="ilustra g ico"><use href="#l-file-text"/></svg>
 </div>
-<div class="com-ilustra esq">      <!-- ilustração à esquerda -->
-  <svg class="ilustra gg"><use href="#i-juiz"/></svg>
+<div class="com-ilustra esq">      <!-- ícone à esquerda -->
+  <svg class="ilustra gg ico"><use href="#l-gavel"/></svg>
   <p>Quando a culpabilidade… <span class="chave-v">indicarem</span>.</p>
 </div>
 ```
@@ -214,7 +214,7 @@ Pirâmide só em CSS: `.piramide > .nivel` (até 5 níveis, topo primeiro).
 <div class="folha capa">
   <div class="titulo-capa">Direito Constitucional</div>
   <div class="sub-capa">Apostila visual — Curso/Concurso X</div>
-  <svg class="ilustra gg" style="margin-top:20mm"><use href="#i-constituicao"/></svg>
+  <svg class="ilustra gg ico" style="margin-top:20mm"><use href="#l-scroll-text"/></svg>
   <div class="info-capa">Gerada com Grifo-Skill (MIT) · atualizado até dd/mm/aaaa</div>
 </div>
 <div class="folha sumario"><h2 class="secao">Sumário</h2>
@@ -273,6 +273,18 @@ Trecho analisado sublinhado e a função em rótulo acima (`data-funcao`).
 <svg class="ilustra g ico"><use href="#l-microscope"/></svg> <!-- grande, ao lado de bloco -->
 ```
 Nomes: `grep -i "termo" assets/lucide/nomes.txt` (linha = `nome: tags em inglês`).
+
+## Figura de acervo aberto ou gerada
+```html
+<figure class="figura aberta lado">              <!-- .larga: imagem com rótulos pequenos -->
+  <img src="figuras/coracao-corte-pt.png" alt="Corte frontal do coração…">
+  <div>texto ao lado: sequência, tabela "Na figura → Português", cores</div>
+  <figcaption>Vista declarada. <span class="credito">Imagem: autor, <a href="…">Wikimedia Commons</a>,
+    <a href="…">CC BY 4.0</a>.</span></figcaption>
+</figure>
+```
+Imagem baixada com `scripts/figura.py`; chamadas numeradas sobre imagem sem rótulos
+(`.sobre` + `.marca`) e regras de licença em `references/ilustracoes.md`.
 
 ## Questões e gabarito: sempre em folhas diferentes
 Folha de questões: `.questao` direto na `.folha`, em coluna única (sem `.apostila-colunas`).

@@ -53,6 +53,7 @@
 
   /* textos gerados pelo CSS (traduzidos por :lang() no fim do arquivo) */
   --txt-incidencia: "Incidência "; --txt-verificar: "[VERIFICAR] "; --txt-atencao: "ATENÇÃO: ";
+  --txt-aviso-ia: "gerado com IA: confira nas fontes"; --txt-feito-com: "Feito com ";
 
   --fonte-titulo: "Poppins", "Montserrat", "Segoe UI", system-ui, sans-serif;
   --fonte-corpo: "Inter", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
@@ -675,42 +676,42 @@ table.verdade tr.destaque td { background: var(--mt-chave); }
 }
 [data-tema="pb"] .ilustra:not(.ico), [data-tema="pb"] .figura svg { filter: grayscale(1); }
 
-/* ===================== FIGURA ROTULADA (ilustração desenhada do zero) =====================
-   <figure class="figura"> <svg viewBox="0 0 200 160">… <g class="chamada" transform="translate(x y)"><text>1</text></g> …</svg>
-     <ol class="legenda"><li>Átrio direito</li>…</ol> <figcaption>Corte frontal, vista anterior.</figcaption> </figure>
-   .figura.lado = desenho à esquerda, legenda à direita. Guia: references/ilustracoes.md */
+/* ===================== FIGURA (acervo aberto ou gerada a partir de dados) =====================
+   <figure class="figura aberta"> <img src="figuras/x.jpg" alt="…">
+     <figcaption>O que mostra. <span class="credito">Imagem: autor, Commons, CC BY 4.0.</span></figcaption> </figure>
+   Imagem sem rótulos + chamadas numeradas: <div class="sobre"><img …><b class="marca" style="left:31%;top:42%">1</b>…</div>
+   e <ol class="legenda"> com a mesma ordem. .figura.lado = imagem | legenda. Guia: references/ilustracoes.md */
 .figura { margin: 1mm 0; break-inside: avoid; display: grid; gap: 1.5mm; }
 .figura.lado { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); align-items: center; }
-.figura > svg { width: 100%; height: auto; display: block; }
+.figura.lado.larga { grid-template-columns: minmax(0, 2.1fr) minmax(0, 1fr); }  /* imagem com rótulos pequenos */
+.figura > svg, .figura > img, .figura .sobre > img { width: 100%; height: auto; display: block; }
+.figura > img, .figura .sobre > img { max-height: var(--fig-max, 125mm); object-fit: contain; margin: 0 auto; }
+.figura.aberta > img, .figura.aberta .sobre { border: 1px solid var(--linha); border-radius: 3px; background: #fff; }
+.figura .sobre { position: relative; }
+.figura .sobre .marca {
+  position: absolute; transform: translate(-50%, -50%); width: 4.8mm; height: 4.8mm; border-radius: 50%;
+  background: var(--disc); color: #fff; border: 1.2px solid #fff; box-shadow: 0 0 0 .6px var(--tinta);
+  font: 800 8pt/1 var(--fonte-corpo); display: grid; place-items: center; font-style: normal;
+}
 .figura figcaption { grid-column: 1 / -1; font-size: 8pt; color: var(--tinta-2); text-align: center; font-style: italic; }
+.figura .credito { display: block; font-style: normal; font-size: 8pt; color: var(--tinta-2); margin-top: .4mm; }
+.figura .credito a { color: inherit; }
 .figura ol.legenda { list-style: none; counter-reset: leg; margin: 0; padding: 0; font-size: 8.6pt; columns: var(--leg-col, 1); column-gap: 3mm; }
-.figura ol.legenda li { counter-increment: leg; display: flex; gap: 1.4mm; align-items: baseline; margin: 0 0 .7mm; break-inside: avoid; }
+.figura ol.legenda li { counter-increment: leg; position: relative; padding-left: 5.4mm; margin: 0 0 .7mm; break-inside: avoid; }
 .figura ol.legenda li::before {
-  content: counter(leg); flex: none; width: 4mm; height: 4mm; border-radius: 50%; background: var(--disc); color: #fff;
-  font-weight: 800; font-size: 7.6pt; display: grid; place-items: center; line-height: 1; transform: translateY(.4mm);
+  content: counter(leg); position: absolute; left: 0; top: .2mm; width: 4mm; height: 4mm; border-radius: 50%;
+  background: var(--disc); color: #fff; font-weight: 800; font-size: 7.6pt; display: grid; place-items: center; line-height: 1;
 }
 .figura.legenda-2 { --leg-col: 2; }
-/* chamada numerada dentro do SVG: círculo + número; linha-guia com .guia */
-svg .chamada circle { fill: var(--disc); stroke: #fff; stroke-width: 1.2; }
-svg .chamada text { fill: #fff; font: 800 7px var(--fonte-corpo); text-anchor: middle; dominant-baseline: central; }
-svg .guia { fill: none; stroke: var(--tinta); stroke-width: .8; stroke-dasharray: none; }
-svg .rotulo-svg { fill: var(--tinta); font: 700 7px var(--fonte-corpo); }
-svg .seta-fluxo { fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-/* paleta científica para SVG inline (convenções da área: ver references/ilustracoes.md) */
-svg .f-arterial { fill: #D64541; } svg .s-arterial { stroke: #D64541; }
-svg .f-venoso   { fill: #4A72C4; } svg .s-venoso   { stroke: #4A72C4; }
-svg .f-musculo  { fill: #E8A49B; } svg .f-musculo2 { fill: #C9655B; }
-svg .f-tecido   { fill: #F7D9CF; } svg .f-osso     { fill: #F3E7CC; }
-svg .f-nucleo   { fill: #B49BDB; } svg .f-citoplasma { fill: #FFF2C9; }
-svg .f-planta   { fill: #5FAE5B; } svg .f-planta2  { fill: #CFE8B8; }
-svg .f-agua     { fill: #9ED3EA; } svg .f-gordura  { fill: #FBE29B; }
-svg .f-sombra   { fill: #1C2430; fill-opacity: .14; } svg .f-brilho { fill: #fff; fill-opacity: .55; }
-svg .contorno   { stroke: #1C2430; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
-[data-tema="pb"] svg :is(.f-arterial,.f-venoso,.f-musculo,.f-musculo2,.f-nucleo,.f-planta,.f-agua) { filter: grayscale(1); }
+[data-tema="pb"] .figura img { filter: grayscale(1); }
+
+/* atribuição (CC BY 4.0) e aviso de IA no rodapé de toda folha (traduzidos por :lang() abaixo) */
+.rodape-folha > span:first-child::before { content: var(--txt-feito-com); }
+.rodape-folha > span:first-child::after { content: " · " var(--txt-aviso-ia); }
 
 /* ===================== IDIOMAS: textos gerados pelo CSS ===================== */
-:root:lang(en) { --txt-incidencia: "Exam frequency "; --txt-verificar: "[VERIFY] "; --txt-atencao: "WATCH OUT: "; }
-:root:lang(es) { --txt-incidencia: "Incidencia "; --txt-verificar: "[VERIFICAR] "; --txt-atencao: "ATENCIÓN: "; }
-:root:lang(fr) { --txt-incidencia: "Fréquence "; --txt-verificar: "[À VÉRIFIER] "; --txt-atencao: "ATTENTION : "; }
-:root:lang(it) { --txt-incidencia: "Frequenza "; --txt-verificar: "[DA VERIFICARE] "; --txt-atencao: "ATTENZIONE: "; }
-:root:lang(de) { --txt-incidencia: "Prüfungsrelevanz "; --txt-verificar: "[PRÜFEN] "; --txt-atencao: "ACHTUNG: "; }
+:root:lang(en) { --txt-feito-com: "Made with "; --txt-aviso-ia: "AI-generated: check the sources"; --txt-incidencia: "Exam frequency "; --txt-verificar: "[VERIFY] "; --txt-atencao: "WATCH OUT: "; }
+:root:lang(es) { --txt-feito-com: "Hecho con "; --txt-aviso-ia: "generado con IA: verifique las fuentes"; --txt-incidencia: "Incidencia "; --txt-verificar: "[VERIFICAR] "; --txt-atencao: "ATENCIÓN: "; }
+:root:lang(fr) { --txt-feito-com: "Réalisé avec "; --txt-aviso-ia: "généré par IA : vérifiez les sources"; --txt-incidencia: "Fréquence "; --txt-verificar: "[À VÉRIFIER] "; --txt-atencao: "ATTENTION : "; }
+:root:lang(it) { --txt-feito-com: "Realizzato con "; --txt-aviso-ia: "generato con IA: verifica le fonti"; --txt-incidencia: "Frequenza "; --txt-verificar: "[DA VERIFICARE] "; --txt-atencao: "ATTENZIONE: "; }
+:root:lang(de) { --txt-feito-com: "Erstellt mit "; --txt-aviso-ia: "KI-generiert: Quellen prüfen"; --txt-incidencia: "Prüfungsrelevanz "; --txt-verificar: "[PRÜFEN] "; --txt-atencao: "ACHTUNG: "; }
