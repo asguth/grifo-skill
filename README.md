@@ -70,9 +70,9 @@ Ou vá direto ao comando:
 
 | Comando | O que gera | Exemplo |
 |---|---|---|
-| `/resumo` | Explicação completa, 1–4 folhas + questões + gabarito | `/resumo ciclo de Krebs --nivel faculdade` |
-| `/esquema` | Uma folha de mapa visual | `/esquema tipos de memória RAM` |
-| `/revisao` | Uma folha de revisão de véspera | `/revisao derivadas` |
+| `/resumo` | Explicação completa (2–4 folhas por padrão, sem limite) + questões + gabarito | `/resumo ciclo de Krebs --nivel faculdade` |
+| `/esquema` | Mapa visual (1 folha por padrão) | `/esquema tipos de memória RAM` |
+| `/revisao` | Revisão de véspera (1 folha por padrão) | `/revisao derivadas` |
 | `/questoes` | Questões **inéditas** + gabarito comentado em folha separada | `/questoes LGPD --nivel concurso --banca cebraspe` |
 | `/flashcards` | Cartões frente/verso para recortar | `/flashcards anatomia do coração` |
 | `/comparar` | Tabela A × B + confusões comuns | `/comparar mitose vs meiose` |
@@ -83,7 +83,7 @@ Ou vá direto ao comando:
 | `/grifo` | Ajuda com todos os comandos e flags | `/grifo questoes` |
 
 Flags: `--formato completo|mapa|revisao|treino|tudo` · `--estilo sobrio|colorido|pastel|pb`
-· `--nivel medio|faculdade|concurso|certificacao` · `--folhas N` · `--material arquivo`
+· `--nivel medio|faculdade|concurso|certificacao` · `--folhas N` (sem limite) · `--material arquivo`
 · `--idioma en|es|fr|it|de…` · `--banca` (concursos). Detalhes em
 [`references/comandos.md`](skills/grifo/references/comandos.md).
 

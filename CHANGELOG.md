@@ -4,6 +4,13 @@ Formato baseado em [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/);
 versões seguem [SemVer](https://semver.org/lang/pt-BR/). A cada tag `vX.Y.Z` o workflow
 de release grava a versão na skill (aparece ao lado do logo em cada folha) e publica o zip.
 
+## [Não lançado]
+
+### Alterado
+- **Sem limite de folhas**: o tamanho de cada comando vira padrão, não teto. `--folhas N`
+  aceita qualquer número (antes 1–4); `/resumo`, `/esquema`, `/revisao`, `/comparar` e
+  `/pegadinhas` crescem quando o conteúdo pede, sem cortar nem comprimir conteúdo.
+
 ## [1.1.0] — 2026-11-12
 
 ### Adicionado

@@ -17,7 +17,7 @@ fluxo do SKILL.md (fonte → roteiro → HTML → montar → renderizar → 3 re
 | `--nivel` | `medio` · `faculdade` · `concurso` · `certificacao` | `faculdade` (ou inferido) | todos |
 | `--banca` | `fgv` `cebraspe` `fcc` `vunesp` `cesgranrio` `ibfc` `quadrix` `indefinida`; fora do Brasil, o nome do exame (`usmle`, `mir`…) | `indefinida` | só `--nivel concurso` |
 | `--cargo` | texto entre aspas: `--cargo "Analista – ANPD"` | — | só concurso |
-| `--folhas` | número de folhas A4 (`1`–`4`; `/apostila` aceita mais) | o do comando | todos que geram folhas |
+| `--folhas` | número de folhas A4, **sem teto** (`--folhas 12`) | o tamanho padrão do comando, ou o que o conteúdo pedir | todos que geram folhas |
 | `--material` | caminho de arquivo ou anexo (PDF, apostila, anotações) — vira a fonte primária | — | todos |
 | `--n` | quantidade de itens | `/questoes` 10 · `/flashcards` 16 | `/questoes`, `/flashcards` |
 | `--artigos` | intervalo ou lista: `1-10`, `5,7,11` | a lei toda | `/lei-seca` |
@@ -55,9 +55,9 @@ Formatos: completo · mapa · revisao · treino · tudo     Níveis: medio · fa
 Estilos: sobrio · colorido · pastel · pb                Idioma: o seu (pt-BR, en, es, fr, it, de…)
 Sem assunto ou formato? A skill pergunta antes de começar (e o estilo junto).
 
-/resumo      resumo ilustrado, 1–4 folhas
+/resumo      resumo ilustrado, 2–4 folhas por padrão (sem limite)
              /resumo ciclo de Krebs --nivel faculdade --folhas 2 --estilo colorido
-/esquema     uma folha de mapa visual
+/esquema     mapa visual (1 folha por padrão)
              /esquema controle de constitucionalidade
 /lei-seca    texto da lei grifado + quadros   [--artigos 1-10]
              /lei-seca Lei 9.784/1999 --artigos 53-55
@@ -75,7 +75,7 @@ Sem assunto ou formato? A skill pergunta antes de começar (e o estilo junto).
              /edital --material edital.pdf --cargo "Técnico Judiciário"
 /cronograma  plano semanal com revisões   --horas N --prova dd/mm/aaaa
              /cronograma português, constitucional --horas 20 --prova 15/03/2027
-/revisao     uma folha de revisão de véspera
+/revisao     revisão de véspera (1 folha por padrão)
              /revisao processo administrativo
 /apostila    capa + sumário + resumos + questões
              /apostila direito administrativo --banca fgv
@@ -87,10 +87,18 @@ Também vale em linguagem natural: "faz uma apostila desse PDF, só o mapa".
 Conflito com outro plugin? Use /grifo-skill:resumo, /grifo-skill:grifo …
 ```
 
+**Sem limite de folhas.** O tamanho de cada comando abaixo é o **padrão**, não um teto:
+se o assunto ou o material do usuário pedir mais (um PDF de 80 páginas, uma disciplina
+inteira), faça quantas folhas forem necessárias, cada uma com `.topo`, número em
+sequência e `.rodape-folha`. Nunca corte nem comprima conteúdo para caber num número de
+folhas; só respeite um número fixo quando o usuário pedir (`--folhas N`). Mais de ~8
+folhas de conteúdo: ofereça capa e sumário (formato `/apostila`).
+
 ---
 
-## /resumo `<tópico> [--banca] [--cargo] [--folhas 1–4] [--material]`
-**Saída:** 1–4 folhas A4 no layout apostila (2 colunas).
+## /resumo `<tópico> [--banca] [--cargo] [--folhas N] [--material]`
+**Saída:** 2–4 folhas A4 por padrão, no layout apostila (2 colunas); sem limite quando o
+conteúdo pedir mais.
 **Estrutura:**
 1. `.topo` em todas as folhas (logo + versão, matéria + tópico, nº da folha).
 2. Na 1ª folha: `.titulo-topico` com o nome do assunto (opcional se o tópico for curto).
@@ -101,12 +109,14 @@ Conflito com outro plugin? Use /grifo-skill:resumo, /grifo-skill:grifo …
 5. Pelo menos: 1 diagrama estrutural (chave, fluxo, pirâmide ou linha do tempo),
    1 tabela comparativa quando houver institutos parecidos, 1 caixa `IMPORTANTE`,
    1 caixa `DICA` ou mnemônico, 1 quadro de erros comuns (ou pegadinhas, se concurso).
-6. Depois do conteúdo: 1 folha de **questões em coluna única** (3–8) e, **em folha
-   separada**, o gabarito comentado + as referências com link.
+6. Depois do conteúdo: folha(s) de **questões em coluna única** (padrão 5–10; mais se o
+   conteúdo for grande) e, **em folha separada**, o gabarito comentado + as referências
+   com link.
 **Pronto quando:** cada subtema tem bloco; todo dado citado tem fonte; zero aviso de layout.
 
-## /esquema `<tópico> [--material]`
-**Saída:** 1 folha, retrato. Um mapa do tópico inteiro: raiz no centro/topo,
+## /esquema `<tópico> [--folhas N] [--material]`
+**Saída:** 1 folha por padrão, retrato (o mapa inteiro numa vista). Tópico grande ou
+`--folhas N`: uma folha de mapa geral + uma folha por ramo principal. Um mapa do tópico inteiro: raiz no centro/topo,
 ramos com `.chave`, `.fluxo` ou SVG próprio, ≤ 12 palavras por nó, ilustração nos
 ramos principais. Sem questões. Serve para colar na parede / revisão rápida.
 
@@ -122,12 +132,12 @@ da lei alteradora quando o dispositivo foi modificado ("Redação dada pela Lei 
 Dispositivo revogado: mostrar riscado (`.riscado`) só se for clássico de prova.
 
 ## /comparar `<A> vs <B> [vs C] [--banca]`
-**Saída:** 1 folha. `table.comparativo` com critérios em linhas (natureza, requisitos,
+**Saída:** 1 folha por padrão; mais itens ou critérios, mais folhas. `table.comparativo` com critérios em linhas (natureza, requisitos,
 prazo, competência, efeitos, exemplos), ✔/✘ onde for binário, linha `.destaque` na
 diferença mais cobrada. Abaixo: quadro "COMO A BANCA CONFUNDE" com 3–5 trocas típicas.
 
-## /pegadinhas `<tópico> [--banca] [--folhas 1–2]`
-**Saída:** 1–2 folhas. Para cada armadilha: assertiva errada no estilo da banca
+## /pegadinhas `<tópico> [--banca] [--folhas N]`
+**Saída:** 1–2 folhas por padrão; quantas o tópico render. Para cada armadilha: assertiva errada no estilo da banca
 (em `.caixa.pegadinha`, palavra trocada em `mark.troca`) → versão correta
 (`.caixa.dica`) → fundamento (artigo/súmula). Agrupar por tipo (troca de prazo,
 generalização, inversão de regra/exceção, competência trocada…). Ver bancas.md.
@@ -174,8 +184,9 @@ critério de eliminação, cargo.
 - 1 bloco semanal de questões mistas por matéria.
 Entregar também como tabela simples (o usuário pode querer levar para planilha).
 
-## /revisao `<tópico> [--banca]`
-**Saída:** exatamente 1 folha. Só o essencial: 1 diagrama, 1 tabela, lista
+## /revisao `<tópico> [--banca] [--folhas N]`
+**Saída:** 1 folha por padrão (é o super-resumo de véspera); `--folhas N` ou matéria
+inteira: uma folha por tópico, no mesmo formato. Só o essencial: 1 diagrama, 1 tabela, lista
 "10 coisas que caem", pegadinhas em 1 linha cada. Fonte mínima 8.5pt.
 
 ## /apostila `<matéria> [tópicos...] [--banca] [--cargo] [--folhas] [--material]`
