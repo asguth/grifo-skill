@@ -38,7 +38,14 @@ jobs:
           awk -v v="$V" '$0 ~ "^## \\[" v "\\]" {p=1; next} /^## \[/ {p=0} p' CHANGELOG.md > notas.md
           [ -s notas.md ] || echo "Versão $V." > notas.md
 
-      - name: Criar a release
+      # A release pode já existir (criada pela interface do GitHub junto com a tag):
+      # nesse caso só anexa/atualiza o zip; senão, cria a release com as notas do CHANGELOG.
+      - name: Criar a release ou anexar o zip
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" grifo-skill.zip --title "Grifo-Skill $GITHUB_REF_NAME" --notes-file notas.md
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" grifo-skill.zip --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" grifo-skill.zip --title "Grifo-Skill $GITHUB_REF_NAME" --notes-file notas.md
+          fi
