@@ -3,7 +3,7 @@ name: grifo
 description: Monta apostilas, resumos, mapas, revisões, questões e flashcards ilustrados de qualquer assunto (faculdade, medicina, concursos, escola, certificações) em HTML/PDF A4 com design editorial, figuras de acervo aberto com crédito (OpenStax, Commons) ou geradas a partir de dados, estilos de cor (sóbrio, colorido, pastel, P&B) e material no idioma do usuário. Use para /resumo, /esquema, /lei-seca, /comparar, /pegadinhas, /questoes, /flashcards, /mnemonico, /edital, /cronograma, /revisao, /apostila, /validar, /grifo ou qualquer pedido de material de estudo, em qualquer língua (study guide, summary, cheat sheet, flashcards, resumen, apuntes, fiche de révision).
 license: MIT AND CC-BY-4.0
 metadata:
-  version: "1.0.0"
+  version: "1.1.0"
 ---
 
 # Grifo-Skill

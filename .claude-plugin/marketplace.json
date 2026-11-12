@@ -8,11 +8,11 @@
       "name": "grifo-skill",
       "source": "./",
       "description": "Apostilas e resumos ilustrados de qualquer assunto, com validação de conteúdo, revisão didática e crítica de design.",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ],
   "metadata": {
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Grifo-Skill: apostilas ilustradas de qualquer assunto, com figuras de acervo aberto e revisão em três etapas."
   }
 }
