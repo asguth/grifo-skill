@@ -1,6 +1,6 @@
 ---
-description: Uma folha de revisão de véspera (super-resumo)
-argument-hint: <tópico> [--banca b] [--formato f] [--nivel n] [--estilo e] [--idioma xx]
+description: Revisão de véspera (super-resumo, 1 folha por padrão)
+argument-hint: <tópico> [--banca b] [--formato f] [--nivel n] [--folhas N] [--estilo e] [--idioma xx]
 disable-model-invocation: true
 ---
 

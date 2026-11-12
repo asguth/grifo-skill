@@ -51,9 +51,9 @@ Se o pedido não trouxer **assunto/arquivo** ou **formato**, pergunte **uma vez*
 1. **Assunto ou arquivo:** "Sobre qual assunto — ou qual arquivo (PDF, slides, anotações) —
    você quer o material?"
 2. **Formato:**
-   - **Explicação completa** — resumo didático 2–4 folhas + questões + gabarito (padrão de `/resumo`);
-   - **Só o mapa** — 1 folha de esquema visual (`/esquema`);
-   - **Revisão rápida** — 1 folha de véspera (`/revisao`);
+   - **Explicação completa** — resumo didático (2–4 folhas por padrão, sem limite) + questões + gabarito (`/resumo`);
+   - **Só o mapa** — esquema visual, 1 folha por padrão (`/esquema`);
+   - **Revisão rápida** — véspera, 1 folha por padrão (`/revisao`);
    - **Treino** — questões + gabarito comentado (`/questoes`) ou flashcards;
    - **Tudo incluso** — capa, sumário, resumo, mapa, flashcards, questões e gabarito (`/apostila`).
 3. **Estilo visual** (cada pessoa aprende de um jeito):
@@ -91,6 +91,8 @@ Copie `assets/templates/<comando>.html` para `<slug>-fonte.html` e troque todo `
 - `<html lang="…" data-tema="sobrio|colorido|pastel|pb">` conforme idioma e estilo
   (`design.md` §1.1). Cor fixa por tópico: `class="cor-1"` … `cor-6` no bloco/coluna.
 - Só classes do design system (`references/componentes.md`); `style=""` só para ajuste pontual.
+- **Sem limite de folhas:** o tamanho do comando é padrão, não teto. Conteúdo que não cabe
+  vai para nova `.folha`; nunca corte conteúdo para caber, salvo `--folhas N` do usuário.
 - **Questões sempre em coluna única**, numa folha só delas. **Gabarito comentado e
   referências em folha separada, depois das questões** (nada de spoiler na mesma folha).
 - Referências com link: `<a href="URL oficial">título</a>`.
