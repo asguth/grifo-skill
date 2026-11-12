@@ -1,0 +1,746 @@
+{
+ "sobre": "Figuras do Wikimedia Commons conferidas para o Grifo-Skill: existem, licença aceita (CC0, domínio público, CC BY, CC BY-SA). Licença e autor são lidos de novo no download (figura.py baixar). Antes de usar, abra a imagem e confira se mostra o que o texto diz (references/ilustracoes.md).",
+ "conferido_em": "2026-11-12",
+ "figuras": [
+  {
+   "area": "Anatomia humana",
+   "tema": "Coração: anatomia interna (corte frontal)",
+   "titulo": "File:2008 Internal Anatomy of the HeartN.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "cardio",
+    "valvas",
+    "câmaras"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Valvas cardíacas (vista superior)",
+   "titulo": "File:2011 Heart Valves.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "cardio"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Fluxo sanguíneo pelo coração",
+   "titulo": "File:2101 Blood Flow Through the Heart.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "cardio",
+    "circulação"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Coração em corte, rotulado em português",
+   "titulo": "File:Diagram of the human heart (cropped) pt.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Wapcaplet (original); Rhcastilhos (tradução pt)",
+   "rotulos": "pt",
+   "tags": [
+    "cardio"
+   ],
+   "nota": "Tradução se declara domínio público; o original é CC BY-SA 3.0 (Wapcaplet): credite os dois e use sem alterar."
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Sistema de condução do coração",
+   "titulo": "File:2018 Conduction System of Heart.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "cardio",
+    "nó sinoatrial",
+    "feixe de His"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Rim: anatomia externa e interna",
+   "titulo": "File:2610 The Kidney.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "renal",
+    "urinário"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Néfron e vascularização",
+   "titulo": "File:2611 Blood Flow in the Nephron.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "renal",
+    "urinário"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Sistema respiratório: órgãos principais",
+   "titulo": "File:2301 Major Respiratory Organs.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "pulmão",
+    "respiratório"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Sistema digestório: componentes",
+   "titulo": "File:2401 Components of the Digestive System.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "digestório",
+    "gastro"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Glândulas endócrinas",
+   "titulo": "File:1801 The Endocrine System.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "hormônios",
+    "endócrino"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Sistema linfático",
+   "titulo": "File:2201 Anatomy of the Lymphatic System.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "imunologia",
+    "linfa"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Esqueleto axial",
+   "titulo": "File:701 Axial Skeleton-01.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "ossos",
+    "esqueleto"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Músculos superficiais: vistas anterior e posterior",
+   "titulo": "File:1105 Anterior and Posterior Views of Muscles.jpg",
+   "licenca": "CC BY 4.0",
+   "autor": "OpenStax",
+   "rotulos": "en",
+   "tags": [
+    "músculos"
+   ],
+   "nota": "Imagem alta e cheia de rótulos: use .larga ou recorte a vista que interessa (CC BY permite)."
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Pele: camadas e anexos",
+   "titulo": "File:501 Structure of the skin.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College : J. Gordon Betts, Peter Desaix, Eddie Johnson.",
+   "rotulos": "en",
+   "tags": [
+    "tegumentar",
+    "derme",
+    "epiderme"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Camadas da epiderme, sem rótulos",
+   "titulo": "File:502 Layers of epidermis (no labels).png",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College Anatomy & Physiology",
+   "rotulos": "sem rótulos",
+   "tags": [
+    "pele",
+    "histologia"
+   ],
+   "nota": "Boa para chamadas numeradas (.sobre + .marca)."
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Neurônio: partes",
+   "titulo": "File:1206 The Neuron.jpg",
+   "licenca": "CC BY 4.0",
+   "autor": "OpenStax",
+   "rotulos": "en",
+   "tags": [
+    "neuro",
+    "sistema nervoso"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Lobos do córtex cerebral",
+   "titulo": "File:1306 Lobes of Cerebral CortexN.jpg",
+   "licenca": "CC BY 4.0",
+   "autor": "OpenStax",
+   "rotulos": "en",
+   "tags": [
+    "neuro",
+    "cérebro"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Olho: estrutura",
+   "titulo": "File:1413 Structure of the Eye.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "sentidos",
+    "visão",
+    "oftalmo"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Olho na órbita (corte sagital)",
+   "titulo": "File:1411 Eye in The Orbit.jpg",
+   "licenca": "CC BY 3.0",
+   "autor": "OpenStax College",
+   "rotulos": "en",
+   "tags": [
+    "sentidos",
+    "visão"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Orelha externa, média e interna",
+   "titulo": "File:1404 The Structures of the Ear.jpg",
+   "licenca": "CC BY 4.0",
+   "autor": "OpenStax",
+   "rotulos": "en",
+   "tags": [
+    "sentidos",
+    "audição"
+   ]
+  },
+  {
+   "area": "Anatomia humana",
+   "tema": "Neurônio multipolar (ilustração médica)",
+   "titulo": "File:Blausen 0657 MultipolarNeuron.png",
+   "licenca": "CC BY 3.0",
+   "autor": "BruceBlaus",
+   "rotulos": "en",
+   "tags": [
+    "neuro"
+   ],
+   "nota": "Blausen Medical: credite \"Blausen.com staff (2014), Medical gallery of Blausen Medical 2014, WikiJournal of Medicine\"."
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Neurônio completo, rotulado em português",
+   "titulo": "File:Complete neuron cell diagram pt.svg",
+   "licenca": "Public domain",
+   "autor": "Mariana Ruiz LadyofHats (original English version) Lijealso (Portuguese translation)",
+   "rotulos": "pt",
+   "tags": [
+    "neuro",
+    "célula"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Neurônio completo",
+   "titulo": "File:Complete neuron cell diagram en.svg",
+   "licenca": "Public domain",
+   "autor": "LadyofHats",
+   "rotulos": "en",
+   "tags": [
+    "neuro",
+    "célula"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Célula animal, rotulada em português",
+   "titulo": "File:Animal cell structure pt.svg",
+   "licenca": "Public domain",
+   "autor": "Original image by by Mariana Ruiz.Translation by Felipe Fontoura.",
+   "rotulos": "pt",
+   "tags": [
+    "organelas"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Célula animal",
+   "titulo": "File:Animal cell structure en.svg",
+   "licenca": "Public domain",
+   "autor": "LadyofHats (Mariana Ruiz)",
+   "rotulos": "en",
+   "tags": [
+    "organelas"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Célula vegetal, rotulada em português",
+   "titulo": "File:Plant cell structure pt.svg",
+   "licenca": "CC0",
+   "autor": "LadyofHats (Mariana Ruiz), traduction by Berru to French and traduction by Luís Flávio to Portuguese.",
+   "rotulos": "pt",
+   "tags": [
+    "organelas",
+    "botânica"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Célula vegetal",
+   "titulo": "File:Plant cell structure-en.svg",
+   "licenca": "Public domain",
+   "autor": "LadyofHats",
+   "rotulos": "en",
+   "tags": [
+    "organelas",
+    "botânica"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Núcleo celular",
+   "titulo": "File:Diagram human cell nucleus.svg",
+   "licenca": "Public domain",
+   "autor": "Mariana Ruiz LadyofHats",
+   "rotulos": "en",
+   "tags": [
+    "organelas",
+    "núcleo"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Mitocôndria",
+   "titulo": "File:Mitochondrion structure.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Kelvinsong; modified by Sowlos",
+   "rotulos": "en",
+   "tags": [
+    "organelas",
+    "respiração celular"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Cloroplasto",
+   "titulo": "File:Figure 08 01 05.png",
+   "licenca": "CC BY 4.0",
+   "autor": "OpenStax, Biology",
+   "rotulos": "en",
+   "tags": [
+    "organelas",
+    "fotossíntese"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Mitose: fases",
+   "titulo": "File:Major events in mitosis.svg",
+   "licenca": "Public domain",
+   "autor": "Mysid",
+   "rotulos": "confira",
+   "tags": [
+    "divisão celular"
+   ]
+  },
+  {
+   "area": "Biologia celular",
+   "tema": "Meiose: eventos principais",
+   "titulo": "File:MajorEventsInMeiosis variant int.svg",
+   "licenca": "Public domain",
+   "autor": "internationalization: PatríciaR. Original image from NCBI; original vector version by Jakov",
+   "rotulos": "confira",
+   "tags": [
+    "divisão celular",
+    "genética"
+   ],
+   "nota": "Versão internacionalizada: confira se há texto."
+  },
+  {
+   "area": "Genética e bioquímica",
+   "tema": "DNA: estrutura e pareamento de bases",
+   "titulo": "File:DNA Structure+Key+Labelled.pn NoBB.png",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Zephyris",
+   "rotulos": "en",
+   "tags": [
+    "genética",
+    "nucleotídeos"
+   ]
+  },
+  {
+   "area": "Botânica e ecologia",
+   "tema": "Fotossíntese: esquema geral",
+   "titulo": "File:Photosynthesis en.svg",
+   "licenca": "CC BY-SA 4.0",
+   "autor": "At09kg, Wattcle, Nefronus At09kg: original Wattcle: vector graphics Nefronus: redoing the vector graphics",
+   "rotulos": "en",
+   "tags": [
+    "plantas",
+    "energia"
+   ]
+  },
+  {
+   "area": "Botânica e ecologia",
+   "tema": "Flor: partes",
+   "titulo": "File:Mature flower diagram.svg",
+   "licenca": "Public domain",
+   "autor": "Mariana Ruiz LadyofHats",
+   "rotulos": "en",
+   "tags": [
+    "plantas",
+    "reprodução"
+   ]
+  },
+  {
+   "area": "Botânica e ecologia",
+   "tema": "Folha: tecidos em corte",
+   "titulo": "File:Leaf Tissue Structure.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Zephyris",
+   "rotulos": "en",
+   "tags": [
+    "plantas",
+    "histologia vegetal"
+   ]
+  },
+  {
+   "area": "Botânica e ecologia",
+   "tema": "Ciclo do carbono",
+   "titulo": "File:Carbon cycle-cute diagram.jpeg",
+   "licenca": "Public domain",
+   "autor": "User Kevin Saff on en.wikipedia",
+   "rotulos": "en",
+   "tags": [
+    "ciclos biogeoquímicos",
+    "clima"
+   ],
+   "nota": "Fluxos em números de cerca de 2000: confira os valores numa fonte atual (IPCC) antes de citá-los."
+  },
+  {
+   "area": "Botânica e ecologia",
+   "tema": "Ciclo do nitrogênio",
+   "titulo": "File:Nitrogen Cycle.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Cicle_del_nitrogen_de.svg: *Cicle_del_nitrogen_ca.svg: Johann Dréo (User:Nojhan), traduction de Joanjoc d'après Image:Cy",
+   "rotulos": "en",
+   "tags": [
+    "ciclos biogeoquímicos"
+   ],
+   "nota": "Obra derivada (CC BY-SA): credite a cadeia de autores da página."
+  },
+  {
+   "area": "Botânica e ecologia",
+   "tema": "Ciclo da água (USGS)",
+   "titulo": "File:Water cycle.png",
+   "licenca": "Public domain",
+   "autor": "John M. Even / USGS",
+   "rotulos": "en",
+   "tags": [
+    "ciclos biogeoquímicos",
+    "hidrologia"
+   ]
+  },
+  {
+   "area": "Botânica e ecologia",
+   "tema": "Hierarquia da classificação biológica",
+   "titulo": "File:Biological classification L Pengo vflip.svg",
+   "licenca": "Public domain",
+   "autor": "Peter Halasz. (User:Pengo)",
+   "rotulos": "en",
+   "tags": [
+    "taxonomia"
+   ]
+  },
+  {
+   "area": "Química",
+   "tema": "Tabela periódica simples",
+   "titulo": "File:Simple Periodic Table Chart-en.svg",
+   "licenca": "Public domain",
+   "autor": "Offnfopt",
+   "rotulos": "en",
+   "tags": [
+    "elementos"
+   ],
+   "nota": "Símbolos são universais; nomes em inglês."
+  },
+  {
+   "area": "Química",
+   "tema": "Camadas eletrônicas (sódio)",
+   "titulo": "File:Electron shell 011 Sodium.svg",
+   "licenca": "CC BY-SA 2.0 uk",
+   "autor": "Pumbaa (original work by Greg Robson)",
+   "rotulos": "sem rótulos",
+   "tags": [
+    "átomo",
+    "modelo de Bohr"
+   ],
+   "nota": "Série com todos os elementos: troque o número (Electron shell 0NN …)."
+  },
+  {
+   "area": "Química",
+   "tema": "Orbitais atômicos (formas)",
+   "titulo": "File:Single electron orbitals.jpg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "haade",
+   "rotulos": "en",
+   "tags": [
+    "átomo",
+    "quântica"
+   ]
+  },
+  {
+   "area": "Química",
+   "tema": "Diagrama de fases da água",
+   "titulo": "File:Phase diagram of water.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Cmglee",
+   "rotulos": "en",
+   "tags": [
+    "termodinâmica",
+    "físico-química"
+   ],
+   "nota": "Escala logarítmica de pressão: explique na legenda."
+  },
+  {
+   "area": "Física",
+   "tema": "Espectro eletromagnético",
+   "titulo": "File:EM spectrum.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Philip Ronan",
+   "rotulos": "en",
+   "tags": [
+    "ondas",
+    "luz",
+    "óptica"
+   ]
+  },
+  {
+   "area": "Física",
+   "tema": "Lente convergente: raios",
+   "titulo": "File:Lens1.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "DrBob at English Wikipedia",
+   "rotulos": "sem rótulos",
+   "tags": [
+    "óptica"
+   ]
+  },
+  {
+   "area": "Física",
+   "tema": "Refração (lei de Snell)",
+   "titulo": "File:Snells law2.svg",
+   "licenca": "Public domain",
+   "autor": "Oleg Alexandrov — I just tweaked the original",
+   "rotulos": "sem rótulos",
+   "tags": [
+    "óptica"
+   ],
+   "nota": "Só símbolos (n₁, n₂, θ)."
+  },
+  {
+   "area": "Física",
+   "tema": "Modelo Padrão das partículas",
+   "titulo": "File:Standard Model of Elementary Particles.svg",
+   "licenca": "Public domain",
+   "autor": "Cush",
+   "rotulos": "en",
+   "tags": [
+    "física moderna",
+    "partículas"
+   ]
+  },
+  {
+   "area": "Geociências",
+   "tema": "Camadas internas da Terra",
+   "titulo": "File:Earth-crust-cutaway-english.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Surachit",
+   "rotulos": "en",
+   "tags": [
+    "geologia"
+   ]
+  },
+  {
+   "area": "Geociências",
+   "tema": "Placas tectônicas (USGS)",
+   "titulo": "File:Plates tect2 en.svg",
+   "licenca": "Public domain",
+   "autor": "Map:USGS Description:Scott Nash",
+   "rotulos": "en",
+   "tags": [
+    "geologia",
+    "tectônica"
+   ]
+  },
+  {
+   "area": "Geociências",
+   "tema": "Limites de placas, detalhado",
+   "titulo": "File:Tectonic plates boundaries detailed-en.svg",
+   "licenca": "CC BY-SA 2.5",
+   "autor": "Eric Gaba (Sting - fr:Sting)",
+   "rotulos": "en",
+   "tags": [
+    "geologia",
+    "tectônica"
+   ],
+   "nota": "Mapa grande: use largura total."
+  },
+  {
+   "area": "Geociências",
+   "tema": "Clima de Köppen-Geiger (mundo)",
+   "titulo": "File:World Koppen Map.png",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Peel, M. C., Finlayson, B. L., and McMahon, T. A. (University of Melbourne). The original File:World Köppen Map.jpg (to ",
+   "rotulos": "en",
+   "tags": [
+    "climatologia",
+    "geografia física"
+   ],
+   "nota": "Legenda por código (Af, BWh…): códigos universais."
+  },
+  {
+   "area": "Astronomia",
+   "tema": "Planetas do Sistema Solar (tamanhos em escala)",
+   "titulo": "File:Planets2013.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "WP",
+   "rotulos": "en",
+   "tags": [
+    "sistema solar"
+   ],
+   "nota": "Tamanhos em escala; distâncias não."
+  },
+  {
+   "area": "Astronomia",
+   "tema": "Fases da Lua",
+   "titulo": "File:Moon phases en.jpg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Orion 8",
+   "rotulos": "en",
+   "tags": [
+    "Lua"
+   ]
+  },
+  {
+   "area": "Astronomia",
+   "tema": "Estações do ano e órbita da Terra",
+   "titulo": "File:Seasons.svg",
+   "licenca": "Public domain",
+   "autor": "Rhcastilhos translator: Manlleus (ca)",
+   "rotulos": "confira",
+   "tags": [
+    "órbita",
+    "estações"
+   ],
+   "nota": "Tem traduções na página do arquivo; confira o idioma."
+  },
+  {
+   "area": "Geografia",
+   "tema": "Brasil: estados e capitais",
+   "titulo": "File:Brazil Labelled Map.svg",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Felipe Menegaz",
+   "rotulos": "pt",
+   "tags": [
+    "mapa",
+    "Brasil"
+   ]
+  },
+  {
+   "area": "Geografia",
+   "tema": "Brasil: regiões",
+   "titulo": "File:Brazil Regions.svg",
+   "licenca": "CC BY 2.5",
+   "autor": "Raphael Lorenzeto de Abreu",
+   "rotulos": "confira",
+   "tags": [
+    "mapa",
+    "Brasil"
+   ]
+  },
+  {
+   "area": "Geografia",
+   "tema": "Biomas do Brasil",
+   "titulo": "File:Biomas do Brasil.svg",
+   "licenca": "CC BY-SA 4.0",
+   "autor": "High source",
+   "rotulos": "pt",
+   "tags": [
+    "mapa",
+    "Brasil",
+    "ecologia"
+   ]
+  },
+  {
+   "area": "Geografia",
+   "tema": "Fusos horários do mundo",
+   "titulo": "File:World Time Zones Map.png",
+   "licenca": "Public domain",
+   "autor": "UnaitxuGV, Heitordp and others",
+   "rotulos": "en",
+   "tags": [
+    "mapa",
+    "cartografia"
+   ],
+   "nota": "Fusos mudam por lei: confira a data do arquivo."
+  },
+  {
+   "area": "História",
+   "tema": "Tratados de Tordesilhas (1494) e Saragoça (1529)",
+   "titulo": "File:Spain and Portugal.png",
+   "licenca": "CC BY-SA 3.0",
+   "autor": "Lencer",
+   "rotulos": "en",
+   "tags": [
+    "mapa",
+    "colonização",
+    "Brasil Colônia"
+   ]
+  },
+  {
+   "area": "História",
+   "tema": "Alianças na Europa em 1914",
+   "titulo": "File:Map Europe alliances 1914-en.svg",
+   "licenca": "CC BY-SA 2.5",
+   "autor": "historicair (French original) Fluteflute & User:Bibi Saint-Pol (English translation)",
+   "rotulos": "en",
+   "tags": [
+    "mapa",
+    "Primeira Guerra"
+   ]
+  }
+ ]
+}

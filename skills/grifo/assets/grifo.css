@@ -1,5 +1,5 @@
 /* =====================================================================
-   GRIFO-SKILL — design system editorial (MIT)
+   GRIFO-SKILL — design system editorial (CC BY 4.0: mantenha o rodapé com o crédito)
    Apostilas A4 imprimíveis e legíveis em preto e branco.
 
    PALETA ÚNICA (Educational Editorial Design System):
@@ -75,6 +75,7 @@ ul, ol { margin: .2em 0 .4em; padding-left: 1.2em; }
 li { margin: .12em 0; text-wrap: pretty; }
 b, strong { font-weight: 700; }
 a { color: var(--azul); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
+sub, sup { font-size: max(.75em, 8pt); line-height: 0; }
 code { font-size: max(.92em, 8pt); background: var(--lei-claro); padding: 0 .25em; border-radius: 3px; }
 
 /* ===================== folha A4 ===================== */
@@ -367,11 +368,13 @@ table.edital td.peso { text-align: center; white-space: nowrap; }
 }
 .capa .marca-capa small { font-family: var(--fonte-corpo); font-weight: 600; font-size: 9pt; color: var(--tinta-2); letter-spacing: 0; }
 .capa .banner-capa { display: flex; align-items: center; gap: 8mm; }
-.capa .mascote-capa { width: 72mm; height: 72mm; flex: none; }
+.capa .mascote-capa { width: 62mm; height: 62mm; flex: none; }
 .capa .texto-capa { flex: 1; min-width: 0; }
 .capa .titulo-capa {
-  color: var(--navy); font-family: var(--fonte-titulo); font-size: 36pt; font-weight: 900;
-  line-height: 1.02; letter-spacing: -.015em; text-wrap: balance; overflow-wrap: anywhere;
+  color: var(--navy); font-family: var(--fonte-titulo); font-size: 32pt; font-weight: 900;
+  line-height: 1.04; letter-spacing: -.015em; text-wrap: balance;
+  /* não hifenizar palavras curtas ("Microe-conomia"); só as muito longas */
+  hyphenate-limit-chars: 14 7 7; overflow-wrap: break-word;
 }
 .capa .sub-capa { color: var(--tinta); font-size: 14pt; font-weight: 600; margin-top: 4mm; line-height: 1.25; }
 .capa .selos-capa { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 6mm; }

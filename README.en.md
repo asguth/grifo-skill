@@ -5,10 +5,10 @@
 <h1 align="center">Grifo-Skill: illustrated study guides on any subject, made with AI</h1>
 
 <p align="center">
-  <b>Open-source skill for Claude and Codex that turns a topic — or your PDF, slides
-  or notes — into university-level A4 study material: structured summary, concept map,
-  night-before review, original practice questions with an explained answer key, and
-  flashcards.</b>
+  <b>Free skill for Claude and Codex that turns a topic — or your PDF, slides or notes —
+  into A4 study material: structured summary, concept map, quick review, original practice
+  questions with an explained answer key, and flashcards, with open-licensed figures and a
+  three-step review.</b>
 </p>
 
 <p align="center"><a href="README.md">Português</a> · <b>English</b></p>
@@ -19,46 +19,57 @@
 
 ## What it does
 
-Tell it the subject (or attach a file) and the format. It researches reliable sources,
-lays out A4 pages with **editorial design** and **figures from open-licensed collections**
-(OpenStax, Servier, NIH, Wikimedia Commons, each credited) or **generated from data**
-(RDKit molecules, matplotlib plots), and delivers **HTML and PDF**. The AI does not draw
-anatomy from memory.
-The material is written **in your language**: ask in English, get English — labels,
-dates, hyphenation and question format included.
+Tell it the subject (or attach a file) and the format. It researches reliable sources, lays
+out A4 pages with **editorial design** (clear hierarchy, color only where it means
+something, readable in black and white) and delivers **HTML and PDF** — with a branded
+cover, table of contents, two-column pages, and questions and answer key on separate pages.
+The material is written **in your language**: ask in English, get English.
 
 Before delivery, **three reviewers** check the material cold:
 
 | Reviewer | Checks |
 |---|---|
-| 🔎 **Content validator** | every figure, date, formula and answer against the source |
-| 🎓 **Didactic reviewer** | precise definition, mechanism, example, common mistake |
-| 🎨 **Design critic** | layout, hierarchy, colors and figures on the rendered pages |
+| 🔎 Content validator | every figure, date, formula and answer against the source |
+| 🎓 Didactic reviewer | precise definition, mechanism, example, common mistake |
+| 🎨 Design critic | layout, hierarchy, colors and figures on the rendered pages |
+
+## Real figures, not AI drawings
+
+Language models get anatomy, proportions and connections wrong without noticing. Grifo
+never draws academic structures from memory:
+
+| Content | Source | Command |
+|---|---|---|
+| Anatomy, cells, organs, plants, maps, astronomy, spectra | **Curated collection**: 61 vetted Wikimedia Commons figures in 10 areas (license, author, label language) | `figura.py acervo "kidney"` |
+| Anything else with a physical structure | **Commons search** (OpenStax, Servier, NIH, USGS…), only CC0, public domain, CC BY, CC BY-SA | `figura.py buscar` / `baixar` |
+| Plots, curves, data | **Computed** with matplotlib from the equation or a CSV | `figura.py grafico` |
+| Molecules | **RDKit** from a checked SMILES | `figura.py molecula` |
+
+Every figure is credited (author, source, license) in its caption; the linter rejects
+uncredited figures.
 
 ## How to use
 
 Ask in your own words — if the subject or format is missing, the skill **asks first**:
 
 > **You:** make a study guide from this pharmacology PDF
-> **Grifo:** Which format? *Full explanation* · *Map only* · *Quick review* · *Practice (questions/flashcards)* · *Everything*
+> **Grifo:** Which format? *Full explanation* · *Map only* · *Quick review* · *Practice* · *Everything*
 > And which style? *Sober* · *Colorful* · *Pastel* · *Black & white*
 
-Commands work in any language (`/resumo` = summary, `/esquema` = map, `/revisao` = review,
-`/questoes` = questions, `/flashcards`, `/comparar` = compare, `/apostila` = full guide;
-`/grifo` shows help). Common flags:
+Commands (Portuguese names, any language): `/resumo` summary, `/esquema` map, `/revisao`
+review, `/questoes` questions, `/flashcards`, `/comparar` compare, `/apostila` full guide
+with cover, `/grifo` help. Flags:
 
 ```
 --formato completo|mapa|revisao|treino|tudo   --estilo sobrio|colorido|pastel|pb
 --nivel medio|faculdade|concurso|certificacao --folhas N   --material file   --idioma en
 ```
 
-### Color styles
-
 | Style | Looks like |
 |---|---|
 | **Sober** (default) | navy and gray; color only where it means something |
-| **Colorful** | each column and block in its own hue (blue, teal, purple, wine, indigo, graphite) |
-| **Pastel** | the same hues in soft tones, light backgrounds |
+| **Colorful** | each column and block in its own hue |
+| **Pastel** | the same hues in soft tones |
 | **B&W** | grayscale, for black-and-white printing |
 
 Red, green and amber stay reserved for errors, correct answers and exceptions in every style.
@@ -75,26 +86,36 @@ Red, green and amber stay reserved for errors, correct answers and exceptions in
 [Releases](https://github.com/asguth/grifo-skill/releases/latest) and upload it under
 **Settings → Capabilities → Skills**.
 
-**Codex:** `cp -r grifo-skill/skills/grifo ~/.codex/skills/grifo`
+**Codex:**
+```bash
+git clone https://github.com/asguth/grifo-skill
+cp -r grifo-skill/skills/grifo ~/.codex/skills/grifo
+```
 
 PDF/PNG output needs Python + Playwright (or Chrome); without them you get the HTML to print
-from the browser (Ctrl+P → A4, no margins, background graphics).
+from the browser (Ctrl+P → A4, no margins, background graphics). Computed plots use
+matplotlib; molecules use RDKit (both optional).
 
 ## Examples
 
-| Material | Area | Pages | PDF |
-|---|---|---|---|
-| Photosynthesis · **pastel**, in English | Biology | 1 | [PDF](exemplos/en-photosynthesis.pdf) · [preview](docs/exemplos/en-photosynthesis-p1.png) |
-| The heart: anatomy and cardiac cycle · **colorful** (Portuguese) | Medicine | 4 | [PDF](exemplos/medicina-coracao.pdf) · [preview](docs/exemplos/medicina-coracao-p1.png) |
-| Other examples (Portuguese: grammar, logic, Brazilian law) | — | 4–5 | see the [Portuguese README](README.md#exemplos) |
+<p align="center"><img src="docs/exemplos/mosaico.png" alt="First page of each example"></p>
+
+| Material | Area | Shows | Pages | PDF |
+|---|---|---|---|---|
+| [Photosynthesis](docs/exemplos/en-photosynthesis-p1.png) (English) | Biology | **pastel** style; open-licensed figure | 1 | [PDF](exemplos/en-photosynthesis.pdf) |
+| [Microeconomics: supply, demand, elasticity](docs/exemplos/economia-oferta-demanda-p1.png) (Portuguese) | Economics | full guide with cover; **computed plots** | 6 | [PDF](exemplos/economia-oferta-demanda.pdf) |
+| [The heart](docs/exemplos/medicina-coracao-p1.png) (Portuguese) | Medicine | **colorful** style; credited open figures | 4 | [PDF](exemplos/medicina-coracao.pdf) |
+| Grammar, logic, Brazilian law (Portuguese) | — | tables, flows, truth table | 4–5 | see the [Portuguese README](README.md#exemplos) |
 
 ## Rules the skill follows
 
 - **Accuracy over looks:** every fact comes from a checked source; anything unchecked is
-  marked `[VERIFY]`. References link to the official source of your country.
+  marked `[VERIFY]`. References link to official sources.
 - **No copying:** no third-party text, diagrams or exam questions. Third-party images only
-  under open licenses (public domain, CC0, CC BY, CC BY-SA), always credited.
-- **No portraits of real people.** **Readable in black and white.**
+  under open licenses, always credited.
+- **AI notice on every page:** the footer reads "Made with Grifo-Skill · AI-generated:
+  check the sources".
+- **No portraits of real people. Readable in black and white.**
 
 ## Limitations and responsibility
 
@@ -102,15 +123,12 @@ from the browser (Ctrl+P → A4, no margins, background graphics).
 > replace** textbooks, classes, atlases, official law or teachers. Text, questions and
 > figures may contain errors, including conceptual ones, even after review. Check
 > everything against the cited sources. Use is at your own responsibility; the project is
-> provided "as is", without warranty. Every page footer reads "Made with Grifo-Skill ·
-> AI-generated: check the sources".
+> provided "as is", without warranty.
 
 ## License
 
-© 2026 Alberto Guth (GT Design), [details in LICENSE](LICENSE). **Code: MIT.** **Design and
-content** (CSS, templates, mascot, logo, guides, examples): **[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)**:
-generated material embeds that design, so it keeps the credit **"Made with Grifo-Skill —
-github.com/asguth/grifo-skill"** (the page footer already prints it). Third-party figures keep
-their own license and credit ([CREDITOS.md](CREDITOS.md)). Versions up to 1.0.0 were MIT only.
-Inter and Poppins fonts:
-[SIL OFL](skills/grifo/assets/fontes/OFL.txt). Lucide icons: ISC.
+© 2026 Alberto Guth (GT Design), full text in [LICENSE](LICENSE). **Design and content**
+(CSS, templates, mascot, logo, guides, examples): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) —
+generated material keeps the credit **"Made with Grifo-Skill"** (the page footer already
+prints it). **Code:** MIT. Third-party fonts (SIL OFL), Lucide icons (ISC) and open-licensed
+figures keep their own licenses and credits ([CREDITOS.md](CREDITOS.md)).

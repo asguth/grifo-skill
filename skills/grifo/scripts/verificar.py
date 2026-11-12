@@ -8,7 +8,8 @@ ERROS (exit 1):
   - <use href="#i-…"> apontando para ilustração que não existe no sprite;
   - .folha sem .topo (exceto .folha.capa);
   - <img> de figura sem crédito (.credito), com endereço remoto ou arquivo inexistente;
-  - numeração das folhas (.topo .pag) fora de sequência.
+  - numeração das folhas (.topo .pag) fora de sequência;
+  - .folha sem .rodape-folha (o rodapé leva o crédito e o aviso "gerado com IA").
 AVISOS (exit 0, ou 1 com --estrito):
   - sobrou class="verificar" ([VERIFICAR] no texto final);
   - .coluna sem nenhum diagrama, tabela ou ilustração;
@@ -159,6 +160,8 @@ def verificar(caminho: Path, classes_css: set, ids: set):
     folhas = [n for n in todos if n.tag == "div" and "folha" in n.classes]
     esperado = None
     for i, f in enumerate(folhas, 1):
+        if not any("rodape-folha" in d.classes for d in f.descendentes()):
+            erros.append(f"linha {f.linha}: folha {i} sem .rodape-folha (crédito + aviso de IA)")
         if "capa" in f.classes:
             continue
         topo = next((d for d in f.descendentes() if "topo" in d.classes), None)

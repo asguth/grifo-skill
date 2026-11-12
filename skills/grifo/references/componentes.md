@@ -5,6 +5,7 @@ ajustes pontuais via `style=""`.
 
 ## Folha e cabeçalho corrido
 ```html
+<!-- o rodapé é obrigatório em toda folha: o CSS imprime "Feito com Grifo-Skill · gerado com IA" -->
 <div class="folha">
   <div class="topo">
     <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
@@ -16,7 +17,7 @@ ajustes pontuais via `style=""`.
     <div class="coluna"> <div class="coluna-cab">Noções gerais</div> … blocos … </div>
     <div class="coluna"> <div class="coluna-cab">Espécies</div> … blocos … </div>
   </div>
-  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Atualizado até 11/11/2026</span></div>
+  <div class="rodape-folha"><span>Grifo-Skill</span><span>Atualizado até 11/11/2026</span></div>
 </div>
 ```
 Cabeçalho alternativo de 1ª folha (estilo resumo único):

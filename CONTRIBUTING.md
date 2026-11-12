@@ -19,7 +19,7 @@ Rode os verificadores (são os mesmos do CI) e só abra o PR com tudo passando:
 ```bash
 python ferramentas/verificar_ilustracoes.py           # sprite do mascote
 python ferramentas/test_montar.py                     # espaço inseparável
-python ferramentas/test_figura.py                     # licenças e imagens embutidas
+python ferramentas/test_figura.py                     # licenças, gráfico, acervo, imagens embutidas
 python ferramentas/verificar_contraste.py             # contraste das cores
 python skills/grifo/scripts/verificar.py exemplos/*-fonte.html
 ```
@@ -44,6 +44,14 @@ folha afetada** (antes e depois, se for mudança visual).
 3. Coloque o arquivo em `exemplos/figuras/`, use `<figure class="figura aberta">` com
    `.credito` e acrescente a linha em `CREDITOS.md`.
 4. Confira a figura contra a fonte: figura de acervo também erra.
+
+### Ampliar o acervo curado (`skills/grifo/assets/acervo.json`)
+Figura boa para muitas apostilas (órgão, ciclo, mapa clássico) entra no acervo: uma entrada
+com `area`, `tema`, `titulo` (`File:…` exato do Commons), `licenca` e `autor` como o
+`figura.py baixar` mostra, `rotulos` (`pt`, `en`, `sem rótulos` ou `confira`), `tags` e,
+se precisar, `nota` (ex.: "valores de 2000: confira"). O `test_figura.py` recusa entrada
+incompleta, duplicada ou com licença fora da lista. Abra a imagem antes: só entra figura
+que você conferiu contra uma fonte da área.
 
 Não aceitamos: imagem NC/ND ou sem licença, retrato de pessoa real, brasão/logotipo
 real, nem imagem copiada de apostila, livro ou banco de imagens.

@@ -27,7 +27,8 @@ Caminhos abaixo são relativos à pasta deste SKILL.md.
 | `agentes/*.md` | Prompts dos 3 revisores | Etapa 6 |
 | `assets/templates/*.html` | Esqueleto de cada comando | Início da etapa 4 |
 | `assets/lucide/nomes.txt` | 2.052 ícones Lucide (`nome: tags`) | Use `grep`, nunca leia inteiro |
-| `scripts/figura.py` | Busca/baixa figura com licença aberta (Commons) e gera molécula (RDKit) | Etapa 4, se houver figura |
+| `scripts/figura.py` | Acervo curado por área, busca/baixa figura com licença aberta (Commons), gera molécula (RDKit) e gráfico (matplotlib) | Etapa 4, se houver figura |
+| `assets/acervo.json` | 61 figuras conferidas em 10 áreas (lido pelo `figura.py acervo`) | Não leia inteiro: use o script |
 | `scripts/verificar.py`, `montar.py`, `renderizar.py` | Lint → HTML autocontido → PDF/PNG + revisão de layout | Etapa 5 |
 
 ## Comandos
@@ -97,8 +98,8 @@ Copie `assets/templates/<comando>.html` para `<slug>-fonte.html` e troque todo `
   `grep -i termo assets/lucide/nomes.txt`), só quando dizem algo do bloco.
 - **Assunto com estrutura física** (anatomia, fisiologia, célula, planta, molécula,
   circuito, montagem de laboratório, mapa): a figura é o centro da folha e **vem de acervo
-  aberto** (`scripts/figura.py buscar/baixar`) **ou de gerador a partir de dados** (RDKit,
-  matplotlib). **Nunca desenhe estrutura acadêmica de cabeça**: a IA erra anatomia sem
+  aberto** (`scripts/figura.py acervo`, depois `buscar/baixar`) **ou de gerador a partir de
+  dados** (`figura.py molecula`, `figura.py grafico`). **Nunca desenhe estrutura acadêmica de cabeça**: a IA erra anatomia sem
   perceber. Crédito obrigatório. Método em `references/ilustracoes.md`.
 
 ### 5. Verificar, montar e renderizar

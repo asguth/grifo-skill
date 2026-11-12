@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="pt-BR" data-tema="sobrio">
+<head>
+<meta charset="utf-8">
+<title>Oferta, demanda e elasticidade — Microeconomia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+<!--APOSTILA:CSS-->
+</head>
+<body>
+<!--APOSTILA:SPRITE-->
+
+<!-- ============================ CAPA ============================ -->
+<div class="folha capa">
+  <div class="marca-capa">Grifo-Skill <small>Apostilas ilustradas de qualquer assunto</small></div>
+  <div class="banner-capa">
+    <svg class="mascote-capa" viewBox="0 0 240 240"><use href="#i-grifo"/></svg>
+    <div class="texto-capa">
+      <div class="titulo-capa">Microeconomia</div>
+      <div class="sub-capa">Apostila visual — oferta, demanda e elasticidade</div>
+      <div class="selos-capa"><span>Faculdade</span><span>2 tópicos</span><span>Questões com gabarito</span></div>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill</span><span>Exemplo — atualizado até 12/11/2026</span></div>
+</div>
+
+<!-- ============================ SUMÁRIO ============================ -->
+<div class="folha sumario">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Microeconomia<small>Sumário</small></div>
+    <div class="pag">02</div>
+  </div>
+  <h2 class="secao">Sumário</h2>
+  <ol>
+    <li>Demanda, oferta e equilíbrio de mercado<span class="pg">03</span></li>
+    <li>Elasticidades e receita total<span class="pg">04</span></li>
+    <li>Questões inéditas<span class="pg">05</span></li>
+    <li>Gabarito comentado e referências<span class="pg">06</span></li>
+  </ol>
+
+  <h2 class="secao">Como ler esta apostila</h2>
+  <table class="rotulada">
+    <tr><td>Gráficos</td><td>Calculados a partir das equações do texto (matplotlib), não desenhados à mão: os números da figura são os mesmos das contas.</td></tr>
+    <tr><td>Exemplo-guia</td><td>Um único mercado (<i>Q<sub>d</sub></i> = 120 − 2<i>P</i>; <i>Q<sub>s</sub></i> = 3<i>P</i> − 30) atravessa as duas folhas de conteúdo e as questões.</td></tr>
+    <tr><td>Cores</td><td>Vermelho = erro comum; verde = macete; âmbar = exceção. O resto é estrutura.</td></tr>
+  </table>
+  <div class="rodape-folha"><span>Grifo-Skill</span><span>Exemplo — atualizado até 12/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 03 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Microeconomia<small>Demanda, oferta e equilíbrio de mercado</small></div>
+    <div class="pag">03</div>
+  </div>
+
+  <div class="titulo-topico">Oferta e demanda</div>
+
+  <div class="bloco primaria">
+    <div class="faixa">Equilíbrio · o exemplo-guia</div>
+    <div class="corpo">
+      <figure class="figura aberta lado">
+        <img src="figuras/mercado-equilibrio.svg" alt="Gráfico com a curva de demanda decrescente e a de oferta crescente, cruzando-se no ponto E, em quantidade 60 e preço 30">
+        <div>
+          <div class="formula"><span class="rot">Demanda</span><i>Q<sub>d</sub></i> = 120 − 2<i>P</i></div>
+          <div class="formula"><span class="rot">Oferta</span><i>Q<sub>s</sub></i> = 3<i>P</i> − 30</div>
+          <div class="formula"><span class="rot">Equilíbrio</span>120 − 2<i>P</i> = 3<i>P</i> − 30 ⇒ <i>P</i>* = 30 ⇒ <i>Q</i>* = 60</div>
+          <p class="pequeno">No gráfico, preço no eixo vertical (convenção da economia): demanda <i>P</i> = 60 − <i>Q</i>/2; oferta <i>P</i> = 10 + <i>Q</i>/3.</p>
+        </div>
+        <figcaption>Mercado do exemplo-guia; E = equilíbrio.
+          <span class="credito">Gerado com matplotlib a partir das equações ao lado (scripts/figura.py grafico).</span></figcaption>
+      </figure>
+    </div>
+  </div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Curvas</div>
+
+      <table class="comparativo">
+        <tr><th>Critério</th><th>Demanda</th><th>Oferta</th></tr>
+        <tr><td class="criterio">Lei</td><td>preço ↑ ⇒ <i>Q<sub>d</sub></i> ↓</td><td>preço ↑ ⇒ <i>Q<sub>s</sub></i> ↑</td></tr>
+        <tr><td class="criterio">Inclinação</td><td>negativa</td><td>positiva</td></tr>
+        <tr><td class="criterio">Desloca com</td><td>renda, preço de substitutos e complementares, preferências, expectativas, nº de compradores</td><td>custo dos insumos, tecnologia, expectativas, nº de vendedores</td></tr>
+      </table>
+
+      <div class="caixa pegadinha"><div class="rotulo">Erro comum</div><div class="corpo">
+        <p>Mudança no <b>preço do próprio bem</b> <mark class="troca">não desloca</mark> a curva: é <b>movimento ao longo</b> dela (muda a quantidade demandada). Só os outros determinantes deslocam a curva (muda a demanda).</p>
+      </div></div>
+
+      <div class="bloco">
+        <div class="faixa">Fora do equilíbrio</div>
+        <div class="corpo">
+          <div class="fluxo vertical">
+            <div class="passo"><span class="t">P = 40 (acima)</span><i>Q<sub>d</sub></i> = 40 e <i>Q<sub>s</sub></i> = 90: <b>excedente</b> de 50 → preço cai</div>
+            <div class="passo fim"><span class="t">P = 20 (abaixo)</span><i>Q<sub>d</sub></i> = 80 e <i>Q<sub>s</sub></i> = 30: <b>escassez</b> de 50 → preço sobe</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Deslocamentos</div>
+
+      <figure class="figura aberta">
+        <img src="figuras/mercado-deslocamento.svg" alt="Gráfico: a demanda D0 se desloca para a direita até D1; o equilíbrio passa de E0 (60; 30) para E1 (72; 34)">
+        <figcaption>Renda maior, bem normal: D₀ → D₁ (<i>Q<sub>d</sub></i> = 140 − 2<i>P</i>). Novo equilíbrio E₁: <i>P</i> = 34, <i>Q</i> = 72.
+          <span class="credito">Gerado com matplotlib a partir das equações.</span></figcaption>
+      </figure>
+
+      <table class="rotulada">
+        <tr><td>Demanda ↑</td><td><i>P</i>* ↑ e <i>Q</i>* ↑</td></tr>
+        <tr><td>Oferta ↑</td><td><i>P</i>* ↓ e <i>Q</i>* ↑</td></tr>
+      </table>
+
+      <div class="caixa excecao"><div class="rotulo">Controle de preço</div><div class="corpo">
+        <p><b>Teto</b> abaixo do equilíbrio gera <span class="chave-v">escassez</span>; <b>piso</b> acima gera <span class="chave-v">excedente</span>. Teto acima ou piso abaixo de <i>P</i>* não têm efeito.</p>
+      </div></div>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill</span><span>Exemplo — atualizado até 12/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 04 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Microeconomia<small>Elasticidades e receita total</small></div>
+    <div class="pag">04</div>
+  </div>
+
+  <div class="apostila-colunas">
+    <div class="coluna">
+      <div class="coluna-cab">Elasticidade-preço da demanda</div>
+
+      <div class="bloco primaria">
+        <div class="faixa">Conceito</div>
+        <div class="corpo">
+          <div class="com-ilustra">
+            <p>Mede a <span class="chave-v">sensibilidade</span> da quantidade demandada a uma variação do preço, em termos percentuais (sem unidade).</p>
+            <svg class="ilustra g ico"><use href="#l-chart-line"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="formula"><span class="rot">Definição</span><i>E<sub>p</sub></i> = <span class="frac"><span>%Δ<i>Q<sub>d</sub></i></span><span>%Δ<i>P</i></span></span></div>
+      <div class="formula"><span class="rot">Ponto médio</span>%Δ<i>Q</i> = <span class="frac"><span><i>Q</i><sub>2</sub> − <i>Q</i><sub>1</sub></span><span>(<i>Q</i><sub>2</sub> + <i>Q</i><sub>1</sub>)/2</span></span></div>
+
+      <table class="comparativo">
+        <tr><th>|<i>E<sub>p</sub></i>|</th><th>Demanda</th><th>Se o preço sobe, a receita total…</th></tr>
+        <tr><td class="criterio">&gt; 1</td><td>elástica</td><td>cai</td></tr>
+        <tr><td class="criterio">= 1</td><td>unitária</td><td>não muda</td></tr>
+        <tr><td class="criterio">&lt; 1</td><td>inelástica</td><td>sobe</td></tr>
+      </table>
+
+      <div class="caixa exemplo"><div class="rotulo">No exemplo-guia</div><div class="corpo">
+        <p><i>P</i>: 30 → 40 e <i>Q<sub>d</sub></i>: 60 → 40. %Δ<i>Q</i> = −20/50 = −40%; %Δ<i>P</i> = 10/35 ≈ 28,6%. <i>E<sub>p</sub></i> ≈ <b>−1,4</b>: elástica. Receita: 30 × 60 = 1.800 → 40 × 40 = 1.600 (<b>cai</b>), como a tabela prevê.</p>
+      </div></div>
+    </div>
+
+    <div class="coluna">
+      <div class="coluna-cab">Determinantes e outras elasticidades</div>
+
+      <div class="bloco">
+        <div class="faixa">Demanda mais elástica quando há…</div>
+        <div class="corpo">
+          <ul class="check">
+            <li>substitutos próximos;</li>
+            <li>bem supérfluo (não essencial);</li>
+            <li>mercado definido de forma estreita (uma marca, não "alimentos");</li>
+            <li>horizonte de tempo longo;</li>
+            <li>gasto que pesa muito na renda.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="chave">
+        <div class="raiz">Outras<small>mesma lógica: %Δ<i>Q</i> ÷ %Δ da causa</small></div>
+        <div class="ramos">
+          <div class="ramo"><div class="no">Renda</div>
+            <div class="desc"><b>&gt; 0</b>: bem normal (&gt; 1: de luxo). <b>&lt; 0</b>: bem inferior.</div></div>
+          <div class="ramo"><div class="no">Cruzada</div>
+            <div class="desc"><b>&gt; 0</b>: substitutos (café e chá). <b>&lt; 0</b>: complementares (café e açúcar).</div></div>
+        </div>
+      </div>
+
+      <div class="caixa dica"><div class="rotulo">Macete</div><div class="corpo">
+        <p>Receita total e preço andam <b>juntos</b> na demanda <b>in</b>elástica (o consumidor "não foge"); em sentidos <b>opostos</b> na elástica.</p>
+      </div></div>
+
+      <div class="caixa pegadinha"><div class="rotulo">Erro comum</div><div class="corpo">
+        <p>Inclinação ≠ elasticidade. Na reta de demanda a inclinação é constante, mas a elasticidade <mark class="troca">muda em cada ponto</mark>: é alta perto do intercepto do preço e baixa perto do da quantidade.</p>
+      </div></div>
+    </div>
+  </div>
+
+  <div class="bloco primaria">
+    <div class="faixa">Receita total ao longo da demanda do exemplo-guia</div>
+    <div class="corpo">
+      <figure class="figura aberta lado">
+        <img src="figuras/receita-total.svg" alt="Parábola da receita total em função do preço, com máximo de 1.800 reais no preço 30">
+        <div>
+          <div class="formula"><span class="rot">Receita total</span><i>RT</i> = <i>P</i> · <i>Q<sub>d</sub></i> = <i>P</i> (120 − 2<i>P</i>)</div>
+          <table class="comparativo">
+            <tr><th>Trecho</th><th>|<i>E<sub>p</sub></i>|</th><th>Preço ↑ ⇒ RT</th></tr>
+            <tr><td class="criterio"><i>P</i> &lt; 30</td><td>&lt; 1 (inelástica)</td><td>sobe</td></tr>
+            <tr class="destaque"><td class="criterio"><i>P</i> = 30</td><td>= 1 (unitária)</td><td>máxima: R$ 1.800</td></tr>
+            <tr><td class="criterio"><i>P</i> &gt; 30</td><td>&gt; 1 (elástica)</td><td>cai</td></tr>
+          </table>
+          <p class="pequeno">Na demanda linear, |<i>E<sub>p</sub></i>| = 1 no ponto médio da reta (aqui, <i>P</i> = 30, metade do intercepto 60).</p>
+        </div>
+        <figcaption>Mesma reta, elasticidades diferentes: é por isso que inclinação não mede elasticidade.
+          <span class="credito">Gerado com matplotlib a partir de <i>RT</i> = <i>P</i>(120 − 2<i>P</i>).</span></figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill</span><span>Exemplo — atualizado até 12/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 05 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Microeconomia<small>Questões inéditas</small></div>
+    <div class="pag">05</div>
+  </div>
+
+  <div class="questao">
+    <div class="cab"><span class="n">01</span><span class="estilo">C/E</span>inédita</div>
+    <p>Uma redução no preço de um bem desloca a curva de demanda desse bem para a direita.</p>
+    <div class="ce"><span>C</span><span>E</span></div>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">02</span><span class="estilo">A–E</span>inédita</div>
+    <p>Num mercado com demanda <i>Q<sub>d</sub></i> = 120 − 2<i>P</i> e oferta <i>Q<sub>s</sub></i> = 3<i>P</i> − 30, o preço e a quantidade de equilíbrio são, respectivamente:</p>
+    <ol class="alternativas"><li>24 e 72.</li><li>30 e 60.</li><li>36 e 48.</li><li>40 e 40.</li><li>50 e 20.</li></ol>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">03</span><span class="estilo">A–E</span>inédita</div>
+    <p>No mesmo mercado, o governo fixa um preço máximo de R$ 20. O resultado é:</p>
+    <ol class="alternativas"><li>excedente de 50 unidades.</li><li>escassez de 30 unidades.</li><li>escassez de 50 unidades.</li><li>nenhum efeito, pois o teto está abaixo do equilíbrio.</li><li>excedente de 30 unidades.</li></ol>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">04</span><span class="estilo">C/E</span>inédita</div>
+    <p>Se a demanda por um bem é inelástica ao preço, um aumento do preço eleva a receita total dos vendedores.</p>
+    <div class="ce"><span>C</span><span>E</span></div>
+  </div>
+  <div class="questao">
+    <div class="cab"><span class="n">05</span><span class="estilo">A–E</span>inédita</div>
+    <p>A elasticidade-preço cruzada da demanda entre os bens X e Y é negativa. Pode-se afirmar que X e Y são:</p>
+    <ol class="alternativas"><li>substitutos.</li><li>complementares.</li><li>bens inferiores.</li><li>bens de luxo.</li><li>independentes.</li></ol>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill</span><span>Exemplo — atualizado até 12/11/2026</span></div>
+</div>
+
+<!-- ============================ FOLHA 06 ============================ -->
+<div class="folha">
+  <div class="topo">
+    <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
+    <div class="titulo-topo">Microeconomia<small>Gabarito comentado e referências</small></div>
+    <div class="pag">06</div>
+  </div>
+
+  <div class="gabarito"><h4>Gabarito comentado</h4>
+    <div class="item"><b>01 — Errado.</b> Preço do próprio bem provoca movimento ao longo da curva (a quantidade demandada aumenta); a curva só se desloca com renda, preços de outros bens, preferências, expectativas ou número de compradores.</div>
+    <div class="item"><b>02 — B.</b> 120 − 2<i>P</i> = 3<i>P</i> − 30 ⇒ 5<i>P</i> = 150 ⇒ <i>P</i> = 30; <i>Q</i> = 120 − 60 = 60. As demais não igualam <i>Q<sub>d</sub></i> e <i>Q<sub>s</sub></i> (em (D), por exemplo, <i>Q<sub>d</sub></i> = 40 e <i>Q<sub>s</sub></i> = 90).</div>
+    <div class="item"><b>03 — C.</b> A R$ 20: <i>Q<sub>d</sub></i> = 80 e <i>Q<sub>s</sub></i> = 30, escassez de 50. (D) inverte a regra: teto <b>abaixo</b> do equilíbrio é justamente o que tem efeito.</div>
+    <div class="item"><b>04 — Certo.</b> Com |<i>E<sub>p</sub></i>| &lt; 1, a quantidade cai proporcionalmente menos que o preço sobe; a receita (<i>P</i> × <i>Q</i>) aumenta.</div>
+    <div class="item"><b>05 — B.</b> Cruzada negativa: o preço de Y sobe, a demanda por X cai, sinal de consumo conjunto. (A) corresponde a cruzada positiva; (C) e (D) se definem pela elasticidade-renda.</div>
+  </div>
+
+  <div class="caixa lei"><div class="rotulo">Referências</div><div class="corpo pequeno">
+    <a href="https://openstax.org/books/principles-economics-3e/pages/3-1-demand-supply-and-equilibrium-in-markets-for-goods-and-services">OpenStax. Principles of Economics 3e, cap. 3.1 — Demand, Supply, and Equilibrium</a>.
+    <a href="https://openstax.org/books/principles-economics-3e/pages/3-2-shifts-in-demand-and-supply-for-goods-and-services">Cap. 3.2 — Shifts in Demand and Supply</a>.
+    <a href="https://openstax.org/books/principles-economics-3e/pages/3-4-price-ceilings-and-price-floors">Cap. 3.4 — Price Ceilings and Price Floors</a>.
+    <a href="https://openstax.org/books/principles-economics-3e/pages/5-1-price-elasticity-of-demand-and-price-elasticity-of-supply">Cap. 5.1 — Price Elasticity of Demand and Supply</a>.
+    Mercado do exemplo-guia hipotético, criado para este material. Gráficos gerados a partir das equações. Questões inéditas.
+  </div></div>
+  <div class="rodape-folha"><span>Grifo-Skill</span><span>Exemplo — atualizado até 12/11/2026</span></div>
+</div>
+</body>
+</html>
