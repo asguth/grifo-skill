@@ -1,3 +1,49 @@
+Grifo-Skill — licenças
+Copyright (c) 2026 Alberto Guth (GT Design)
+SPDX-License-Identifier: MIT AND CC-BY-4.0
+
+O projeto tem três partes, cada uma com a sua licença.
+
+1. CÓDIGO — licença MIT (texto abaixo)
+   Arquivos .py (skills/grifo/scripts/, ferramentas/), workflows (.github/),
+   manifestos do plugin (.claude-plugin/) e comandos (commands/).
+
+2. DESIGN E CONTEÚDO — Creative Commons Atribuição 4.0 Internacional (CC BY 4.0)
+   https://creativecommons.org/licenses/by/4.0/legalcode.pt
+   Folha de estilo (skills/grifo/assets/grifo.css), templates (assets/templates/),
+   mascote e sprite (assets/mascote/, assets/ilustracoes.svg), guias e instruções
+   (SKILL.md, references/, agentes/), exemplos (exemplos/, exceto exemplos/figuras/),
+   logo e imagens (docs/).
+
+   Você pode usar, adaptar e vender, inclusive o material de estudo que a skill gera
+   (ele incorpora a folha de estilo, os templates e o mascote), desde que dê o crédito.
+   Forma de crédito pedida pelo licenciante, em cada material gerado ou obra derivada:
+
+       Feito com Grifo-Skill — https://github.com/asguth/grifo-skill (CC BY 4.0)
+
+   O rodapé das folhas já imprime "Feito com Grifo-Skill"; manter o rodapé basta.
+   Em fork ou adaptação, diga também que houve modificação.
+
+3. TERCEIROS — cada um na sua licença, sempre com crédito
+   - Fontes Inter e Poppins: SIL Open Font License 1.1 (skills/grifo/assets/fontes/OFL.txt).
+   - Ícones Lucide: ISC (skills/grifo/assets/lucide/LICENSE).
+   - Figuras de acervo aberto (exemplos/figuras/ e as que a skill baixa para cada
+     material): a licença de cada arquivo (domínio público, CC0, CC BY ou CC BY-SA),
+     com autor, fonte e licença na legenda da figura e no .json ao lado do arquivo.
+     Domínio público também recebe crédito. Lista dos exemplos em CREDITOS.md.
+
+AVISO
+O material gerado é produzido com inteligência artificial para apoio ao estudo. Pode
+conter erros, inclusive conceituais e em figuras. Não substitui livros, aulas, atlas,
+legislação oficial nem orientação de professores ou profissionais. Confira tudo nas
+fontes indicadas. O uso é de responsabilidade de quem usa. Software, design e conteúdo
+são fornecidos "no estado em que se encontram", sem garantias (ver cláusulas abaixo e
+a seção 5 da CC BY 4.0).
+
+Versões publicadas até a 1.0.0 foram distribuídas só sob MIT e continuam valendo assim
+para quem as obteve.
+
+--------------------------------------------------------------------------------
 MIT License
 
 Copyright (c) 2026 Alberto Guth (GT Design)

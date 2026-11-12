@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verifica a biblioteca de ilustrações (assets/ilustracoes.svg).
+"""Verifica o sprite do mascote (assets/ilustracoes.svg).
 
 Uso:  python3 verificar_ilustracoes.py [caminho/ilustracoes.svg]
 
@@ -8,7 +8,7 @@ Falha (exit 1) se algum símbolo:
   - não tiver viewBox;
   - usar classe que não existe no <style> do próprio sprite;
   - usar <use> apontando para id inexistente;
-  - usar cor fora da paleta permitida (references/design.md §4);
+  - usar cor fora da paleta do mascote (references/design.md §4);
   - usar <image> que não aponte para um arquivo de assets/ com até 40 KB;
 e também se o arquivo não for XML válido ou houver <symbol> fora do <svg>
 (por exemplo, dentro de comentário).
@@ -23,24 +23,8 @@ from pathlib import Path
 SVG_PADRAO = Path(__file__).resolve().parent.parent / "skills" / "grifo" / "assets" / "ilustracoes.svg"
 NS = "{http://www.w3.org/2000/svg}"
 
-# Manter em sincronia com references/design.md §4 ("Paleta permitida").
-PALETA = {
-    "#202A35", "#1C2430",                                # tinta / contorno
-    "#FFFFFF", "#F4F6F8", "#E7EDF2", "#E3E7EC",          # neutros
-    "#5A6070", "#3A3F48", "#23262C", "#596579",          # cinzas de roupa/objeto
-    "#243B53", "#2F6B8A",                                # navy, blue
-    "#3D7CC9", "#F2875F", "#DCEAF7",                     # ilustração: azul vivo, coral, azul claro
-    "#A85D00", "#B42318", "#237A57",                     # âmbar, vermelho, verde
-    "#F6C9A0", "#6B4A32", "#2F2A26",                     # pele e cabelo
-    "#7A4A2A", "#9A6236",                                # madeira
-    "#FFE45C",                                           # marca-texto
-    "#2E7D4F", "#1F4FA0", "#3D4F6E",                     # símbolos nacionais / roupa
-    # ciências (convenções da área; references/ilustracoes.md)
-    "#D64541", "#4A72C4",                                # sangue arterial / venoso
-    "#E8A49B", "#C9655B", "#F7D9CF", "#F3E7CC",          # músculo, músculo escuro, tecido, osso
-    "#B49BDB", "#7E5DB8", "#FFF2C9",                     # núcleo, nucléolo, citoplasma
-    "#5FAE5B", "#CFE8B8", "#9ED3EA", "#FBE29B", "#E0A800",  # planta, água, gordura, base G
-}
+# Só o mascote e os selos vivem no sprite (references/design.md §4).
+PALETA = {"#1C2430", "#FFFFFF", "#FFE45C", "#B42318"}
 LIMITE_ELEMENTOS = 15
 LIMITE_IMAGEM = 40 * 1024  # mascote raster (WebP)
 RE_SIMBOLO = re.compile(r"<symbol\s[^>]*\bid=")

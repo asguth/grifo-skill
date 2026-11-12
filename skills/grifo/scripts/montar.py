@@ -12,6 +12,9 @@ No HTML de entrada, use os marcadores:
   <!--APOSTILA:SPRITE-->  -> substituído por um <svg class="sprite"> contendo
                              apenas os <symbol> referenciados via href="#i-..."
 
+Imagens de figura (<img src="figuras/x.jpg">, caminho relativo ao HTML de entrada)
+são embutidas como data URI: o HTML final fica autocontido.
+
 Também troca espaços por &nbsp; onde a quebra de linha separaria referências
 legais e números de suas unidades ("art. 59", "§ 1º", "inciso IV", "Lei nº
 8.112", "30 dias úteis", "10 %", "art. 36, p.ú." …). Só mexe no texto: nunca
@@ -142,7 +145,8 @@ def icones_lucide() -> dict:
     return out
 
 
-MIME = {".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".svg": "image/svg+xml"}
+MIME = {".webp": "image/webp", ".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
+        ".svg": "image/svg+xml", ".gif": "image/gif"}
 
 
 def embutir_imagens(simbolo: str) -> str:
@@ -156,6 +160,21 @@ def embutir_imagens(simbolo: str) -> str:
         return f'href="data:{MIME.get(arq.suffix.lower(), "application/octet-stream")};base64,{b64}"'
 
     return re.sub(r'href="(?!#|data:|https?:)([^"]+)"', trocar, simbolo)
+
+
+def embutir_figuras(html: str, base: Path) -> str:
+    """<img src="relativo"> -> data URI (relativo à pasta do HTML de entrada)."""
+    def trocar(m):
+        src = m.group(2)
+        arq = (base / src).resolve()
+        if not arq.is_file():
+            print(f"aviso: imagem {src} não existe (relativo a {base})", file=sys.stderr)
+            return m.group(0)
+        mime = MIME.get(arq.suffix.lower(), "application/octet-stream")
+        b64 = base64.b64encode(arq.read_bytes()).decode("ascii")
+        return f'{m.group(1)}data:{mime};base64,{b64}"'
+
+    return re.sub(r'(<img\b[^>]*?\bsrc=")(?!data:|https?:|//)([^"]+)"', trocar, html)
 
 
 FONTES = [  # (família, peso, arquivo) — só o subconjunto latin e os pesos usados
@@ -193,11 +212,12 @@ def versao() -> str:
     return m.group(1) if m else "?"
 
 
-def montar(html: str, fontes_embutidas: bool = False) -> str:
+def montar(html: str, fontes_embutidas: bool = False, base: Path | None = None) -> str:
     css = (BASE / "grifo.css").read_text(encoding="utf-8")
     estilo_svg, simbolos = carregar_simbolos()
 
     html = quebras_suaves(inseparaveis(html))
+    html = embutir_figuras(html, base or Path.cwd())
     if fontes_embutidas:
         html = embutir_fontes(html)
 
@@ -246,6 +266,6 @@ if __name__ == "__main__":
     if len(args) != 2 or flags - {"--fontes-embutidas"}:
         sys.exit(__doc__)
     entrada, saida = map(Path, args)
-    html = montar(entrada.read_text(encoding="utf-8"), "--fontes-embutidas" in flags)
+    html = montar(entrada.read_text(encoding="utf-8"), "--fontes-embutidas" in flags, entrada.resolve().parent)
     saida.write_text(html, encoding="utf-8", newline="\n")
     print(f"ok: {saida}")

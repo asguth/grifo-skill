@@ -11,23 +11,40 @@ de release grava a versão na skill (aparece ao lado do logo em cada folha) e pu
   e bloco num matiz), `pastel` (matizes suaves) e `pb` (cinza para impressão). Seis matizes
   de tópico que não colidem com vermelho/verde/âmbar; `cor-1`…`cor-6` fixam a cor de um
   tópico. A skill pergunta o estilo junto com o formato.
-- **Figuras rotuladas desenhadas do zero** (`.figura`, chamadas numeradas, legenda HTML,
-  paleta científica) e o guia `references/ilustracoes.md` (método em camadas, convenções
-  de vista e de cor por área, checklist).
-- **13 ilustrações de saúde e ciências** com sombra e brilho: coração, pulmões, neurônio,
-  célula, DNA, microscópio, estetoscópio, cápsula, frasco, átomo, molécula, planta, osso.
+- **Figuras de acervo aberto ou geradas a partir de dados** (`references/ilustracoes.md`):
+  `scripts/figura.py` busca no Wikimedia Commons (OpenStax, Servier, NIH…) só licenças
+  CC0, domínio público, CC BY e CC BY-SA, baixa, reduz, põe fundo branco e devolve o
+  `<figure>` com o crédito; avisa em obra derivada; desenha moléculas com RDKit.
+  Componente `.figura.aberta` com `.credito`, `.larga` e chamadas numeradas sobre imagem
+  sem rótulos (`.sobre` + `.marca`). O `montar.py` embute as imagens.
+- `verificar.py`: ERRO em figura sem crédito, imagem remota ou inexistente; aviso em figura
+  desenhada à mão em SVG e em imagem > 900 KB.
+- **Aviso de IA e atribuição em toda folha**: o rodapé imprime "Feito com Grifo-Skill ·
+  gerado com IA: confira nas fontes" (traduzido por `lang`); seção "Limitações e
+  responsabilidade" no README; a entrega termina com o aviso.
+- `CREDITOS.md` com fontes, ícones e figuras dos exemplos.
 - **Outros idiomas** (`--idioma`, `references/idiomas.md`): material na língua do usuário,
   textos do CSS traduzidos (en, es, fr, it, de), hifenização por `lang`, exames de outros
   países, espaço inseparável também em en/es/fr/it/de e unidades (mL, mmHg, bpm…).
-- Exemplos `medicina-coracao` (colorido, 2 figuras do zero) e `en-photosynthesis`
-  (inglês, pastel); `README.en.md`.
+- Exemplos `medicina-coracao` (colorido; coração rotulado em português e sistema de
+  condução da OpenStax com tabela "Na figura → Português") e `en-photosynthesis` (inglês,
+  pastel; cloroplasto da OpenStax); `README.en.md`.
 
 ### Alterado
+- **Licença**: código continua MIT; design e conteúdo (CSS, templates, mascote, logo,
+  guias, exemplos) passam a **CC BY 4.0**, com crédito "Feito com Grifo-Skill" nos
+  materiais gerados. Terceiros mantêm a licença de origem, sempre com crédito.
+- Imagem de terceiros passa a ser aceita **só com licença aberta e crédito** (antes: nenhuma).
 - Logo do README em cartão branco arredondado (legível no tema escuro do GitHub), nome
   numa cor só, sem grifo amarelo; social preview com mascote menor.
 - `renderizar.py` mede texto de SVG no tamanho real (escala do viewBox).
-- Galeria agrupa seções pequenas na mesma linha (cabe em 1 A4 com 60 símbolos).
+- Galeria mostra o mascote e uma amostra de ícones Lucide por área.
 - Verificador de contraste cobre os matizes e o estilo `pb` (67 pares).
+
+### Removido
+- **Biblioteca de ilustrações prontas** (57 símbolos: personagens, objetos, saúde e
+  ciências). O sprite só tem o mascote; ícones ao lado do texto são Lucide. Figuras
+  rotuladas desenhadas à mão em SVG deixam de ser método: a IA erra anatomia sem perceber.
 
 ## [1.0.0] — 2026-11
 
