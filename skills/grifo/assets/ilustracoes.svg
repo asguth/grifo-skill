@@ -1,5 +1,5 @@
 <!--
-  GRIFO-SKILL - sprite do mascote (MIT)
+  GRIFO-SKILL - sprite do mascote (CC BY 4.0)
   So o mascote mora aqui. Nao ha biblioteca de ilustracoes prontas: icones vem do
   Lucide (assets/lucide) e figuras didaticas de acervos abertos ou de geradores a
   partir de dados (references/ilustracoes.md, scripts/figura.py).
@@ -17,7 +17,7 @@
     </style>
   </defs>
 
-  <!-- MASCOTE: o Grifo (MIT). Raster em assets/mascote/grifo.webp, embutido como data URI
+  <!-- MASCOTE: o Grifo (CC BY 4.0). Raster em assets/mascote/grifo.webp, embutido como data URI
        pelo montar.py. As poses reaproveitam o mesmo <image> e só acrescentam o selo vetorial. -->
   <symbol id="i-grifo" viewBox="0 0 240 240">
     <image href="mascote/grifo.webp" x="0" y="0" width="240" height="240" preserveAspectRatio="xMidYMid meet"/>

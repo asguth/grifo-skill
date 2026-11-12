@@ -18,7 +18,7 @@ são embutidas como data URI: o HTML final fica autocontido.
 Também troca espaços por &nbsp; onde a quebra de linha separaria referências
 legais e números de suas unidades ("art. 59", "§ 1º", "inciso IV", "Lei nº
 8.112", "30 dias úteis", "10 %", "art. 36, p.ú." …). Só mexe no texto: nunca
-dentro de tags, atributos, comentários, <style> ou <script>.
+dentro de tags, atributos, comentários, <style>, <script>, <pre> ou <code>.
 Licença MIT.
 """
 import base64
@@ -79,7 +79,7 @@ REGRAS = [
 _RE_BARRA = re.compile(r"(?<=[A-Za-zÀ-ÿ])/(?=[A-Za-zÀ-ÿ])")
 _RE_REGRAS = [re.compile(r) for r in REGRAS]
 _PROTEGIDO = re.compile(
-    r"<!--.*?-->|<(style|script)\b.*?</\1\s*>|<[^>]*>", re.S | re.I
+    r"<!--.*?-->|<(style|script|pre|code|textarea)\b.*?</\1\s*>|<[^>]*>", re.S | re.I
 )
 
 

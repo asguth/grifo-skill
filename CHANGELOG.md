@@ -7,6 +7,18 @@ de release grava a versão na skill (aparece ao lado do logo em cada folha) e pu
 ## [Não lançado]
 
 ### Adicionado
+- **Capa no estilo do banner do repositório**: mascote, título em navy, selos, faixa da
+  marca e rodapé com crédito e aviso de IA (`.marca-capa`, `.banner-capa`, `.selos-capa`).
+- **Acervo curado de figuras** (`assets/acervo.json`, `figura.py acervo`): 61 arquivos do
+  Wikimedia Commons conferidos (existem, licença aceita, autor, idioma dos rótulos) em
+  anatomia humana, biologia celular, genética, botânica e ecologia, química, física,
+  geociências, astronomia, geografia e história.
+- **`figura.py grafico`**: gráfico calculado com matplotlib a partir de expressões em `x`
+  (avaliação restrita, sem código arbitrário) ou de CSV; `--pontos` marca equilíbrio/raiz
+  com guias; cores do Grifo e traço por série (P&B); SVG determinístico.
+- Exemplo **`economia-oferta-demanda`**: `/apostila` com capa e sumário e três gráficos
+  calculados das equações do texto.
+- `verificar.py`: ERRO em folha sem `.rodape-folha` (crédito + aviso de IA).
 - **Estilos de cor** (`--estilo`, `data-tema`): `sobrio` (padrão), `colorido` (cada coluna
   e bloco num matiz), `pastel` (matizes suaves) e `pb` (cinza para impressão). Seis matizes
   de tópico que não colidem com vermelho/verde/âmbar; `cor-1`…`cor-6` fixam a cor de um
@@ -30,7 +42,20 @@ de release grava a versão na skill (aparece ao lado do logo em cada folha) e pu
   condução da OpenStax com tabela "Na figura → Português") e `en-photosynthesis` (inglês,
   pastel; cloroplasto da OpenStax); `README.en.md`.
 
+### Corrigido
+- Capa com título e subtítulo brancos sobre fundo branco (invisíveis).
+- `figura.py`: `baixar`/`reduzir` definidos duas vezes; a 2ª versão, sem fundo branco no
+  lugar da transparência, sobrescrevia a correta.
+- Subscrito e sobrescrito abaixo de 8 pt (`sub`, `sup`).
+- `montar.py` não troca mais espaços por `&nbsp;` dentro de `<pre>`/`<code>`.
+- `atualizar_docs.py` só apaga PNGs antigos depois de regenerar tudo com sucesso.
+- Rodapé de exemplo em `componentes.md` duplicava o crédito ("Grifo-Skill · MIT").
+- Regras do SKILL.md com numeração repetida.
+
 ### Alterado
+- Descrições do plugin, CSS e sprite sem "(MIT)" solto: design e conteúdo são CC BY 4.0,
+  código MIT. READMEs reescritos; GIF, mosaico (2 linhas), galeria e social preview
+  regenerados.
 - **Licença**: código continua MIT; design e conteúdo (CSS, templates, mascote, logo,
   guias, exemplos) passam a **CC BY 4.0**, com crédito "Feito com Grifo-Skill" nos
   materiais gerados. Terceiros mantêm a licença de origem, sempre com crédito.

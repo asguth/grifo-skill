@@ -13,9 +13,10 @@ para anatomia, célula, órgão ou aparelho é **proibido**: o `verificar.py` ac
 
 | Conteúdo | Origem | Como |
 |---|---|---|
-| Anatomia, histologia, célula, órgão, organismo, aparelho de laboratório | **Acervo aberto** | `scripts/figura.py buscar` / `baixar` (§2) |
-| Molécula, reação, fórmula estrutural | **Gerador**: RDKit a partir do SMILES | `scripts/figura.py molecula` (§3) |
-| Gráfico de função, curva, dados (física, economia, estatística) | **Gerador**: matplotlib a partir da equação ou dos dados | §3 |
+| Anatomia, histologia, célula, órgão, organismo, aparelho de laboratório | **Acervo aberto** | `figura.py acervo` → `baixar` (§2) |
+| Mapa (geografia, história, clima, geologia), astronomia, espectro, tabela periódica | **Acervo aberto** | `figura.py acervo` → `baixar` (§2) |
+| Molécula, reação, fórmula estrutural | **Gerador**: RDKit a partir do SMILES | `figura.py molecula` (§3) |
+| Gráfico de função, curva, dados (física, economia, estatística, cinética) | **Gerador**: matplotlib a partir da equação ou dos dados | `figura.py grafico` (§3) |
 | Circuito elétrico | **Gerador**: schemdraw (símbolos padronizados) | §3 |
 | Processo, rito, algoritmo, classificação (sem forma física) | **Componente** do Grifo (`.fluxo`, `.chave`, `.linha-tempo`…) | `componentes.md` |
 | Ancorar a memória ao lado de um bloco | **Ícone Lucide** | `design.md` §4 |
@@ -25,6 +26,19 @@ Não achou figura confiável com licença aberta? **Não invente.** Use um compo
 link do capítulo da OpenStax). Melhor sem figura do que com figura errada.
 
 ## 2. Acervo aberto (Wikimedia Commons)
+
+**Comece pelo acervo curado** (`assets/acervo.json`): 61 figuras já conferidas — existem,
+licença aceita, autor e idioma dos rótulos anotados — em anatomia humana, biologia
+celular, genética, botânica e ecologia, química, física, geociências, astronomia,
+geografia e história.
+
+```bash
+python3 <skill>/scripts/figura.py acervo                 # áreas e quantidades
+python3 <skill>/scripts/figura.py acervo "rim"           # por tema, área ou tag (sem acento também)
+python3 <skill>/scripts/figura.py baixar "File:2610 The Kidney.jpg" figuras/ --nome rim
+```
+Não achou no acervo? Busque no Commons (abaixo). Achou figura boa que serve a outros
+materiais? Ela pode entrar no acervo por PR (`CONTRIBUTING.md`).
 
 O Commons reúne as figuras da **OpenStax** (livros didáticos revisados por pares, CC BY),
 **Servier Medical Art** (CC BY), **NIH** (domínio público) e milhares de diagramas
@@ -62,14 +76,29 @@ python3 <skill>/scripts/figura.py baixar "File:Nome do arquivo.png" figuras/ --n
 
 ```bash
 python3 <skill>/scripts/figura.py molecula "CC(=O)Oc1ccccc1C(=O)O" figuras/aas.svg   # pip install rdkit
+python3 <skill>/scripts/figura.py grafico "oferta = 10 + x/3" "demanda = 60 - x/2" figuras/mercado.svg \
+        --x 0,120 --eixos "Quantidade,Preço (R$)" --pontos "60,30,E"                  # pip install matplotlib
+python3 <skill>/scripts/figura.py grafico --csv figuras/titulacao.csv figuras/titulacao.svg --eixos "V (mL),pH"
 ```
+- **`grafico`**: expressões em `x` com aritmética e funções numpy da lista (sin, exp, log,
+  sqrt, where…); nada de código arbitrário. `--pontos` marca o que foi **calculado**
+  (equilíbrio, raiz, máximo) com guias até os eixos. Cores do Grifo e um traço por série
+  (legível em P&B); eixo começa em 0 quando os dados são positivos. Mesmo comando, mesmo
+  arquivo (SVG sem data).
 - **SMILES** conferido no PubChem antes. A fórmula molecular impressa pelo script é a
   checagem: se não bate com a fonte, o SMILES está errado.
-- **Gráfico** (matplotlib): escreva um script curto em `figuras/`, gere SVG com
+- **Gráfico fora do padrão** (barras, dispersão, histograma, área): escreva um script curto em `figuras/`, gere SVG com
   `plt.savefig("figuras/x.svg", bbox_inches="tight")`, fonte ≥ 8 pt no tamanho final,
   eixos com nome e unidade, cores com sentido (legenda diz o que é cada uma). A curva
   vem da equação ou de dados citados, nunca de "formato aproximado" de memória.
-- **Circuito** (schemdraw): mesmo esquema; símbolos da norma que o curso usa (IEC ou ANSI).
+- **Circuito** (schemdraw, `pip install schemdraw`): mesmo esquema; símbolos da norma que
+  o curso usa (IEC ou ANSI). Mínimo:
+  ```python
+  import schemdraw, schemdraw.elements as e
+  with schemdraw.Drawing(file="figuras/rc.svg") as d:
+      d += e.SourceV().label("12 V"); d += e.Resistor().right().label("1 kΩ")
+      d += e.Capacitor().down().label("10 µF"); d += e.Line().left()
+  ```
 - Crédito de figura gerada: `<span class="credito">Gerado com RDKit/matplotlib a partir de …</span>`.
 
 ## 4. HTML

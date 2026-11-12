@@ -25,10 +25,11 @@ S = REPO / "skills" / "grifo" / "scripts"
 EXEMPLOS = REPO / "exemplos"
 DOCS = REPO / "docs"
 LARGURA_PNG = 1100
+COM_CAPA = {"economia-oferta-demanda"}
 LARGURA_GIF = 560
-ORDEM = [  # ordem de exibição no GIF e no mosaico
-    "lgpd-bases-legais", "lei-8112-servidores", "lei-9784-processo-administrativo",
-    "portugues-crase", "rlm-proposicoes", "medicina-coracao", "en-photosynthesis",
+ORDEM = [  # ordem de exibição no GIF e no mosaico (o 1º abre com a capa)
+    "economia-oferta-demanda", "medicina-coracao", "lgpd-bases-legais", "portugues-crase",
+    "rlm-proposicoes", "lei-8112-servidores", "lei-9784-processo-administrativo", "en-photosynthesis",
 ]
 
 
@@ -44,8 +45,7 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
     destino = DOCS / "exemplos"
     destino.mkdir(parents=True, exist_ok=True)
-    for velho in destino.glob("*.png"):
-        velho.unlink()
+    velhos = set(destino.glob("*.png"))  # só some o que não for regenerado, e só no fim
 
     paginas = {}
     for fonte in sorted(EXEMPLOS.glob("*-fonte.html")):
@@ -69,13 +69,19 @@ def main():
                 paginas[slug].append(out)
         print(f"ok: {slug} ({rel['folhas']} folhas)")
 
+    for velho in velhos - {p for lista in paginas.values() for p in lista} - {destino / "mosaico.png"}:
+        velho.unlink()
+
     rodar(REPO / "ferramentas" / "galeria.py")
     print("ok: galeria")
 
     # --- GIF: folhas 1 e 2 de cada exemplo, corte seco (fade gera quadros pesados e borrados) ---
     quadros = []
     for s in ORDEM:
-        for png in paginas.get(s, [])[:2]:
+        pags = paginas.get(s, [])
+        # apostila com capa: capa + 1ª folha de conteúdo (pula o sumário)
+        escolhidas = [pags[0], pags[2]] if s in COM_CAPA and len(pags) > 2 else pags[:2]
+        for png in escolhidas:
             im = Image.open(png).convert("RGB")
             quadros.append(im.resize((LARGURA_GIF, round(im.height * LARGURA_GIF / im.width)), Image.LANCZOS))
     duracoes = [1600] * len(quadros)
@@ -87,12 +93,14 @@ def main():
 
     # --- mosaico das folhas 1 ---
     miniat = [Image.open(paginas[s][0]).convert("RGB") for s in ORDEM if s in paginas]
-    w = 360
+    w, gap, por_linha = 360, 24, 4
     miniat = [m.resize((w, round(m.height * w / m.width)), Image.LANCZOS) for m in miniat]
-    gap = 24
-    mosaico = Image.new("RGB", (len(miniat) * w + (len(miniat) + 1) * gap, miniat[0].height + 2 * gap), "#E9ECEF")
+    h = max(m.height for m in miniat)
+    linhas = -(-len(miniat) // por_linha)
+    mosaico = Image.new("RGB", (por_linha * w + (por_linha + 1) * gap, linhas * h + (linhas + 1) * gap), "#E9ECEF")
     for i, m in enumerate(miniat):
-        mosaico.paste(m, (gap + i * (w + gap), gap))
+        lin, col = divmod(i, por_linha)
+        mosaico.paste(m, (gap + col * (w + gap), gap + lin * (h + gap)))
     mosaico.quantize(colors=256, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE).save(destino / "mosaico.png", optimize=True)
     print("ok: docs/exemplos/mosaico.png")
 

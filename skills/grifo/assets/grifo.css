@@ -1,5 +1,5 @@
 /* =====================================================================
-   GRIFO-SKILL — design system editorial (MIT)
+   GRIFO-SKILL — design system editorial (CC BY 4.0: mantenha o rodapé com o crédito)
    Apostilas A4 imprimíveis e legíveis em preto e branco.
 
    PALETA ÚNICA (Educational Editorial Design System):
@@ -75,6 +75,7 @@ ul, ol { margin: .2em 0 .4em; padding-left: 1.2em; }
 li { margin: .12em 0; text-wrap: pretty; }
 b, strong { font-weight: 700; }
 a { color: var(--azul); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
+sub, sup { font-size: max(.75em, 8pt); line-height: 0; }
 code { font-size: max(.92em, 8pt); background: var(--lei-claro); padding: 0 .25em; border-radius: 3px; }
 
 /* ===================== folha A4 ===================== */
@@ -354,10 +355,35 @@ table.edital tr.materia td { background: var(--disc-claro); font-weight: 800; co
 table.edital td.peso { text-align: center; white-space: nowrap; }
 
 /* ===================== CAPA / SUMÁRIO ===================== */
-.capa { justify-content: center; align-items: flex-start; background: var(--papel); border-top: 120mm solid var(--navy); }
-.capa .titulo-capa { color: #fff; font-family: var(--fonte-titulo); font-size: 34pt; font-weight: 800; text-transform: uppercase; line-height: 1; }
-.capa .sub-capa { color: #fff; font-size: 13pt; margin-top: 3mm; opacity: .95; }
-.capa .info-capa { margin-top: auto; font-size: 10pt; color: var(--tinta-2); }
+/* capa no estilo do banner do repositório (docs/marca/social.png): fundo claro,
+   mascote à esquerda, título em navy à direita, selos e faixa navy no pé. */
+.capa {
+  justify-content: center; align-items: stretch; gap: 0; background: var(--sup);
+  border-bottom: 9mm solid var(--navy); padding: 16mm 14mm 14mm;
+}
+.capa .marca-capa {
+  position: absolute; top: 12mm; left: 14mm; right: 14mm; display: flex; align-items: baseline; gap: 2.4mm;
+  font-family: var(--fonte-titulo); font-weight: 900; font-size: 13pt; color: var(--navy); letter-spacing: -.01em;
+  border-bottom: 1px solid var(--linha); padding-bottom: 2mm;
+}
+.capa .marca-capa small { font-family: var(--fonte-corpo); font-weight: 600; font-size: 9pt; color: var(--tinta-2); letter-spacing: 0; }
+.capa .banner-capa { display: flex; align-items: center; gap: 8mm; }
+.capa .mascote-capa { width: 62mm; height: 62mm; flex: none; }
+.capa .texto-capa { flex: 1; min-width: 0; }
+.capa .titulo-capa {
+  color: var(--navy); font-family: var(--fonte-titulo); font-size: 32pt; font-weight: 900;
+  line-height: 1.04; letter-spacing: -.015em; text-wrap: balance;
+  /* não hifenizar palavras curtas ("Microe-conomia"); só as muito longas */
+  hyphenate-limit-chars: 14 7 7; overflow-wrap: break-word;
+}
+.capa .sub-capa { color: var(--tinta); font-size: 14pt; font-weight: 600; margin-top: 4mm; line-height: 1.25; }
+.capa .selos-capa { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 6mm; }
+.capa .selos-capa span {
+  font-weight: 700; font-size: 9.5pt; color: var(--navy); border: 1.4px solid var(--navy);
+  border-radius: 999px; padding: .8mm 3.2mm;
+}
+.capa .rodape-folha, .capa .info-capa { left: 14mm; right: 14mm; }
+.capa .info-capa { position: absolute; bottom: 14mm; font-size: 9pt; color: var(--tinta-2); }
 .sumario ol { counter-reset: s; list-style: none; padding: 0; }
 .sumario li { display: flex; gap: 2mm; border-bottom: 1px dotted var(--linha); padding: 1.2mm 0; }
 .sumario li::before { counter-increment: s; content: counter(s, decimal-leading-zero); font-weight: 800; color: var(--disc); }

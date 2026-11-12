@@ -92,13 +92,13 @@ def main():
             f"""<div class="soc"><img src="{src}"><div class="txt">
               <div class="nome"><span>Grifo</span><span class="s">-Skill</span></div>
               <div class="frase">Apostilas ilustradas de qualquer assunto</div>
-              <div class="selos"><span>Skill para Claude e Codex</span><span>Open source</span><span>PDF A4 pronto</span></div>
+              <div class="selos"><span>Claude e Codex</span><span>Figuras de acervo aberto</span><span>PDF A4 pronto</span></div>
             </div></div>""",
             marca_texto + f"""
             .soc{{width:1280px;height:640px;background:#F6F7F9;display:flex;align-items:center;gap:40px;padding:0 70px;
                   border-bottom:14px solid {AZUL}}}
             .soc img{{height:400px}}
-            .nome{{font-size:118px}} .frase{{font-size:42px;margin-top:18px;color:{AZUL_ESCURO}}}
+            .nome{{font-size:118px}} .frase{{font-size:38px;margin-top:18px;color:{AZUL_ESCURO};white-space:nowrap}}
             .selos{{display:flex;gap:12px;margin-top:34px;flex-wrap:wrap}}
             .selos span{{font-family:Inter;font-weight:700;font-size:22px;color:{AZUL};border:2.5px solid {AZUL};
                          border-radius:999px;padding:6px 18px}}""")),

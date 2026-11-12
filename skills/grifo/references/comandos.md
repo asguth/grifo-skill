@@ -47,7 +47,7 @@ Com o nome de um comando (`/grifo questoes`): mostra só a linha dele, as flags 
 aceita e o exemplo. Não gera arquivo nem roda o fluxo.
 
 ```
-GRIFO-SKILL · apostilas ilustradas de qualquer assunto (código MIT · design CC BY 4.0)
+GRIFO-SKILL · apostilas ilustradas de qualquer assunto · github.com/asguth/grifo-skill
 
 Sintaxe: /<comando> <assunto ou arquivo> [--formato f] [--estilo e] [--nivel n] [--folhas N]
                                           [--material arquivo] [--banca b] [--idioma xx]

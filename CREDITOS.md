@@ -18,5 +18,13 @@ legenda.
 | `conducao-openstax.jpg` | medicina-coracao, folha 2 | OpenStax College, *Anatomy & Physiology* | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:2018_Conduction_System_of_Heart.jpg) | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) |
 | `openstax-chloroplast.png` | en-photosynthesis | OpenStax, *Biology* | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Figure_08_01_05.png) | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) |
 
+Gerados para o Grifo-Skill (não são de terceiros; CC BY 4.0 como o resto dos exemplos):
+`mercado-equilibrio.svg`, `mercado-deslocamento.svg` e `receita-total.svg`
+(economia-oferta-demanda), feitos com `figura.py grafico` a partir das equações do texto.
+
+O acervo curado da skill (`skills/grifo/assets/acervo.json`) só lista arquivos do
+Wikimedia Commons com autor e licença; nada dele vem embutido. Quem baixa uma figura
+recebe o crédito pronto do `figura.py baixar`.
+
 Os arquivos foram reduzidos e receberam fundo branco no lugar da transparência; o
 conteúdo da imagem não foi alterado. Metadados completos no `.json` ao lado de cada um.

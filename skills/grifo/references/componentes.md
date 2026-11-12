@@ -5,6 +5,7 @@ ajustes pontuais via `style=""`.
 
 ## Folha e cabeçalho corrido
 ```html
+<!-- o rodapé é obrigatório em toda folha: o CSS imprime "Feito com Grifo-Skill · gerado com IA" -->
 <div class="folha">
   <div class="topo">
     <div class="logo"><svg viewBox="0 0 64 64"><use href="#i-grifo"/></svg></div>
@@ -16,7 +17,7 @@ ajustes pontuais via `style=""`.
     <div class="coluna"> <div class="coluna-cab">Noções gerais</div> … blocos … </div>
     <div class="coluna"> <div class="coluna-cab">Espécies</div> … blocos … </div>
   </div>
-  <div class="rodape-folha"><span>Grifo-Skill · MIT</span><span>Atualizado até 11/11/2026</span></div>
+  <div class="rodape-folha"><span>Grifo-Skill</span><span>Atualizado até 11/11/2026</span></div>
 </div>
 ```
 Cabeçalho alternativo de 1ª folha (estilo resumo único):
@@ -211,11 +212,19 @@ Pirâmide só em CSS: `.piramide > .nivel` (até 5 níveis, topo primeiro).
 
 ## Capa e sumário
 ```html
+<!-- capa = banner do repositório: mascote (#i-grifo) à esquerda, título à direita.
+     Selos: 2–4 rótulos curtos (banca, nº de tópicos, idioma...); apague se não houver. -->
 <div class="folha capa">
-  <div class="titulo-capa">Direito Constitucional</div>
-  <div class="sub-capa">Apostila visual — Curso/Concurso X</div>
-  <svg class="ilustra gg ico" style="margin-top:20mm"><use href="#l-scroll-text"/></svg>
-  <div class="info-capa">Gerada com Grifo-Skill (MIT) · atualizado até dd/mm/aaaa</div>
+  <div class="marca-capa">Grifo-Skill <small>Apostilas ilustradas de qualquer assunto</small></div>
+  <div class="banner-capa">
+    <svg class="mascote-capa" viewBox="0 0 240 240"><use href="#i-grifo"/></svg>
+    <div class="texto-capa">
+      <div class="titulo-capa">Direito Constitucional</div>
+      <div class="sub-capa">Apostila visual — Curso/Concurso X</div>
+      <div class="selos-capa"><span>Banca Y</span><span>8 tópicos</span></div>
+    </div>
+  </div>
+  <div class="rodape-folha"><span>Grifo-Skill</span><span>CF/88 — atualizado até dd/mm/aaaa</span></div>
 </div>
 <div class="folha sumario"><h2 class="secao">Sumário</h2>
   <ol><li>Teoria da Constituição<span class="pg">03</span></li></ol></div>
