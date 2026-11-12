@@ -354,10 +354,33 @@ table.edital tr.materia td { background: var(--disc-claro); font-weight: 800; co
 table.edital td.peso { text-align: center; white-space: nowrap; }
 
 /* ===================== CAPA / SUMÁRIO ===================== */
-.capa { justify-content: center; align-items: flex-start; background: var(--papel); border-top: 120mm solid var(--navy); }
-.capa .titulo-capa { color: #fff; font-family: var(--fonte-titulo); font-size: 34pt; font-weight: 800; text-transform: uppercase; line-height: 1; }
-.capa .sub-capa { color: #fff; font-size: 13pt; margin-top: 3mm; opacity: .95; }
-.capa .info-capa { margin-top: auto; font-size: 10pt; color: var(--tinta-2); }
+/* capa no estilo do banner do repositório (docs/marca/social.png): fundo claro,
+   mascote à esquerda, título em navy à direita, selos e faixa navy no pé. */
+.capa {
+  justify-content: center; align-items: stretch; gap: 0; background: var(--sup);
+  border-bottom: 9mm solid var(--navy); padding: 16mm 14mm 14mm;
+}
+.capa .marca-capa {
+  position: absolute; top: 12mm; left: 14mm; right: 14mm; display: flex; align-items: baseline; gap: 2.4mm;
+  font-family: var(--fonte-titulo); font-weight: 900; font-size: 13pt; color: var(--navy); letter-spacing: -.01em;
+  border-bottom: 1px solid var(--linha); padding-bottom: 2mm;
+}
+.capa .marca-capa small { font-family: var(--fonte-corpo); font-weight: 600; font-size: 9pt; color: var(--tinta-2); letter-spacing: 0; }
+.capa .banner-capa { display: flex; align-items: center; gap: 8mm; }
+.capa .mascote-capa { width: 72mm; height: 72mm; flex: none; }
+.capa .texto-capa { flex: 1; min-width: 0; }
+.capa .titulo-capa {
+  color: var(--navy); font-family: var(--fonte-titulo); font-size: 36pt; font-weight: 900;
+  line-height: 1.02; letter-spacing: -.015em; text-wrap: balance; overflow-wrap: anywhere;
+}
+.capa .sub-capa { color: var(--tinta); font-size: 14pt; font-weight: 600; margin-top: 4mm; line-height: 1.25; }
+.capa .selos-capa { display: flex; flex-wrap: wrap; gap: 2mm; margin-top: 6mm; }
+.capa .selos-capa span {
+  font-weight: 700; font-size: 9.5pt; color: var(--navy); border: 1.4px solid var(--navy);
+  border-radius: 999px; padding: .8mm 3.2mm;
+}
+.capa .rodape-folha, .capa .info-capa { left: 14mm; right: 14mm; }
+.capa .info-capa { position: absolute; bottom: 14mm; font-size: 9pt; color: var(--tinta-2); }
 .sumario ol { counter-reset: s; list-style: none; padding: 0; }
 .sumario li { display: flex; gap: 2mm; border-bottom: 1px dotted var(--linha); padding: 1.2mm 0; }
 .sumario li::before { counter-increment: s; content: counter(s, decimal-leading-zero); font-weight: 800; color: var(--disc); }
